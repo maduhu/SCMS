@@ -1,0 +1,65 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.WarehouseReleaseItem
+@{AjaxOptions ajaxOpts = new AjaxOptions
+      {
+
+          UpdateTargetId = "wrfDiv",
+          LoadingElementId = "loading",
+          HttpMethod = "Post",
+          Url = Url.Action("SaveWRN"),
+          OnBegin = "return CheckAvailableQty()",
+          OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "'); CloseDialog();",
+          OnFailure = "javascript:errormsg()"
+
+      };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/procument.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(k => k.WarehouseReleaseId)
+    <input type="hidden" id="wrnId" value="@Model.WarehouseReleaseId" />
+    <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+    <fieldset>
+        <table>
+            <tr>
+                <td>
+                    @Resources.Global_String_ItemName
+                </td>
+                <td align="left" class="editor-field">
+                    @Html.DropDownListFor(model => model.InventoryId, Model.Items, Resources.Global_String_PleaseSelect, new { @id = "inventoryId", onchange = "javascript:InvtselectedIndexChange(this)" })
+                    @Html.ValidationMessageFor(model => model.InventoryId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resources.WRForm_LoadWRFItem_QuantityAsset
+                </td>
+                <td class="editor-field">
+                    <div id="PBlines">
+                        @Html.TextBoxFor(model => model.Quantity, new { @id = "txtqtyordered" })
+                        @Html.ValidationMessageFor(model => model.Quantity)
+                        @* @Html.DropDownListFor(model => model.AssetId, Model.Items, "- please select -",new { @id = "dplassetId" })
+                        @Html.ValidationMessageFor(model => model.AssetId)
+                        <input type="hidden" id="txtqtyordered" value="0" />*@
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Resources.Global_String_Comments
+                </td>
+                <td align="left" class="editor-field">@Html.TextAreaFor(model => model.Comments)
+                    @Html.ValidationMessageFor(model => model.Comments)
+                </td>
+            </tr>
+        </table>
+        <br />
+        <p>
+            &nbsp;&nbsp;
+            <input type="submit" class="btn green" value=" @Resources.Global_String_AddItem " />&nbsp;&nbsp;&nbsp;
+        </p>
+    </fieldset>
+}

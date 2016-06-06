@@ -1,0 +1,111 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model IEnumerable<SCMS.Model.OrderRequestItem>
+<br />
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.OrderRequest_String_OrderRequestItems</h3>
+    </div>
+    &nbsp;&nbsp;&nbsp;
+    @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new { id = "LoadRequestItem" }, new AjaxOptions
+    {
+        OnBegin = string.Format("ShowDialogue('{0}')", Resources.OrderRequest_AddNewItem4OR_AddNewItem),
+        UpdateTargetId = "popup-page",
+        LoadingElementId = "popup-loading",    
+        Url = Url.Action("LoadRequestItem/" + ViewBag.OrderRequestID),
+        OnSuccess = "ClearFormById('#' + 'frmORItem');CenterPopup();"
+    })
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table width="98%" align="center" class="cardTable" cellspacing="0" cellpadding="0"
+            border="1">
+            <tr class="gridheader">
+                <th>
+                    @Resources.Global_String_ItemName
+                </th>
+                <th>
+                    @Resources.Global_String_Unit
+                </th>
+                <th>
+                    @Resources.Global_String_Quantity
+                </th>
+                <th>
+                    @Resources.OrderRequest_AddItemInEditMode_EstUnitPrice
+                </th>
+                <th>
+                    @Resources.OrderRequest_AddItemInEditMode_EstTotalPrice
+                </th>
+                <th>
+                    @Resources.Budget_CategoryList_ProjectNo
+                </th>
+                <th>
+                    @Resources.Global_String_BL
+                </th>
+                <th>
+                    @Resources.Global_String_Remarks
+                </th>
+                <th>
+                    @Resources.Global_String_Manage
+                </th>
+            </tr>
+            @{int x = 0; string rowClass = ""; }
+            @foreach (var item in Model)
+            {
+                if (x % 2 == 0) { rowClass = "grideven"; }
+                if (x % 2 != 0) { rowClass = "gridodd"; }
+                if (x >= 0) { x = x + 1; }
+                <tr class="gridodd">
+                    <td>
+                        @item.Item.Name
+                    </td>
+                    <td align="center">
+                        @item.Item.UnitOfMeasure.Code
+                    </td>
+                    <td align="center">
+                        @item.Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                    </td>
+                    <td align="right">
+                        @item.EstimatedUnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>
+                    <td align="right">
+                        @item.EstimatedPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>
+                    <td align="center">
+                        @item.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber
+                    </td>
+                    <td align="center">
+                        @item.ProjectBudget.LineNumber
+                    </td>
+                    <td align="left">
+                        @item.Remarks
+                    </td>
+                    <td align="center">
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditItem" }, new AjaxOptions
+                        {
+                            OnBegin = "ShowDialogue('Edit OR Item')",
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            Url = Url.Action("EditItem/" + item.Id),
+                            OnSuccess = "ComputeTotals();CenterPopup();"
+                        }) | 
+                        @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "RemoveItem" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "requestItemDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("RemoveItem/" + item.Id),
+                            Confirm = string.Format(Resources.OrderRequest_String_ConfirmRemoveItem, item.Item.Name)
+                        })
+                    </td>
+                </tr>
+            }
+        </table>
+        <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+        <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+        <br />
+        <input type="button" class="btn green" value="@Resources.Global_String_SubmitForApproval" onclick="if(confirm('@Resources.Global_String_SubmitForApproval?')){sendRequest('SubmitOR/@ViewBag.OrderRequestID', 'requestDiv', 'loading'); document.getElementById('requestItemDiv').innerHTML='';initSorter();sorter.size(50);LoadRequests();}" />
+        <br />
+    }
+    
+</div>

@@ -1,0 +1,42 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.AssetView>
+
+  @{
+        var pagerStyleFlags = new[] 
+        { 
+            //new { Key = "pageInput", Value = GridPagerStyles.PageInput },
+            //new { Key = "nextPrevious", Value = GridPagerStyles.NextPrevious },
+            //new { Key = "numeric", Value = GridPagerStyles.Numeric },
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        //GridPagerStyles pagerStyles = GridPagerStyles.NextPrevious;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+
+        }
+    }
+
+ @(Html.Telerik().Grid(Model)
+        .Name("AssetPopup")
+        .DataKeys(keys => keys.Add(o => o.AssetId))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.AssetId).Hidden();
+            columns.Bound(c => c.AssetNumber).Title(Resources.Global_String_AssetNo).Width(150)
+                .Aggregate(aggregates => aggregates.Count())
+                    .ClientGroupFooterTemplate("Count: <#= Count #>");
+            columns.Bound(c => c.AssetName).Title(Resources.Global_String_AssetDescription).Width(250);
+            columns.Bound(c => c.Classification).Title(Resources.Global_String_ItemClassification).Width(150);
+            columns.Bound(c => c.currentProject).Title(Resources.Budget_CategoryList_ProjectNo).Width(150);
+            columns.Bound(c => c.WarehouseName).Title(Resources.Global_String_Warehouse).Width(150);
+                 
+        })
+        .Filterable(filtering => filtering.Enabled(true))
+        .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+        .Sortable(settings => settings.Enabled(true).SortMode(GridSortMode.MultipleColumn))
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("AssetPopupFiltering", "Inventory"))
+        .Groupable()
+)

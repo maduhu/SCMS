@@ -1,0 +1,202 @@
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\NLog.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\NLog.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM-2013\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\EntityFramework.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\NLog.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\EntityFramework.xml
+C:\My Projects\LOGISYS\SSCM\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll.config
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\NLog.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll.config
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\NLog.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Mvc.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll.config
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.CoreBusinessLogic.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\NLog.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Model.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Resource.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\SCMS.Utils.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\EntityFramework.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\FluentValidation.Mvc.pdb
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Helpers.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.Razor.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\System.Web.WebPages.Razor.xml
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\de\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\es\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\fr\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\it\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\nl\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\pl\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\pt\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\ru\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\bin\Debug\sv\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.csprojResolveAssemblyReference.cache
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.dll
+D:\SCMS\RASHID\SCMS\CoreBusinessLogic\obj\Debug\SCMS.CoreBusinessLogic.pdb

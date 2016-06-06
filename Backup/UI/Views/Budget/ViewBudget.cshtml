@@ -1,0 +1,207 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.Category>
+<div class="partialViewCard">
+<div class="partialViewCardHeader"><h3>@Resources.Budget_LinkToMB_ProjectBudget</h3></div>
+@if (Model.Count() > 0)
+{
+    
+    <form action="" class="form">
+        <table class="infoTable">
+            <tr>
+                <td align="right" class="labelTd"><b>@Resources.Global_String_Project:</b></td>
+                <td>@ViewBag.ProjectName</td>
+                <td align="right" class="labelTd"><b>@Resources.Budget_CreateProject_StartDate:</b></td>
+                <td>@ViewBag.StartDate</td>
+            </tr>
+           <tr>
+                <td align="right" class="labelTd"><b>@Resources.Budget_CategoryList_Donor:</b></td>
+                <td>@ViewBag.Donor</td>            
+                <td align="right" class="labelTd"><b>@Resources.Budget_CreateProject_EndDate:</b></td>
+                <td>@ViewBag.EndDate</td>
+            </tr>
+            <tr>
+                <td align="right" class="labelTd"><b>@Resources.Budget_CategoryList_Currency:</b></td>
+                <td>
+                    @Html.DropDownListFor(m => Model.ToList()[0].CurrencyId, Model.ToList()[0].Currencies, new { id = "currencyId",
+                                                                                                                 onchange = "javascript:ViewBudgetInSelectedCurrency(this)"
+               })
+                    <input id="projectId" name="projectId" type="hidden" value="@Model.ToList()[0].ProjectDonorId" />
+                </td>
+                <td align="right" class="labelTd"><b>@Resources.Budget_CreateProject_ProjectManager:</b></td>
+                <td>@ViewBag.ProjectManager</td>
+            </tr>
+            <tr>
+                <td align="right" class="labelTd">
+                    <b>@Resources.Budget_CategoryList_AllowedOverrun:</b>
+                </td>
+                <td>
+                    @ViewBag.AllowedOverrun
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr>
+            <td align="right">&nbsp; &nbsp;
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                {
+                    @Ajax.ActionLink(Resources.Budget_LinkToMB_EditBudget, "Index", new { id = "CategoryList" }, new AjaxOptions
+                    {
+                        UpdateTargetId = "budgetDiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("CategoryList/" + ViewBag.ProjectId)
+                    }) 
+                }
+            </td>
+            <td>
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                {
+                    @Html.Raw("|&nbsp;")                     
+                    @Ajax.ActionLink(Resources.Budget_CategoryList_LinkToMB, "Index", new { id = "LinkToMB" }, new AjaxOptions
+                    {
+                        UpdateTargetId = "budgetDiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("LinkToMB/" + ViewBag.ProjectId)
+                    })
+                }
+            </td>        
+            <td>
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversView))
+                {                    
+                    @Ajax.ActionLink(Resources.Budget_CreateProject_ApprovalSettings, "ApprovalSettings", new { id = ViewBag.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "budgetDiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("ApprovalSettings/" + ViewBag.ProjectId),
+                        OnSuccess = "initTabs(0);"
+                    })
+                }
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        </table>
+    </form>
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" class="cardTable">
+                <tr>
+                    <th colspan="2" rowspan="2" align="center" valign="middle" class="cardBudgetNo">
+                        <h2>@Resources.Budget_CategoryList_ProjectNo: @ViewBag.ProjectNo</h2>
+                    </th>
+                    <th colspan="4" align="center" class="gridheader" style="text-transform: uppercase;">
+                        @Resources.Global_String_GrandTotals
+                    </th>
+                </tr>
+              <tr>
+                <td align="right">
+                    <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalBudget)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalCommitted)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalPosted)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].RemainingBalance)</b>
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <th>
+                   @Resources.Budget_CategoryList_BLPopupHeader
+                </th>
+                <th>
+                    @Resources.Global_String_Description
+                </th>
+                <th>
+                    @Resources.Budget_ViewBudget_TotalBudget
+                </th>
+                <th>
+                    @Resources.Budget_ViewBudget_Committed
+                </th>
+                <th>
+                    @Resources.Budget_ViewBudget_ActualPosting
+                </th>
+                <th>
+                    @Resources.Budget_ViewBudget_RemainingFunds
+                </th>
+            </tr>
+        @{int x = 0; }
+        @for (int i = 0; i < (Model.Count() - 1); i++ )
+        {
+            if (x >= 0) { x = x + 1; }
+            <tr class="grideven">
+                <td align="center">
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].Number)</b>
+                </td>
+                <td>
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].Name)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalBudget)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalCommitted)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalPosted)</b>
+                </td>
+                <td align="right">
+                    <b>@Html.DisplayFor(modelItem => Model.ToList()[i].RemainingBalance)</b>
+                </td>
+            </tr>
+            foreach (var subItem in Model.ToList()[i].BudgetLines)
+                  { 
+                    <tr class="gridodd">
+                        <td align="center">
+                            @Html.DisplayFor(modelSubItem => subItem.LineNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelSubItem => subItem.Description)
+                        </td>
+                        <td align="right">                                                        
+                            @Html.DisplayFor(modelSubItem => subItem.TotalBudget)
+                        </td>
+                        @if(subItem.TotalCommitted > 0)
+                        {
+                            <td align="right" style="cursor: pointer;" title="View details" onclick="ShowDialogue('@ViewBag.ProjectNo :: @subItem.LineNumber @subItem.Description');sendRequest('/Budget/CommitDetails/@subItem.SubLineId', 'popup-page', 'popup-loading');CenterPopup();">
+                                @Html.DisplayFor(modelSubItem => subItem.TotalCommitted)
+                            </td>
+                        }
+                        else
+                        {
+                            <td align="right">
+                                @Html.DisplayFor(modelSubItem => subItem.TotalCommitted)
+                            </td>
+                        }
+                        @if(subItem.TotalPosted > 0)
+                        {
+                            <td align="right" style="cursor: pointer;" title="View details" onclick="ShowDialogue('@ViewBag.ProjectNo :: @subItem.LineNumber @subItem.Description');sendRequest('/Budget/PostDetails/@subItem.SubLineId', 'popup-page', 'popup-loading');CenterPopup();">                       
+                                @Html.DisplayFor(modelSubItem => subItem.TotalPosted)
+                            </td>
+                        }
+                        else
+                        {
+                            <td align="right">                       
+                                @Html.DisplayFor(modelSubItem => subItem.TotalPosted)
+                            </td>
+                        }
+                        <td align="right">                       
+                            @Html.DisplayFor(modelSubItem => subItem.RemainingBalance)
+                        </td>
+                    </tr>
+                  }
+
+        }
+                          <tfoot>
+                  <tr>
+                    <td colspan="3" align="center">
+                        <a href="/Reports/ProjectBudget/Download?Id=@ViewBag.DonorId&CurrencyId=@Model.ToList()[0].CurrencyId" title="@Resources.Budget_ViewBudget_DownloadExcelTitle" class="btn btn-primary">@Resources.Budget_ViewBudget_DownloadExcel</a>
+                    </td>
+                    <td colspan="3" align="center">
+                        <a href="/Reports/ProjectBudget/Detail?Id=@ViewBag.DonorId&CurrencyId=@Model.ToList()[0].CurrencyId" title="@Resources.Budget_ViewBudget_DownloadPdf" class="btn btn-primary"  target="_blank">@Resources.Budget_ViewBudget_DownloadPdf</a>
+                    </td>
+                  </tr>
+                  </tfoot>
+        </table>
+        <br />
+}
+</div>
+<br />

@@ -1,0 +1,40 @@
+﻿@using SCMS.Resource
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title</title>
+	<meta name="description" content="SCMS"/>
+	<meta name="author" content="SCMS"/>	
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+	
+	<!-- CSS -->
+    <link href="@Url.Content("~/Content/themes/copenhagen/css/base.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/themes/copenhagen/css/style.css?v=4r5K-e1")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/zebra_dialog.css")" rel="stylesheet"/>
+
+    <script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/bootstrap.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/zebra_dialog.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/general.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/themes/copenhagen/js/modernizr-2.0.6.min.js")" type="text/javascript"></script>
+</head>
+<body>
+<div class="container">
+		<div class="row">
+			<div class="four columns "><div id='drc-logo' class="loginf"><a href="http://www.drc.dk" title="@Resources.Global_String_DanishRefugeeCouncil"></a></div></div>
+			<div class="four columns push_four"><div id='ddg-logo' class="loginf"><a href="http://www.danishdemininggroup.dk/" title="@Resources.Global_String_DanishDeminingGroup"></a></div></div>
+		</div>
+</div>
+<div class="container">
+@RenderBody()
+<div class="row">
+	<div class="twelve columns"> <p>@Resources.Global_String_DRCAddress, drc@drc.dk <a href="http://www.drc.dk">www.drc.dk</a></p>
+    <input id="feedback" type="hidden" value="@ViewBag.feeback" />
+		</div>
+	</div>
+</div>
+@RenderPage("~/Views/Shared/Login/LoginControl.cshtml")
+</body>
+</html>

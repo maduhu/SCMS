@@ -1,0 +1,117 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.Asset
+
+</script>
+<div class="partialViewCard" style="min-width: 600px;">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_AssetName: &nbsp; @Model.Item.Name</h3>
+    </div>
+    <br />
+    <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table"
+        class="tinytable" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <th>
+                @Resources.Global_String_Image
+            </th>
+            <th colspan="2">
+                @Resources.Inventory_AssetInventoryPopup_TechnicalDetails
+            </th>
+        </tr>
+        <tr>
+            <td align="center" valign="middle" rowspan="5" style="width: 40%;">
+                <img src = "@Url.Action("AssetImage", "Inventory", new { id = Model.Id} )" style="max-width: 200px" />
+            </td>
+            <td align="left" style="width: 30%; font-weight: bold;">
+                @Resources.Global_String_SerialNo:
+            </td>
+            <td align="left" style="width: 30%;">
+                @Model.SerialNumber
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Global_String_AssetNo:
+            </td>
+            <td align="left">
+                @Model.AssetNumber
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Global_String_WeightInKg:
+            </td>
+            <td align="left">
+                @Model.Weight
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Global_String_Lifespan:
+            </td>
+            <td align="left">
+                @Model.Lifespan
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.GoodsReceivedNote_GRAssetList_SalvageValue (@Model.Currency.ShortName):
+            </td>
+            <td align="left">
+                @Model.SalvageValue.ToString("#,##0.00")
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Resources.Global_String_Description
+            </th>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Inventory_AssetInventoryPopup_DeprInMonths:
+            </td>
+            <td align="left">
+                @Model.DepreciationPeriods
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style="width: 38%;" valign="top" rowspan="4">
+                @Model.Name
+            </td>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.GoodsReceivedNote_LoadTransferAsset_CurrentProPatnar:
+            </td>
+            <td align="left" title="@Model.ProjectDonor.Project.Name">
+                @ViewBag.CurrentProject
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Global_String_Warehouse:
+            </td>
+            <td align="left">
+                @Model.WareHouse.Name
+            </td>
+        </tr>
+        <tr>
+            <td align="left" style=" font-weight: bold;">
+                @Resources.Inventory_AssetInventoryPopup_AssignedTo:
+            </td>
+            <td align="left">
+                @if (Model.Staff != null)
+                { @Model.Staff.Person.FirstName}
+                &nbsp;
+                @if (Model.Staff != null)
+                { @Model.Staff.Person.OtherNames}
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>
+<br />
+@Ajax.ActionLink(Resources.Global_String_Edit, "LoadEditAsset", new { @assetId = @Model.Id }, new AjaxOptions
+{
+    UpdateTargetId = "popup-page",
+    LoadingElementId = "popup-loading",
+    HttpMethod = "Post",
+    OnSuccess = "initFineUploader('/GoodsReceivedNote/HandleImageUpload');CenterPopup();"
+
+})&nbsp;|&nbsp;<a onclick="CloseDialog()" href="#">@Resources.Global_String_Close</a> 

@@ -1,0 +1,63 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.ItemPack
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "ContentDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("CreateEditItemPackage"),
+      OnFailure = "Javascript:AjaxFailure()"
+  };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td align="right">@Resources.Global_String_ItemName<font color="red">*</font>:</td>
+            <td>
+                @Html.DropDownListFor(model => model.EntityItemPackage.ItemId, Model.Items, Resources.Global_String_PleaseSelect)<br />
+                @Html.ValidationMessageFor(model => model.EntityItemPackage.ItemId)
+                @Html.HiddenFor(model => model.EntityItemPackage.Id)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Item_CreateEditItemPackage_PackShortName:</td>
+            <td>
+                @Html.EditorFor(model => model.EntityItemPackage.shortName)<br />
+                @Html.ValidationMessageFor(model => model.EntityItemPackage.shortName)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Item_CreateEditItemPackage_PackFullName:</td>
+            <td>
+                @Html.EditorFor(model => model.EntityItemPackage.Name)<br />
+                @Html.ValidationMessageFor(model => model.EntityItemPackage.Name)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Item_CreateEditItemPackage_PackSize:</td>
+            <td>
+                @Html.EditorFor(model => model.EntityItemPackage.PackSize, new { @class = "numericTb" })<br />
+                @Html.ValidationMessageFor(model => model.EntityItemPackage.PackSize)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td>
+                <input type="submit" class="btn green" value="@(ViewBag.Action != null ? ViewBag.Action : Resources.Global_String_Save)" />
+                @if (ViewBag.Action != null)
+                {
+                    @Html.Hidden("Action", "Edit")
+                }
+                else
+                {
+                    @Html.Hidden("Action", "")
+                }
+            </td>
+        </tr>
+    </table>
+}

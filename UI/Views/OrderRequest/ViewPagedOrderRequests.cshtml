@@ -1,0 +1,70 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.ViewOR>
+@{
+    ViewBag.Title = Resources.OrderRequest_Index_ViewOrderRequests;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/js/jquery.dataTables.min.js")" type="text/javascript"></script>
+<div>
+    <table id="OR-summary" width="100%">
+        <thead>
+            <tr>
+                <th>
+                    @Resources.Global_String_RefNo
+                </th>
+                <th>
+                    @Resources.Budget_CategoryList_ProjectNo
+                </th>
+                <th>
+                    @Resources.OrderRequest_ViewOrderRequests_FirstItem
+                </th>
+                <th>
+                    @Resources.OrderRequest_String_ORValue
+                </th>
+                <th>
+                    @Resources.WRForm_LoadWRF_Requestor
+                </th>
+                <th>
+                    @Resources.Global_String_Status
+                </th>
+                <th>
+                    @Resources.Global_String_StatusDate
+                </th>
+            </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript" charset="utf-8">
+    $(document).ready(function () {
+        $('#OR-summary').dataTable({
+            "bProcessing": true,
+            "bServerSide": true,
+            "sAjaxSource": "/OrderRequest/ViewOrderRequestsWithPaging/",
+            "sPaginationType": "full_numbers",
+            "bJQueryUI": true,
+            "sServerMethod": "POST",
+            "aoColumns": [
+            { "mDataProp": "RefNumber" },
+            { "mDataProp": "ProjectNumber" },
+            { "mDataProp": "FirstItem" },
+            { "mDataProp": "ORValue" },
+            { "mDataProp": "Requestor" },
+            { "mDataProp": "Status" },
+            { "mDataProp": "StatusDate",
+                "fnRender": function (oObj) {
+                    var value = new Date(parseInt(oObj.aData.StatusDate.substr(6)));
+
+                    var m_names = new Array("Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+
+                    var d = value;
+                    var curr_date = d.getDate();
+                    var curr_month = d.getMonth();
+                    var curr_year = d.getFullYear();
+                    var result = curr_date + "." + m_names[curr_month] + "." + curr_year;
+                    return result; //'<a href="' + oObj.aData.link + '">' + oObj.aData.ftitle + '</a>';
+                }
+            }
+            ]
+        });
+    });
+</script>

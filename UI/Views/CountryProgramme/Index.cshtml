@@ -1,0 +1,63 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.CountryProgramme_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<!-- FineUploader -->
+<link href="@Url.Content("~/Content/css/fineuploader.css")" rel="stylesheet"/>
+<script src="@Url.Content("~/Scripts/fineuploader/jquery.fineuploader-3.0.min.js")" type="text/javascript"></script>
+
+<div id="DesignationMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.CountryProgramme_CreateEdit_Header</h3><br />
+        </div>
+        <div style="font-size: 12px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Global_String_AddNew, "CreateEdit", new { id=Guid.Empty}, new AjaxOptions
+                        {
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_AddNew),
+                            OnSuccess = "CenterPopup();initFineUploader('/GoodsReceivedNote/HandleImageUpload');"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Html.ActionLink(Resources.Global_String_BackToGlobalSettings, "Index", "GlobalSettings")
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Global_String_CountryProgrammes, "Index", new AjaxOptions
+                        {
+                            UpdateTargetId = "ContentDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("ListView"),
+                            OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+                        })
+                    </td>   
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="ContentDiv">
+        <!-- Content goes here-->
+        @Html.Action("ListView")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        initTabs(0);
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(50);
+        }
+    });
+</script>

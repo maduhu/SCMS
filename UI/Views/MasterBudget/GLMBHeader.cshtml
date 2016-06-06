@@ -1,0 +1,158 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.MasterBudgetHeader
+@{AjaxOptions ajaxOpts = new AjaxOptions { UpdateTargetId = "masterBudgetDiv", LoadingElementId = "loading", HttpMethod = "Post", Url = Url.Action("GenerateGLMB") };}
+
+<div class="partialViewCard">
+<div class="partialViewCardHeader"><h3>@string.Format(Resources.MasterBudget_MasterBudgetHeader_Header, ViewBag.CPName)</h3></div>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "mbForm" }))
+{ 
+    <table align="center">
+        <tr>
+            <td align="right">@Resources.MasterBudget_MasterBudgetHeader_SelectCurrency:</td>
+            <td>@Html.DropDownListFor(m => Model.CurrencyId, Model.Currencies)</td>
+            <td><input type="submit" value="View Master Budget" style="border: none; color: #D04526; background-color: #fff; cursor: pointer;"/></td>
+        </tr>
+    </table>
+}
+<div id="masterBudgetDiv" style="text-align: left;">
+<!--Content Goes Here -->
+@if (Model.MBCList.Count < 1)
+{ 
+    <br /><font color="red">@string.Format(Resources.MasterBudget_MasterBudget_NoExchangeRate, ViewBag.Currency)</font>
+}
+
+    <table width="98%" align="center" cellspacing="0" cellpadding="5" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr>
+            <th colspan="3" rowspan="2" align="center" valign="middle">
+                <h3>@Resources.Global_String_Currency: @ViewBag.Currency</h3>
+            </th>
+            <th colspan="8" align="center" class="gridheader">
+                @Resources.Global_String_GrandTotals.ToUpper()
+            </th>
+        </tr>
+        <tr>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].TotalBudget)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].TotalCommitted)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].TotalPosted)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].RemainingBalance)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].PercentageSpent)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.MBCList[Model.MBCList.Count - 1].RemainingBalance)</b>
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">@Resources.Global_String_Category</th>
+            <th align="center">@Resources.Budget_CategoryList_ProjectNo</th>
+            <th align="center">@Resources.Budget_CategoryList_Donor</th>
+            <th align="center">@Resources.Budget_ViewBudget_TotalBudget</th>
+            <th align="center">@Resources.Budget_ViewBudget_TotalCommitted</th>
+            <th align="center">@Resources.Budget_ViewBudget_TotalPosted</th>
+            <th align="center">@Resources.Budget_ViewBudget_RemainingFunds</th>
+            <th align="center">% @Resources.MasterBudget_MasterBudget_ActualSpent</th>
+            <th align="center">@Resources.MasterBudget_MasterBudget_FundsAvailable</th>
+        </tr>
+    @{int x = 0; int pjCount = 0; string rowClass = ""; }
+    @for (int j = 0; j < Model.MBCList.Count - 1; j++)
+    {
+        if (x % 2 == 0) { rowClass = "grideven"; }
+        if (x % 2 != 0) { rowClass = "gridodd"; }
+        if (x >= 0) { x = x + 1; pjCount = Model.MBCList[j].Projects.Count; }
+        <tr>
+            <td rowspan="@pjCount" align="center" valign="middle" style="background-color: #FCD5B4;">
+                <b>@string.Format("{0} {1}", Model.MBCList[j].EntityGeneralLedger.Code, Model.MBCList[j].EntityGeneralLedger.Description)</b>
+            </td>
+            <td  style="background-color: #FCD5B4;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].EntityProjectDonor.ProjectNumber)
+            </td>
+            <td  style="background-color: #FCD5B4;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].EntityProjectDonor.Donor.ShortName)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].TotalBudget)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].TotalCommitted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].TotalPosted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].RemainingBalance)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[0].PercentageSpent)
+            </td>
+            <td rowspan="@pjCount" align="center" valign="middle" style="background-color: #DCE6F1; border-bottom-style: none;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].RemainingBalance)</b>
+            </td>
+        </tr>
+        for (int i = 1; i < Model.MBCList[j].Projects.Count; i++)
+                { 
+            <tr>
+                <td style="background-color: #FCD5B4;">
+                @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].EntityProjectDonor.ProjectNumber)
+                </td>
+                <td style="background-color: #FCD5B4;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].EntityProjectDonor.Donor.Name)
+                </td>
+                <td align="right" style="background-color: #DCE6F1;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].TotalBudget)
+                </td>
+                <td align="right" style="background-color: #DCE6F1;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].TotalCommitted)
+                </td>
+                <td align="right" style="background-color: #DCE6F1;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].TotalPosted)
+                </td>
+                <td align="right" style="background-color: #DCE6F1;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].RemainingBalance)
+                </td>
+                <td align="right" style="background-color: #DCE6F1;">
+                    @Html.DisplayFor(modelItem => Model.MBCList[j].Projects[i].PercentageSpent)
+                </td>
+            </tr>
+                }
+        <tr>
+            <td colspan="3" align="right" style="background-color: #FCD5B4;">
+                <b>@string.Format("{0} {1}", Model.MBCList[j].EntityGeneralLedger.Code, Model.MBCList[j].EntityGeneralLedger.Description)</b>
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].TotalBudget)</b>
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].TotalCommitted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].TotalPosted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].RemainingBalance)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.MBCList[j].PercentageSpent)
+            </td>
+            <td style="background-color: #DCE6F1; border-top-style: none;">
+               &nbsp; 
+            </td>
+        </tr>
+        <tr>
+            <td colspan="9">&nbsp;</td>
+        </tr>
+        
+    }
+    </tr>
+</table>
+</div>
+<br />
+</div>

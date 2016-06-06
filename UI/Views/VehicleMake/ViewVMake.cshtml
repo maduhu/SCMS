@@ -1,0 +1,155 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.ViewVMake>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_ManageVehicleMakes</h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span>
+                        @Resources.Global_String_Of <span id="totalrecords"></span>
+                    </div>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table"
+                class="tinytable">
+                <thead>
+                    <tr>
+                        <th colspan="2">
+                            <h3>
+                                @Resources.Global_String_VehicleMake</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.Global_String_Manage</h3>
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                            <h3>
+                            </h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.Global_String_Model</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.Global_String_Manage</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{int count = 0;}
+                    @foreach (var item in Model)
+                    {
+                        count = 1 + @item.vmodels.Count();
+                        <tr class="grideven">
+                            <td style="width:30%;" valign="top" align="left"  rowspan=@count>
+                                @item.EntityVMake.Name
+                            </td>
+                            <td align="center" colspan="2">
+                                @Ajax.ActionLink(Resources.Global_String_Edit, "LoadVMake", new { @makeId = item.EntityVMake.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "popup-page",
+                               LoadingElementId = "popup-loading",
+                               OnBegin = string.Format("ShowDialogue('{0} :: {1}?')", Resources.VehicleMake_ViewVMake_confirmedit, item.EntityVMake.Name),
+                               OnSuccess = "CenterPopup"
+                           })
+                                &nbsp;|&nbsp;
+                                @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteVMake", new { @makeId = item.EntityVMake.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "ContentDiv",
+                               LoadingElementId = "loading",
+                               Confirm = string.Format("{0} {1} ?", Resources.VehicleMake_ViewVMake_confirmdelete, item.EntityVMake.Name),
+                               OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+                           })
+                            </td>
+                        </tr>
+                           foreach (var vmodel in item.vmodels)
+                           {
+                        <tr class="gridodd">
+                            <td style="width: 30%;" align="left">
+                                @vmodel.Name
+                            </td>
+                            <td>
+                                @Ajax.ActionLink(Resources.Global_String_Edit, "LoadVModel", new { @modelId = vmodel.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "popup-page",
+                               LoadingElementId = "popup-loading",
+                               OnBegin = string.Format("ShowDialogue('{0} :: {1}')", Resources.VehicleMake_ViewVMake_confirmeditmode, vmodel.Name),
+                               OnSuccess = string.Format("usermsg('{0}');CenterPopup();", Resources.Global_String_ProcessCompleted)
+                           })
+                                &nbsp;|&nbsp;
+                                @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteVModel", new { @modelId = vmodel.Id }, new AjaxOptions
+                           {
+                               UpdateTargetId = "ContentDiv",
+                               LoadingElementId = "loading",
+                               Confirm = string.Format("{0} {1} ?", Resources.VehicleMake_ViewVMake_confirmdelete, vmodel.Name),
+                               OnSuccess = string.Format("usermsg('{0}');CenterPopup();", Resources.Global_String_ProcessCompleted)
+                           })
+                            </td>
+                        </tr>
+                           }
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <i style="text-align: center;">@Resources.VehicleMake_ViewVMake_NoVmake</i>
+    }
+    <br />
+</div>

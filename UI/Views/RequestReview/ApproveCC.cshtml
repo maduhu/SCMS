@@ -1,0 +1,208 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.CompletionCertificate
+
+<div class="partialViewCard" style="min-width: 800px;">
+    <div class="partialViewCardHeader"><h3>@Resources.CompletionCertificate_Index_Header</h3></div>
+    <br />
+    <h4 style="text-align: center;">@Model.RefNumber</h4>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0">
+        <tr>
+            <td align="left">
+                <strong>@Resources.Global_String_Date</strong>
+            </td>
+            <td align="left" colspan="3">
+                @Model.PreparedOn
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                <strong>@Resources.Global_String_Office:</strong>
+            </td>
+            <td align="left">
+                @Model.CountrySubOffice.Name
+            </td>
+            <td align="left">
+                <strong>@Resources.Global_String_Country:</strong>
+            </td>
+            <td align="left">
+                @Model.CountrySubOffice.CountryProgramme.Country.Name
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                <strong>@Resources.Global_String_PreparedBy:</strong>
+            </td>
+            <td align="left">
+                @if(Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffName
+                }
+            </td>
+            <td align="left">
+                <strong>@Resources.Global_String_Title:</strong>
+            </td>
+            <td align="left">
+                @if(Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffDesignation
+                }
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                <strong>@Resources.Global_String_Signature:</strong>
+            </td>
+            <td align="left" colspan="3">
+                @if (Model.Staff1 != null && Model.Staff1.StaffSignature != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.PersonId, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                <strong>@Resources.Global_String_SubjectPurpose:</strong>
+            </td>
+            <td align="left" colspan="3">
+                @Model.Purpose
+            </td>
+        </tr>
+    </table>
+    <br />
+    @{bool iscompleted = false, isoutstandingissues = false, isnotcompleted = false;
+      if (Model.WorksService == Resources.CompletionCertificate_LoadCC_CompletedSatisfactorily)
+      {
+          iscompleted = true;
+      }
+      else if (Model.WorksService == Resources.CompletionCertificate_LoadCC_OutstandingIssues)
+      {
+          isoutstandingissues = true;
+      }
+      else
+      {
+          isnotcompleted = true;
+      }
+    }
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1">
+        <tr>
+            <td>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.CompletionCertificate_ViewCC_Constructor:</strong>
+                        </td>
+                        <td>@Model.PurchaseOrder.Supplier.Name
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.CompletionCertificate_ViewCCDetails_ContractPONo:</strong>
+                        </td>
+                        <td>@Model.PurchaseOrder.RefNumber
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.Global_String_ProjectTitle:</strong>
+                        </td>
+                        <td>@Model.ProjectTitle
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.Global_String_Location:</strong>
+                        </td>
+                        <td>@Model.Location
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.Global_String_DRCOffice:</strong>
+                        </td>
+                        <td>@Model.CountrySubOffice1.Name
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.CompetionCertificate_ViewCCDetails_ServiceConfirmedBy:</strong>
+                        </td>
+                        <td>
+                            @if(Model.Staff != null)
+                            {
+                                @Model.Staff.StaffName
+                            }
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.CompletionCertificate_LoadCC_ServiceWorks:</strong>
+                        </td>
+                        <td>
+                            <table width="98%" align="center" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td valign="middle">
+                                        @Html.CheckBox("Completed satisfactory", @iscompleted, new { @disabled = "disabled" })
+                                        Completed satisfactory
+                                    </td>
+                                    <td>
+                                        @Html.CheckBox("Outstanding issues", @isoutstandingissues, new { @disabled = "disabled" })
+                                        Outstanding issues
+                                    </td>
+                                    <td>
+                                        @Html.CheckBox("not completed", @isnotcompleted, new { @disabled = "disabled" })
+                                        Not Completed
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <table width="100%" align="center" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td style="width: 40%;">
+                            <strong>@Resources.CompletionCertificate_LoadCC_Remarks:</strong>
+                        </td>
+                        <td>@Model.Remarks
+                        </td>
+                    </tr>
+                </table>
+                <br />
+            </td>
+        </tr>
+    </table>
+    <table align="center" width="98%">
+        <tr>
+            <td width="50%" align="right">
+                <input type="button" class="btn tertiary" value="@Resources.Global_String_Approve" onclick="sendRequest('/RequestReview/ApproveCC/@Model.Id', 'popup-page', 'popup-loading'); ReviewComplete('@Resources.RequestReview_ApproveCC_CCApproved', '@Resources.Global_String_ApprovalComplete'); ReloadCC('@Model.Id');" />
+            </td>
+            <td width="50%">
+                <input type="button" class="btn tertiary" value="@Resources.Global_String_Reject" onclick="sendRequest('/RequestReview/RejectCC/@Model.Id', 'popup-page', 'popup-loading'); CenterPopup();" />
+            </td>
+        </tr>
+    </table> 
+    <br />
+</div>
+         
+
+

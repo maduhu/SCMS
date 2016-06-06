@@ -1,0 +1,150 @@
+﻿@using SCMS.CoreBusinessLogic.NotificationsManager
+@using SCMS.Resource
+@model IEnumerable<SCMS.Model.DocumentPreparer>
+
+<!-- DOC PREP -->
+<h4 style="text-align: center; text-transform: uppercase;">@Resources.Approver_ApproverList_DocumentPreparers</h4>
+<center>
+    <i style="font-style: italic; font-size: 11px;">@Resources.Budget_DocPrepList_Message</i>
+</center>
+<table width="98%" align="center" cellpadding="4">
+    <tr>
+        <td width="50%" valign="top">
+            <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Global_String_PurchaseOrder</b>&nbsp;
+            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+            {                    
+                @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "CreateDocPreparer", new { id = NotificationHelper.poCode, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                {
+                    OnBegin = "ShowDialogue('New PO Preparer')",
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    OnSuccess = "CenterPopup"
+                })
+            }
+            <table class="cardTable" width="100%">
+                <tr>
+                    <th width="90%">@Resources.Budget_CreateDocPreparer_Preparer</th>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                    {                    
+                        <th width="10%">@Resources.Global_String_Manage</th>
+                    }
+                </tr>
+                @foreach (var item in Model)
+                {
+                    if (item.DocumentCode != NotificationHelper.poCode ) { continue; }
+                    <tr>
+                        <td title="@item.Staff.Designation.Name">
+                            @item.Staff.Person.FirstName 
+                            @Html.Raw("&nbsp;")
+                            @item.Staff.Person.OtherNames
+                        </td>
+                        @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                        {                    
+                            <td>
+                                @Ajax.ActionLink(Resources.Global_String_Remove, "DeleteDocPreper", new { id = item.Id, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "tabs-5",
+                                    LoadingElementId = "loading",
+                                    Confirm = Resources.Budget_DocPrepList_ConfirmDelete
+                                })
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </td>
+        <td width="50%" valign="top">
+            <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Global_String_GoodsReceivedNote</b>&nbsp;
+            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+            {                    
+                @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "CreateDocPreparer", new { id = NotificationHelper.grnCode, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                {
+                    OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_DocPrepList_NewGRNPopupHeader),
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    OnSuccess = "CenterPopup"
+                })
+            }
+            <table class="cardTable" width="100%">
+                <tr>
+                    <th width="90%">@Resources.Budget_CreateDocPreparer_Preparer</th>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                    {                    
+                        <th width="10%">@Resources.Global_String_Manage</th>
+                    }
+                </tr>
+                @foreach (var item in Model)
+                {
+                    if (item.DocumentCode != NotificationHelper.grnCode) { continue; }
+                    <tr>
+                        <td title="@item.Staff.Designation.Name">
+                            @item.Staff.Person.FirstName 
+                            @Html.Raw("&nbsp;")
+                            @item.Staff.Person.OtherNames
+                        </td>
+                        @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                        {                    
+                            <td>
+                                @Ajax.ActionLink(Resources.Global_String_Remove, "DeleteDocPreper", new { id = item.Id, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "tabs-5",
+                                    LoadingElementId = "loading",
+                                    Confirm = Resources.Budget_DocPrepList_ConfirmDelete
+                                })
+                            </td>                            
+                        }
+                    </tr>
+                }
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td width="50%" valign="top">
+            <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Global_String_RequestForPayment</b>&nbsp;
+            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+            {                    
+                @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "CreateDocPreparer", new { id = NotificationHelper.rfpCode, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                {
+                    OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_DocPrepList_NewRFPPopupHeader),
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    OnSuccess = "CenterPopup"
+                })
+            }
+            <table class="cardTable" width="100%">
+                <tr>
+                    <th width="90%">@Resources.Budget_CreateDocPreparer_Preparer</th>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                    {                    
+                        <th width="10%">@Resources.Global_String_Manage</th>
+                    }
+                </tr>
+                @foreach (var item in Model)
+                {
+                    if (item.DocumentCode != NotificationHelper.rfpCode) { continue; }
+                    <tr>
+                        <td title="@item.Staff.Designation.Name">
+                            @item.Staff.Person.FirstName 
+                            @Html.Raw("&nbsp;")
+                            @item.Staff.Person.OtherNames
+                        </td>
+                        @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                        {                    
+                            <td>
+                                @Ajax.ActionLink(Resources.Global_String_Remove, "DeleteDocPreper", new { id = item.Id, projId = ViewBag.ProjectDonorId }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "tabs-5",
+                                    LoadingElementId = "loading",
+                                    Confirm = Resources.Budget_DocPrepList_ConfirmDelete
+                                })
+                            </td>
+                        }
+                    </tr>
+                }
+            </table>
+        </td>
+        <td width="50%" valign="top">
+            &nbsp;
+        </td>
+    </tr>
+</table>

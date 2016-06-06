@@ -1,0 +1,51 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Areas.Admin.Models.SystemUser.SystemUserModel
+@{
+    ViewBag.Title = Resources.SystemUser_Create_NewSCMSUser + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div id="rfpMain" class="contentMain">
+    <div class="contentHeader">
+                <div class="headerText">
+        <h3 class="title-left">@Resources.SystemUser_Create_SystemUsers</h3>
+    </div>
+    <div style="font-size: 13px; text-align: left;">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td class="arrowLink">
+                    @Html.ActionLink(Resources.Global_String_AddNew, "Create")
+                </td>
+            </tr>
+            <tr>
+                <td class="arrowLink">
+                    @Html.ActionLink(Resources.Global_String_SystemUserList, "Index")
+                </td>                
+            </tr>
+        </table>
+    </div>
+    </div>
+    <br />
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td width="50%" align="center">
+                <div id="popupDiv" class="popup" style="display: none;">
+                </div>
+            </td>
+            <td width="50%">
+            </td>
+        </tr>
+    </table>
+    <div id="AdminSystemUserDiv">
+        <div class="partialViewCard">
+            <div class="partialViewCardHeader"><h3>@Resources.SystemUser_Create_NewSCMSUser</h3></div>
+            <br />
+                @using (Html.BeginForm("Create", "SystemUser", FormMethod.Post, new { @class = "form", enctype = "multipart/form-data" }))
+                {
+                    @Html.Partial("_CreateOrEdit", @Model) 
+                }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="htmlTextBox1.Value" xml:space="preserve">
+    <value>&lt;span&gt;&lt;strong&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b; font-size: 11pt; mso-fareast-font-family: cambria; mso-ansi-language: en-us; mso-fareast-language: en-us; mso-bidi-language: ar-sa; mso-no-proof: yes"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Date()}: &lt;/span&gt;&lt;b style="mso-bidi-font-weight: normal"&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b; font-size: 11pt; mso-fareast-font-family: cambria; mso-ansi-language: en-us; mso-fareast-language: en-us; mso-bidi-language: ar-sa; mso-no-proof: yes"&gt;{Fields.PreparedDate}&lt;/span&gt;&lt;/b&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox2.Value" xml:space="preserve">
+    <value>&lt;p style="text-align: center; margin: 0in 0in 0pt; tab-stops: 387.5pt" class="MsoNormal"&gt;&lt;b style="mso-bidi-font-weight: normal"&gt;&lt;u&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 18pt; mso-ansi-language: en-us; mso-no-proof: yes"&gt;Completion Certificate &lt;p&gt;&lt;/p&gt;&lt;/span&gt;&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p style="text-align: center; margin: 0in 0in 0pt; tab-stops: 272.65pt" class="MsoNormal"&gt;&lt;b style="mso-bidi-font-weight: normal"&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 18pt; mso-ansi-language: en-us; mso-no-proof: yes"&gt;for &lt;p&gt;&lt;/p&gt;&lt;/span&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p style="text-align: center; margin: 0in 0in 0pt; tab-stops: 272.65pt" class="MsoNormal"&gt;&lt;b style="mso-bidi-font-weight: normal"&gt;&lt;u&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 18pt; mso-ansi-language: en-us; mso-no-proof: yes"&gt;Service/Works &lt;p&gt;&lt;/p&gt;&lt;/span&gt;&lt;/u&gt;&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</value>
+  </data>
+  <data name="htmlTextBox3.Value" xml:space="preserve">
+    <value>&lt;p style="line-height: 120%; text-indent: 0in; margin: 6pt 0in; tab-stops: 53.85pt 56.7pt; mso-list: none" class="OH2"&gt;&lt;strong&gt;&lt;span style="font-size: 16px"&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b" lang="EN-GB"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Report_CompletionCertificate_CCNO()}: &lt;/span&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #ff0000" lang="EN-GB"&gt;{Fields.RefNumber}&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b" lang="EN-GB"&gt; &lt;p&gt;&lt;/p&gt;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;</value>
+  </data>
+  <metadata name="CompletionCertificateDataSource.DefaultValues" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdUZWxlcmlrLlJlcG9ydGluZywgVmVyc2lvbj02LjEuMTIuNjEx
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWE5ZDc5ODNkZmNjMjYxYmUMAwAAAKYBVGVs
+        ZXJpay5SZXBvcnRpbmcsIFZlcnNpb249Ni4xLjEyLjYxMSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
+        ZXlUb2tlbj1hOWQ3OTgzZGZjYzI2MWJlXV0sIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1
+        cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUBAAAAMlRlbGVyaWsuUmVw
+        b3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXJDb2xsZWN0aW9uAQAAABJDb2xsZWN0aW9uYDEraXRl
+        bXMES1N5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbVGVsZXJpay5SZXBvcnRpbmcuU3Fs
+        RGF0YVNvdXJjZVBhcmFtZXRlcgMAAAACAAAACQQAAAAFBAAAAEtTeXN0ZW0uQ29sbGVjdGlvbnMuR2Vu
+        ZXJpYy5MaXN0YDFbW1RlbGVyaWsuUmVwb3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXIDAAAABl9p
+        dGVtcwVfc2l6ZQhfdmVyc2lvbgQAACpUZWxlcmlrLlJlcG9ydGluZy5TcWxEYXRhU291cmNlUGFyYW1l
+        dGVyW10CAAAACAgDAAAACQUAAAAAAAAABwAAAAcFAAAAAAEAAAAAAAAABChUZWxlcmlrLlJlcG9ydGlu
+        Zy5TcWxEYXRhU291cmNlUGFyYW1ldGVyAgAAAAs=
+</value>
+  </metadata>
+  <data name="CompletionCertificateDataSource.SelectCommand" xml:space="preserve">
+    <value>select CC.Id AS CompletionCertificateId,CC.CountryProgrammeId,CC.RefNumber,CONVERT(VARCHAR(11), CC.PreparedOn, 106) as PreparedDate,CC.PreparedOn,CC.Purpose,CC.ProjectTitle,CC.Location,CC.WorksService,CC.Remarks,
+CC.IsSubmitted,CC.IsApproved,CC.IsRejected,PO.RefNumber as PONumber,SUP.Name AS ContractorName,PREP.StaffID as PreparedById,PREP.StaffName as PreparedBy,PREP.Designation as PreparedByTitle,
+PREP.SignatureImage as PreparedBySignature,PREP.SubOfficeName AS PreparedByOffice,COU.Name AS Country,APP.StaffID as ApprovedById, APP.StaffName AS ApprovedBy,APP.Designation AS ApprovedByTitle,
+APP.SignatureImage AS ApprovedBySignature,APP.SubOfficeName as ApproveByOffice,CONF.StaffID as ConfirmedById,CONF.StaffName AS ConfirmedBy,CONF.Designation AS ConfirmedByTitle,
+CONF.SignatureImage as ComfirmedBySignature,CONF.SubOfficeName as ConfirmedByOffice,DRC.Name as DRCOffice,
+case when WorksService='Completed Satisfactorily' then CONVERT(BIT, 1) else CONVERT(BIT, 0) End as Satisfactorily,case when WorksService='Outstanding issues' then CONVERT(BIT, 1) Else CONVERT(BIT, 0) End as OutStanding, case when WorksService='Not Completed' then CONVERT(BIT, 1) else CONVERT(BIT, 0) End as Completed from CompletionCertificate CC
+INNER JOIN PurchaseOrder PO ON PO.Id=CC.PurchaseOrderId
+INNER JOIN Supplier SUP ON SUP.Id = PO.SupplierId
+INNER JOIN CountrySubOffice OFC ON OFC.Id= CC.OfficeId
+INNER JOIN CountrySubOffice DRC ON DRC.Id = CC.DRCOfficeId
+INNER JOIN VStaffDetails PREP ON PREP.StaffID = CC.PreparedBy
+INNER JOIN CountryProgramme CP ON PREP.CountryProgrammeId=CP.Id
+INNER JOIN Country COU ON COU.Id = CP.CountryId
+INNER JOIN VStaffDetails APP ON APP.StaffID = CC.ApprovedBy
+INNER JOIN VStaffDetails CONF ON CONF.StaffID = CC.ConfirmedBy
+
+</value>
+  </data>
+  <data name="htmlTextBox4.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Office()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt; &lt;span style="color: #400040"&gt;{Fields.PreparedByOffice}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox5.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_PreparedBy()}:&lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="mso-spacerun: yes"&gt;&lt;strong&gt;&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt; {Fields.PreparedBy}&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox6.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;- &lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Title()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;strong&gt;&lt;span style="color: #400040"&gt; {Fields.PreparedByTitle}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox7.Value" xml:space="preserve">
+    <value>&lt;strong&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;- &lt;/span&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Country()}:&lt;/span&gt;&lt;/strong&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&amp;nbsp;&lt;strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {Fields.Country}&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox8.Value" xml:space="preserve">
+    <value>&lt;strong&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Signature()}:&lt;/span&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 11pt; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="mso-spacerun: yes"&gt;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="htmlTextBox9.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Report_CompletionCertificate_SubjectPurpose()}&lt;/strong&gt;&lt;/span&gt;&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;:&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;u&gt;{Fields.Purpose}&lt;/u&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox18.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Report_CompletionCertificate_ApprovedByTitle()}:&amp;nbsp;&amp;nbsp;&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp; {Fields.ApprovedByTitle}&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox19.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;&lt;span style="mso-tab-count: 4"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Report_CompletionCertificate_Name()}&lt;/span&gt;:&lt;/strong&gt;&amp;nbsp;&lt;span style="mso-tab-count: 1"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;{Fields.ApprovedBy}&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox20.Value" xml:space="preserve">
+    <value>&lt;strong&gt;&lt;span style="color: #400040"&gt;&lt;span style="font-family: 'calibri','sans-serif'; font-size: 11pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Signature()}:&lt;/span&gt;&lt;span style="font-family: 'calibri','sans-serif'; font-size: 11pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: en-us; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="mso-spacerun: yes"&gt;&amp;nbsp;&amp;nbsp; &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;</value>
+  </data>
+  <data name="htmlTextBox10.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Report_CompletionCertificate_ContractorName()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;span style="color: #400040"&gt;{Fields.ContractorName}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox11.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-bidi-font-weight: bold; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.CompletionCertificate_ViewCCDetails_ContractPONo()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;span style="color: #400040"&gt;{Fields.PONumber}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox12.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-bidi-font-weight: bold; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b; font-size: 12pt; mso-bidi-font-weight: bold; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_ProjectTitle()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&lt;span style="color: #400040"&gt; {Fields.ProjectTitle}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox13.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-bidi-font-weight: bold; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b; font-size: 12pt; mso-bidi-font-weight: bold; mso-ansi-language: en-gb; mso-fareast-font-family: cambria; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_Location()}:&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;span style="color: #400040"&gt;{Fields.Location}&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox14.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;&lt;span style="font-family: 'calibri','sans-serif'; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;{SCMS.Reports.Utilities.ReportsInternalisation.Global_String_DRCOffice()}:&lt;/span&gt;&lt;span style="font-family: 'calibri','sans-serif'; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa" lang="EN-GB"&gt;&lt;span style="mso-tab-count: 1"&gt;&lt;span style="color: #000000"&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; {Fields.DRCOffice}&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox16.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.CompletionCertificate_LoadCC_ServiceWorks()}&lt;span style="mso-tab-count: 1"&gt;&lt;/span&gt;&lt;/strong&gt;&lt;/span&gt;</value>
+  </data>
+  <data name="htmlTextBox17.Value" xml:space="preserve">
+    <value>&lt;span style="font-family: &amp;quot;calibri&amp;quot;,&amp;quot;sans-serif&amp;quot;; color: #31849b; font-size: 12pt; mso-fareast-font-family: cambria; mso-ansi-language: en-gb; mso-fareast-language: da; mso-bidi-language: ar-sa; mso-bidi-font-weight: bold" lang="EN-GB"&gt;&lt;strong&gt;{SCMS.Reports.Utilities.ReportsInternalisation.CompletionCertificate_LoadCC_Remarks()}:&lt;/strong&gt;&amp;nbsp;&amp;nbsp;&lt;span style="color: #400040"&gt;{Fields.Remarks}&lt;/span&gt; &lt;/span&gt;</value>
+  </data>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=6.1.12.611, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1in</value>
+  </metadata>
+</root>

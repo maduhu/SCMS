@@ -1,0 +1,83 @@
+﻿@using SCMS.CoreBusinessLogic.Settings
+@using SCMS.Resource
+
+@model SCMS.UI.Areas.Admin.Models.SystemUser.SystemUserModel
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+<table width="98%" align="center" border="0" cellpadding="2" cellspacing="2">
+    <tr class="gridheader2">
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_FirstName</td>
+        <td width="34%">@Resources.SystemUser_CreateOrEdit_LastName</td>
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_Photo</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.TextBoxFor(model => model.FirstName)<br />
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </td>
+        <td>
+            @Html.EditorFor(model => model.OtherNames)<br />
+            @Html.ValidationMessageFor(model => model.OtherNames)
+        </td>
+        <td valign="top" align="center" rowspan="6">
+            @if (Model.PhotoLocation.IsNotNullOrWhiteSpace())
+            {
+                <img src="@Url.Content(Model.PhotoLocation)" width="150" alt="" />
+                <br />
+            }            
+            <input type="file" name="@Html.FieldNameFor(model => model.PhotoLocationUpload)" /><br />
+            @Resources.Global_String_MaxSize: @(SettingsHelper<CommonSettings>.Settings.PersonPhotoMaxSize) @Resources.Global_String_KB (@(SettingsHelper<CommonSettings>.Settings.AllowedImageExtensions.StringJoin("", ",")))<br />
+            @Html.ValidationMessageFor(model => model.PhotoLocationUpload)
+        </td>
+    </tr>
+    <tr class="gridheader2">
+        <td width="33%">@Resources.Global_String_EmailAddress</td>
+        <td width="34%">@Resources.SystemUser_CreateOrEdit_Available</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.EditorFor(model => model.Email)<br />
+            @Html.ValidationMessageFor(model => model.Email)
+        </td>
+        <td align="center">
+            @Html.CheckBoxFor(model => model.Available)
+        </td>
+    </tr>
+    <tr class="gridheader2">
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_IDNumber</td>
+        <td width="34%">@Resources.Global_String_PhoneNumber</td>
+    </tr>
+    <tr>
+        <td width="33%">
+            @Html.EditorFor(model => model.IdNumber)<br />
+            @Html.ValidationMessageFor(model => model.IdNumber)
+        </td>
+        <td width="34%">
+            @Html.EditorFor(model => model.OfficialPhone)<br />
+            @Html.ValidationMessageFor(model => model.OfficialPhone)
+        </td>
+    </tr>
+    <tr class="gridheader2">
+        <td width="33%">@Resources.Global_String_Signature</td>
+        <td width="34%"></td>
+    </tr>
+    <tr>
+        <td valign="top" align="center">
+            @if (Model.PersonSignatureImageId != null)
+            {
+                <img src="@Url.Action("Photo", "Person", new { id = Model.PersonSignatureImageId, area = "" })" alt="" />
+                <br />
+            }
+            <input type="file" name="@Html.FieldNameFor(model => model.SignatureImageUpload)" /><br />
+            @Resources.Global_String_MaxSize: @(SettingsHelper<CommonSettings>.Settings.SignaturePhotoMaxSize) @Resources.Global_String_KB (@(SettingsHelper<CommonSettings>.Settings.AllowedImageExtensions.StringJoin("", ",")))<br />
+            @Html.ValidationMessageFor(model => model.SignatureImageUpload)<br />
+                    
+        </td>
+        <td></td>
+        <td align="right" valign="bottom">
+            <input type="submit" class="btn green" value="@Resources.Person_Profile_UpdateProfile" />
+        </td>
+    </tr>
+</table>
+<br />

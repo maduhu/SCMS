@@ -1,0 +1,57 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.GRNModelView>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.GoodsReceivedNote_ViewGRNs_GoodsReceivedNotes</h3>
+    </div>
+    <br />
+
+    <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.GRNModelView>()
+            .Name("GRN")
+            .ToolBar(commands => commands
+            .Custom()
+                .HtmlAttributes(new { id = "Grnexport" })
+                .Text("Export to Excel")
+                .Action("ExportCsv", "GoodsReceivedNote", new { page = 1, pageSize = 10, orderBy = "~", filter = "~", groupBy = "~" }))
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.RefNo).Title(Resources.Global_String_GRNNo).HtmlAttributes(new { align = "center" }).Width("15%");
+                columns.Bound(o => o.PONo).Title(Resources.CompletionCerticate_ViewCC_PONo).Width("15%").HtmlAttributes(new { align = "center" });
+                columns.Bound(o => o.SupplierName).Title(Resources.Global_String_Supplier).Width("22%");
+                columns.Bound(o => o.Office).Title(Resources.GoodsReceivedNote_LoadGRNVerifyItems_DestinationOffice).Width("14%");
+                columns.Bound(o => o.DeliveryDate).Title(Resources.GoodsReceivedNote_LoadGRNVerifyItems_DeliveryDate).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}");
+                columns.Bound(o => o.Status).Title(Resources.Global_String_Status).Width("6%").HtmlAttributes(new { align = "center" }).Sortable(false);
+                columns.Bound(o => o.StatusDate).Title(Resources.Global_String_StatusDate).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}");
+            })
+
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_GetGRNCustomBinding", "GoodsReceivedNote"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onGRNRowSelected"))
+            .ClientEvents(events => events.OnRowDataBound("onGRNRowDataBound"))
+            .ClientEvents(events => events.OnDataBound("onGRNDataBound"))
+            .Filterable()
+            .Groupable()
+            .Sortable()
+    )
+
+    <br />
+</div>

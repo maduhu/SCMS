@@ -1,0 +1,255 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.MasterBudgetLinker
+@{AjaxOptions ajaxOpts = new AjaxOptions { UpdateTargetId = "budgetDiv", LoadingElementId = "loading", HttpMethod = "Post", Url = Url.Action("SaveLinkToMB") };}
+<div class="partialViewCard">
+<div class="partialViewCardHeader"><h3>@Resources.Budget_LinkToMB_LinkToGeneralLedger</h3></div>
+<table cellpadding="2">
+    <tr>
+        <td align="right"><b>@Resources.Budget_CategoryList_ProjectNo:</b></td>
+        <td>@ViewBag.ProjectNo</td>
+    </tr>
+    <tr>
+        <td align="right"><b>@Resources.Budget_CategoryList_Donor:</b></td>
+        <td>@ViewBag.Donor</td>
+    </tr>
+    <tr>
+        <td align="right"><b>@Resources.Global_String_Currency:</b></td>
+        <td>@ViewBag.Currency</td>
+    </tr>
+    <tr>
+        <td align="right">
+            @Ajax.ActionLink(Resources.Budget_LinkToMB_EditBudget, "Index", new { id = "CategoryList" }, new AjaxOptions
+            {
+                UpdateTargetId = "budgetDiv",
+                LoadingElementId = "loading",
+                Url = Url.Action("CategoryList/" + @Model.Id)
+            }) 
+        </td>
+        <td>| 
+            @Ajax.ActionLink(Resources.Budget_Index_ViewBudget, "Index", new { id = "ViewBudget" }, new AjaxOptions
+            {
+                UpdateTargetId = "budgetDiv",
+                LoadingElementId = "loading",
+                Url = Url.Action("ViewBudget/" + @Model.Id)
+            })
+        </td>
+    </tr>
+</table>
+<input type="hidden" id="actionStatus" value="@ViewBag.ActionStatus" />
+<input type="hidden" id="statusMsg" value="@ViewBag.StatusMsg" />
+@if (Model.BudgetCaterogies.Count > 0 && Model.MasterBudgetCategories.Count > 0)
+{ 
+    <table width="100%" align="center"  cellpadding="2">
+        <tr>
+            <td width="50%" align="center" valign="top">
+                <b>@Resources.Budget_LinkToMB_ProjectBudget</b>
+                <div style="width: 95%; border: 1px solid grey; border-radius: 8px 8px 8px 8px; min-height: 300px; max-height: 500px; overflow: auto;">
+                    <br />
+                    @using (Ajax.BeginForm(ajaxOpts))
+                    {
+                        <table width="95%" border="1" class="cardTable">
+                            <tr class="gridheader">
+                                <th colspan="2">
+                                    @Resources.Budget_LinkToMB_BudgetCategoriesAndSubLines
+                                </th>
+                                <th>
+                                    @Resources.Budget_LinkToMB_SelectGLCode
+                                </th>
+                            </tr>
+                            @for (int i = 0; i < Model.BudgetCaterogies.Count; i++)
+                            { 
+                                <tr class="grideven">
+                                    <td width="10%" align="center"><b>@Html.DisplayFor(c => Model.BudgetCaterogies[i].Number)</b></td>
+                                    <td colspan="2"><b>@Html.DisplayFor(c => Model.BudgetCaterogies[i].Name)</b></td>
+                                </tr>
+                                    for (int j = 0; j < Model.BudgetCaterogies[i].BudgetLines.Count; j++)
+                                    { 
+                                        <tr class="gridodd">
+                                            <td width="10%" align="center">@Html.DisplayFor(b => Model.BudgetCaterogies[i].BudgetLines[j].LineNumber)</td>
+                                            <td width="60%" >@Html.DisplayFor(b => Model.BudgetCaterogies[i].BudgetLines[j].Description)</td>
+                                            <td width="30%">
+                                                @Html.HiddenFor(b => Model.BudgetCaterogies[i].BudgetLines[j].BudgetLineId)
+                                                @Html.DropDownListFor(b => Model.BudgetCaterogies[i].BudgetLines[j].GeneralLedgerId, Model.BudgetCaterogies[i].BudgetLines[j].GeneralLedgerCodes, Resources.Global_String_PleaseSelect)
+                                            </td>                                        
+                                        </tr>
+                                    }
+                            }
+                            <tr>
+                                <td style="border-style: none;"></td>
+                                <td style="border-style:none;"><input type="hidden" id="projectId" name="projectId" value="@Model.Id" /></td>
+                                <td style="border-style:none;"><input type="submit" value="@Resources.Budget_CategoryList_LinkToMB" /></td>
+                            </tr>
+                        </table>                                                                                    
+                    }
+                    <br />
+                </div>
+            </td>
+            <td width="50%" align="center" valign="top">
+                <b>@Resources.General_String_MasterBudget</b>
+                <div style="width: 95%; border: 1px solid grey; border-radius: 8px 8px 8px 8px; min-height: 300px; max-height: 500px; overflow: auto;">
+                    <br />
+                    <table width="95%" border="1" class="cardTable">
+                        <tr class="gridheader">
+                            <th colspan="3">
+                                @Resources.General_String_MasterBudgetCategories
+                            </th>
+                            <th>
+                                @Resources.Global_String_Manage
+                            </th>
+                        </tr>
+                        @foreach (var mbc in Model.MasterBudgetCategories)
+                        {
+                            if (mbc.ProjectBudgetLines.Count < 1)
+                            {
+                                continue;
+                            }
+                            <tr class="grideven">
+                                <td colspan="2"><b>@Html.DisplayFor(c => mbc.EntityMasterBudgetCateogry.Description)</b></td>
+                                <td align="center"><b>@Resources.MasterBudget_CreateGL_GLCode</b></td>
+                                <td>&nbsp;</td>
+                            </tr>
+                                              for (int i = 0; i < mbc.ProjectBudgetLines.Count; i++)
+                                              { 
+                                <tr class="gridodd">
+                                    <td width="10%" align="center">@Html.DisplayFor(c => mbc.ProjectBudgetLines[i].LineNumber)</td>
+                                    <td width="50%" >@Html.DisplayFor(c => mbc.ProjectBudgetLines[i].Description)</td>
+                                    <td width="20%" align="right" title="@{if(mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger != null){@mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger.Description}}"
+                                        style="cursor: pointer;">
+                                        @if(mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger != null) 
+                                        { 
+                                            @mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger.Code 
+                                        }
+                                    </td>
+                                    <td width="20%" align="center">
+                                        @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditLinkToMB" }, new AjaxOptions
+                                        {
+                                            OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_LinkToMB_EditMBLink),
+                                            UpdateTargetId = "popup-page",
+                                            LoadingElementId = "popup-loading",
+                                            Url = Url.Action("EditLinkToMB/" + mbc.ProjectBudgetLines[i].BudgetLineId)
+                                        }) |
+                                       @Ajax.ActionLink(Resources.Budget_LinkToMB_Unlink, "Index", new { id = "UnlinkFromMB" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("UnlinkFromMB/" + mbc.ProjectBudgetLines[i].BudgetLineId),
+                                           Confirm = string.Format(Resources.Budget_LinkToMB_ConfirmUnlink, mbc.ProjectBudgetLines[i].LineNumber)
+                                       })
+                                    </td>
+                                </tr>
+                                              }
+                        }
+                        <tr>
+                            <td style="border-style: none;"></td>
+                            <td style="border-style:none;"></td>
+                            <td style="border-style:none;"></td>
+                        </tr>
+                    </table>
+                    <br />
+                </div>
+            </td>
+        </tr>
+    </table>        
+}
+@if (Model.BudgetCaterogies.Count > 0 && Model.MasterBudgetCategories.Count < 1)
+{ 
+    <center><b>@string.Format(Resources.Budget_LinkToMB_PBCategoriestFor, ViewBag.ProjectNo)</b></center>
+        using (Ajax.BeginForm(ajaxOpts))
+        {
+            <table width="95%" border="1" align="center" class="cardTable">
+                <tr class="gridheader">
+                    <th colspan="2">
+                        @Resources.Budget_LinkToMB_BudgetCategoriesAndSubLines
+                    </th>
+                    <th>
+                        @Resources.Budget_LinkToMB_SelectGLCode
+                    </th>
+                </tr>
+                @for (int i = 0; i < Model.BudgetCaterogies.Count; i++)
+                { 
+                    <tr class="grideven">
+                        <td width="10%" align="center"><b>@Html.DisplayFor(c => Model.BudgetCaterogies[i].Number)</b></td>
+                        <td colspan="2"><b>@Html.DisplayFor(c => Model.BudgetCaterogies[i].Name)</b></td>
+                    </tr>
+                                      for (int j = 0; j < Model.BudgetCaterogies[i].BudgetLines.Count; j++)
+                                      { 
+                        <tr class="gridodd">
+                            <td width="10%" align="center">@Html.DisplayFor(b => Model.BudgetCaterogies[i].BudgetLines[j].LineNumber)</td>
+                            <td width="60%" >@Html.DisplayFor(b => Model.BudgetCaterogies[i].BudgetLines[j].Description)</td>
+                            <td width="30%">
+                                @Html.HiddenFor(b => Model.BudgetCaterogies[i].BudgetLines[j].BudgetLineId)
+                                @Html.DropDownListFor(b => Model.BudgetCaterogies[i].BudgetLines[j].GeneralLedgerId, Model.BudgetCaterogies[i].BudgetLines[j].GeneralLedgerCodes, Resources.Global_String_PleaseSelect)
+                            </td>
+                        </tr>
+                                      }
+                }
+                <tr>
+                    <td style="border-style: none;"></td>
+                    <td style="border-style:none;"><input type="hidden" id="projectId" name="projectId" value="@Model.Id" /></td>
+                    <td style="border-style:none;"><input type="submit" value="@Resources.Budget_CategoryList_LinkToMB" /></td>
+                </tr>
+            </table> 
+            <br />                                                                                   
+        }
+}
+
+@if (Model.MasterBudgetCategories.Count > 0 && Model.BudgetCaterogies.Count < 1)
+{ 
+    <center><b>@string.Format(Resources.Budget_LinkToMB_MBMappingForPB, ViewBag.ProjectNo)</b></center>
+        <table width="95%" border="1" align="center" class="cardTable">
+            <tr class="gridheader">
+                <th colspan="3">
+                    @Resources.General_String_MasterBudgetCategories
+                </th>
+                <th>
+                    @Resources.Global_String_Manage
+                </th>
+            </tr>
+            @foreach (var mbc in Model.MasterBudgetCategories)
+            {
+                if (mbc.ProjectBudgetLines.Count < 1)
+                {
+                    continue;
+                }
+                <tr class="grideven">
+                    <td colspan="2"><b>@Html.DisplayFor(c => mbc.EntityMasterBudgetCateogry.Description)</b></td>
+                    <td align="center"><b>@Resources.MasterBudget_CreateGL_GLCode</b></td>
+                    <td>&nbsp;</td>
+                </tr>
+                for (int i = 0; i < mbc.ProjectBudgetLines.Count; i++)
+                { 
+                    <tr class="gridodd">
+                        <td width="10%" align="center">@Html.DisplayFor(c => mbc.ProjectBudgetLines[i].LineNumber)</td>
+                        <td width="50%" >@Html.DisplayFor(c => mbc.ProjectBudgetLines[i].Description)</td>
+                        <td width="20%" align="right" title="@{if(mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger != null){@mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger.Description}}"
+                            style="cursor: pointer;">
+                            @if(mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger != null) 
+                            { 
+                                @mbc.ProjectBudgetLines[i].EntityBudgetLine.GeneralLedger.Code 
+                            }
+                        </td>
+                        <td width="20%" align="center">
+                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditLinkToMB" }, new AjaxOptions
+                            {
+                                OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_LinkToMB_EditMBLink),
+                                UpdateTargetId = "popup-page",
+                                LoadingElementId = "popup-loading",
+                                Url = Url.Action("EditLinkToMB/" + mbc.ProjectBudgetLines[i].BudgetLineId)
+                            }) &nbsp;|&nbsp;
+                            @Ajax.ActionLink(Resources.Budget_LinkToMB_Unlink, "Index", new { id = "UnlinkFromMB" }, new AjaxOptions
+                            {
+                                UpdateTargetId = "budgetDiv",
+                                LoadingElementId = "loading",
+                                Url = Url.Action("UnlinkFromMB/" + mbc.ProjectBudgetLines[i].BudgetLineId),
+                                Confirm = string.Format(Resources.Budget_LinkToMB_ConfirmUnlink, mbc.ProjectBudgetLines[i].LineNumber)
+                            })
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+        <br />
+}
+
+    </div>
+

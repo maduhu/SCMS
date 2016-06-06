@@ -1,0 +1,152 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.Person.SystemUserModel
+@using SCMS.CoreBusinessLogic.Settings           
+@{
+    ViewBag.Title = Resources.Person_Profile_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div id="rfpMain" class="contentMain">
+<div class="contentHeader">
+    <div class="headerText">
+        <h3 class="title-left">@Resources.Person_Profile_Title</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<br />
+    <div id="AdminProfileDiv">
+        <!-- Content goes here-->
+@using (Html.BeginForm("Profile", "Person", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.ValidationSummary(true)
+<fieldset>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)<br />
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OtherNames)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OtherNames)<br />
+            @Html.ValidationMessageFor(model => model.OtherNames)
+        </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Email)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Email)<br />
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OldPassword)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.OldPassword)<br />
+        @Html.ValidationMessageFor(model => model.OldPassword)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Password)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.Password)<br />
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ConfirmPassword)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.ConfirmPassword)<br />
+        @Html.ValidationMessageFor(model => model.ConfirmPassword)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OldPIN)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.OldPIN)<br />
+        @Html.ValidationMessageFor(model => model.OldPIN)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.PIN)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.PIN)<br />
+        @Html.ValidationMessageFor(model => model.PIN)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ConfirmPIN)
+    </div>
+    <div class="editor-field">
+        @Html.PasswordFor(model => model.ConfirmPIN)<br />
+        @Html.ValidationMessageFor(model => model.ConfirmPIN)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.OfficialPhone)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.OfficialPhone)<br />
+        @Html.ValidationMessageFor(model => model.OfficialPhone)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IdNumber)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IdNumber)<br />
+        @Html.ValidationMessageFor(model => model.IdNumber)
+    </div>
+
+    <div class="editor-label">
+        <table>
+            <tr>
+                <td valign="top" style="vertical-align:top;">
+                    @Resources.Person_Profile_PersonPhoto 
+                    <input type="file" name="@Html.FieldNameFor(model => model.PhotoLocationUpload)" /><br />
+                    @(string.Format(Resources.Person_Profile_MaximumImageSize, SettingsHelper<CommonSettings>.Settings.PersonPhotoMaxSize))<br />
+                    @Html.ValidationMessageFor(model => model.PhotoLocationUpload)<br />
+                    @if (Model.PhotoLocation.IsNotNullOrWhiteSpace())
+                    {   
+                        <img src="@Url.Content(Model.PhotoLocation)" alt="" />
+                        @Html.HiddenFor(model => model.PhotoLocation);
+                    }
+                </td>
+                <td valign="top" style="vertical-align:top;">
+                    @Resources.Person_Profile_SignatureImage 
+                    <input type="file" name="@Html.FieldNameFor(model => model.SignatureImageUpload)" /><br />
+                    @(string.Format(Resources.Person_Profile_MaximumImageSize, SettingsHelper<CommonSettings>.Settings.SignaturePhotoMaxSize))<br />
+                    @Html.ValidationMessageFor(model => model.SignatureImageUpload)<br />
+                    @if (Model.PersonSignatureImageId != null)
+                    {
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.PersonSignatureImageId, area = "" })" alt="" />
+                        @Html.HiddenFor(model => model.PersonSignatureImageId);
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td colspan="">@Resources.Person_Profile_AllowExtension: @(SettingsHelper<CommonSettings>.Settings.AllowedImageExtensions.StringJoin("", ","))</td>
+            </tr>
+        </table>
+    </div>
+    
+    <p>
+        <input type="submit" class="btn btn-primary" value="@Resources.Person_Profile_UpdateProfile" />      
+    </p>
+
+</fieldset>
+        }
+    </div>
+</div>
+

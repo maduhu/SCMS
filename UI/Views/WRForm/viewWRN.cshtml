@@ -1,0 +1,57 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ROModelView>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.WRForm_LoadWRF_WRO</h3>
+    </div>
+    <br />
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        //GridPagerStyles pagerStyles = GridPagerStyles.NextPrevious;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+        }
+        
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.ROModelView>()
+            .Name("ReleaseOrder")
+            .ToolBar(commands => commands
+            .Custom()
+                .HtmlAttributes(new { id = "ROexport" })
+                .Text("Export to Xlx")
+                .Action("ExportReleaseOrder", "WRForm", new { page = 1, pageSize = 10, orderBy = "~", filter = "~", groupBy = "~" }))
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.RefNumber).Title(Resources.WRForm_LoadWRF_WRFNo).Width("16%");
+                columns.Bound(o => o.FirstItem).Title(Resources.Global_String_Item).Width("29%");
+                columns.Bound(o => o.Requestor).Title(Resources.WRForm_LoadWRF_Requestor).Width("17%");
+                columns.Bound(o => o.Recepient).Title(Resources.WRForm_LoadWRF_Recipient).Width("17%");
+                columns.Bound(o => o.Status).Title(Resources.Global_String_Status).Width("10%").HtmlAttributes(new { align = "center" });
+                columns.Bound(o => o.StatusDate).Title(Resources.Global_String_StatusDate).HtmlAttributes(new { align = "center" }).Width("10%").Format(SCMS.Utils.Constants.MVC_DATE_FORMAT);
+            })
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_GetORCustomBinding", "WRForm"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onRORowSelected"))
+            .ClientEvents(events => events.OnRowDataBound("onRORowDataBound"))
+            //.ClientEvents(events => events.OnDataBound("UpdateParameters"))
+            .ClientEvents(events => events.OnDataBound("function(e) { UpdateParameters(e, this,'ROexport'); }"))
+            .Sortable()
+            .Filterable()
+            .Groupable()
+    )
+
+
+    <br />
+</div>

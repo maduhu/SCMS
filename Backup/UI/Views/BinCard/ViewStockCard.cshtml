@@ -1,0 +1,139 @@
+﻿@using SCMS.Resource
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.BinCard_ViewStockCard_StockCard ::  @ViewBag.ItemName</h3>
+    </div>
+    <center>
+    <h3>@Resources.Global_String_Project ::  @ViewBag.ProjectName</h3>
+    @*<input type="image" onclick="export_grid('xls'); return false;" src="@Url.Content("~/Content/reports/excel_csv.png")" class="pull-right" style="height:16px;width:16px;" name="export" value="xls" />*@
+    </center>
+    @(Html.Telerik().Grid<SCMS.Model.StockSummary>()
+        .Name("stockCard")
+        .DataKeys(x =>
+        {
+            x.Add(y => y.IssueDate).RouteKey("effectDate");
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.IssueDate).Title(Resources.Global_String_Date);
+            columns.Bound(o => o.OpengStock).Title(Resources.BinCard_ViewStockCard_OpeningStock);
+            columns.Bound(o => o.ReceivedStock).Title(Resources.BinCard_LoadAddBCItems_QTYReceived);
+            columns.Bound(o => o.IssueStock).Title(Resources.BinCard_LoadAddBCItems_QTYIssued);
+            columns.Bound(o => o.BalStock).Title(Resources.BinCard_ViewStockCard_ClosingBalance);
+        })
+        .DetailView(details => details.ClientTemplate(string.Format("<h4>{0}</h4>", Resources.BinCard_Index_BinCard) +
+              Html.Telerik().Grid<SCMS.Model.BinCard>()
+                   .Name("bins_grid_<#= Id#>")
+                   .DataKeys(x =>
+                   {
+                       x.Add(e => e.IssueDate).RouteKey("IssueDate");
+                       x.Add(y => y.ItemId).RouteKey("ItemId");
+                       x.Add(y => y.ItemId).RouteKey("ProjectDonorId");
+                   })
+                    .Columns(columns =>
+                    {
+
+                        columns.Bound(o => o.RefNumber).Title(Resources.BinCard_LoadBin_BinCardNo);
+                        columns.Bound(o => o.Description).Title(Resources.BinCard_LoadBin_BinCardDescription);
+                        columns.Bound(o => o.ItemName).Title(Resources.BinCard_ViewBinCard_BinItem);
+                        columns.Bound(o => o.QTY).Title(Resources.Global_String_Qty);
+                        columns.Bound(o => o.WareHouseName).Title(Resources.Global_String_Warehouse);
+                        columns.Bound(o => o.WHDemarcation).Title(Resources.BinCard_LoadBin_WHDemarcation);
+
+                    })
+
+                        .DetailView(details2 => details2.ClientTemplate(string.Format("<h4>{0}</h4>", Resources.BinCard_ViewBinCard_BinCardMaintace) +
+                            Html.Telerik().Grid<SCMS.Model.BinItems>()
+                            .Name("items_grid_<#= RecordId#>")
+                            .DataKeys(x =>
+                            {
+                                x.Add(y => y.Id).RouteKey("Id");
+                            })
+                            .Columns(columns =>
+                            {
+
+                                columns.Bound(e => e.IssueDate).Title(Resources.Global_String_Date).Format("{0:d}");
+                                columns.Bound(e => e.DnNumber).Title(Resources.GoodsReceivedNote_DownloadTemplate_DNNo);
+                                columns.Bound(e => e.RefNumber).Title(Resources.BinCard_ViewBinCard_GRNorROorGIVNos);
+                                columns.Bound(e => e.QTYReceived).Title(Resources.Global_String_QtyReceived);
+                                columns.Bound(e => e.QTYIssued).Title(Resources.Global_String_QtyIssued);
+                                columns.Bound(e => e.BalanceStock).Title(Resources.BinCard_ViewBinCard_BalanceStock);
+                                columns.Bound(e => e.Remarks).Title(Resources.Global_String_Remarks);
+
+                            })
+
+                        .DataBinding(dataBinding => dataBinding.Ajax()
+                        .Select("GetStockBinItemList", "BinCard", new { binId = "<#= Id #>", effectDate = "<#= IssueDate #>" }))
+                        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                        .Sortable()
+                        .Filterable()
+                        .EnableCustomBinding(true)
+                        .ToHtmlString()
+                       ))
+
+                   .DataBinding(dataBinding => dataBinding.Ajax()
+                   .Select("GetstockBinCardList", "BinCard", new { effectDate = "<#= IssueDate #>", itemId = "<#= ItemId #>", projectDonorId = "<#= ProjectDonorId #>" }))
+                   .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                   .Sortable()
+                   .Filterable()
+                   .EnableCustomBinding(true)
+            //.ClientEvents(events => events.OnRowSelected("onRowSelected"))
+            //.RowAction(row => { row.Selected = row.DataItem.ItemId.Equals(ViewData["id"]); })
+                   .ToHtmlString()
+       ))
+
+        .DataBinding(dataBinding => dataBinding.Ajax()
+        .Select("GetItemStockSummary", "BinCard", new { itemId = (Guid)ViewBag.ItemId, ProjectDonorId = (Guid)ViewBag.ProjectDonorId }))
+        .Sortable()
+        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+        .Filterable()
+        .EnableCustomBinding(true))
+
+    <br />
+    <p>
+        @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new AjaxOptions
+{
+    UpdateTargetId = "bincardDiv",
+    LoadingElementId = "loading",
+    Url = Url.Action("SelectStockItem")
+
+})
+    </p>
+</div>
+<script type="text/javascript">
+
+    var itemPacksexportLink = "@(@Html.Raw(Url.Action("ExportBinCardList", "BinCard", new { page = 1, orderBy = "~", filter = "~" }).SafeHtmlInputValue()))";
+
+
+    function onDataBinding(e) { }
+
+    function onDataBound(e) {
+        var grid = $('#stockCard').data('tGrid');
+
+        itemPacksexportLink = itemPacksexportLink.replace(/page=([^&]*)/, 'page=' + grid.currentPage);
+        itemPacksexportLink = itemPacksexportLink.replace(/orderBy=([^&]*)/, 'orderBy=' + (grid.orderBy || '~'));
+        itemPacksexportLink = itemPacksexportLink.replace(/filter=(.*)/, 'filter=' + (grid.filterBy || '~'));
+    }
+
+    function export_grid(type) {
+        window.open(itemPacksexportLink + "&type=" + type, '_blank');
+    }
+
+
+    function onRowSelected(e) {
+        var ordersGrid = $('#Orders').data('tGrid');
+        customerID = e.row.cells[0].innerHTML;
+
+        // update ui text
+        $('#customerID').text(customerID);
+
+        // rebind the related grid
+        ordersGrid.rebind({
+            customerID: customerID
+        });
+    }
+
+</script>

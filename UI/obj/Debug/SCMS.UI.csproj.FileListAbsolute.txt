@@ -1,0 +1,352 @@
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.UI.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.UI.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\Auth.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\EntityFramework.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\Ninject.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.Model.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\Auth.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.Model.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\EntityFramework.xml
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\obj\Debug\SCMS.UI.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\obj\Debug\SCMS.UI.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\EPPlus.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\Microsoft.Web.Mvc.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.CoreBusinessLogic.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.Reports.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\MigraDoc.DocumentObjectModel.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\MigraDoc.Rendering.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\PdfSharp.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\PdfSharp.Charting.dll
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.CoreBusinessLogic.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\SCMS.Reports.pdb
+D:\projects\DRC\drc-supply-chain\drc-supply-chain\UI\bin\EPPlus.xml
+E:\Logistics\drc\UI\bin\SCMS.UI.dll
+E:\Logistics\drc\UI\bin\SCMS.UI.pdb
+E:\Logistics\drc\UI\bin\Auth.dll
+E:\Logistics\drc\UI\bin\EntityFramework.dll
+E:\Logistics\drc\UI\bin\EPPlus.dll
+E:\Logistics\drc\UI\bin\Microsoft.Web.Mvc.dll
+E:\Logistics\drc\UI\bin\Ninject.dll
+E:\Logistics\drc\UI\bin\SCMS.CoreBusinessLogic.dll
+E:\Logistics\drc\UI\bin\SCMS.Model.dll
+E:\Logistics\drc\UI\bin\SCMS.Reports.dll
+E:\Logistics\drc\UI\bin\SCMS.Utils.dll
+E:\Logistics\drc\UI\bin\MigraDoc.DocumentObjectModel.dll
+E:\Logistics\drc\UI\bin\MigraDoc.Rendering.dll
+E:\Logistics\drc\UI\bin\PdfSharp.dll
+E:\Logistics\drc\UI\bin\PdfSharp.Charting.dll
+E:\Logistics\drc\UI\bin\Auth.pdb
+E:\Logistics\drc\UI\bin\SCMS.CoreBusinessLogic.pdb
+E:\Logistics\drc\UI\bin\SCMS.Model.pdb
+E:\Logistics\drc\UI\bin\SCMS.Reports.pdb
+E:\Logistics\drc\UI\bin\SCMS.Utils.pdb
+E:\Logistics\drc\UI\bin\EntityFramework.xml
+E:\Logistics\drc\UI\bin\EPPlus.xml
+E:\Logistics\drc\UI\obj\Debug\ResolveAssemblyReference.cache
+E:\Logistics\drc\UI\obj\Debug\SCMS.UI.dll
+E:\Logistics\drc\UI\obj\Debug\SCMS.UI.pdb
+E:\Logistics\drc\UI\bin\FluentValidation.dll
+E:\Logistics\drc\UI\bin\FluentValidation.Mvc.dll
+E:\Logistics\drc\UI\bin\FluentValidation.pdb
+E:\Logistics\drc\UI\bin\FluentValidation.xml
+E:\Logistics\drc\UI\bin\FluentValidation.Mvc.pdb
+E:\Logistics\drc\UI\bin\de\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\es\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\fr\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\it\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\nl\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\pt\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\sv\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\AutoMapper.dll
+E:\Logistics\drc\UI\bin\pl\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\ru\FluentValidation.resources.dll
+E:\Logistics\drc\UI\bin\NLog.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.UI.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\Auth.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\AutoMapper.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\EntityFramework.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\EPPlus.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\FluentValidation.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\Microsoft.Web.Mvc.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\Ninject.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Model.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Reports.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\NLog.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\MigraDoc.DocumentObjectModel.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\MigraDoc.Rendering.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\PdfSharp.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\PdfSharp.Charting.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\Auth.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Reports.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\EntityFramework.xml
+C:\My Projects\LOGISYS\SCMS\UI\bin\EPPlus.xml
+C:\My Projects\LOGISYS\SCMS\UI\bin\FluentValidation.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\FluentValidation.xml
+C:\My Projects\LOGISYS\SCMS\UI\bin\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SCMS\UI\bin\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\bin\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SCMS\UI\obj\Debug\SCMS.UI.dll
+C:\My Projects\LOGISYS\SCMS\UI\obj\Debug\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SCMS\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SCMS\UI\bin\Telerik.Web.Mvc.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.UI.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\Auth.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\AutoMapper.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\EntityFramework.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\EPPlus.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\FluentValidation.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\Microsoft.Web.Mvc.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\Ninject.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Reports.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\Telerik.Web.Mvc.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\NLog.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\MigraDoc.DocumentObjectModel.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\MigraDoc.Rendering.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\PdfSharp.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\PdfSharp.Charting.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\Auth.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Reports.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\EntityFramework.xml
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\EPPlus.xml
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\FluentValidation.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\FluentValidation.xml
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\bin\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM-2013\UI\obj\Debug\SCMS.UI.dll
+C:\My Projects\LOGISYS\SSCM-2013\UI\obj\Debug\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SSCM\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM\UI\obj\Debug\SCMS.UI.dll
+C:\My Projects\LOGISYS\SSCM\UI\obj\Debug\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.UI.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.UI.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\AutoMapper.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\EntityFramework.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\EPPlus.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\FluentValidation.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\FluentValidation.Mvc.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\Microsoft.Web.Mvc.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\Ninject.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.CoreBusinessLogic.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Reports.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\Telerik.Web.Mvc.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\NLog.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\MigraDoc.DocumentObjectModel.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\MigraDoc.Rendering.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\PdfSharp.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\PdfSharp.Charting.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.CoreBusinessLogic.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Reports.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\EPPlus.xml
+C:\My Projects\LOGISYS\SSCM\UI\bin\FluentValidation.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\FluentValidation.xml
+C:\My Projects\LOGISYS\SSCM\UI\bin\FluentValidation.Mvc.pdb
+C:\My Projects\LOGISYS\SSCM\UI\bin\de\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\es\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\fr\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\it\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\nl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\pl\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\pt\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\ru\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\sv\FluentValidation.resources.dll
+C:\My Projects\LOGISYS\SSCM\UI\bin\EntityFramework.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.UI.dll.config
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.UI.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.UI.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\AutoMapper.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\EntityFramework.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\EPPlus.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\FluentValidation.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\FluentValidation.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\Ninject.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Model.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Reports.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Resource.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Utils.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.Razor.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.Deployment.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.Razor.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\Telerik.Reporting.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\Telerik.Web.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\NLog.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\MigraDoc.DocumentObjectModel.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\MigraDoc.Rendering.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\PdfSharp.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\PdfSharp.Charting.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.CoreBusinessLogic.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Model.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Reports.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Resource.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\SCMS.Utils.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\EntityFramework.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\EPPlus.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\FluentValidation.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\FluentValidation.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\FluentValidation.Mvc.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.Razor.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.Deployment.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\System.Web.WebPages.Razor.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\de\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\es\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\fr\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\it\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\nl\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\pl\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\pt\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\ru\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\bin\sv\FluentValidation.resources.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\obj\Debug\SCMS.UI.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\UI\obj\Debug\SCMS.UI.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.UI.dll.config
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.UI.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.UI.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\AutoMapper.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\EntityFramework.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\EPPlus.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\FluentValidation.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\FluentValidation.Mvc.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\Ninject.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.CoreBusinessLogic.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Model.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Reports.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Resource.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Utils.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.Mvc.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.Razor.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.Deployment.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.Razor.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\Telerik.Reporting.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\Telerik.Web.Mvc.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\NLog.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\MigraDoc.DocumentObjectModel.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\MigraDoc.Rendering.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\PdfSharp.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\PdfSharp.Charting.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.CoreBusinessLogic.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Model.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Reports.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Resource.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\SCMS.Utils.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\EntityFramework.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\EPPlus.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\FluentValidation.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\FluentValidation.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\FluentValidation.Mvc.pdb
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.Razor.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.Deployment.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\System.Web.WebPages.Razor.xml
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\de\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\es\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\fr\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\it\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\nl\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\pl\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\pt\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\ru\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\bin\sv\FluentValidation.resources.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\obj\Debug\SCMS.UI.dll
+C:\Users\morgan\Google Drive\SCMSReloaded\SCMS\UI\obj\Debug\SCMS.UI.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.UI.dll.config
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.UI.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.UI.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\AutoMapper.dll
+D:\SCMS\RASHID\SCMS\UI\bin\EntityFramework.dll
+D:\SCMS\RASHID\SCMS\UI\bin\EPPlus.dll
+D:\SCMS\RASHID\SCMS\UI\bin\FluentValidation.dll
+D:\SCMS\RASHID\SCMS\UI\bin\FluentValidation.Mvc.dll
+D:\SCMS\RASHID\SCMS\UI\bin\Microsoft.Web.Infrastructure.dll
+D:\SCMS\RASHID\SCMS\UI\bin\Ninject.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.CoreBusinessLogic.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Model.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Reports.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Resource.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Utils.dll
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.Razor.dll
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.Deployment.dll
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.dll
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.Razor.dll
+D:\SCMS\RASHID\SCMS\UI\bin\Telerik.Reporting.dll
+D:\SCMS\RASHID\SCMS\UI\bin\Telerik.Web.Mvc.dll
+D:\SCMS\RASHID\SCMS\UI\bin\NLog.dll
+D:\SCMS\RASHID\SCMS\UI\bin\MigraDoc.DocumentObjectModel.dll
+D:\SCMS\RASHID\SCMS\UI\bin\MigraDoc.Rendering.dll
+D:\SCMS\RASHID\SCMS\UI\bin\PdfSharp.dll
+D:\SCMS\RASHID\SCMS\UI\bin\PdfSharp.Charting.dll
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.CoreBusinessLogic.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Model.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Reports.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Resource.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\SCMS.Utils.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\EntityFramework.xml
+D:\SCMS\RASHID\SCMS\UI\bin\EPPlus.xml
+D:\SCMS\RASHID\SCMS\UI\bin\FluentValidation.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\FluentValidation.xml
+D:\SCMS\RASHID\SCMS\UI\bin\FluentValidation.Mvc.pdb
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.Razor.xml
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.xml
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.Deployment.xml
+D:\SCMS\RASHID\SCMS\UI\bin\System.Web.WebPages.Razor.xml
+D:\SCMS\RASHID\SCMS\UI\bin\de\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\es\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\fr\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\it\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\nl\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\pl\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\pt\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\ru\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\bin\sv\FluentValidation.resources.dll
+D:\SCMS\RASHID\SCMS\UI\obj\Debug\SCMS.UI.csprojResolveAssemblyReference.cache
+D:\SCMS\RASHID\SCMS\UI\obj\Debug\SCMS.UI.dll
+D:\SCMS\RASHID\SCMS\UI\obj\Debug\SCMS.UI.pdb

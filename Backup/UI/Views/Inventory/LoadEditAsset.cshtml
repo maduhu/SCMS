@@ -1,0 +1,190 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.Asset
+@using SCMS.CoreBusinessLogic.Settings
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "popup-page",
+      LoadingElementId = "popup-loading",
+      HttpMethod = "Post",
+      Url = Url.Action("EditAssetDetails"),
+      OnBegin = string.Format("WaitForFineUploader('uploadMsg');ShowDialogue('{0}');", Resources.Inventory_LoadEditAsset_ItemDetails),
+      OnSuccess = "CenterPopup();"
+  };}
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/jquery.autocomplete.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.CountryProgramId)
+    @Html.HiddenFor(x => x.ItemId)
+    @Html.HiddenFor(x => x.GoodsReceivedNoteItemId)
+    @Html.HiddenFor(x => x.DepreciationCurrencyId)
+    @Html.HiddenFor(x => x.AcquisionDate)
+    @Html.HiddenFor(x => x.OriginalProjectId)
+    @Html.HiddenFor(x => x.CurrentProjectDonorId)
+     
+    <table width="600px" align="center" cellpadding="2">
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadTransferAsset_CurrentProPatnar
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_AssetNo
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_SerialNo
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                
+                @ViewBag.CurrentProject
+                @* @Html.DropDownListFor(x => x.EntityAsset.CurrentProjectDonorId, Model.Projects, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.EntityAsset.CurrentProjectDonorId)*@
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.AssetNumber, new { @readonly = "readonly", id = "refNo" })
+                @Html.ValidationMessageFor(x => x.AssetNumber, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.EditorFor(x => x.SerialNumber)
+                @Html.ValidationMessageFor(x => x.SerialNumber, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.Inventory_AssetInventoryPopup_AssignedTo
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_AssetDescription
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_Weight
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.CurrentOwnerId, Model.Staffs, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.CurrentOwnerId)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextAreaFor(x => x.Name, new { id = "AssetDessc", name = "AssetDessc" })
+                @Html.ValidationMessageFor(x => x.Name, Resources.Global_String_Required)
+                <script type="text/javascript">
+                    var $jq = jQuery.noConflict();
+                    $jq("#AssetDessc").autocomplete("/GoodsReceivedNote/SearchAssetDesc");
+                </script>
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.Weight, new { id = "txtweight", @class = "numericTb" })
+                @Html.ValidationMessageFor(x => x.Weight, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadOtherAssets_PurchasePrice
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_EstLifespan
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_UseEstLifespan
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.PurchaseValue, new { @readonly = "readonly", @class = "numericTb", id = "purcahseValue" })
+                @Html.ValidationMessageFor(x => x.PurchaseValue, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.Lifespan, new { @class = "numericTb" })
+                @Html.ValidationMessageFor(x => x.Lifespan, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.CheckBoxFor(x => x.UseLifeSpan)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadOtherAssets_DepreciationType
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadOtherAssets_PercentageDep
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_GRAssetList_SalvageValue
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.DepreciationType, new SelectList(
+                new List<Object>{ 
+                    new { value = "Straight Line" , text = Resources.Global_DepreciationType_StraightLine  },
+                    new { value = "Reducing Balance" , text = Resources.Global_DepreciationType_ReducingBalance },
+                    new { value = "Zero Percentage" , text = Resources.Global_DepreciationType_ZeroBalance}
+                }, "value", "text"), Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.DepreciationType)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.PercentageDepr, new { @class = "numericTb" })
+                @Html.ValidationMessageFor(x => x.PercentageDepr, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.SalvageValue, new { id = "txtsalvageValue", @class = "numericTb", onblur = "javascript:ValidateSalvageValue(this);" })
+                @Html.ValidationMessageFor(x => x.SalvageValue, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadRegisterAsset_OpeningAccDep
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_Warehouse
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_LoadOtherAssets_IsFleet
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.OpeningAccDepreciaiton, new { @class = "numericTb" })
+                @Html.ValidationMessageFor(x => x.OpeningAccDepreciaiton, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.CurrentWareHouseId, Model.Warehouses, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.CurrentWareHouseId, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">@Html.EditorFor(x => x.IsFleet)
+                @Html.ValidationMessageFor(x => x.IsFleet)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.Global_String_Image
+            </td>
+            <td align="center" width="33.3%">
+                &nbsp;
+            </td>
+            <td align="center" width="33.3%">
+                &nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td align="center" width="33.3%">
+                <div id="fineUploaderElementId">
+                    <noscript>
+                        <p>@Resources.Global_String_NoJavascriptMessage</p>
+                    </noscript>
+                </div>
+            </td>
+            <td align="center" width="33.3%" id="uploadMsg">
+            </td>
+            <td align="right">
+                <input type="submit" class="btn green" value="@Resources.Global_String_SaveChanges" />
+            </td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,36 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SelectAuthorizer
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "TADetailsDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("SaveEvaluator/" + Model.EntityTenderEvaluator.TenderAnalysisId),
+      OnSuccess = "CloseDialog"
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{ 
+    <table>
+        
+        <tbody>            
+            <tr>
+                <td align="right">@Resources.TenderAnalysis_ChangeAuthorizer_SelectAuthorizer:<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.EntityTenderEvaluator.StaffId, Model.Authorizers)<br />
+                    @Html.HiddenFor(model => model.EntityTenderEvaluator.Id)
+                    @Html.HiddenFor(model => model.EntityTenderEvaluator.Priority)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" class="btn green"  value=" @Resources.Global_String_Save " />&nbsp;
+                    <input type="button" class="btn green"  value="@Resources.Global_String_Cancel" onclick="javascript:CloseDialog()" />
+                </td>
+            </tr>
+         </tbody>
+    </table>
+}  

@@ -1,0 +1,494 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{115A8BB2-CEE4-4F8F-B171-B3EB668DC95A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCMS.Model</RootNamespace>
+    <AssemblyName>SCMS.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountCode.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AnnualCostProjection.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Approver.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Asset.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetLog.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AssetManagment.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AttachedDocument.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Bin.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BINCARDPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BinItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetCategory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetCommitment.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BudgetPosting.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CheckListCategory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompletionCertificate.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Country.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountryProgramme.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountrySubOffice.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CountrySubProgramme.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Currency.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Department.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Depreciation.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Designation.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentAudit.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentBackDating.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentPreparer.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Donor.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DutyType.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Equipment2Fleet.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ExchangeRate.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Extensions\AssetExtensions.cs" />
+    <Compile Include="Extensions\BinCardExtensions.cs" />
+    <Compile Include="Extensions\CompletionCertificateExtensions.cs" />
+    <Compile Include="Extensions\DepreciationExtensions.cs" />
+    <Compile Include="Extensions\FleetDetailExtensions.cs" />
+    <Compile Include="Extensions\GoodsIssuedVoucherExtensions.cs" />
+    <Compile Include="Extensions\GoodsReceivedNoteExtensions.cs" />
+    <Compile Include="Extensions\GoodsReceivedNoteItemExtensions.cs" />
+    <Compile Include="Extensions\InventoryExtensions.cs" />
+    <Compile Include="Extensions\ItemExtensions.cs" />
+    <Compile Include="Extensions\ParameterExtensions.cs" />
+    <Compile Include="Extensions\ProcurementPlanExtensions.cs" />
+    <Compile Include="Extensions\ReleaseOrderExtensions.cs" />
+    <Compile Include="Extensions\StaffExtensions.cs" />
+    <Compile Include="FinanceLimit.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FleetDailyManagement.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FleetDetail.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FleetEquipment.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="FleetMajorIncidence.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GarageInfo.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GarageSeviceCheck.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GeneralLedger.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GenralInventory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GIVPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsIssuedVoucher.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsIssuedVoucherItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsReceivedNote.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GoodsReceivedNoteItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GRNPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsuranceType.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Inventory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InventoryQTY.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Item.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemCategory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemClassification.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemModel.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemPackage.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemType.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MasterBudgetCategory.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderRequest.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderRequestItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderRequestPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Partial Classes\Asset.cs" />
+    <Compile Include="Partial Classes\AttachedDocument.cs" />
+    <Compile Include="Partial Classes\AuditTrail.cs" />
+    <Compile Include="Partial Classes\Bin.cs" />
+    <Compile Include="Partial Classes\BudgetCheckResult.cs" />
+    <Compile Include="Partial Classes\BudgetLineView.cs" />
+    <Compile Include="Partial Classes\Class1.cs" />
+    <Compile Include="Partial Classes\CompletionCertificate.cs" />
+    <Compile Include="Partial Classes\CountryProgramme.cs" />
+    <Compile Include="Partial Classes\Donor.cs" />
+    <Compile Include="Extensions\BudgetExtensions.cs" />
+    <Compile Include="Extensions\OrderRequestExtensions.cs" />
+    <Compile Include="Extensions\PaymentRequestExtensions.cs" />
+    <Compile Include="Extensions\PaymentVoucherExtensions.cs" />
+    <Compile Include="Extensions\PurchaseOrderExtensions.cs" />
+    <Compile Include="Extensions\RoleExtensions.cs" />
+    <Compile Include="Extensions\SystemUserExtensions.cs" />
+    <Compile Include="Partial Classes\FinanceLimit.cs" />
+    <Compile Include="Partial Classes\FleetDetail.cs" />
+    <Compile Include="Partial Classes\FleetParams.cs" />
+    <Compile Include="Partial Classes\GeneralLedger.cs" />
+    <Compile Include="Partial Classes\GeneralLedgerView.cs" />
+    <Compile Include="Partial Classes\GeneralSettingsMetaData.cs" />
+    <Compile Include="Partial Classes\GoodsIssuedVoucher.cs" />
+    <Compile Include="Partial Classes\GoodsReceivedNote.cs" />
+    <Compile Include="Partial Classes\GoodsReceivedNoteItem.cs" />
+    <Compile Include="Partial Classes\Inventory.cs" />
+    <Compile Include="Partial Classes\MasterBudgetProject.cs" />
+    <Compile Include="Partial Classes\MBCategory.cs" />
+    <Compile Include="Partial Classes\MBProjection.cs" />
+    <Compile Include="Partial Classes\OrderRequest.cs" />
+    <Compile Include="Partial Classes\PaymentVoucher.cs" />
+    <Compile Include="Partial Classes\ProcurementPlan.cs" />
+    <Compile Include="Partial Classes\ProcurementPlanItem.cs" />
+    <Compile Include="Partial Classes\ProjectBLCount.cs" />
+    <Compile Include="Partial Classes\Staff.cs" />
+    <Compile Include="Partial Classes\TenderingType.cs" />
+    <Compile Include="PaymentDossierDocument.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentRequest.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentRequestBudgetLine.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentTerm.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentType.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucher.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentVoucherBudgetLine.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PermissionRecord.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Person.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="POPDFPROC_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcurementPlan.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcurementPlanItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProcurementPlanPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Project.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectBudget.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectDonor.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Partial Classes\PurchaseOrder.cs" />
+    <Compile Include="Partial Classes\SCMSEntities.cs" />
+    <Compile Include="Partial Classes\ShippingTermView.cs" />
+    <Compile Include="Partial Classes\StaffView.cs" />
+    <Compile Include="Partial Classes\WarehouseRelease.cs" />
+    <Compile Include="Partial Classes\WayBill.cs" />
+    <Compile Include="Partial Classes\XMLSerializationHelper.cs" />
+    <Compile Include="PurchaseOrder.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrderDocument.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrderItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Rebooking.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RolePermissionRecord.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScmsDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScmsDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScmsDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ScmsDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ScmsDataModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="ServiceCheckList.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Setting.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShippingTerm.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Staff.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="STOCKCARDPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Supplier.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemPrivilege.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemRolePrivilege.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUser.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SystemUserRole.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TenderingType.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UnitOfMeasure.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VBudgetDetail.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleMake.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VehicleModel.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VProjectDonor.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VStaffDetail.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_BudgetPipeline.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_BudgetPipeLineReport.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="V_DocumentStatus.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WareHouse.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseRelease.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseReleaseItem.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WayBill.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="WROPDF_Result.cs">
+      <DependentUpon>ScmsDataModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="ScmsDataModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ScmsDataModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ScmsDataModel.edmx.diagram">
+      <DependentUpon>ScmsDataModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ScmsDataModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScmsDataModel.edmx</DependentUpon>
+      <LastGenOutput>ScmsDataModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ScmsDataModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ScmsDataModel.edmx</DependentUpon>
+      <LastGenOutput>ScmsDataModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCMS.Resources\SCMS.Resource.csproj">
+      <Project>{26034cfe-7b64-4906-bd26-ba85cbd57798}</Project>
+      <Name>SCMS.Resource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

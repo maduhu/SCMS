@@ -1,0 +1,22 @@
+﻿@model SCMS.UI.Areas.Admin.Models.Role.RoleModel
+@{
+    Layout = null;
+}
+@{
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "AdminRolesDiv",
+        LoadingElementId = "loading",
+        HttpMethod = "Post",
+        Url = Url.Action("Edit"),
+        OnSuccess = "CloseDialog();initSorter();sorter.size(10);",
+        OnFailure = "Javascript:AjaxFailure()"
+    };
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form"}))
+{
+    @Html.Partial("_CreateOrEdit", Model) 
+}

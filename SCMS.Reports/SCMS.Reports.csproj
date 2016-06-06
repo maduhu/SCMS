@@ -1,0 +1,413 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{75EF2AA7-3DCB-4628-B74D-98085765790D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCMS.Reports</RootNamespace>
+    <AssemblyName>SCMS.Reports</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel">
+      <HintPath>..\Libraries\MigraDoc.DocumentObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering">
+      <HintPath>..\Libraries\MigraDoc.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering">
+      <HintPath>..\Libraries\MigraDoc.RtfRendering.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp">
+      <HintPath>..\Libraries\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting">
+      <HintPath>..\Libraries\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.Reporting">
+      <HintPath>..\Libraries\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.ReportViewer.WebForms">
+      <HintPath>..\Libraries\Telerik.ReportViewer.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Budgets\ProjectBudgetLine.cs" />
+    <Compile Include="Budgets\ReportService.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="ExportHelper.cs" />
+    <Compile Include="IExportHelper.cs" />
+    <Compile Include="Orders\OrderRequest.cs" />
+    <Compile Include="PdfGenerator.cs" />
+    <Compile Include="PDFHelper.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseOrderExportHelper.cs" />
+    <Compile Include="Reports\AssetInventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AssetInventory.Designer.cs">
+      <DependentUpon>AssetInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\AssetProcurement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\AssetProcurement.designer.cs">
+      <DependentUpon>AssetProcurement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BinCardPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BinCardPDF.designer.cs">
+      <DependentUpon>BinCardPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\BudgetLinePipeLine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\BudgetLinePipeLine.designer.cs">
+      <DependentUpon>BudgetLinePipeLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\CompletionCertificatePDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\CompletionCertificatePDF.designer.cs">
+      <DependentUpon>CompletionCertificatePDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ConsumableInventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ConsumableInventory.Designer.cs">
+      <DependentUpon>ConsumableInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Documents.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Documents.designer.cs">
+      <DependentUpon>Documents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FleetOverview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\FleetOverview.Designer.cs">
+      <DependentUpon>FleetOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\FleetVehicle.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\FleetVehicle.Designer.cs">
+      <DependentUpon>FleetVehicle.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GarageOverview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GarageOverview.Designer.cs">
+      <DependentUpon>GarageOverview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenInventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenInventory.Designer.cs">
+      <DependentUpon>GenInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GenProcurement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GenProcurement.Designer.cs">
+      <DependentUpon>GenProcurement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GIVPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GIVPDF.designer.cs">
+      <DependentUpon>GIVPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\GRNPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\GRNPDF.designer.cs">
+      <DependentUpon>GRNPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\NewReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\NewReport.designer.cs">
+      <DependentUpon>NewReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OrderRequestPDFprint.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OrderRequestPDFprint.designer.cs">
+      <DependentUpon>OrderRequestPDFprint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\OrderRequests.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\OrderRequests.Designer.cs">
+      <DependentUpon>OrderRequests.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ORDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ORDetails.Designer.cs">
+      <DependentUpon>ORDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PaymentRequestPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PaymentRequestPDF.designer.cs">
+      <DependentUpon>PaymentRequestPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PODetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PODetails.designer.cs">
+      <DependentUpon>PODetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\POPDFInternational.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\POPDFInternational.designer.cs">
+      <DependentUpon>POPDFInternational.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ProcurementPlanPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\ProcurementPlanPDF.designer.cs">
+      <DependentUpon>ProcurementPlanPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PurchaseOrder.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PurchaseOrder.designer.cs">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PurchaseOrderPrintPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PurchaseOrderPrintPDF.designer.cs">
+      <DependentUpon>PurchaseOrderPrintPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Report1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Report1.Designer.cs">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RequestForPayment.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RequestForPayment.designer.cs">
+      <DependentUpon>RequestForPayment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RFPDetails.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RFPDetails.designer.cs">
+      <DependentUpon>RFPDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StockCardPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\StockCardPDF.designer.cs">
+      <DependentUpon>StockCardPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\WROPDF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\WROPDF.designer.cs">
+      <DependentUpon>WROPDF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\IReportHelper.cs" />
+    <Compile Include="Utilities\PrintTable.cs" />
+    <Compile Include="Utilities\ReportHelper.cs" />
+    <Compile Include="Utilities\ReportsInternalisation.cs" />
+    <Compile Include="Utilities\TableOptions.cs" />
+    <Compile Include="WkHtml2Pdf.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreBusinessLogic\SCMS.CoreBusinessLogic.csproj">
+      <Project>{A2EF0B29-83BA-4400-B797-F32BB092C938}</Project>
+      <Name>SCMS.CoreBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Model\SCMS.Model.csproj">
+      <Project>{115A8BB2-CEE4-4F8F-B171-B3EB668DC95A}</Project>
+      <Name>SCMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Resources\SCMS.Resource.csproj">
+      <Project>{26034CFE-7B64-4906-BD26-BA85CBD57798}</Project>
+      <Name>SCMS.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Utils\SCMS.Utils.csproj">
+      <Project>{59eac4da-30ea-4666-a23b-7ccec052edf4}</Project>
+      <Name>SCMS.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\MigraDoc.DocumentObjectModel.dll" />
+    <Content Include="bin\Debug\MigraDoc.Rendering.dll" />
+    <Content Include="bin\Debug\MigraDoc.RtfRendering.dll" />
+    <Content Include="bin\Debug\PdfSharp.Charting.dll" />
+    <Content Include="bin\Debug\PdfSharp.dll" />
+    <Content Include="bin\Debug\SCMS.CoreBusinessLogic.dll" />
+    <Content Include="bin\Debug\SCMS.CoreBusinessLogic.pdb" />
+    <Content Include="bin\Debug\SCMS.Model.dll" />
+    <Content Include="bin\Debug\SCMS.Model.pdb" />
+    <Content Include="bin\Debug\SCMS.Reports.dll" />
+    <Content Include="bin\Debug\SCMS.Reports.pdb" />
+    <Content Include="obj\Debug\SCMS.Reports.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\SCMS.Reports.dll" />
+    <Content Include="obj\Debug\SCMS.Reports.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Reports\AssetInventory.resx">
+      <DependentUpon>AssetInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\AssetProcurement.resx">
+      <DependentUpon>AssetProcurement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BinCardPDF.resx">
+      <DependentUpon>BinCardPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\BudgetLinePipeLine.resx">
+      <DependentUpon>BudgetLinePipeLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CompletionCertificatePDF.resx">
+      <DependentUpon>CompletionCertificatePDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ConsumableInventory.resx">
+      <DependentUpon>ConsumableInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Documents.resx">
+      <DependentUpon>Documents.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FleetOverview.resx">
+      <DependentUpon>FleetOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\FleetVehicle.resx">
+      <DependentUpon>FleetVehicle.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GarageOverview.resx">
+      <DependentUpon>GarageOverview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenInventory.resx">
+      <DependentUpon>GenInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GenProcurement.resx">
+      <DependentUpon>GenProcurement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GIVPDF.resx">
+      <DependentUpon>GIVPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\GRNPDF.resx">
+      <DependentUpon>GRNPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\NewReport.resx">
+      <DependentUpon>NewReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderRequestPDFprint.resx">
+      <DependentUpon>OrderRequestPDFprint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\OrderRequests.resx">
+      <DependentUpon>OrderRequests.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ORDetails.resx">
+      <DependentUpon>ORDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PaymentRequestPDF.resx">
+      <DependentUpon>PaymentRequestPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PODetails.resx">
+      <DependentUpon>PODetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\POPDFInternational.resx">
+      <DependentUpon>POPDFInternational.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ProcurementPlanPDF.resx">
+      <DependentUpon>ProcurementPlanPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PurchaseOrder.resx">
+      <DependentUpon>PurchaseOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PurchaseOrderPrintPDF.resx">
+      <DependentUpon>PurchaseOrderPrintPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Report1.resx">
+      <DependentUpon>Report1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RequestForPayment.resx">
+      <DependentUpon>RequestForPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RFPDetails.resx">
+      <DependentUpon>RFPDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StockCardPDF.resx">
+      <DependentUpon>StockCardPDF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\WROPDF.resx">
+      <DependentUpon>WROPDF.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

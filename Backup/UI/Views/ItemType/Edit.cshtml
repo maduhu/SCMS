@@ -1,0 +1,31 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.ItemType
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>@Resources.ItemType_Create_ItemType</legend>
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <p>
+            <input type="submit" value="@Resources.Global_String_Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink(Resources.Global_String_BackToList, "Index")
+</div>
+

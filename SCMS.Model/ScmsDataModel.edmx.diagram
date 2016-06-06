@@ -1,0 +1,327 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8f3cbf1dbcf44d0a73fbf3f226cae61" Name="Diagram1">
+        <EntityTypeShape EntityType="SCMS.Model.AccountCode" Width="1.5" PointX="5.25" PointY="73.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.AnnualCostProjection" Width="1.5" PointX="3" PointY="86.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Approver" Width="1.5" PointX="10.5" PointY="85.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Asset" Width="1.5" PointX="6" PointY="83.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.AssetLog" Width="1.5" PointX="8.25" PointY="84.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.AssetManagment" Width="1.5" PointX="11.25" PointY="90.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.AttachedDocument" Width="1.5" PointX="18.75" PointY="97.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Bin" Width="1.5" PointX="29" PointY="85.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.BinItem" Width="1.5" PointX="18.75" PointY="86.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.BudgetCategory" Width="1.5" PointX="30" PointY="96.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.BudgetCommitment" Width="1.5" PointX="37.5" PointY="93.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.BudgetPosting" Width="1.5" PointX="47.75" PointY="90.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.CheckListCategory" Width="1.5" PointX="25.25" PointY="101.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.CompletionCertificate" Width="1.5" PointX="10.5" PointY="74.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Country" Width="1.5" PointX="0.75" PointY="80.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.CountryProgramme" Width="1.5" PointX="3" PointY="78.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.CountrySubOffice" Width="1.5" PointX="8.25" PointY="78.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.CountrySubProgramme" Width="1.5" PointX="5.25" PointY="80.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Currency" Width="1.5" PointX="0.75" PointY="85.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Department" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Depreciation" Width="1.5" PointX="8.25" PointY="93" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Designation" Width="1.5" PointX="14.25" PointY="91.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Document" Width="1.5" PointX="40.25" PointY="82" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.DocumentAudit" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.DocumentBackDating" Width="1.5" PointX="21.75" PointY="96.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.DocumentPreparer" Width="1.5" PointX="24.75" PointY="96.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Donor" Width="1.5" PointX="5.25" PointY="76.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.DutyType" Width="1.5" PointX="12" PointY="68.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Equipment2Fleet" Width="1.5" PointX="21.5" PointY="87.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ExchangeRate" Width="1.5" PointX="3" PointY="118.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.FinanceLimit" Width="1.5" PointX="5.25" PointY="94" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.FleetDailyManagement" Width="1.5" PointX="18.75" PointY="92.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.FleetDetail" Width="1.5" PointX="14.25" PointY="85.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.FleetEquipment" Width="1.5" PointX="19.25" PointY="84.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.FleetMajorIncidence" Width="1.5" PointX="16.5" PointY="98.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GarageInfo" Width="1.5" PointX="21.5" PointY="90" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GarageSeviceCheck" Width="1.5" PointX="29.75" PointY="91" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GeneralLedger" Width="1.5" PointX="7.5" PointY="100.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GoodsIssuedVoucher" Width="1.5" PointX="26.75" PointY="89.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GoodsIssuedVoucherItem" Width="1.5" PointX="21.5" PointY="81" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GoodsReceivedNote" Width="1.5" PointX="16.5" PointY="77.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GoodsReceivedNoteItem" Width="1.5" PointX="21.75" PointY="76.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.InsuranceType" Width="1.5" PointX="12" PointY="102.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Inventory" Width="1.5" PointX="23.75" PointY="85.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Item" Width="1.5" PointX="10.5" PointY="96" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ItemCategory" Width="1.5" PointX="8.25" PointY="96.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ItemClassification" Width="1.5" PointX="5.25" PointY="97.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ItemModel" Width="1.5" PointX="8.25" PointY="90.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ItemPackage" Width="1.5" PointX="12.75" PointY="97.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ItemType" Width="1.5" PointX="8.25" PointY="103.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Location" Width="1.5" PointX="6" PointY="68.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.MasterBudgetCategory" Width="1.5" PointX="5.25" PointY="100.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Notification" Width="1.5" PointX="18.75" PointY="78.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.OrderRequest" Width="1.5" PointX="26.75" PointY="79.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.OrderRequestItem" Width="1.5" PointX="32" PointY="88" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentDossierDocument" Width="1.5" PointX="42.5" PointY="88" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentRequest" Width="1.5" PointX="40.25" PointY="85" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentRequestBudgetLine" Width="1.5" PointX="42.5" PointY="91.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentTerm" Width="1.5" PointX="32.75" PointY="84.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentType" Width="1.5" PointX="38" PointY="85.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentVoucher" Width="1.5" PointX="45.5" PointY="89" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PaymentVoucherBudgetLine" Width="1.5" PointX="47.75" PointY="94.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PermissionRecord" Width="1.5" PointX="18.75" PointY="111.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Person" Width="1.5" PointX="14.25" PointY="100.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ProcurementPlan" Width="1.5" PointX="13.5" PointY="71.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ProcurementPlanItem" Width="1.5" PointX="23.75" PointY="89.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Project" Width="1.5" PointX="5.25" PointY="103.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ProjectBudget" Width="1.5" PointX="32.25" PointY="97.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ProjectDonor" Width="1.5" PointX="27.75" PointY="94.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PurchaseOrder" Width="1.5" PointX="35" PointY="83" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PurchaseOrderDocument" Width="1.5" PointX="42.5" PointY="82.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.PurchaseOrderItem" Width="1.5" PointX="37.25" PointY="88.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Rebooking" Width="1.5" PointX="39.75" PointY="96.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Role" Width="1.5" PointX="18.75" PointY="115.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.RolePermissionRecord" Width="1.5" PointX="21" PointY="115.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ServiceCheckList" Width="1.5" PointX="27.5" PointY="101.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Setting" Width="1.5" PointX="4.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.ShippingTerm" Width="1.5" PointX="32.75" PointY="81.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Staff" Width="1.5" PointX="16.5" PointY="86.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.Supplier" Width="1.5" PointX="32.75" PointY="103.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.SystemPrivilege" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.SystemRolePrivilege" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.SystemUser" Width="1.5" PointX="18.75" PointY="119.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.SystemUserRole" Width="1.5" PointX="21" PointY="120.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.TenderingType" Width="1.5" PointX="11.25" PointY="81.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.UnitOfMeasure" Width="1.5" PointX="8.25" PointY="106.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.VehicleMake" Width="1.5" PointX="9.75" PointY="109.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.VehicleModel" Width="1.5" PointX="12" PointY="109.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.WareHouse" Width="1.5" PointX="16.5" PointY="72.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.WarehouseRelease" Width="1.5" PointX="24.75" PointY="71.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.WarehouseReleaseItem" Width="1.5" PointX="14.25" PointY="80.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.WayBill" Width="1.5" PointX="29" PointY="75.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.GenralInventory" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.InventoryQTY" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.V_BudgetPipeline" Width="1.5" PointX="8.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.V_BudgetPipeLineReport" Width="1.5" PointX="8.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.V_DocumentStatus" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.VBudgetDetail" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.VProjectDonor" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCMS.Model.VStaffDetail" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <AssociationConnector Association="SCMS.Model.FK_AccountCode_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AnnualCostProjection_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AnnualCostProjection_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AnnualCostProjection_MasterBudgetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Approvers_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Approvers_FinanceLimit" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Approvers_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Approvers_SystemUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Approvers_SystemUser1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_Approvers" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_GoodsReceivedNoteItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_ProjectDonor2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Asset_WareHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AssetLog_Asset" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AssetManagment_Asset" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Depreciation_Asset" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_Asset" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseReleaseItem_Asset" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AssetManagment_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_AssetManagment_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_AttachedDocument" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Bin_BinItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ItemPackage_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequestItem_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlanItem_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Warehouse_Bin" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNoteItem_BinItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_BinItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseReleaseItem_BinItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetCategory_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectBudget_BudgetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetCommitment_OrderRequestItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetCommitment_ProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetCommitment_PurchaseOrderItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetCommitment_RFPBudgetLine" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Rebooking_BudgetCommitment" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetPosting_PaymentRequestBudgetLine" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_BudgetPosting_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Rebooking_BudgetPosting" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_servicechecklist_CheckListCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_CountrySubOffice1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_Staff1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CompletionCertificate_Staff2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CountryProgramme_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Donor_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Supplier_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Table_2_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CountryOffice_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CountryProgramme_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CountrySubProgramme_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Donor_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FinanceLimit_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ItemClassification_CountryProgrammeId" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_MasterBudgetCategory_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Project_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_TenderingType_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseRelease_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_CountryProgramme" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_CountryOffice_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNote_CountryOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WareHouse_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_CountrySubOffice" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_CountrySubOffice1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_CountrySubOffice6" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ExchangeRate_LocalCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ExchangeRate_MainCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GarageInfo_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_MBCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_MBCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlanItem_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectDonor_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_MBCurrency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_TenderingType_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_Designation" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentDossierDocument_Document" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrderDocument_Document" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_DocumentBackDating_OrderRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_DocumentBackDating_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_DocumentBackDating_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_DocumentPreparer_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_DocumentPreparer_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectDonor_Donor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_DutyType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Equipment2Fleet_FleetDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Equipment2Fleet_FleetEquipment" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_FinanceLimit" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDailyManagement_FleetDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDailyManagement_FleetMajorIncidences" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_Staff5" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_InsuranceType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_Staff4" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_FleetDetail_VehicleModel" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GarageInfo_FleetDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GarageInfo_GarageSeviceCheck" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GarageInfo_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ServiceCheckList_GarageSeviceCheck" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GeneralLedger_MasterBudgetCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentVoucherBudgetLine_GeneralLedger" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectBudget_GeneralLedger" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsIssuedVoucher_GoodsIssuedVoucherItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_GoodsIssuedVoucher" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_GoodsIssuedVoucher2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseRelease_GoodsIssuedVoucher" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseReleaseItemId_GoodsIssuedVoucherItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNote_ReceptionApprovedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNote_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNote_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNote_WareHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNoteItem_GoodsReceivedNote" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_GoodsReceivedNote" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_GoodsReceivedNoteItem_PurchaseOrderItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Inventory_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Inventory_WareHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseReleaseItem_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Item_ItemCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Item_ItemClassification" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Item_UnitOfMeasure" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ItemPackage_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Model_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequestItem_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlanItem_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Type_Item" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_FinalDeliveryLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_RequestedDeliveryLocation" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WareHouse_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_OrderRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_PaymentRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_ProcurementPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Notification_WarehouseRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_ApprovedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_AuthorizedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_PreparedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequest_ReviewedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequestItem_OrderRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_OrderRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequestItem_ProcurementPlanItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_OrderRequestItem_ProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrderItem_OrderRequestItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentDossierDocument_PaymentRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_PaymentTerm" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_PaymentType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_PaymentVoucher" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_PostedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_Staff1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_Staff2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequest_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequestBudgetLine_PaymentRequest" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequestBudgetLine_PaymentVoucherBudgetLine" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequestBudgetLine_ProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentRequestBudgetLine_PurchaseOrderItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_PaymentTerm" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PaymentVoucher_PaymentVoucherBudgetLine" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_PaymentVoucher" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_PaymentVoucher2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_RolePermissionRecord_PermissionRecord" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Staff_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_ApprovedBy1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_ApprovedBy2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_AuthorizedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_ReviewedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlan_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlanItem_ProcurementPlan" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProcurementPlanItem_ProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrderItem_ProcurementPlanItem" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectDonor_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrderItem_ProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Rebooking_FromProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Rebooking_ToProjectBudget" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_ProjectDonor_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_ProjectDonor" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_ApprovedBy" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_PreparedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_ShippingTerm" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_Supplier" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrder_TenderingType" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_PurchaseOrderItem_PurchaseOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_Rebooking_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_RolePermissionRecord_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_SystemUserRole_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_SystemUser_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseRelease_ApprovedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseRelease_RequestedByStaff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseRelease_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_Staff" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_Staff1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_Staff2" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_SystemRolePrivilege_SystemPrivilege" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_SystemUserRole_SystemUser" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_VehicleModel_VehicleMake" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK__Warehouse__WareH__1E3A7A34" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK__Warehouse__WareH__1F2E9E6D" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_WareHouse" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_WareHouse1" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WarehouseReleaseItem_WarehouseRelease" ManuallyRouted="false" />
+        <AssociationConnector Association="SCMS.Model.FK_WayBill_WarehouseRelease" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

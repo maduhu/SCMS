@@ -1,0 +1,59 @@
+﻿@using System.Xml.Linq
+@using SCMS.CoreBusinessLogic.Settings
+@model XElement
+           
+@{
+    var emptyPermissions = new string[] { };
+
+    var GetAttribute = new Func<XElement, String, String>((element, attr) =>
+    {
+        var attribute = element.Attribute(attr);
+        return attribute != null ? attribute.Value : "";
+    });
+
+    var GetPermissions = new Func<XElement, String[]>((element) =>
+    {
+        var permissions = GetAttribute(element, "permissions");
+        if (permissions.IsNotNullOrWhiteSpace())
+        {
+            return permissions.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+        }
+        return emptyPermissions;
+    });
+}
+
+@helper RenderElements(IEnumerable<XElement> elements, Func<XElement, String[]> getPermissions, Func<XElement, String, String> getAttribute)
+    {
+    foreach (var xElement in elements)
+    {
+        var permissions = getPermissions(xElement);
+        if ( SettingsHelper<CommonSettings>.Settings.HideMenusBasedOnPermissions==false || permissions.IsNullOrEmpty() || (permissions.Any(p => UserContext.HasPermission(p))))
+        {
+            @Html.Raw("<li><a href=\"{0}\">{1}</a>".F(@Url.Content(getAttribute(xElement, "url")), getAttribute(xElement, "title")))
+            if (xElement.HasElements)
+            {
+                 @Html.Raw("<ul>")
+                @Html.Raw(RenderElements(xElement.Elements(), getPermissions, getAttribute).ToHtmlString())
+                 @Html.Raw("</ul>")
+            }
+            @Html.Raw("</li>")
+        }
+    }    
+}
+
+<div id="main-menu">
+<ul id="root">
+   @Html.Raw(RenderElements(Model.Elements(), GetPermissions, GetAttribute).ToHtmlString())
+</ul>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("ul#root").accordionMenu({
+            accordion: true,
+            speed: 500,
+            closedSign: '',
+            openedSign: ''
+        });
+    });
+</script>

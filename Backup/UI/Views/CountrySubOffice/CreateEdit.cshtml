@@ -1,0 +1,59 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.UCountrySubOffice
+
+@{AjaxOptions ajaxOpts = new AjaxOptions
+      {
+          UpdateTargetId = "ContentDiv",
+          LoadingElementId = "loading",
+          HttpMethod = "Post",
+          Url = Url.Action("CreateEdit"),
+          OnSuccess = "CloseDialog();if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+      };
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tbody>            
+            <tr>
+                <td align="right">@Resources.Global_String_Name<font color="red">*</font>:</td>
+                <td>
+                    @Html.TextBoxFor(m => m.Name)<br />
+                    @Html.ValidationMessageFor(model => model.Name)
+                    @Html.HiddenFor(m => m.Id)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Global_String_Address<font color="red">*</font>:</td>
+                <td>
+                    @Html.TextAreaFor(model => model.Address)<br />
+                    @Html.ValidationMessageFor(model => model.Address)
+                </td>
+            </tr>            
+            <tr>
+                <td align="right">@Resources.Global_String_HeadOffice:</td>
+                <td>
+                    @Html.EditorFor(model => model.IsCountryheadOffice)<br />
+                    @Html.ValidationMessageFor(model => model.IsCountryheadOffice)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Global_String_Location<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.LocationId, Model.LocationSelect, Resources.Global_String_PleaseSelect)<br />
+                    @Html.ValidationMessageFor(model => model.LocationId)
+                </td>
+            </tr>
+            <tr>
+                <td align="right"></td>
+                <td>
+                    <input type="submit" class="btn green" value="@(ViewBag.Action != null ? ViewBag.Action : Resources.Global_String_Save)" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}

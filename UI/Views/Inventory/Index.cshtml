@@ -1,0 +1,96 @@
+﻿@using SCMS.Resource
+@{    
+    ViewBag.Title = Resources.Global_String_InventoryManagement + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<!-- FineUploader -->
+<link href="@Url.Content("~/Content/css/fineuploader.css")" rel="stylesheet"/>
+<script src="@Url.Content("~/Scripts/fineuploader/jquery.fineuploader-3.0.min.js")" type="text/javascript"></script>
+
+<div id="GRNMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.Global_String_InventoryManagement</h3>
+        </div>
+        <div style="font-size: 12px; text-align: left;">
+            <table cellpadding="0" cellspacing="0" width="83%">
+                <tr>
+                    <td class="arrowLink" style="width: 15%;">
+                        @Ajax.ActionLink(Resources.GoodsReceivedNote_RegisterAsset_ViewAssetInventory, "ViewAssetInventory", "Inventory", new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                    <td class="arrowLink" style="width: 15%;">
+                        @Ajax.ActionLink(Resources.GoodsReceivedNote_RegisterAsset_RegisterAssetFromGRN, "ViewUnregisteredAssets", "GoodsReceivedNote", new AjaxOptions
+                   {
+                       UpdateTargetId = "AssetsDiv",
+                       LoadingElementId = "loading",
+                       OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                   })
+                    </td>
+                    <td class="arrowLink" style="width: 15%;">
+                        @Ajax.ActionLink(Resources.Inventory_Index_ViewGeneralInventory, "ViewGeneralInventory", new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.GoodsReceivedNote_RegisterAsset_ViewAssetDepreciation, "LoadAssetDepreciation", "Inventory", new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.GoodsReceivedNote_RegisterAsset_ManageAssets, "AssetManagement", "GoodsReceivedNote", new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "ClearFormById('#' + 'otherConsumable');document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Inventory_Index_ViewConsumables, "ViewConsumableInventory", new { id = "Consumables" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Global_String_DisposedAssets, "ViewDisposedAssets", new AjaxOptions
+                        {
+                            UpdateTargetId = "AssetsDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "document.getElementById('AssetDetailsDiv').innerHTML='';"
+                        })
+                    </td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="AssetsDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+        @Html.Action("ViewGeneralInventory")
+    </div>
+    <div id="AssetDetailsDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+    </div>
+</div>

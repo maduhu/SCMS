@@ -1,0 +1,80 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.UI.Models.CommitDetailModel
+
+@if (Model.BudgetCommits.Count() > 0)
+{
+    if (Model.HasProcurement)
+    {
+        <h4 style="text-align: center;">@Resources.Global_String_Procurement.ToUpper()</h4>  
+        <table align="center" class="cardTable" style="min-width: 700px;">
+            <tr>
+                <th>@Resources.Global_String_Date</th>
+                <th>@Resources.Global_String_Amount</th>
+                <th>@Resources.Global_String_OR</th>
+                <th>@Resources.Global_String_PO</th>
+                <th>@Resources.Global_String_RFP</th>
+                <th>@Resources.Global_String_ItemName</th>
+            </tr>
+            @foreach (var item in Model.BudgetCommits)
+            {
+                if (item.RFPBudgetLineId.HasValue || item.PurchaseOrderItemId.HasValue || item.OrderRequestItemId.HasValue)
+                {
+                    <tr>
+                        <td align="center">
+                            @item.DateCommitted.ToString(Constants.DATE_FORMAT)
+                        </td>
+                        <td align="right">
+                            @item.AmountCommitted.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                        </td>
+                        @if (item.RFPBudgetLineId.HasValue)
+                        { 
+                            <td>
+                                @if(item.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem != null)
+                                {
+                                    @item.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.OrderRequest.RefNumber
+                                }
+                                else
+                                {
+                                    @item.PaymentRequestBudgetLine.PurchaseOrderItem.ProcurementPlanItem.ProcurementPlan.RefNumber
+                                }
+                            </td>
+                            <td>@item.PaymentRequestBudgetLine.PurchaseOrderItem.PurchaseOrder.RefNumber</td>
+                            <td>@item.PaymentRequestBudgetLine.PaymentRequest.RefNumber</td>
+                            <td title="@item.PaymentRequestBudgetLine.PurchaseOrderItem.ItemDescription">@item.PaymentRequestBudgetLine.PurchaseOrderItem.Item.Name</td>
+                        }
+                        else if (item.PurchaseOrderItemId.HasValue)
+                        { 
+                            <td>
+                                @if(item.PurchaseOrderItem.OrderRequestItem != null)
+                                {
+                                    @item.PurchaseOrderItem.OrderRequestItem.OrderRequest.RefNumber
+                                }
+                                else
+                                {
+                                    @item.PurchaseOrderItem.ProcurementPlanItem.ProcurementPlan.RefNumber
+                                }
+                            </td>
+                            <td>@item.PurchaseOrderItem.PurchaseOrder.RefNumber</td>
+                            <td>&nbsp;</td>
+                            <td title="@item.PurchaseOrderItem.ItemDescription">@item.PurchaseOrderItem.Item.Name</td>
+                        }
+                        else if (item.OrderRequestItemId.HasValue)
+                        { 
+                            <td>@item.OrderRequestItem.OrderRequest.RefNumber</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td title="@item.OrderRequestItem.ItemDescription">@item.OrderRequestItem.Item.Name</td>
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+    if (!Model.HasFinance && !Model.HasProcurement)
+    { 
+        <br />
+        <center style="font-style: italic; text-align: center;">No details were found!!</center>
+    }
+}
+

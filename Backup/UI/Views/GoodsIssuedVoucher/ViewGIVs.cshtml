@@ -1,0 +1,42 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.GoodsIssuedVoucher>
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+           @Resources.GoodsIssuedVoucher_Index_GoodsIssuedVoucher</h3>
+    </div>
+    <br />
+    @(Html.Telerik().Grid(Model)
+        .Name("GIVs")
+        .DataKeys(keys => keys.Add(o => o.Id))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Id).Hidden();
+            columns.Bound(c => c.RefNumber).Title(Resources.GoodsIssuedVoucher_LoadGiv_GIVNo).Width("20%");
+            columns.Bound(c => c.RONumber).Title(Resources.WRForm_LoadWRF_WRFNo).Width("20%");
+            columns.Bound(c => c.WaybillNo).Title(Resources.WayBill_LoadWB_WBNo).Width("18%");
+            columns.Bound(c => c.Consignee).Title(Resources.WayBill_LoadWB_Consignee).Width("18%");
+            columns.Bound(c => c.Status).Title(Resources.Global_String_Status).Width("10%");
+            columns.Bound(c => c.PreparedOn).Title(Resources.Global_String_StatusDate).Format("{0:d}").Width("14%").Sortable(true);
+        })
+        .Filterable(filtering => filtering.Enabled(true))
+        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+        .Sortable(settings => settings.Enabled(true).SortMode(GridSortMode.SingleColumn))
+        .Selectable()
+        .ClientEvents(events => events.OnRowSelected("onRowSelected"))
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("Filtering", "GoodsIssuedVoucher"))
+)
+    <br />
+</div>
+<script type="text/javascript">
+    function onRowSelected(e) {
+        var givId = e.row.cells[0].innerHTML;
+        sendRequest('/GoodsIssuedVoucher/ViewGIVDetails?givId=' + givId, 'givDiv', 'loading');
+
+    }
+
+   // function onDataBinding(e) { }
+</script>

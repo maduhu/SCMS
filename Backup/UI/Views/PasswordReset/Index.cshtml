@@ -1,0 +1,34 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.PasswordReset_ChangePassword_Title;
+    Layout = "~/Views/Shared/_PublicViewLayout.cshtml";
+}
+<div id="pwdResetMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.PasswordReset_ChangePassword_PasswordReset</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>                
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="@Url.Content("~/Content/images/loading_indicator.gif")" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="PasswordResetDiv">
+        <!-- Content goes here-->
+        @Html.Partial("ResetRequestForm")
+    </div>
+</div>

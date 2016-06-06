@@ -1,0 +1,176 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.CountryProgramme
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Model.ProgrammeName</h3></div>
+    <br />
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.CountryProgramme_Details_ProgrammeName
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_ShortName
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_MBCurrency
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.ProgrammeName            
+            </td>
+            <td align="center">
+                @Model.ShortName     
+            </td>
+            <td align="center">
+                @Model.Currency.ShortName            
+            </td>
+        </tr>
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_PrimaryPhone
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_SecondaryPhone
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_AdministratorEmail
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.PrimaryPhone            
+            </td>
+            <td align="center">
+                @Model.SecondaryPhone     
+            </td>
+            <td align="center">
+                @Model.AdministratorEmail            
+            </td>
+        </tr>
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_EmailAddress
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_WebAddress
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_Fax
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.Email            
+            </td>
+            <td align="center">
+                @Model.WebAddress     
+            </td>
+            <td align="center">
+                @Model.Fax  &nbsp;         
+            </td>
+        </tr>
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_Address
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_Country
+            </td>
+            <td class="gridheader3">
+                &nbsp;
+            </td>            
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.Address     
+            </td>
+            <td align="center">
+                @Model.Country.Name            
+            </td>
+            <td></td>            
+        </tr>
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.CountryProgramme_Details_FirstLocation
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.CountryProgramme_Details_FirstSubOffice
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.CountryProgramme_Details_FirstDesignation
+            </td>
+        </tr>
+        <tr>
+            <td align="center">
+                @if (Model.FirstLocation != null)
+                { 
+                    @Model.FirstLocation.Name
+                }
+                else
+                { 
+                    @Ajax.ActionLink(Resources.Global_String_AddNew, "AddLocation", new { countryProgId = Model.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_AddNew),
+                        OnSuccess = "CenterPopup"
+                    })
+                }                           
+            </td>
+            <td align="center">
+                @if (Model.FirstSubOffice != null)
+                { 
+                    @Model.FirstSubOffice.Name
+                }
+                else
+                {
+                    @Ajax.ActionLink(Resources.Global_String_AddNew, "AddSubOffice", new { countryProgId = Model.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_AddNew),
+                        OnSuccess = "CenterPopup"
+                    })
+                }      
+            </td>
+            <td align="center">
+                @if (Model.FirstDesignation != null)
+                { 
+                    @Model.FirstDesignation.Name
+                }
+                else
+                {
+                    @Ajax.ActionLink(Resources.Global_String_AddNew, "AddDesignation", new { countryProgId = Model.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_AddNew),
+                        OnSuccess = "CenterPopup"
+                    })
+                }             
+            </td>
+        </tr>        
+        <tr>
+            <td align="center" width="33%" class="gridheader3">
+                @Resources.Global_String_Logo
+            </td>
+            <td align="center" width="33%" class="gridheader3">
+                
+            </td>
+            <td class="gridheader3">
+                &nbsp;
+            </td>            
+        </tr>
+        <tr>
+            <td align="center">
+               <img src = "@Url.Action("CPLogo", "CountryProgramme", new { id = Model.Id })" style="max-width: 200px" />     
+            </td>
+            <td align="center">
+                            
+            </td>
+            <td></td>            
+        </tr>
+    </table>  
+    <p>&nbsp;</p>      
+</div>

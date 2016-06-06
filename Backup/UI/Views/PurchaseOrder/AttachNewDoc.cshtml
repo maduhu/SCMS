@@ -1,0 +1,77 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.AttachedDocument
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "PODiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action(Model.Action),
+      OnBegin = "WaitForFineUploader('uploadMsg');",
+      OnSuccess = "javascript:CloseDialog()"
+
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "attachDoc", enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+    <br />
+    @Html.HiddenFor(x => x.DocumentId)
+    @Html.HiddenFor(x => x.CountryProgrammeId)
+    @Html.HiddenFor(x => x.AttachedBy)
+    @Html.HiddenFor(x => x.AttachedOn)
+    @Html.HiddenFor(x => x.Id)
+    @Html.HiddenFor(x => x.DocumentType)
+    @Html.HiddenFor(x => x.FileContent)
+    @Html.HiddenFor(x => x.FileSize)
+    @Html.HiddenFor(x => x.FileName)
+    @Html.HiddenFor(x => x.ContentType)
+    <table width="550px" align="center" style="margin-left: auto; margin-right: auto;">
+        <tr>
+            <td style="width: 40%;">@Resources.Global_String_DocumetName
+            </td>
+            <td>
+                @Html.EditorFor(model => model.Name)
+                @Html.ValidationMessageFor(model => model.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>@Resources.PurchaseOrder_AttachNewDoc_FileType
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.FileType, new SelectList(
+                        new List<Object>{ 
+                            new { value = "Invoice" , text = Resources.PurchaseOrder_AttachNewDoc_Invoice  },
+                            new { value = "Others" , text = Resources.PurchaseOrder_AttachNewDoc_Others }
+                        }, "value", "text"), Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(model => model.FileType)
+            </td>
+        </tr>
+        <tr>
+            <td>@Resources.Global_String_RefNo
+            </td>
+            <td>
+                @Html.EditorFor(model => model.RefNo)
+                @Html.ValidationMessageFor(model => model.RefNo)
+            </td>
+        </tr>
+        <tr>
+            <td>@Resources.Global_String_UploadFile
+            </td>
+            <td align="center" valign="top">
+                <div id="fineUploaderElementId">
+                    <noscript>
+                        <p>@Resources.Global_String_NoJavascriptMessage</p>
+                    </noscript>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td align="center" id="uploadMsg">
+            </td>
+            <td>
+                <input type="submit" class="btn green" value="@Resources.Global_String_Save" />
+            </td>
+        </tr>
+    </table>
+}

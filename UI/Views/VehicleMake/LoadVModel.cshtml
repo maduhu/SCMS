@@ -1,0 +1,41 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.VModel
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "ContentDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action(ViewBag.Action),
+      OnSuccess = "CloseDialog();usermsg('" + Resources.Global_String_ProcessCompleted + "');if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+  };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td align="right">@Resources.Global_String_VehicleMake<font color="red">*</font>:</td>
+            <td>
+                @Html.DropDownListFor(model => model.EntityVModel.MakeId, Model.VMakes, Resources.Global_String_PleaseSelect)<br />
+                @Html.ValidationMessageFor(model => model.EntityVModel.MakeId, Resources.Global_String_Required)
+                @Html.HiddenFor(model => model.EntityVModel.Id)
+                @Html.HiddenFor(model => model.EntityVModel.CountryProgrammeId)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Global_String_Model<font color="red">*</font>:</td>
+            <td>                
+                @Html.EditorFor(model => model.EntityVModel.Name)<br />
+                @Html.ValidationMessageFor(model => model.EntityVModel.Name, Resources.Global_String_Required)<br />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td>
+                <input type="submit" class="btn green" value="@Resources.Global_String_Save" />
+            </td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,370 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.ViewR4Payment
+@{
+    ViewBag.Title = "ViewR4PDetails";
+}
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_RFP: @Model.EntityPaymentRqst.RefNumber</h3>
+    </div>
+    @if (Model.CanApprove)
+    {
+        string linkText = null;
+        string actionName = null;
+        if (Model.EntityPaymentRqst.IsReviewed == true && Model.EntityPaymentRqst.IsAuthorized != true && !Model.EntityPaymentRqst.IsRejected)
+        {
+            linkText = Resources.Request4Payment_String_AuthorizeRFP;
+            actionName = "LoadRFPForAuth";
+        }
+        else if (Model.EntityPaymentRqst.IsSubmitted && Model.EntityPaymentRqst.IsReviewed != true && !Model.EntityPaymentRqst.IsRejected)
+        {
+            linkText = Resources.Request4Payment_String_ReviewRFP;
+            actionName = "ReviewRFP";
+        }
+        if (linkText != null)
+        {
+            <center id="canApprove">
+                @Ajax.ActionLink(linkText, actionName, "RequestReview", new { id = "" }, new AjaxOptions
+           {
+               OnBegin = "ShowDialogueOR('" + linkText + ": " + Model.EntityPaymentRqst.RefNumber + "')",
+               UpdateTargetId = "popup-page",
+               LoadingElementId = "popup-loading",
+               Url = Url.Action(actionName + "/" + Model.EntityPaymentRqst.Id, "RequestReview"),
+               OnSuccess = "CenterPopupRFP"
+           }) 
+            </center>
+        }
+        else
+        {
+            <br />
+        }
+    }
+    else
+    {
+        <br />
+    }
+    <fieldset style="text-align: left;">        
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <th align="center" width="33.3%">
+                    @Resources.Global_String_PONo
+                </th>
+                <th align="center" width="33.3%">
+                    @Resources.Global_String_Date
+                </th>
+                <th align="center" width="33.3%">
+                    @Resources.Global_String_Currency
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Model.EntityPaymentRqst.PurchaseOrder.RefNumber
+                </td>
+                <td align="center">
+                    @Model.EntityPaymentRqst.PreparedOn.ToShortDateString()
+                </td>
+                <td align="center">
+                    @Model.EntityPaymentRqst.Currency.ShortName
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <th align="center">
+                    @Resources.Global_String_PaymentTerms
+                </th>
+                <th align="center">
+                    @Resources.Global_String_PaymentType
+                </th>
+                <th align="center">
+                    @Resources.Global_String_TotalPayment
+                </th>
+            </tr>
+            <tr>
+                <td align="center">@Model.EntityPaymentRqst.PaymentTerm.Code
+                </td>
+                <td align="center">
+                    @Model.EntityPaymentRqst.PaymentType.Description
+                </td>
+                <td align="center">
+                    <b>@Model.EntityPaymentRqst.TotalAmount.ToString("##,##0.00")</b>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr>
+                <td class="gridheader" style="width: 20%;">
+                    @Resources.Global_String_SubjectPurpose:
+                </td>
+                <td style="width: 80%;">
+                    @Model.EntityPaymentRqst.Subject
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader" style="width: 20%;">
+                    @Resources.Request4Advance_CreateRFA_PaymentTo:
+                </td>
+                <td>
+                    @Model.EntityPaymentRqst.Supplier.Name
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr>
+                <td class="gridheader" style="width: 20%;">
+                    @Resources.Request4Advance_CreateRFADetail_RequestFor:
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <td style="width: 20%;">
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "FullPayment", new { @disabled = "disabled" })
+                                    @Resources.Request4Payment_String_FullPayment</div>
+                            </td>
+                            <td style="width: 20%;">
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Rate_Instalment", new { @disabled = "disabled" })
+                                    @Resources.Request4Payment_String_RateInstallment</div>
+                            </td>
+                            <td style="width: 20%;">
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Adv_Payment_percentage", new { @disabled = "disabled" })
+                                    @Resources.Request4Payment_String_AdvPayment</div>
+                            </td>
+                            <td style="width: 20%;">
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Adv_Final_Payment_percentage", new { @disabled = "disabled" })
+                                    @Resources.Request4Payment_String_AdvFinalPayment</div>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <td align="left" colspan="5">
+                    @Resources.Global_String_PaymentDetails:
+                </td>
+            </tr>
+            <tr>
+                <th align="center">
+                    #
+                </th>
+                <th align="center">
+                    @Resources.Budget_CategoryList_ProjectNo
+                </th>
+                <th align="center">
+                    @Resources.Budget_CreateSubLine_LineNumber
+                </th>
+                <th align="center">
+                    @Resources.Global_String_Amount
+                </th>
+                <th align="center">
+                    @Resources.Global_String_Currency
+                </th>
+            </tr>
+            @if (Model.paymentDetais.Count() > 0)
+            {
+                int count = 1;
+                foreach (var item in Model.paymentDetais)
+                {
+                <tr>
+                    <td style="width: 10%; text-align: center;">
+                        @count
+                    </td>
+                    <td style="width: 10%; text-align: center;">
+                        @item.projectNo
+                    </td>
+                    <td style="width: 40%;">
+                        &nbsp; @item.BudgetLine @Html.Raw("&nbsp;") @item.BudgetLineDescription
+                    </td>
+                    <td style="width: 20%; text-align: right;">
+                        @item.Amount.ToString("##,##0.00")
+                        &nbsp;
+                    </td>
+                    <td style="width: 15%; text-align: center;">
+                        @Model.EntityPaymentRqst.Currency.ShortName
+                    </td>
+                </tr>
+                    count = count + 1;
+                }
+            }
+        </table>
+        @if (Model.CanPostFunds)
+        { 
+            <table width="98%" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td align="right" width="100%" style="padding: 3px 0px 0px 0px">
+                        <input type="button" id="btnPost" name="btnPost" value="@Resources.Global_String_PostFunds" class="btn tertiary"  onclick="ShowDialogue('@Resources.Global_String_AuthenticateFundsPoster'); sendRequest('/FundPosting/PostRFP/@Model.EntityPaymentRqst.Id', 'popup-page', 'popup-loading'); CenterPopup();" />
+                    </td>
+                </tr>
+            </table>
+        }
+        else
+        {
+            <br />
+        }
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <td align="left">
+                    @Resources.Request4Payment_String_SupportingDocuments:
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <td align="left">
+                    @Resources.Global_String_Remarks:
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Model.EntityPaymentRqst.Remarks
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr>
+                <td align="right" class="gridheader" style="width: 30%;">
+                    @Resources.Global_String_MasterBudgetCurrency
+                </td>
+                <td style="width: 15%; text-align: center;">
+                    <b>
+                        @if (Model.EntityPaymentRqst.MBCurrencyId != null)
+                        {
+                            @Model.EntityPaymentRqst.Currency1.ShortName
+                        }
+                    </b>
+                </td>
+                <td class="gridheader" style="width: 15%;">
+                    @Resources.Global_String_Total
+                </td>
+                <td style="width: 15%; text-align: center;">
+                    <b>@ViewBag.MBValue</b>
+                </td>
+                <td class="gridheader" style="width: 25%;">
+                    @Resources.Request4Payment_String_RequestForPaymentValue
+                </td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <td width="13%">
+                    @Resources.Approver_ApproverList_Authorization
+                </td>
+                <td width="29%">
+                    @Resources.Global_String_PreparedBy
+                </td>
+                <td width="29%">
+                    @Resources.ExpenseClaim_ViewExpsClaimsDetails_FinanceReview
+                </td>
+                <td width="29%">
+                    @Resources.Global_String_AuthorizedByManager
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Name:
+                </td>
+                <td>
+                    @Model.EntityPaymentRqst.Staff1.Person.FirstName &nbsp; @Model.EntityPaymentRqst.Staff1.Person.OtherNames
+                </td>
+                <td>
+                    @ViewBag.Reviewer
+                </td>
+                <td>
+                    @ViewBag.Authorizer
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Title:
+                </td>
+                <td>
+                    @Model.EntityPaymentRqst.Staff1.Designation.Name
+                </td>
+                <td>
+                    @ViewBag.ReviewerTitle
+                </td>
+                <td>
+                    @ViewBag.AuthorizerTitle
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Date:
+                </td>
+                <td>
+                    @Model.EntityPaymentRqst.PreparedOn.ToString("dd/MM/yyyy h:mm tt")
+                </td>
+                <td>
+                @if (ViewBag.ReviewedOn != null)
+                {
+                    @ViewBag.ReviewedOn.ToString("dd/MM/yyyy h:mm tt")
+                }
+                </td>
+                <td>
+                @if (ViewBag.AuthorizedOn != null)
+                {
+                    @ViewBag.AuthorizedOn.ToString("dd/MM/yyyy h:mm tt")
+                }
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Signature:
+                </td>
+                <td>
+                    @if (Model.EntityPaymentRqst.Staff1.Person.SignatureImage != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.EntityPaymentRqst.Staff1.Person.Id, area = "" })" alt="" style="max-width: 150px;" />
+                    }
+                </td>
+                <td>
+                    @Html.Raw(ViewBag.ReviewerSignature)
+                </td>
+                <td>
+                    @Html.Raw(ViewBag.AuthorizerSignature)
+                </td>
+            </tr>
+        </table>
+        <hr />
+        @if (Model.EntityPaymentRqst.IsAuthorized == true)
+        {
+            <a class="btn btn-primary"  href="@Url.Action("Pdf", "Request4Payment", new { area = "Reports", RFPid = Model.EntityPaymentRqst.Id })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+                @Resources.Budget_ViewBudget_DownloadPdf</a>
+        }
+    <br />
+    </fieldset>
+    <br />
+</div>
+<br />
+<p>
+    @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new { id = "ViewR4P" }, new AjaxOptions
+    {
+        UpdateTargetId = "R4PDiv",
+        LoadingElementId = "loading",
+        Url = Url.Action("ViewR4P"),
+        OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(50);}"
+    })
+</p>

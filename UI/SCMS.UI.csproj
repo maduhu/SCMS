@@ -1,0 +1,1193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4B792094-00EE-4695-B181-550CC8213416}</ProjectGuid>
+    <ProjectTypeGuids>{E53F8FEA-EAE0-44A6-8774-FFD645390401};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCMS.UI</RootNamespace>
+    <AssemblyName>SCMS.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>false</UseIISExpress>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\Libraries\AutoMapper.1.1.0.118\lib\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>..\Libraries\EPPlus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\Libraries\FluentValidation\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\Libraries\FluentValidation\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Ninject">
+      <HintPath>..\Libraries\Ninject.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Telerik.Reporting, Version=6.1.12.611, Culture=neutral, PublicKeyToken=a9d7983dfcc261be, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libraries\Telerik.Reporting.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.Web.Mvc">
+      <HintPath>..\Libraries\TelerikMvcExtensions.2012.3.1018\lib\net40\Telerik.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ApproverController.cs" />
+    <Compile Include="Areas\Admin\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SecurityController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SystemUserController.cs" />
+    <Compile Include="Areas\Admin\Models\Approver\ApproverModel.cs" />
+    <Compile Include="Areas\Admin\Models\Role\RoleModel.cs" />
+    <Compile Include="Areas\Admin\Models\Security\PermissionMappingModel.cs" />
+    <Compile Include="Areas\Admin\Models\Security\PermissionRecordModel.cs" />
+    <Compile Include="Areas\Admin\Models\Settings\SettingsModel.cs" />
+    <Compile Include="Areas\Admin\Models\SystemUser\GridSystemUserModel.cs" />
+    <Compile Include="Areas\Admin\Models\SystemUser\SwitchCPModel.cs" />
+    <Compile Include="Areas\Admin\Models\SystemUser\SystemUserListModel.cs" />
+    <Compile Include="Areas\Admin\Models\SystemUser\SystemUserModel.cs" />
+    <Compile Include="Areas\Admin\Validators\Role\RoleValidator.cs" />
+    <Compile Include="Areas\Admin\Validators\SystemUser\SystemUserModelValidator.cs" />
+    <Compile Include="Areas\Admin\Validators\Validators\CommonSettingsModelValidator.cs" />
+    <Compile Include="Areas\Analytics\AnalyticsAreaRegistration.cs" />
+    <Compile Include="Areas\Analytics\Controllers\OrderRequestController.cs" />
+    <Compile Include="Areas\Analytics\Models\Search\ORSearchFormViewModel.cs" />
+    <Compile Include="Areas\Reports\Controllers\BudgetReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\CompletionCController.cs" />
+    <Compile Include="Areas\Reports\Controllers\DocumentReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\FinanceReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\FleetReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\GoodsReceivedController.cs" />
+    <Compile Include="Areas\Reports\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Reports\Controllers\InventoryReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\MasterBudgetController.cs" />
+    <Compile Include="Areas\Reports\Controllers\OrderRequestController.cs" />
+    <Compile Include="Areas\Reports\Controllers\PDFReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\POController.cs" />
+    <Compile Include="Areas\Reports\Controllers\PPController.cs" />
+    <Compile Include="Areas\Reports\Controllers\ProcurementReportsController.cs" />
+    <Compile Include="Areas\Reports\Controllers\ProjectBudgetController.cs" />
+    <Compile Include="Areas\Reports\Controllers\Request4PaymentController.cs" />
+    <Compile Include="Areas\Reports\Controllers\WareHouseController.cs" />
+    <Compile Include="Areas\Reports\Controllers\WBController.cs" />
+    <Compile Include="Areas\Reports\ReportsAreaRegistration.cs" />
+    <Compile Include="Controllers\AccessDeniedController.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BinCardController.cs" />
+    <Compile Include="Controllers\BudgetController.cs" />
+    <Compile Include="Controllers\CompletionCertificateController.cs" />
+    <Compile Include="Controllers\CountrySubOfficeController.cs" />
+    <Compile Include="Controllers\CustomErrorController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\DesignationController.cs" />
+    <Compile Include="Controllers\CountryController.cs" />
+    <Compile Include="Controllers\CountryProgrammeController.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
+    <Compile Include="Controllers\DonorController.cs" />
+    <Compile Include="Controllers\DutyTypeController.cs" />
+    <Compile Include="Controllers\ExchangeRateController.cs" />
+    <Compile Include="Controllers\FleetAccesoryController.cs" />
+    <Compile Include="Controllers\FleetIncidenceController.cs" />
+    <Compile Include="Controllers\FleetManagerController.cs" />
+    <Compile Include="Controllers\FundPostingController.cs" />
+    <Compile Include="Controllers\GlobalSettingsController.cs" />
+    <Compile Include="Controllers\GoodsIssuedVoucherController.cs" />
+    <Compile Include="Controllers\GoodsReceivedNoteController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InsuranceTypeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
+    <Compile Include="Controllers\ItemCategoryController.cs" />
+    <Compile Include="Controllers\ItemClassificationController.cs" />
+    <Compile Include="Controllers\ItemController.cs" />
+    <Compile Include="Controllers\ItemTypeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
+    <Compile Include="Controllers\MasterBudgetController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\OrderRequestController.cs" />
+    <Compile Include="Controllers\PasswordResetController.cs" />
+    <Compile Include="Controllers\PaymentTermController.cs" />
+    <Compile Include="Controllers\PaymentTypeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\ProcurementPlanController.cs" />
+    <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\ReportsConsoleController.cs" />
+    <Compile Include="Controllers\Request4PaymentController.cs" />
+    <Compile Include="Controllers\RequestReviewController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\ServiceCheckListController.cs" />
+    <Compile Include="Controllers\ShippingTermController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
+    <Compile Include="Controllers\TenderingTypeController.cs" />
+    <Compile Include="Controllers\TestPDFController.cs" />
+    <Compile Include="Controllers\UnitOfMeasureController.cs" />
+    <Compile Include="Controllers\VehicleMakeController.cs" />
+    <Compile Include="Controllers\WareHouseController.cs" />
+    <Compile Include="Controllers\WayBillController.cs" />
+    <Compile Include="Controllers\WRFormController.cs" />
+    <Compile Include="GeneralHelper\CheckBoxList.cs" />
+    <Compile Include="GeneralHelper\UserSession.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\NinjectControllerFactory.cs" />
+    <Compile Include="Models\BudgetCategory.cs" />
+    <Compile Include="Models\BudgetLine.cs" />
+    <Compile Include="Models\BudgetLineCheck.cs" />
+    <Compile Include="Models\BudgetSubLine.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CompletionCtificate.cs" />
+    <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\CountryProgramme.cs" />
+    <Compile Include="Models\CountrySubOffice.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\DashBoard.cs" />
+    <Compile Include="Models\Designation.cs" />
+    <Compile Include="Models\DutyTyppe.cs" />
+    <Compile Include="Models\FleetAccesory.cs" />
+    <Compile Include="Models\FleetIncidence.cs" />
+    <Compile Include="Models\GRNote.cs" />
+    <Compile Include="Models\InsureType.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemCategory.cs" />
+    <Compile Include="Models\ItemClassification.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\MasterBudgetHeader.cs" />
+    <Compile Include="Models\MasterBudgetLinker.cs" />
+    <Compile Include="Models\MBCategoryLink.cs" />
+    <Compile Include="Models\MBCategoryModel.cs" />
+    <Compile Include="Models\Menu\LeftMenuModel.cs" />
+    <Compile Include="Models\Person\SystemUserModel.cs" />
+    <Compile Include="Models\PPModel.cs" />
+    <Compile Include="Models\Project.cs" />
+    <Compile Include="Models\Request4Payment.cs" />
+    <Compile Include="Models\RequestReviewModel.cs" />
+    <Compile Include="Models\ResetPasswordModel.cs" />
+    <Compile Include="Models\SCheckList.cs" />
+    <Compile Include="Models\SubLine.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\UExchangeRate.cs" />
+    <Compile Include="Models\UnitOfMeasure.cs" />
+    <Compile Include="Models\Vmake.cs" />
+    <Compile Include="Models\WareHouse.cs" />
+    <Compile Include="Models\WBill.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\Date\DateRangeAttribute .cs" />
+    <Compile Include="Validators\Person\SystemUserModelValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Reports\Views\BudgetReports\BudgetPipeLine.aspx" />
+    <Content Include="Areas\Reports\Views\DocumentReports\DocumentStatus.aspx" />
+    <Content Include="Areas\Reports\Views\FinanceReports\RFPBudgeLines.aspx" />
+    <Content Include="Areas\Reports\Views\FinanceReports\RFPOverview.aspx" />
+    <Content Include="Areas\Reports\Views\FleetReports\FleetOverview.aspx" />
+    <Content Include="Areas\Reports\Views\FleetReports\FleetVehicle.aspx" />
+    <Content Include="Areas\Reports\Views\FleetReports\GarageOverview.aspx" />
+    <Content Include="Areas\Reports\Views\InventoryReports\GeneralInventory.aspx" />
+    <Content Include="Areas\Reports\Views\InventoryReports\InventoryAssets.aspx" />
+    <Content Include="Areas\Reports\Views\InventoryReports\InventoryItems.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\AssetProcument.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\GeneralProcument.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\POBudgeLines.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\POrderOverview.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\ViewORequestDetails.aspx" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\ViewORequests.aspx" />
+    <Content Include="bin\SCMS.UI.dll" />
+    <Content Include="bin\SCMS.UI.pdb" />
+    <Content Include="Content\2012.1.214\Sitefinity\editor.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\imagebrowser.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\loading.gif" />
+    <Content Include="Content\2012.1.214\Sitefinity\slider-h.gif" />
+    <Content Include="Content\2012.1.214\Sitefinity\slider-v.gif" />
+    <Content Include="Content\2012.1.214\Sitefinity\sprite-vertical.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\sprite.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\treeview-line.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\treeview-nodes-rtl.png" />
+    <Content Include="Content\2012.1.214\Sitefinity\treeview-nodes.png" />
+    <Content Include="Content\2012.1.214\telerik.common.min.css" />
+    <Content Include="Content\2012.1.214\telerik.rtl.min.css" />
+    <Content Include="Content\2012.1.214\telerik.sitefinity.min.css" />
+    <Content Include="Content\2012.3.1018\Sitefinity\editor.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\imagebrowser.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\loading.gif" />
+    <Content Include="Content\2012.3.1018\Sitefinity\slider-h.gif" />
+    <Content Include="Content\2012.3.1018\Sitefinity\slider-v.gif" />
+    <Content Include="Content\2012.3.1018\Sitefinity\sprite-vertical.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\sprite.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\treeview-line.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\treeview-nodes-rtl.png" />
+    <Content Include="Content\2012.3.1018\Sitefinity\treeview-nodes.png" />
+    <Content Include="Content\2012.3.1018\telerik.common.min.css" />
+    <Content Include="Content\2012.3.1018\telerik.rtl.min.css" />
+    <Content Include="Content\2012.3.1018\telerik.sitefinity.min.css" />
+    <Content Include="Content\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\fineuploader.css" />
+    <Content Include="Content\css\flexigrid.pack.css" />
+    <Content Include="Content\css\jquery.autocomplete.css" />
+    <Content Include="Content\css\jquery.dataTables.css" />
+    <Content Include="Content\css\loading.gif" />
+    <Content Include="Content\css\notification.css" />
+    <Content Include="Content\css\pager.css" />
+    <Content Include="Content\css\reporting.css" />
+    <Content Include="Content\css\Reports.css" />
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\zebra_dialog.css" />
+    <Content Include="Content\images\Add-Green-Button-icon.png" />
+    <Content Include="Content\images\glyphicons-halflings-white.png" />
+    <Content Include="Content\images\glyphicons-halflings.png" />
+    <Content Include="Content\images\icons\exit.png" />
+    <Content Include="Content\images\icons\information.png" />
+    <Content Include="Content\images\icons\up.png" />
+    <Content Include="Content\images\icons\forward.png" />
+    <Content Include="Content\images\flexigrid\bg.gif" />
+    <Content Include="Content\images\flexigrid\btn-sprite.gif" />
+    <Content Include="Content\images\flexigrid\ddn.png" />
+    <Content Include="Content\images\flexigrid\dn.png" />
+    <Content Include="Content\images\flexigrid\fhbg.gif" />
+    <Content Include="Content\images\flexigrid\first.gif" />
+    <Content Include="Content\images\flexigrid\hl.png" />
+    <Content Include="Content\images\flexigrid\last.gif" />
+    <Content Include="Content\images\flexigrid\line.gif" />
+    <Content Include="Content\images\flexigrid\load.gif" />
+    <Content Include="Content\images\flexigrid\load.png" />
+    <Content Include="Content\images\flexigrid\magnifier.png" />
+    <Content Include="Content\images\flexigrid\next.gif" />
+    <Content Include="Content\images\flexigrid\prev.gif" />
+    <Content Include="Content\images\flexigrid\up.png" />
+    <Content Include="Content\images\flexigrid\uup.png" />
+    <Content Include="Content\images\flexigrid\wbg.gif" />
+    <Content Include="Content\images\icons\down.png" />
+    <Content Include="Content\images\icons\warning.png" />
+    <Content Include="Content\images\indicator.gif" />
+    <Content Include="Content\images\jquery.dataTables\back_disabled.png" />
+    <Content Include="Content\images\jquery.dataTables\back_enabled.png" />
+    <Content Include="Content\images\jquery.dataTables\back_enabled_hover.png" />
+    <Content Include="Content\images\jquery.dataTables\favicon.ico" />
+    <Content Include="Content\images\jquery.dataTables\forward_disabled.png" />
+    <Content Include="Content\images\jquery.dataTables\forward_enabled.png" />
+    <Content Include="Content\images\jquery.dataTables\forward_enabled_hover.png" />
+    <Content Include="Content\images\jquery.dataTables\sort_asc.png" />
+    <Content Include="Content\images\jquery.dataTables\sort_asc_disabled.png" />
+    <Content Include="Content\images\jquery.dataTables\sort_both.png" />
+    <Content Include="Content\images\jquery.dataTables\sort_desc.png" />
+    <Content Include="Content\images\jquery.dataTables\sort_desc_disabled.png" />
+    <Content Include="Content\images\layout\ddg-logo.png" />
+    <Content Include="Content\images\layout\drc-logo.png" />
+    <Content Include="Content\images\layout\front-page.jpg" />
+    <Content Include="Content\images\layout\home.png" />
+    <Content Include="Content\images\layout\lock.png" />
+    <Content Include="Content\images\layout\no.png" />
+    <Content Include="Content\images\lazy-loading-image.gif" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\loading_indicator.gif" />
+    <Content Include="Content\images\Minus-Green-Button-icon.png" />
+    <Content Include="Content\images\modal\closebtn.png" />
+    <Content Include="Content\images\modal\error.png" />
+    <Content Include="Content\images\modal\loading.gif" />
+    <Content Include="Content\images\modal\nextbtn.png" />
+    <Content Include="Content\images\modal\noslidebtn.png" />
+    <Content Include="Content\images\modal\prevbtn.png" />
+    <Content Include="Content\images\modal\slidebtn.png" />
+    <Content Include="Content\images\pager\asc.gif" />
+    <Content Include="Content\images\pager\bg.gif" />
+    <Content Include="Content\images\pager\desc.gif" />
+    <Content Include="Content\images\pager\first.gif" />
+    <Content Include="Content\images\pager\header-bg.gif" />
+    <Content Include="Content\images\pager\header-selected-bg.gif" />
+    <Content Include="Content\images\pager\last.gif" />
+    <Content Include="Content\images\pager\next.gif" />
+    <Content Include="Content\images\pager\previous.gif" />
+    <Content Include="Content\images\pager\sort.gif" />
+    <Content Include="Content\images\reports\ddg.png" />
+    <Content Include="Content\images\reports\drc.png" />
+    <Content Include="Content\images\v-green.png" />
+    <Content Include="Content\reports\checked.gif" />
+    <Content Include="Content\reports\logos-90.png" />
+    <Content Include="Content\reports\pdf-logo.gif" />
+    <Content Include="Content\reports\pdf-logo.png" />
+    <Content Include="Content\reports\unchecked.gif" />
+    <Content Include="Content\report_templates\CompletionCertificate.htm" />
+    <Content Include="Content\report_templates\Payment_Voucher.htm" />
+    <Content Include="Content\report_templates\Summary-General-Template.htm" />
+    <Content Include="Content\report_templates\Summary-Tender-Analysis.htm" />
+    <Content Include="Content\report_templates\Expense-Claim.htm" />
+    <Content Include="Content\report_templates\master-budget.html" />
+    <Content Include="Content\report_templates\Order-Request.htm" />
+    <Content Include="Content\report_templates\Procurement_Plan.htm" />
+    <Content Include="Content\report_templates\project-budget.html" />
+    <Content Include="Content\report_templates\Purchase-Order.htm" />
+    <Content Include="Content\report_templates\request4payment.html" />
+    <Content Include="Content\report_templates\Request_4_Advance.htm" />
+    <Content Include="Content\report_templates\Salary-Payment.htm" />
+    <Content Include="Content\report_templates\sections\general-footer.html" />
+    <Content Include="Content\report_templates\Summary-Order-Requests.htm" />
+    <Content Include="Content\report_templates\Summary-Purchase-Requests.htm" />
+    <Content Include="Content\report_templates\Tender-Analysis.htm" />
+    <Content Include="Content\report_templates\Travel_Authorisation.htm" />
+    <Content Include="Content\report_templates\warehouse-release-form.html" />
+    <Content Include="Content\report_templates\goods-received-note.html" />
+    <Content Include="Content\report_templates\Way-Bill.htm" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\copenhagen\css\base.css" />
+    <Content Include="Content\themes\copenhagen\css\style.css" />
+    <Content Include="Content\themes\copenhagen\images\Add-Green-Button-icon.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\back_disabled.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\back_enabled.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\back_enabled_hover.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\forward_disabled.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\forward_enabled.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\forward_enabled_hover.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\sort_asc.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\sort_asc_disabled.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\sort_both.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\sort_desc.png" />
+    <Content Include="Content\themes\copenhagen\images\datatables\sort_desc_disabled.png" />
+    <Content Include="Content\themes\copenhagen\images\icons\bullet.png" />
+    <Content Include="Content\themes\copenhagen\images\icons\export2pdf.png" />
+    <Content Include="Content\themes\copenhagen\images\icons\help.png" />
+    <Content Include="Content\themes\copenhagen\images\icons\export2excel.png" />
+    <Content Include="Content\themes\copenhagen\images\icons\search.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\banner.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\bg1.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\ddg-logo.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\drc-logo.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\lines.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\scms.png" />
+    <Content Include="Content\themes\copenhagen\images\layout\welcome.jpg" />
+    <Content Include="Content\themes\copenhagen\images\loading.gif" />
+    <Content Include="Content\themes\copenhagen\images\Minus-Green-Button-icon.png" />
+    <Content Include="Content\themes\copenhagen\images\modal\loading.gif" />
+    <Content Include="Content\themes\copenhagen\images\noPhoto.jpg" />
+    <Content Include="Content\themes\copenhagen\images\v-green.png" />
+    <Content Include="Content\themes\copenhagen\js\jquery-1.7.2.min.js" />
+    <Content Include="Content\themes\copenhagen\js\modernizr-2.0.6.min.js" />
+    <Content Include="Content\themes\scms1\images\ui-bg_flat_0_a7b601_40x100.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_flat_0_e3f04c_40x100.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_glass_75_a7b601_1x400.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_glass_75_f0ff4d_1x400.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_highlight-soft_75_a7b601_1x100.png" />
+    <Content Include="Content\themes\scms1\images\ui-bg_inset-soft_95_fef1ec_1x100.png" />
+    <Content Include="Content\themes\scms1\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\scms1\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\scms1\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\scms1\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\scms1\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\scms1\jquery-ui-1.8.20.scms1.css" />
+    <Content Include="Content\ui-components\jtable\external\json2.min.js" />
+    <Content Include="Content\ui-components\jtable\jquery.jtable.min.js" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\bg-thead.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\blue\jtable.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\blue\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\close.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\column-asc.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\column-desc.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\column-sortable.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\delete.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\edit.png" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\gray\jtable.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\gray\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\gray\loading2.gif" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\green\jtable.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\green\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\jtable_lightcolor_base.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\orange\jtable.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\orange\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\red\jtable.css" />
+    <Content Include="Content\ui-components\jtable\themes\lightcolor\red\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\standard\blue\header-bg.gif" />
+    <Content Include="Content\ui-components\jtable\themes\standard\blue\jtable_blue.css" />
+    <Content Include="Content\ui-components\jtable\themes\standard\blue\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\standard\blue\title-bg.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\close.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\column-asc.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\column-desc.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\column-sortable.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\delete.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\edit.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\green\header-bg.gif" />
+    <Content Include="Content\ui-components\jtable\themes\standard\green\jtable_green.css" />
+    <Content Include="Content\ui-components\jtable\themes\standard\green\loading.gif" />
+    <Content Include="Content\ui-components\jtable\themes\standard\green\title-bg.png" />
+    <Content Include="Content\ui-components\jtable\themes\standard\jtable_standard_base.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Log\log.28.txt" />
+    <Content Include="Log\log.txt" />
+    <Content Include="obj\Debug\SCMS.UI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\SCMS.UI.dll" />
+    <Content Include="obj\Debug\SCMS.UI.pdb" />
+    <Content Include="obj\Debug\UI.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\UI.dll" />
+    <Content Include="obj\Debug\UI.pdb" />
+    <Content Include="Scripts\2012.1.214\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\2012.1.214\jquery.validate.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.all.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.autocomplete.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.calendar.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.chart.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.combobox.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.common.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.datepicker.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.datetimepicker.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.draganddrop.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.editor.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.editing.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.filtering.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.grouping.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.reordering.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.grid.resizing.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.imagebrowser.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.list.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.menu.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.panelbar.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.slider.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.splitter.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.tabstrip.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.textbox.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.timepicker.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.treeview.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.upload.min.js" />
+    <Content Include="Scripts\2012.1.214\telerik.window.min.js" />
+    <Content Include="Scripts\2012.3.1018\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\2012.3.1018\jquery.validate.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.all.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.autocomplete.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.calendar.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.chart.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.combobox.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.common.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.datepicker.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.datetimepicker.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.draganddrop.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.editor.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.editing.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.filtering.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.grouping.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.reordering.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.grid.resizing.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.imagebrowser.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.list.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.menu.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.panelbar.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.slider.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.splitter.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.tabstrip.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.textbox.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.timepicker.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.treeview.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.upload.min.js" />
+    <Content Include="Scripts\2012.3.1018\telerik.window.min.js" />
+    <Content Include="Scripts\EditorHookup.js" />
+    <Content Include="Scripts\fineuploader\jquery.fineuploader-3.0.js" />
+    <Content Include="Scripts\fineuploader\jquery.fineuploader-3.0.min.js" />
+    <Content Include="Scripts\fundposting\sorter2.js" />
+    <Content Include="Scripts\fundposting\sorter3.js" />
+    <Content Include="Scripts\fundposting\sorter4.js" />
+    <Content Include="Scripts\fundposting\sorter5.js" />
+    <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.5.1.js" />
+    <Content Include="Scripts\jquery-1.5.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.js" />
+    <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.scms1.min.js" />
+    <Content Include="Scripts\jquery.numberformatter-1.2.3.min.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\js\accord.js" />
+    <Content Include="Scripts\js\ajax.js" />
+    <Content Include="Scripts\js\bootstrap.min.js" />
+    <Content Include="Scripts\js\easybox.min.js" />
+    <Content Include="Scripts\js\flexigrid.pack.js" />
+    <Content Include="Scripts\js\general-bert.js" />
+    <Content Include="Scripts\js\general.js" />
+    <Content Include="Scripts\js\Grid.js" />
+    <Content Include="Scripts\js\inventory-flow.js" />
+    <Content Include="Scripts\js\inventory.js" />
+    <Content Include="Scripts\js\jquery-1.7.2.min.js" />
+    <Content Include="Scripts\js\jquery.autocomplete.js" />
+    <Content Include="Scripts\js\jquery.cookie.js" />
+    <Content Include="Scripts\js\jquery.dataTables.min.js" />
+    <Content Include="Scripts\js\modalite.js" />
+    <Content Include="Scripts\js\notification.js" />
+    <Content Include="Scripts\js\paging.js" />
+    <Content Include="Scripts\js\popup-dialog.js" />
+    <Content Include="Scripts\js\procument.js" />
+    <Content Include="Scripts\js\requestReview.js" />
+    <Content Include="Scripts\js\sorter.js" />
+    <Content Include="Scripts\js\zebra_dialog.js" />
+    <Content Include="Scripts\modernizr-1.7.js" />
+    <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\MicrosoftAjax.js" />
+    <Content Include="Scripts\MicrosoftAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.js" />
+    <Content Include="Scripts\MicrosoftMvcAjax.debug.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.js" />
+    <Content Include="Scripts\MicrosoftMvcValidation.debug.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Shared\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Reports\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreBusinessLogic\SCMS.CoreBusinessLogic.csproj">
+      <Project>{A2EF0B29-83BA-4400-B797-F32BB092C938}</Project>
+      <Name>SCMS.CoreBusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Model\SCMS.Model.csproj">
+      <Project>{115A8BB2-CEE4-4F8F-B171-B3EB668DC95A}</Project>
+      <Name>SCMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Reports\SCMS.Reports.csproj">
+      <Project>{75EF2AA7-3DCB-4628-B74D-98085765790D}</Project>
+      <Name>SCMS.Reports</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Resources\SCMS.Resource.csproj">
+      <Project>{26034cfe-7b64-4906-bd26-ba85cbd57798}</Project>
+      <Name>SCMS.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Utils\SCMS.Utils.csproj">
+      <Project>{59EAC4DA-30EA-4666-A23B-7CCEC052EDF4}</Project>
+      <Name>SCMS.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_LoginLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Login\LoginControl.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_GeneralLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Main.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\General\MainMenu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\General\Footer.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\General\Notification.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
+    <Folder Include="Areas\Analytics\Views\Shared\" />
+    <Folder Include="Areas\Reports\Models\" />
+    <Folder Include="Areas\Reports\Views\Shared\" />
+    <Folder Include="Content\tmp_reports\html\ex_files\" />
+    <Folder Include="obj\Debug\edmxResourcesToEmbed\Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Budget\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Country\CountryList.cshtml" />
+    <Content Include="Views\Country\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\CountryProgramme\CountryProgrammeList.cshtml" />
+    <Content Include="Views\CountryProgramme\Index.cshtml" />
+    <Content Include="Views\Currency\CurrencyList.cshtml" />
+    <Content Include="Views\Currency\Index.cshtml" />
+    <Content Include="Views\Inventory\JsLogic.cshtml" />
+    <Content Include="Views\location\Index.cshtml" />
+    <Content Include="Views\location\LocationList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Designation\DesignationList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Designation\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Designation\CreateEdit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShippingTerm\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShippingTerm\Details.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShippingTerm\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ShippingTerm\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\PaymentTerm\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrderRequest\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Budget\CategoryList.cshtml" />
+    <Content Include="Views\Budget\CreateCategory.cshtml" />
+    <Content Include="Views\Budget\CreateSubLine.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrderRequest\OrderRequestItemsList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrderRequest\LoadOrderRequest.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\OrderRequest\LoadRequestItem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TenderAnalysis\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TenderAnalysis\LoadORDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TenderAnalysis\LoadTADetailz.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TenderAnalysis\LoadAddSuplier.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Budget\EditBudget.cshtml" />
+    <Content Include="Views\Budget\ProjectBudgetList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DashBoard.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\location\CreateEdit.cshtml" />
+    <Content Include="Views\location\ListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ExchangeRate\CreateEdit.cshtml" />
+    <Content Include="Views\ExchangeRate\Index.cshtml" />
+    <Content Include="Views\ExchangeRate\ListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\DashBoard\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\DashBoard.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ItemCategory\CreateEdit.cshtml" />
+    <Content Include="Views\ItemCategory\Index.cshtml" />
+    <Content Include="Views\ItemCategory\ListView.cshtml" />
+    <Content Include="Views\ItemClassification\CreateEdit.cshtml" />
+    <Content Include="Views\ItemClassification\Index.cshtml" />
+    <Content Include="Views\ItemClassification\ListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\Documents.cshtml" />
+    <Content Include="Views\Search\ItemsByName.cshtml" />
+    <Content Include="Views\Search\ItemsByNo.cshtml" />
+    <Content Include="Views\Search\ReportBudgets.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Supplier\CreateEdit.cshtml" />
+    <Content Include="Views\Supplier\Index.cshtml" />
+    <Content Include="Views\Supplier\ListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\UnitOfMeasure\CreateEdit.cshtml" />
+    <Content Include="Views\UnitOfMeasure\Index.cshtml" />
+    <Content Include="Views\UnitOfMeasure\ListView.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_DashBoardLayout.cshtml" />
+    <Content Include="Views\Shared\_FeedbackLayout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\General\SearchPanel.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Budget\ViewBudget.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\TenderAnalysis\LoadTADetailzFrank.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\EditorTemplates\dt_backup.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Areas\Admin\Views\Role\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Role\List.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\List.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\_CreateOrEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\AccessDenied.cshtml" />
+    <Content Include="Areas\Admin\Views\Security\Permissions.cshtml" />
+    <Content Include="Menu.sitemap" />
+    <Content Include="Areas\Admin\Views\Settings\Index.cshtml" />
+    <Content Include="Areas\Analytics\Views\Web.config" />
+    <Content Include="Areas\Analytics\Views\OrderRequest\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\ApproverList.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\CCApprovers.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\CreateApprover.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\EditApprover.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\FinanceLimitForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\ParamsApprovers.cshtml" />
+    <Content Include="Areas\Admin\Views\Approver\ViewFinanceLimits.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\ChangePassword.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\EditForm.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\SwitchCountryProgramme.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\ViewProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\ViewUser.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\_ViewProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\EditProfile.cshtml" />
+    <Content Include="Areas\Admin\Views\SystemUser\EditProfileForm.cshtml" />
+    <Content Include="Areas\Reports\Views\BudgetReports\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\DocumentReports\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\FinanceReports\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\FleetReports\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\InventoryReports\Index.cshtml" />
+    <Content Include="Areas\Reports\Views\ProcurementReports\Index.cshtml" />
+    <None Include="Content\images\jquery.dataTables\Sorting icons.psd" />
+    <Content Include="NLog.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\ResolveAssemblyReference.cache" />
+    <Content Include="Views\OrderRequest\ViewOrderRequests.cshtml" />
+    <Content Include="Views\OrderRequest\ViewOrderRequestItems.cshtml" />
+    <Content Include="Views\TenderAnalysis\ViewTenders.cshtml" />
+    <Content Include="Views\TenderAnalysis\ViewTenderDetails.cshtml" />
+    <Content Include="Views\TenderAnalysis\SelectItems.cshtml" />
+    <Content Include="Views\TenderAnalysis\GetSelectedItems.cshtml" />
+    <Content Include="Views\TenderAnalysis\SelectEvaluators.cshtml" />
+    <Content Include="Views\CountrySubOffice\CreateEdit.cshtml" />
+    <Content Include="Views\CountrySubOffice\Index.cshtml" />
+    <Content Include="Views\CountrySubOffice\ListView.cshtml" />
+    <Content Include="Views\WareHouse\CreateEdit.cshtml" />
+    <Content Include="Views\WareHouse\Index.cshtml" />
+    <Content Include="Views\WareHouse\ListView.cshtml" />
+    <Content Include="Views\MasterBudget\Index.cshtml" />
+    <Content Include="Views\MasterBudget\MasterBudget.cshtml" />
+    <Content Include="Views\MasterBudget\MasterBudgetHeader.cshtml" />
+    <Content Include="Views\Currency\CreateEdit.cshtml" />
+    <Content Include="Views\Currency\ListView.cshtml" />
+    <Content Include="Views\Item\CreateEdit.cshtml" />
+    <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Item\ListView.cshtml" />
+    <Content Include="Views\PurchaseOrder\Index.cshtml" />
+    <Content Include="Views\TenderAnalysis\Search.cshtml" />
+    <Content Include="Views\PurchaseOrder\LoadPO.cshtml" />
+    <Content Include="Views\Request4Payment\LoadRequst4P.cshtml" />
+    <Content Include="Views\PurchaseOrder\ViewPurchaseOrders.cshtml" />
+    <Content Include="Views\Request4Payment\Index.cshtml" />
+    <Content Include="Views\OrderRequest\SelectIndexChangeResponse.cshtml" />
+    <Content Include="Views\PurchaseOrder\ViewPurchaseOrdersDetails.cshtml" />
+    <Content Include="Views\Request4Payment\ViewR4P.cshtml" />
+    <Content Include="Views\Request4Payment\ViewR4PDetails.cshtml" />
+    <Content Include="Views\Request4Payment\ChooseR4PType.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\Index.cshtml" />
+    <Content Include="Views\RequestReview\EditOrderRequest.cshtml" />
+    <Content Include="Views\ShippingTerm\Delete.cshtml" />
+    <Content Include="Views\DashBoard\DocsDashBoard.cshtml" />
+    <Content Include="Views\DashBoard\DashboardMasterBudget.cshtml" />
+    <Content Include="Views\Menu\XmlMenu.cshtml" />
+    <Content Include="Views\Person\Profile.cshtml" />
+    <Content Include="Views\Shared\General\TopDropDownMenu.cshtml" />
+    <Content Include="Views\Shared\General\SearchForm.cshtml" />
+    <Content Include="Views\QuickSearch\Index.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadRegsiterAsset.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\ViewGRNDetails.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\ViewGRNs.cshtml" />
+    <Content Include="Views\WareHouse\ViewNRNDetails.cshtml" />
+    <Content Include="Views\WareHouse\viewWRN.cshtml" />
+    <Content Include="Views\RequestReview\AuthComplete.cshtml" />
+    <Content Include="Views\RequestReview\AuthorizeOR.cshtml" />
+    <Content Include="Views\RequestReview\AuthorizeRFP.cshtml" />
+    <Content Include="Views\RequestReview\LoadWRO.cshtml" />
+    <Content Include="Views\RequestReview\ProcurementRequestLinks.cshtml" />
+    <Content Include="Views\RequestReview\RejectOR.cshtml" />
+    <Content Include="Views\RequestReview\RejectPO.cshtml" />
+    <Content Include="Views\RequestReview\RejectRFP.cshtml" />
+    <Content Include="Views\RequestReview\RejectWRO.cshtml" />
+    <Content Include="Views\RequestReview\ApprovePO.cshtml" />
+    <Content Include="Views\RequestReview\ReviewRFP.cshtml" />
+    <Content Include="Views\ReportsConsole\Index.cshtml" />
+    <Content Include="Views\AccessDenied\Index.cshtml" />
+    <Content Include="Views\CompletionCertificate\Index.cshtml" />
+    <Content Include="Views\CompletionCertificate\LoadCC.cshtml" />
+    <Content Include="Views\CompletionCertificate\ViewCC.cshtml" />
+    <Content Include="Views\CompletionCertificate\ViewCCDetails.cshtml" />
+    <Content Include="Views\DutyType\Index.cshtml" />
+    <Content Include="Views\DutyType\LoadDutyType.cshtml" />
+    <Content Include="Views\DutyType\ViewDutyTypes.cshtml" />
+    <Content Include="Views\FleetAccesory\Index.cshtml" />
+    <Content Include="Views\FleetAccesory\LoadFleetAccesory.cshtml" />
+    <Content Include="Views\FleetAccesory\ViewFleetAccesory.cshtml" />
+    <Content Include="Views\FleetIncidence\Index.cshtml" />
+    <Content Include="Views\FleetIncidence\LoadFleetIncidence.cshtml" />
+    <Content Include="Views\FleetIncidence\ViewFleetIncidence.cshtml" />
+    <Content Include="Views\FleetManager\Index.cshtml" />
+    <Content Include="Views\FleetManager\LoadFleetAccecories.cshtml" />
+    <Content Include="Views\FleetManager\LoadFleetDetails.cshtml" />
+    <Content Include="Views\FleetManager\LoadNewDailyFleet.cshtml" />
+    <Content Include="Views\FleetManager\LoadNewDriverInfo.cshtml" />
+    <Content Include="Views\FleetManager\LoadNewFleetDetail.cshtml" />
+    <Content Include="Views\FleetManager\LoadNewGarageInfo.cshtml" />
+    <Content Include="Views\FleetManager\LoadSummaryFleetDetails.cshtml" />
+    <Content Include="Views\FundPosting\FundPostingList.cshtml" />
+    <Content Include="Views\FundPosting\GeneralResponse.cshtml" />
+    <Content Include="Views\FundPosting\Index.cshtml" />
+    <Content Include="Views\FundPosting\PostRFP.cshtml" />
+    <Content Include="Views\FundPosting\RFPList.cshtml" />
+    <Content Include="Views\GlobalSettings\Index.cshtml" />
+    <Content Include="Views\InsuranceType\Index.cshtml" />
+    <Content Include="Views\InsuranceType\LoadInsureType.cshtml" />
+    <Content Include="Views\InsuranceType\ViewInsureType.cshtml" />
+    <Content Include="Views\ItemType\Create.cshtml" />
+    <Content Include="Views\ItemType\Edit.cshtml" />
+    <Content Include="Views\ItemType\Index.cshtml" />
+    <Content Include="Views\ItemType\ListView.cshtml" />
+    <Content Include="Views\PasswordReset\ChangePassword.cshtml" />
+    <Content Include="Views\PasswordReset\GeneralResponse.cshtml" />
+    <Content Include="Views\PasswordReset\Index.cshtml" />
+    <Content Include="Views\PasswordReset\LinkSent.cshtml" />
+    <Content Include="Views\PasswordReset\ResetRequestForm.cshtml" />
+    <Content Include="Views\PaymentType\Index.cshtml" />
+    <Content Include="Views\ProcurementPlan\CreatePP.cshtml" />
+    <Content Include="Views\ProcurementPlan\CreatePPItem.cshtml" />
+    <Content Include="Views\ProcurementPlan\CreatePPStep2.cshtml" />
+    <Content Include="Views\ProcurementPlan\Index.cshtml" />
+    <Content Include="Views\ProcurementPlan\ViewPP.cshtml" />
+    <Content Include="Views\ProcurementPlan\ViewPPList.cshtml" />
+    <Content Include="Views\VehicleMake\Index.cshtml" />
+    <Content Include="Views\VehicleMake\LoadVMake.cshtml" />
+    <Content Include="Views\VehicleMake\LoadVModel.cshtml" />
+    <Content Include="Views\VehicleMake\ViewVMake.cshtml" />
+    <Content Include="Views\WayBill\Index.cshtml" />
+    <Content Include="Views\WayBill\LoadWB.cshtml" />
+    <Content Include="Views\WayBill\ViewWBDetails.cshtml" />
+    <Content Include="Views\WayBill\ViewWBill.cshtml" />
+    <Content Include="Views\WayBill\WBReceive.cshtml" />
+    <Content Include="Views\WRForm\Index.cshtml" />
+    <Content Include="Views\WRForm\LoadWRF.cshtml" />
+    <Content Include="Views\WRForm\LoadWRFItem.cshtml" />
+    <Content Include="Views\WRForm\LoadWRItems.cshtml" />
+    <Content Include="Views\WRForm\ViewNRNDetails.cshtml" />
+    <Content Include="Views\WRForm\viewWRN.cshtml" />
+    <Content Include="Views\Donor\CreateEdit.cshtml" />
+    <Content Include="Views\Donor\Index.cshtml" />
+    <Content Include="Views\Donor\ListView.cshtml" />
+    <Content Include="Views\Budget\ApprovalSettings.cshtml" />
+    <Content Include="Views\Budget\CreateApprover.cshtml" />
+    <Content Include="Views\Budget\CreateDocPreparer.cshtml" />
+    <Content Include="Views\Budget\CreateProject.cshtml" />
+    <Content Include="Views\Budget\DocPrepList.cshtml" />
+    <Content Include="Views\Budget\EditApprover.cshtml" />
+    <Content Include="Views\Budget\EditLinkToMB.cshtml" />
+    <Content Include="Views\Budget\GeneralResponse.cshtml" />
+    <Content Include="Views\Budget\LinkToMB.cshtml" />
+    <Content Include="Views\Budget\PPApprovers.cshtml" />
+    <Content Include="Views\Budget\SearchProjects.cshtml" />
+    <Content Include="Views\Country\CreateEdit.cshtml" />
+    <Content Include="Views\Country\ListView.cshtml" />
+    <Content Include="Views\CountryProgramme\AddDesignation.cshtml" />
+    <Content Include="Views\CountryProgramme\AddLocation.cshtml" />
+    <Content Include="Views\CountryProgramme\AddSubOffice.cshtml" />
+    <Content Include="Views\CountryProgramme\CreateEdit.cshtml" />
+    <Content Include="Views\CountryProgramme\Details.cshtml" />
+    <Content Include="Views\CountryProgramme\ListView.cshtml" />
+    <Content Include="Views\DashBoard\blank.cshtml" />
+    <Content Include="Views\DashBoard\GetRainfallChart.cshtml" />
+    <Content Include="Views\Designation\ListView.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\DownloadTemplate.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\GRAssetList.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadGRAssetItems.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadGRN.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadGRNVerifyItems.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadOtherAssets.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadOtherConsumables.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\VerifyGRN.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\ViewUnregisteredAssets.cshtml" />
+    <Content Include="Views\Inventory\AssetInventoryPopUp.cshtml" />
+    <Content Include="Views\Inventory\ConsumableInventoryPopUp.cshtml" />
+    <Content Include="Views\Inventory\GeneralInventoryPopUp.cshtml" />
+    <Content Include="Views\Inventory\LoadAssetDepreciation.cshtml" />
+    <Content Include="Views\Inventory\LoadEditAsset.cshtml" />
+    <Content Include="Views\Inventory\ViewAssetInventory.cshtml" />
+    <Content Include="Views\Inventory\ViewConsumableInventory.cshtml" />
+    <Content Include="Views\Inventory\ViewDeprSummary.cshtml" />
+    <Content Include="Views\Inventory\ViewDetailDepr.cshtml" />
+    <Content Include="Views\Inventory\ViewGeneralInventory.cshtml" />
+    <Content Include="Views\Item\CreateEditItemPackage.cshtml" />
+    <Content Include="Views\MasterBudget\CreateCategory.cshtml" />
+    <Content Include="Views\MasterBudget\CreateProjection.cshtml" />
+    <Content Include="Views\MasterBudget\MBCategories.cshtml" />
+    <Content Include="Views\MasterBudget\MBCIndex.cshtml" />
+    <Content Include="Views\MasterBudget\MBPIndex.cshtml" />
+    <Content Include="Views\MasterBudget\MBProjections.cshtml" />
+    <Content Include="Views\OrderRequest\AddItemInEditMode.cshtml" />
+    <Content Include="Views\OrderRequest\AddNewItem4OR.cshtml" />
+    <Content Include="Views\OrderRequest\AddNewLocation4OR.cshtml" />
+    <Content Include="Views\OrderRequest\AddPPItems2OR.cshtml" />
+    <Content Include="Views\OrderRequest\EditOrderRequest.cshtml" />
+    <Content Include="Views\OrderRequest\ViewPagedOrderRequests.cshtml" />
+    <Content Include="Views\PaymentTerm\CreateEdit.cshtml" />
+    <Content Include="Views\PaymentTerm\ListView.cshtml" />
+    <Content Include="Views\PaymentType\CreateEdit.cshtml" />
+    <Content Include="Views\PaymentType\ListView.cshtml" />
+    <Content Include="Views\ProcurementPlan\AddNewItem4PP.cshtml" />
+    <Content Include="Views\PurchaseOrder\AddNewLocation4PO.cshtml" />
+    <Content Include="Views\PurchaseOrder\AddNewSupplier4PO.cshtml" />
+    <Content Include="Views\PurchaseOrder\AddPOItems.cshtml" />
+    <Content Include="Views\PurchaseOrder\EditPOItem.cshtml" />
+    <Content Include="Views\PurchaseOrder\LoadOtherPODetails.cshtml" />
+    <Content Include="Views\PurchaseOrder\LoadPOItems.cshtml" />
+    <Content Include="Views\RequestReview\ApproveCC.cshtml" />
+    <Content Include="Views\RequestReview\ApprovePP.cshtml" />
+    <Content Include="Views\RequestReview\RejectCC.cshtml" />
+    <Content Include="Views\Shared\HTMLResponse.cshtml" />
+    <Content Include="Views\Shared\HTMLResponses.cshtml" />
+    <Content Include="Views\Shared\_PublicViewLayout.cshtml" />
+    <Content Include="Views\ShippingTerm\CreateEdit.cshtml" />
+    <Content Include="Views\ShippingTerm\ListView.cshtml" />
+    <Content Include="Views\TenderAnalysis\AddEvaluator.cshtml" />
+    <Content Include="Views\TenderAnalysis\AddNewSupplier4TA.cshtml" />
+    <Content Include="Views\TenderAnalysis\AddSupplier.cshtml" />
+    <Content Include="Views\TenderAnalysis\ChangeAuthorizer.cshtml" />
+    <Content Include="Views\Budget\CommitDetails.cshtml" />
+    <Content Include="Views\Budget\PostDetails.cshtml" />
+    <Content Include="Views\Budget\RebookBL.cshtml" />
+    <Content Include="Views\ServiceCheckList\CreateEdit.cshtml" />
+    <Content Include="Views\ServiceCheckList\Index.cshtml" />
+    <Content Include="Views\ServiceCheckList\ListView.cshtml" />
+    <Content Include="Views\MasterBudget\CreateGL.cshtml" />
+    <Content Include="Views\OrderRequest\BackDateOR.cshtml" />
+    <Content Include="Views\PurchaseOrder\BackDatePO.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\AssetManagement.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadDesposeAsset.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadTransferAsset.cshtml" />
+    <Content Include="Views\PurchaseOrder\AttachNewDoc.cshtml" />
+    <Content Include="Views\PurchaseOrder\LoadAttacheDocs.cshtml" />
+    <Content Include="Views\BinCard\Index.cshtml" />
+    <Content Include="Views\BinCard\LoadAddBCItems.cshtml" />
+    <Content Include="Views\BinCard\LoadBin.cshtml" />
+    <Content Include="Views\BinCard\ViewBinCard.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\Index.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\LoadGiv.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\ViewGIVDetails.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\ViewGIVs.cshtml" />
+    <Content Include="Views\PurchaseOrder\AddPPItemsToPO.cshtml" />
+    <Content Include="Views\RequestReview\RejectPP.cshtml" />
+    <Content Include="Views\PurchaseOrder\SelectTenderingType.cshtml" />
+    <Content Include="Views\TenderingType\CreateEdit.cshtml" />
+    <Content Include="Views\TenderingType\Index.cshtml" />
+    <Content Include="Views\TenderingType\ListView.cshtml" />
+    <Content Include="Views\GoodsReceivedNote\LoadEditGRN.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\GoodsReceivedNote\LoadEditGRNItem.cshtml" />
+    <Content Include="Views\Inventory\Index.cshtml" />
+    <Content Include="Views\BinCard\LoadEditBC.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\BinCard\LoadIssueBCItems.cshtml" />
+    <Content Include="Views\BinCard\ManageBin.cshtml" />
+    <Content Include="Views\BinCard\SelectBin.cshtml" />
+    <Content Include="Views\BinCard\SelectStockItem.cshtml" />
+    <Content Include="Views\BinCard\ViewStockCard.cshtml" />
+    <Content Include="Views\FleetManager\LoadServiceCheckListPopUp.cshtml" />
+    <Content Include="Views\MasterBudget\MasterBudgetGL.cshtml" />
+    <Content Include="Views\MasterBudget\GLMasterBudget.cshtml" />
+    <Content Include="Views\MasterBudget\GLMBHeader.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\AddItems.cshtml" />
+    <Content Include="Views\GoodsIssuedVoucher\LoadEditGIV.cshtml" />
+    <Content Include="Views\Inventory\ViewDisposedAssets.cshtml" />
+    <Content Include="Views\WRForm\LoadEditRO.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>8760</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>
+          </IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

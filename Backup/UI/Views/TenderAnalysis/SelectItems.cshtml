@@ -1,0 +1,65 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SelectItemsToConsider
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "TADetailsDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("GetSelectedItems/" + ViewBag.TAID),
+      OnBegin = "CheckIfOneIsSelected",
+      OnSuccess = "cleanTANumbers"
+  };}
+
+<div class="partialViewCard">
+        <div class="partialViewCardHeader"><h3>@Resources.TenderAnalysis_SelectItems_Header</h3></div>
+        <br />
+        <table align="center" style="margin-left: auto; margin-right: auto;"><tr><td>
+        <div style="width:auto; padding:6px; border:1px solid #A7B601; background:#fff; border-radius: 6px 6px 6px 6px; margin-left: auto; margin-right: auto;">
+            @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+            {
+                <input type="hidden" id="projectId" name="projectId" value="@ViewBag.TAID" />
+                <table align="center" cellpadding = "2" cellspacing = "2" style="margin-left: auto; margin-right: auto;">
+                    <tr>
+                        <td align="center"><h4><u>@Resources.OrderRequest_String_OrderRequestItems</u></h4></td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td align="center"><h4><u>@Resources.Global_String_TermsAndConditions</u></h4></td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <table cellpadding = "2">
+                                @for (int i = 0; i < Model.EntityORItems.Count; i++)
+                                {
+                                    <tr>
+                                        <td>@Html.EditorFor(model => model.EntityORItems[i].AddToList)
+                                        </td>
+                                        <td>@Html.DisplayFor(model => model.EntityORItems[i].EntityORItem.Item.Name)
+                                            @Html.HiddenFor(model => model.EntityORItems[i].EntityORItem.Id)
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                            <input type="hidden" id="orItemCount" value="@Model.EntityORItems.Count" />
+                        </td>
+                        <td>&nbsp; &nbsp;</td>
+                        <td valign="top">
+                            <table>
+                                @for (int j = 0; j < Model.OtherItems.Count; j++)
+                                { 
+                                    <tr>
+                                        <td>@Html.EditorFor(model => model.OtherItems[j].AddTOList)
+                                        </td>
+                                        <td>@Html.DisplayFor(model => model.OtherItems[j].Name)
+                                            @Html.HiddenFor(model => model.OtherItems[j].Name)
+                                        </td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                    <tr><td colspan="3" align="right"><input type="submit" class="btn green"  value="@Resources.Global_String_Proceed" /></td></tr>
+                </table>            
+            }
+        </div>
+        </td></tr></table>
+        <br />
+    </div>

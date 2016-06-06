@@ -1,0 +1,21 @@
+﻿@using SCMS.Resource
+@{
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = Resources.Global_String_SupplyChainManagementSystem;
+}
+<div class="row">
+    <div class="nine columns">
+        <div style='padding: 10px 0 0 0;'>
+            <img src="/Content/themes/copenhagen/images/layout/welcome.jpg" border="0" alt="@Resources.Home_Index_DrcDdgInAction"
+                class="max-image" />
+        </div>
+    </div>
+    <div class="three columns">
+        <div style='padding: 10px 0 10px 0;'>
+            <img src="/Content/themes/copenhagen/images/layout/scms.png" border="0" alt="@Resources.Global_String_SupplyChainManagementSystem.ToUpper()" />
+        </div>
+        <div style="text-align:center;">
+        <a href="#" id='logon' title="@Resources.Home_Index_ClickToLogin" class="button green">@Resources.Global_String_Login</a>
+        </div>
+    </div>
+</div>

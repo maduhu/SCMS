@@ -1,0 +1,184 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.GoodsReceivedNote
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            Prepare GRN Template</h3>
+    </div>
+    @using (Html.BeginForm("GRNTemplate", "GoodsReceived", new { area = "Reports" }, FormMethod.Post, new { @class = "form", onsubmit = "return validateTemplate();" }))
+    {        
+        <br />
+        <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+        <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+        <table width="98%" align="center" cellpadding="0">
+            <tr>
+                <th align="center">
+                    @Resources.Global_String_GRNNo
+                </th>
+                <th style="text-align:center;">
+                    @Resources.GoodsReceivedNote_DownloadTemplate_ReceivedDate
+                </th>
+                <th style="text-align:center;">
+                    @Resources.Global_String_PONo
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    @Html.TextBoxFor(m => m.RefNumber, new { @readonly = "readonly" })
+                </td>
+                <td style="text-align:center;">
+                    @Html.EditorFor(m => m.DeliverDate)
+                    @Html.ValidationMessageFor(m => m.DeliverDate)
+                </td>
+                <td style="text-align:center;">
+                    @Html.DropDownListFor(x => x.PurchaseOrderId, Model.PurchaseOrders, Resources.Global_String_PleaseSelect, new { id = "POId", onchange = "javascript:GetPOGNDetails(this,'DownloadTemplate')" })
+                    @Html.ValidationMessageFor(x => x.PurchaseOrderId)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:center;">
+                    @Resources.GoodsReceivedNote_DownloadTemplate_DNNo
+                </th>
+                <th style="text-align:center;">
+                    @Resources.Global_String_Supplier
+                </th>
+                <th style="text-align:center;">
+                    @Resources.Global_String_ReceivedBy
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    @Html.EditorFor(m => m.DnNumber)
+                    @Html.ValidationMessageFor(m => m.DnNumber)
+                </td>
+                <td style="text-align:center;">
+                    @ViewBag.SupplierName
+                    @Html.HiddenFor(x => x.SupplierId)
+                </td>
+                <td style="text-align:center;">
+                    @Html.DropDownListFor(x => x.ReceivedBy, Model.staffs, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.ReceivedBy)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:center;">
+                    @Resources.Global_String_Office
+                </th>
+                <th style="text-align:center;">
+                    @Resources.Global_String_DeliveredByName
+                </th>
+                <th style="text-align:center;">
+                    @Resources.Global_String_Company
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    @Html.DropDownListFor(x => x.CountryOfficeId, Model.SubOffices, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.CountryOfficeId)
+                </td>
+                <td style="text-align:center;">
+                    @Html.TextBoxFor(x => x.DeliveredBy, new { id = "txtdeliveredbyId" })
+                    @Html.ValidationMessageFor(x => x.DeliveredBy)
+                </td>
+                <td style="text-align:center;">
+                    @Html.EditorFor(x => x.DeliveryCompany)
+                    @Html.ValidationMessageFor(x => x.DeliveryCompany)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align:center;">
+                    @Resources.FleetManager_LoadNewFleetDetail_PlateNo
+                </th>
+                <th style="text-align:center;">
+                    @Resources.FleetManager_LoadFleetDetails_DriverLicenseNo
+                </th>
+                <th style="text-align:center;">
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align:center;">
+                    @Html.EditorFor(x => x.VehicleRegNumber)
+                    @Html.ValidationMessageFor(x => x.VehicleRegNumber)
+                </td>
+                <td style="text-align:center;">
+                    @Html.EditorFor(x => x.DriverLicenseNumber)
+                    @Html.ValidationMessageFor(x => x.DriverLicenseNumber)
+                </td>
+                <td style="text-align:center;">
+                </td>
+            </tr>
+        </table>
+        <h4 style="text-align: center;">
+            @Resources.GoodsReceivedNote_DownloadTemplate_ReceivedItems</h4>
+        
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="grideven">
+                <th>
+                    @Resources.Global_String_ItemName
+                </th>
+                <th>
+                    @Resources.Global_String_QtyOrdered
+                </th>
+                <th>
+                    @Resources.GoodsReceivedNote_DownloadTemplate_PreviouslyReceived
+                </th>
+                <th>
+                    @Resources.Global_String_QtyDelivered
+                </th>
+                <th>
+                    @Resources.Global_String_QtyDamaged
+                </th>
+                <th>
+                    @Resources.Global_String_Comments
+                </th>
+            </tr>
+            @for (int i = 0; i < Model.POItemz.Count; i++)
+            {
+                <tr class="gridodd">
+                    <td style="width: 25%;">
+                        @Model.POItemz[i].ItemName
+                        @Html.HiddenFor(m => m.POItemz[i].POItemId)
+                        @Html.HiddenFor(m => m.POItemz[i].ItemName)
+                    </td>
+                    <td style="width: 14%;">
+                        @Model.POItemz[i].QtyOrdered
+                        @Html.HiddenFor(m => m.POItemz[i].QtyOrdered)
+                        @Html.HiddenFor(m => m.POItemz[i].unitOfMessure)
+                    </td>
+                    <td style="width: 14%;">
+                        @Model.POItemz[i].PreviouslyReceived
+                    </td>
+                    <td style="width: 14%;">
+                        @Html.TextBoxFor(m => m.POItemz[i].QtyDelivered, new { id = "QtyDelivered", @class = "ponumericTb" })
+                    </td>
+                    <td style="width: 14%;">
+                        @Html.TextBoxFor(m => m.POItemz[i].QtyDamaged, new { id = "QtyDamaged", @class = "ponumericTb" })
+                    </td>
+                    <td style="width: 17%;">
+                        @Html.TextBoxFor(m => m.POItemz[i].comments, new { @class = "comments" })
+                    </td>
+                </tr>
+            }
+        </table>
+        <hr />
+        <table width="98%" align="center" cellpadding="0">
+            <tr>
+                <td align="center">
+                    @Resources.Global_String_Remarks:
+                </td>
+                <td style="text-align:center;" colspan="2">
+                    @Html.EditorFor(x => x.Remarks)
+                    @Html.ValidationMessageFor(x => x.Remarks)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" class="btn green" value="  @Resources.GoodsReceivedNote_DownloadTemplate_GetGRNPdfTemplate  " />
+                </td>
+            </tr>
+        </table>
+        
+    }
+</div>

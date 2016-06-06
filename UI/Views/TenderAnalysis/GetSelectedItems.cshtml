@@ -1,0 +1,213 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.GetSelectedItems
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+    
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.TenderAnalysis_GetSelectedItems_ManageTASuppliers</h3></div>
+    <br />
+    <center>
+        @Ajax.ActionLink(Resources.TenderAnalysis_AddNewSupplier4TA_AddSupplier, "Index", new { id = "LoadAddSupplier" }, new AjaxOptions
+        {
+            UpdateTargetId = "popup-page",
+            LoadingElementId = "popup-loading",
+            Url = Url.Action("LoadAddSupplier/" + ViewBag.TAID),
+            OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_AddSupplier_AddSupplierToAnalysis),
+            OnSuccess = "cleanTANumbers();CenterPopup();"
+        })
+    </center>
+    @if (Model.ModelTA.HasSuppliers)
+    { 
+        <center><h4>@Resources.TenderAnalysis_GetSelectedItems_TenderAnalysisSuppliers</h4></center>
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="gridheader">
+                <th align="center">
+                    @Resources.Global_String_Description
+                </th>
+                @foreach (var item in Model.ModelTA.SupplierName)
+                {
+                    <th align="center">
+                        @Html.DisplayFor(modelItem => item)
+                    </th>
+                }
+            </tr>
+            @{int cols = 1 + Model.ModelTA.SupplierName.Count;}
+            @foreach (var item in Model.ModelTA.TBiderQuotes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ItemDescription)
+                    </td>
+                    @foreach (var subItem in item.UnitCost)
+                    { 
+                        <td align="right">
+                            @subItem.ToString("#,##0.00")
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.TransportCost.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.Global_String_TransportCost
+                    </td>
+                    @foreach (var item in Model.ModelTA.TransportCost)
+                    {
+                        <td align="right">
+                            @item.ToString("#,##0.00")
+                        </td>
+                    }
+                </tr>
+            }
+            <tr>
+                <td>
+                    <b>@Resources.Global_String_TotalCost</b>
+                </td>
+                @foreach (var item in Model.ModelTA.TotalCost)
+                {
+                    <td align="right">
+                        <b>@item.ToString("#,##0.00")</b>
+                    </td>
+                }
+            </tr>
+            <tr class="gridheader">
+                <td align="center" colspan="@cols">
+                    @Resources.Global_String_TermsAndConditions
+                </td>
+            </tr>
+            @if (Model.ModelTA.ShippingTerm.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.Global_String_ShippingTerms
+                    </td>
+                    @foreach (var item in Model.ModelTA.ShippingTerm)
+                    {
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item)
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.DeliveryTime.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.GoodsReceivedNote_LoadGRNVerifyItems_DeliveryDate
+                    </td>
+                    @foreach (var item in Model.ModelTA.DeliveryTime)
+                    {
+                        <td align="right">
+                            @item.ToString("dd/MM/yyyy")
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.Warrant.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.TenderAnalysis_String_Warranty
+                    </td>
+                    @foreach (var item in Model.ModelTA.Warrant)
+                    {
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item)
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.TermzOfPayment.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.Global_String_PaymentTerms
+                    </td>
+                    @foreach (var item in Model.ModelTA.TermzOfPayment)
+                    {
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item)
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.others.Count > 0)
+            {
+                <tr>
+                    <td>
+                        @Resources.Global_String_Other
+                    </td>
+                    @foreach (var item in Model.ModelTA.others)
+                    {
+                        <td align="right">
+                            @Html.DisplayFor(modelItem => item)
+                        </td>
+                    }
+                </tr>
+            }
+            @if (Model.ModelTA.TenderBidderId.Count > 0)
+            { 
+                <tr>
+                    <td>
+                        @Resources.Global_String_ManageSuppliers
+                    </td>
+                    @foreach (var item in Model.ModelTA.TenderBidderId)
+                    {
+                        <td align="center">
+                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditSupplier" }, new AjaxOptions
+                            {
+                                UpdateTargetId = "popup-page",
+                                LoadingElementId = "popup-loading",
+                                Url = Url.Action("EditSupplier/" + item),
+                                OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_GetSelectedItems_EditTASuppliers),
+                                OnSuccess = "cleanTANumbers"
+                            })
+                                | 
+                            @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteSupplier" }, new AjaxOptions
+                            {
+                                UpdateTargetId = "TADetailsDiv",
+                                LoadingElementId = "loading",
+                                Confirm = Resources.TenderAnalysis_GetSelectedItems_ConfirmRemoveSupplier,
+                                Url = Url.Action("DeleteSupplier/" + item)
+                            })
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+        <hr />
+    }            
+    <table width="98%" align="center">
+        <tr>
+            <td width="50%">
+                <p>
+                    @if (!Model.IsSupplierSaved)
+                    { 
+                        @Ajax.ActionLink("<<" + Resources.Global_String_Back, "Index", new { id = "BackToSelectItems" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "TADetailsDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("BackToSelectItems/" + ViewBag.TAID)
+                        })
+                    }
+                </p>
+            </td>
+            <td width="50%" align="right">
+                <p>
+                    @if (Model.IsSupplierSaved && Model.ModelTA.TenderBidderId.Count > 1)
+                    {
+                        @Ajax.ActionLink(Resources.Global_String_Next + ">>", "Index", new { id = "SelectEvaluators" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "TADetailsDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("SelectEvaluators/" + ViewBag.TAID)
+                        })
+                    }
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>

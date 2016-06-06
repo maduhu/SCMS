@@ -1,0 +1,35 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SearchTA
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "tenderDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("Search"),
+      //OnSuccess = "HidePopupDiv"
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(ajaxOpts))
+{
+    @Html.ValidationSummary(true)
+
+    <table>
+        <tr>
+            <td class="arrowLink" valign="top">
+                @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new { id = "LoadORDetails" }, new AjaxOptions
+                   {
+                       UpdateTargetId = "tenderDiv",
+                       LoadingElementId = "loading",
+                       Url = Url.Action("LoadORDetails")
+                   })
+            </td>
+            <td>@Html.EditorFor(model => model.EntityTA.RefNumber)
+                @Html.ValidationMessageFor(model => model.EntityTA.RefNumber)
+            </td>
+            <td>
+                <input type="submit" class="btn green" value="@Resources.Global_String_Search" />
+            </td>
+        </tr>
+    </table>
+}

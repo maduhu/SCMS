@@ -1,0 +1,68 @@
+﻿@using SCMS.CoreBusinessLogic.NotificationsManager
+@using SCMS.Resource
+@model IEnumerable<SCMS.Model.Approver>
+@if (Model != null)
+{   
+    <!-- COMPLETION CERTIFICATE -->
+    <h4 style="text-align: center">@Resources.CompletionCertificate_Index_Header</h4>
+    if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+    {                    
+        <center>
+            @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "Index", new { id = NotificationHelper.ccCode }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogue('{0}')", Resources.Approver_ApproverList_NewApproverPopup),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                Url = Url.Action("CreateApprover/" + NotificationHelper.ccCode),
+                OnSuccess = "CenterPopup"
+            })
+        </center>
+    }
+    if (Model.Count() > 0)
+    {                
+        <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Approval</b>
+        <table class="cardTable">
+            <tr>
+                <th width="40%">@Resources.Approver_ApproverList_Approver</th><th width="40%">@Resources.Approver_ApproverList_Delegate</th>
+                @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                {                    
+                    <th width="20%">@Resources.Global_String_Manage</th>
+                }
+            </tr>
+            @foreach (var item in Model)
+            {
+                if (item.ActivityCode == NotificationHelper.ccCode && item.ActionType == NotificationHelper.approvalCode)
+                {
+                    <tr>
+                        <td title="@item.SystemUser.Staff.Designation.Name">
+                            @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                        </td>
+                        <td title="@item.SystemUser1.Staff.Designation.Name">
+                            @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                        </td>
+                        @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                        {                    
+                            <td align="center">
+                                    @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                               {
+                                   OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                   UpdateTargetId = "popup-page",
+                                   LoadingElementId = "popup-loading",
+                                   Url = Url.Action("EditApprover/" + item.Id)
+                               }) &nbsp;|&nbsp;
+                                    @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                               {
+                                   UpdateTargetId = "approverDiv",
+                                   LoadingElementId = "loading",
+                                   Url = Url.Action("DeleteApprover/" + item.Id),
+                                   Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                   OnSuccess = "initTabs(5);"
+                               })
+                            </td>
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+}

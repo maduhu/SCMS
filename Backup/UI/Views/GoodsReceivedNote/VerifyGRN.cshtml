@@ -1,0 +1,248 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.GoodsReceivedNote
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "popup-page",
+      LoadingElementId = "popup-loading",
+      HttpMethod = "Post",
+      Url = Url.Action("LoadGRAssetItems"),
+      OnSuccess = string.Format("ReviewComplete('{0}', '{1}');ReloadGRN('{2}');", Resources.GoodsReceivedNote_VerifyGRN_SuccessMsg, Resources.GoodsReceivedNote_VerifyGRN_SuccessMsgHeader, Model.Id)
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/requestReview.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_GRN: @Model.RefNumber</h3>
+    </div>
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+
+        <table style="width: 98%; text-align: center;" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr>
+                <th align="center" colspan="2">
+                    @Resources.GoodsReceivedNote_VerifyGRN_VendorInformation.ToUpper()
+                </th>
+                <th align="center" colspan="2">
+                    @Resources.GoodsReceivedNote_VerifyGRN_InternalInformation.ToUpper()
+                </th>
+            </tr>
+            <tr>
+                <td style="width: 15%;" class="gridheader">
+                    <strong>@Resources.Global_String_Supplier:</strong>
+                </td>
+                <td style="width: 35%;">
+                    @Model.Supplier.Name
+                </td>
+                <td style="width: 15%;" class="gridheader">
+                    <strong>@Resources.Global_String_Location:</strong>
+                </td>
+                <td style="width: 35%;">
+                    @Model.CountrySubOffice.Location.Name
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    <strong>@Resources.GoodsReceivedNote_DownloadTemplate_DNNo:</strong>
+                </td>
+                <td>
+                    @Model.DnNumber
+                </td>
+                <td class="gridheader">
+                    <strong>@Resources.Global_String_Office:</strong>
+                </td>
+                <td>
+                    @Model.CountrySubOffice.Name
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    <strong>@Resources.GoodsReceivedNote_VerifyGRN_DrcDdgORNo:</strong>
+                </td>
+                <td>
+                    @if (Model.GoodsReceivedNoteItems.Count > 0)
+                    {
+                        if (Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.OrderRequest != null)
+                        {
+                        @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.OrderRequest.RefNumber
+                        }
+                        else
+                        {
+                        @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.PPNumber
+                        }
+                    }
+                </td>
+                <td class="gridheader">
+                    <strong>@Resources.GoodsReceivedNote_VerifyGRN_DrcDdgPONo:</strong>
+                </td>
+                <td>
+                    @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.RefNumber
+                </td>
+            </tr>
+        </table>
+        <br />
+        <div class="editor-field">
+            <table style="width: 98%; text-align: center;" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+                <tr class="gridheader">
+                    <th></th>
+                    <th>
+                        @Resources.GoodsReceivedNote_VerifyGRN_GoodsDescription
+                    </th>
+                    <th>
+                        @Resources.Global_String_UnitOfMeasure
+                    </th>
+                    <th>
+                        @Resources.Global_String_QtyOrdered
+                    </th>
+                    <th>
+                        @Resources.Global_String_QtyDelivered
+                    </th>
+                    <th>
+                        @Resources.Global_String_QtyDamaged
+                    </th>
+                    <th>
+                        @Resources.Global_String_Comments
+                    </th>
+                </tr>
+                @Html.HiddenFor(x => x.Id)
+                @{int count = 0;}
+                @for (int i = 0; i < Model.ItemColl.Count; i++)
+                {
+                    count = count + 1;
+                    <tr class="gridodd">
+                        <td style="width: 5%; text-align: left;">
+                            @count
+                            @Html.HiddenFor(m => m.ItemColl[i].Id)
+                        </td>
+                        <td style="width: 21%; text-align: left;">
+                            @Model.ItemColl[i].PurchaseOrderItem.Item.Name
+                        </td>
+                        <td style="width: 10%; text-align: left;">
+                            @Model.ItemColl[i].PurchaseOrderItem.Item.UnitOfMeasure.Code
+                        </td>
+                        <td style="width: 14%; text-align: right;">
+                            @Model.ItemColl[i].PurchaseOrderItem.Quantity.ToString("##,##0.00")
+                        </td>
+                        <td style="width: 14%; text-align: left;">
+                            @Html.TextBoxFor(m => m.ItemColl[i].QuantityDelivered, new { @class = "numericTb" })
+                            @Html.ValidationMessageFor(m => m.ItemColl[i].QuantityDelivered)
+                        </td>
+                        <td style="width: 14%; text-align: left;">
+                            @Html.TextBoxFor(m => m.ItemColl[i].QuantityDamaged, new { @class = "numericTb" })
+                            @Html.ValidationMessageFor(m => m.ItemColl[i].QuantityDamaged)
+                        </td>
+                        <td style="width: 20%; text-align: left;">
+                            @Model.GoodsReceivedNoteItems.ElementAt(i).Comments
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td class="gridheader" colspan="2">
+                        <strong>@Resources.Global_String_AdditionalRemarks:</strong>
+                    </td>
+                    <td align="left" colspan="5">
+                        @Model.Remarks
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <table style="width: 98%; text-align: center;" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr>
+                <td rowspan="2" style="width: 10%;" class="gridheader">
+                    <strong>@Resources.GoodsReceivedNote_VerifyGRN_TransporterSupplier</strong>
+                </td>
+                <td style="width: 16%;" class="gridheader">
+                    @Resources.Global_String_DeliveredByName:
+                </td>
+                <td style="width: 24%;">
+                    @Model.DeliveredBy
+                </td>
+                <td style="width: 10%;" class="gridheader">
+                    @Resources.Global_String_Company:
+                </td>
+                <td style="width: 18%;">
+                    @Model.DeliveryCompany
+                </td>
+                <td style="width: 10%;" class="gridheader">
+                    @Resources.FleetManager_LoadNewFleetDetail_PlateNo:
+                </td>
+                <td style="width: 16%;">
+                    @Model.VehicleRegNumber
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.FleetManager_LoadFleetDetails_DriverLicenseNo:
+                </td>
+                <td>
+                    @Model.DriverLicenseNumber
+                </td>
+                <td class="gridheader">
+                    @Resources.Global_String_Signature:
+                </td>
+                <td></td>
+                <td class="gridheader">
+                    @Resources.Global_String_Date:
+                </td>
+                <td>
+                    @Model.DeliverDate.Value.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td colspan="7">&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2" class="gridheader">
+                    <strong>@Resources.Global_String_DRCDDG</strong>
+                </td>
+                <td class="gridheader" rowspan="2" valign="top">
+                    @Resources.Global_String_ReceivedByName:
+                </td>
+                <td>
+                    @Model.ReceivedByStaff.StaffName
+                </td>
+                <td class="gridheader">
+                    @Resources.Global_String_Title:
+                </td>
+                <td>
+                    @Model.ReceivedByStaff.Designation
+                </td>
+                <td class="gridheader" rowspan="2" valign="top">
+                    @Resources.Global_String_Date:
+                </td>
+                <td>
+                    @Model.DeliverDate.Value.ToString("dd/MM/yyyy")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="gridheader">
+                    @Resources.Global_String_Signature:
+                </td>
+                <td>
+                    @if (Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 150px;" />
+                    }
+                </td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+        <br />
+        <table style="width: 98%; text-align: center;">
+            <tr>
+                <td style="width: 50%; text-align: right;">
+                    <input type="submit" class="btn tertiary" value="@Resources.Global_String_Approve" />
+                </td>
+                <td style="width: 50%; text-align: left">
+                    <input type="button" class="btn tertiary" value="@Resources.Global_String_Reject" onclick="if(confirm('@Resources.GoodsReceivedNote_VerifyGRN_ConfirmReject    ')){sendRequest('/GoodsReceivedNote/RejectGRN/@Model.Id    ', 'popup-page', 'popup-loading'); ReviewComplete('@Resources.GoodsReceivedNote_VerifyGRN_RejectMsg    ', '@Resources.GoodsReceivedNote_VerifyGRN_SuccessMsgHeader    ');ReloadGRN('@Model.Id');}" />
+                </td>
+            </tr>
+        </table> 
+    }
+</div>

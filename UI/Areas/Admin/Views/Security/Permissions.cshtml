@@ -1,0 +1,162 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.Security_Permissions_RolePermissions + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+@model PermissionMappingModel
+@using SCMS.UI.Areas.Admin.Models.Security
+
+<div id="rfpMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.Security_Permissions_SCMSAccessControl</h3>
+        </div>   
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                       &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div> 
+    </div>
+    <br />
+
+    <div>
+        @TempData["Security.Permission.Message"]
+    </div>
+
+    <div id="AdminAclManageDiv">
+        <div class="partialViewCard">
+            <div class="partialViewCardHeader"><h3>@Resources.Security_Permission_ManageACLsPermissions</h3></div>
+            <br />
+            @using (Html.BeginForm())
+            {   
+                <table>
+                    <tr>
+                        <td>
+                            @Html.ActionLink(Resources.Security_Permission_InstallPermissions, "InstallPermissions", null, new { @class = "btn tertiary" })
+                            <input type="submit" class="btn green" value="@Resources.Global_String_Save" /> 
+                        </td>
+                    </tr>
+                </table>
+                if (Model.AvailablePermissions.Count == 0)
+                {
+                    <text>No permissions defined</text>
+                }
+                else if (Model.AvailableRoles.Count == 0)
+                {
+                    <text>No customer roles available</text>
+                }
+                else
+                {                       
+                    <div id="tablewrapper">
+                        <div id="tableheader">
+                            <div class="search">
+                                <b>@Resources.Global_String_SearchBy:</b><br />
+                                <select id="columns" onchange="sorter.search('query')">
+                                </select>
+                                <input type="text" id="query" onkeyup="sorter.search('query')" />
+                            </div>
+                            <span class="details">
+                                <div>
+                                    @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                                    </span>
+                                </div>
+                            </span>
+                        </div>
+                        <br /><br /><br />
+                        <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+                            <thead>
+                                <tr>
+                                    <th><h3>@Resources.Security_Permissions_Permissions</h3></th>
+                                    @foreach (var cr in Model.AvailableRoles)
+                                    {
+                                        <th>
+                                            <h3>@cr.Name</h3>
+                                        </th>
+                                    }
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var pr in Model.AvailablePermissions)
+                                {
+                                    <tr>
+                                        <td>
+                                            <span>@pr.Name</span>
+                                        </td>
+                                        @foreach (var cr in Model.AvailableRoles)
+                                        {
+                                            var allowed = Model.Allowed.ContainsKey(pr.SystemName) && Model.Allowed[pr.SystemName][cr.Id];
+                                            <td>
+                                                <input id="allow_@(cr.Id)" class="allow_@(cr.Id)" type="checkbox" value="@(pr.SystemName)" name="allow_@(cr.Id)" @(allowed ? " checked=checked" : null) />
+                                            </td>
+                                        }
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                        <div id="tablefooter">
+                            <div id="tablenav">
+                                <div>
+                                    <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                                        onclick="sorter.move(-1,true)" />
+                                    <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                                        onclick="sorter.move(-1)" />
+                                    <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                                        onclick="sorter.move(1)" />
+                                    <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                                        onclick="sorter.move(1,true)" />
+                                </div>
+                                <div>
+                                    <select id="pagedropdown">
+                                    </select>
+                                </div>
+                                <div>
+                                    <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                                </div>
+                            </div>
+                            <div id="tablelocation">
+                                <div>
+                                    <select onchange="sorter.size(this.value)">
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="20" selected="selected">20</option>
+                                        <option value="50">50</option>
+                                        <option value="100">100</option>
+                                    </select>
+                                    <span>@Resources.Global_String_EntriesPerPage</span>
+                                </div>
+                                <div class="page">
+                                    @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <table>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn green" value="@Resources.Global_String_Save" /> 
+                        </td>
+                    </tr>
+                </table>
+            }      
+        </div>  
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(50);
+        }
+    });
+</script>

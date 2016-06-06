@@ -1,0 +1,177 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.ReceiveWB
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "wbDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("WBReceive"),
+      OnSuccess = "initSorter();sorter.size(50);usermsgg",
+      OnFailure = "javascript:errormsg()"
+
+
+  };}
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+          @Resources.WayBill_WBReceive_ReceiveWayBill  </h3>
+    </div>
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+
+   
+        <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+        <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+        <table width="98%" align="center">
+            <tr>
+                <th align="center">
+                    @Resources.WayBill_LoadWB_WBNo
+                </th>
+                <th align="center">
+                    @Resources.WayBill_WBReceive_LocationOffice
+                </th>
+                <th align="center">
+                    @Resources.WayBill_ViewWBDetails_ArrivalDate
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.EntityWBill.Id, Model.WBlist, Resources.Global_String_PleaseSelect, new { onchange = "javascript:GetWBRecvdItems(this)" })
+                    @Html.ValidationMessageFor(x => x.EntityWBill.Id)
+                    @Html.HiddenFor(m => m.EntityWBill.RecvDstnationOfficeId)
+                </td>
+                <td align="center" id="destinationOffice">                   
+                    &nbsp;
+                </td>
+                <td align="center">
+                    @Html.EditorFor(m => m.EntityWBill.ArrivalDate)
+                    @Html.ValidationMessageFor(m => m.EntityWBill.ArrivalDate)
+                </td>
+            </tr>
+            <tr>
+                <th align="center">
+                    @Resources.WayBill_LoadWB_DRCvehicleodometerkm
+                </th>
+                <th align="center">
+                    @Resources.WayBill_LoadWB_TotalDistancekm
+                </th>
+                <th align="center">
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.EditorFor(m => m.EntityWBill.RecvDRCVehicleOdometer)
+                    @Html.ValidationMessageFor(m => m.EntityWBill.RecvDRCVehicleOdometer)
+                    @*@Html.TextBoxFor(m => m.EntityWHouseRelease.RefNumber, new { @readonly = "readonly" })*@
+                </td>
+                <td align="center">
+                    @Html.EditorFor(m => m.EntityWBill.RecvDRCVehicleTotalDistance)
+                    @Html.ValidationMessageFor(m => m.EntityWBill.RecvDRCVehicleTotalDistance)
+                </td>
+                <td align="center">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <div id="itemsDiv">
+                        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+                            border-collapse: collapse; padding: 5px; font-size: 12px;">
+                            <tr class="gridheader">
+                                <td colspan="8" align="left">
+                                    <h4>
+                                        @Resources.WayBill_ViewWBDetails_WayBillDetails</h4>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th style="width: 5%; text-align: center;">
+                                </th>
+                                <th style="width: 15%; text-align: center;">
+                                    @Resources.Global_String_SerialNo
+                                </th>
+                                <th style="width: 20%; text-align: center;">
+                                    @Resources.WayBill_LoadWB_EquipmentitemCommodity
+                                </th>
+                                <th style="width: 8%; text-align: center;">
+                                    @Resources.Global_String_Unit
+                                </th>
+                                <th style="width: 12%; text-align: center;">
+                                    @Resources.Global_String_Weight
+                                </th>
+                                <th style="width: 12%; text-align: center;">
+                                    @Resources.WayBill_LoadWB_QtyDispatched
+                                </th>
+                                <th style="width: 10%; text-align: center;">
+                                    @Resources.Global_String_QtyReceived
+                                </th>
+                                <th style="width: 10%; text-align: center;">
+                                    @Resources.Global_String_QtyDamaged
+                                </th>
+                            </tr>
+                            @{int count = 1;
+                              for (int i = 0; i < Model.WRItems.Count; i++)
+                              {
+                                <tr>
+                                    <td align="center">
+                                        @count
+                                        @Html.HiddenFor(m => m.WRItems[i].Id)
+                                    </td>
+                                    <td align="left">
+                                        @if (Model.WRItems[i].Inventory.Item.ItemCategory.CategoryCode == "A")
+                                        { @Model.WRItems[i].Asset.SerialNumber}
+                                        else
+                                        { @Model.WRItems[i].Inventory.Item.SerialNumber}
+                                    </td>
+                                    <td>
+                                        @if (Model.WRItems[i].Inventory.Item.ItemCategory.CategoryCode == "A")
+                                        { @Model.WRItems[i].Asset.Name}
+                                        else
+                                        {@Model.WRItems[i].Inventory.Item.Name}
+                                    </td>
+                                    <td>
+                                        @Model.WRItems[i].Inventory.Item.UnitOfMeasure.Code
+                                    </td>
+                                    <td>
+                                        @Model.WRItems[i].Asset.Weight
+                                    </td>
+                                    <td>
+                                        @Model.WRItems[i].Quantity
+                                    </td>
+                                    <td align="center">
+                                        @Html.TextBoxFor(m => m.WRItems[i].QuantityReceived, new { @class = "WBnumericTb" })
+                                        @Html.ValidationMessageFor(m => m.WRItems[i].QuantityReceived)
+                                    </td>
+                                    <td align="center">
+                                        @Html.TextBoxFor(m => m.WRItems[i].QuantityDamaged, new { @class = "WBnumericTb" })
+                                        @Html.ValidationMessageFor(m => m.WRItems[i].QuantityDamaged)
+                                    </td>
+                                </tr>
+                                        count = count + 1;
+                              }
+                            }
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    &nbsp;&nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td align="left">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input class="btn green" type="submit" value="  @Resources.Global_String_Save  " />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+    
+    }
+</div>

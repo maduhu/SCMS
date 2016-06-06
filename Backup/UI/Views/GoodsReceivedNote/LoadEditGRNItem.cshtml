@@ -1,0 +1,111 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.GoodsReceivedNoteItem
+@{AjaxOptions ajaxOpts = new AjaxOptions
+{
+    UpdateTargetId = "ContentDiv",
+    LoadingElementId = "loading",
+    HttpMethod = "Post",
+    Url = Url.Action("EditGRNItem"),
+    OnSuccess = "usermsg('" + Resources.GoodsReceivedNote_LoadGRN_SuccessMsg + "');CloseDialog();",
+    OnFailure = "javascript:errormsg()"
+};}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmeditGRNItem" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.GoodsReceivedNoteId)
+    <br />
+    <table style="width: 400px" align="center" cellpadding="0">
+        <tr>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_ItemName
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_QtyOrdered)
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Html.DisplayFor(model => model.ItemName)
+            </td>
+            <td align="center">
+                @Model.POQty.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                @Html.HiddenFor(m => m.POQty, new { id = "qtyordered0" })
+            </td>
+        </tr>
+
+        <tr>
+            <th align="center" width="33.3%">
+                @Resources.GoodsReceivedNote_DownloadTemplate_PreviouslyReceived
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_UnitsOfMeasure
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.PreviouslyReceived.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                @Html.HiddenFor(m => m.PreviouslyReceived, new { id = "qtyprev0" })
+            </td>
+            <td align="center">@Html.DisplayFor(model => model.Unit)</td>
+        </tr>
+
+        <tr>
+            <th align="center"  colspan="2">
+                @Resources.GoodsReceivedNote_LoadGRN_GRNType
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                @Html.RadioButtonFor(model => model.IsInventory, Model.IsInventory ? true : false) @Resources.GoodsReceivedNote_LoadGRN_I
+                @Html.RadioButtonFor(model => model.IsInventory, !Model.IsInventory ? false : true) @Resources.GoodsReceivedNote_LoadGRN_D
+                @Html.ValidationMessageFor(model => model.IsInventory, Resources.Global_String_Required)
+
+            </td>
+        </tr>
+
+        <tr>
+            <th align="center" colspan="2">
+                @Resources.Global_String_QtyDelivered
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.TextBoxFor(model => model.QuantityDelivered, new { id = "QtyDelivered0",  @class = "numericTb", onblur = "javascript:ValidateQtyDelivered(this, 0)"  })
+                @Html.ValidationMessageFor(model => model.QuantityDelivered)
+            </td>
+        </tr>
+
+        <tr>
+            <th align="center" colspan="2">
+                @Resources.Global_String_QtyDamaged
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.TextBoxFor(model => model.QuantityDamaged, new { @class = "numericTb", onblur = "javascript:ValidateQtyDamaged(this, 0)" })
+                @Html.ValidationMessageFor(model => model.QuantityDamaged)
+            </td>
+        </tr>
+
+        <tr>
+            <th align="center" colspan="2">
+                @Resources.Global_String_Comments
+            </th>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.EditorFor(model => model.Comments)
+                @Html.ValidationMessageFor(model => model.Comments)
+            </td>
+        </tr>
+    </table>
+    <center>
+            <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " />
+        </center>
+    
+}

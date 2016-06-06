@@ -1,0 +1,140 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.Bin
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.BinCard_Index_ManageBinCard: @Model.RefNumber</h3>
+    </div>
+    @if (Model.CanEdit)
+    {
+        <center>
+            @Ajax.ActionLink(Resources.BinCard_ManageBin_EditBinCard, "LoadEditBC", new { binId = Model.Id }, new AjaxOptions
+       {
+           OnBegin = string.Format("ShowDialogue('{0}')", Resources.BinCard_ManageBin_EditBinCard),
+           UpdateTargetId = "popup-page",
+           LoadingElementId = "popup-loading",
+           OnSuccess = "CenterPopup"
+       }) |
+            @Ajax.ActionLink(Resources.BinCard_ManageBin_DeleteBinCard, "DeleteBC", new { binId = Model.Id }, new AjaxOptions
+       {
+           UpdateTargetId = "bincardDiv",
+           LoadingElementId = "loading",
+           Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.RefNumber),
+           OnSuccess = "usermsg('" + Resources.OrderRequest_String_SuccessMsg + "');if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+       })
+        </center>
+    }
+    else
+    {
+        <br />
+    }
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridodd">
+            <td style="text-align: center; width: 20%;">
+                @Resources.Global_String_Item
+            </td>
+            <td style="text-align: left; width: 30%;">
+                <strong>@Model.Item.Name</strong>
+            </td>
+            <td style="text-align: center; width: 20%;">
+                @Resources.Global_String_Description
+            </td>
+            <td style="text-align: left; width: 30%;">
+                <strong>@Model.Description</strong>
+            </td>
+        </tr>
+        <tr class="gridodd">
+            <td style="text-align: left; width: 30%;">
+                @Model.PPOrORNo
+            </td>
+
+            <td style="text-align: left; width: 20%;">
+                @Resources.Global_String_Unit:<strong> @Model.Item.UnitOfMeasure.Code</strong>
+            </td>
+            <td style="text-align: left; width: 20%;">
+                @Resources.Global_String_Packaging:<strong> @Model.ItemPackage.Name</strong>
+
+            </td>
+            <td style="text-align: left; width: 30%;">
+                @Resources.BinCard_LoadBin_WHDemarcation:<strong> @Model.WHDemarcation</strong>
+
+            </td>
+        </tr>
+
+    </table>
+    @if (Model.CanEdit)
+    {
+        @Html.Raw("<br />&nbsp;&nbsp;&nbsp;")
+        @Ajax.ActionLink(Resources.Global_String_Add + " " + Model.Item.Name, "LoadAddBCItems", new { binId = Model.Id }, new AjaxOptions
+   {
+       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_Add + " " + Model.Item.Name),
+       UpdateTargetId = "popup-page",
+       LoadingElementId = "popup-loading",
+       OnSuccess = "ClearFormById('#' + 'frmbincit');CenterPopup();"
+   })
+        @Html.Raw("&nbsp;|&nbsp;")
+        @Ajax.ActionLink(Resources.Global_String_Issue + " " + Model.Item.Name, "LoadIssueBCItems", new { binId = Model.Id }, new AjaxOptions
+   {
+       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_Issue + " " + Model.Item.Name ),
+       UpdateTargetId = "popup-page",
+       LoadingElementId = "popup-loading",
+       OnSuccess = "ClearFormById('#' + 'frmbincitissue');CenterPopup();"
+   })
+    }
+    <br />
+   
+    <div style="width: 98%;">
+        @(Html.Telerik().Grid<SCMS.Model.BinItems>()
+        .Name("BinCardItemz")
+        .DataKeys(x =>
+        {
+            x.Add(y => y.Id).RouteKey("Id");
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.IssueDate).Title(Resources.Global_String_Date).Format("{0:MM/dd/yyyy}");
+            columns.Bound(o => o.DnNumber).Title(Resources.GoodsReceivedNote_DownloadTemplate_DNNo);
+            columns.Bound(o => o.RefNumber).Title(Resources.BinCard_ViewBinCard_GRNorROorGIVNos);
+            columns.Bound(o => o.QTYReceived).Title(Resources.Global_String_QtyReceived);
+            columns.Bound(o => o.QTYIssued).Title(Resources.Global_String_QtyIssued);
+            columns.Bound(o => o.BalanceStock).Title(Resources.BinCard_ViewBinCard_BalanceStock);
+            columns.Bound(o => o.Remarks).Title(Resources.Global_String_Remarks);
+            if (Model.CanEdit)
+            {
+                columns.Bound(e => e.Id).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false)
+                   .ClientTemplate("<a data-ajax=\"true\" data-ajax-begin=\"ShowDialogue('Edit')\" data-ajax-loading=\"#popup-loading\" " +
+                "data-ajax-mode=\"replace\" data-ajax-success=\"CenterPopup\" data-ajax-update=\"#popup-page\" href=\"" +
+                       Url.Action("LoadEditBCItem", "BinCard", new { bcItemId = "<#= Id #>" }) + "\">" +
+                       Resources.Global_String_Edit + "</a>");
+            }
+
+        })
+
+        .DataBinding(dataBinding => dataBinding.Ajax()
+        .Select("BinItemz", "BinCard", new { binId = Model.Id }))
+        .Sortable()
+        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+        .Filterable()
+        .EnableCustomBinding(true))
+    </div>
+
+    <hr />
+     <a class="btn btn-primary"  href="@Url.Action("BinCard", "PDFReports", new { refNumber = Model.RefNumber })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf</a>
+        <br />
+
+    
+    <p>
+        @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new AjaxOptions
+{
+    UpdateTargetId = "bincardDiv",
+    LoadingElementId = "loading",
+    Url = Url.Action("SelectBin"),
+
+})
+    </p>
+</div>
+

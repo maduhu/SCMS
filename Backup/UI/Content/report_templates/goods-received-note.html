@@ -1,0 +1,263 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{REPORT_TITLE}</title>
+    <link rel="stylesheet" href="{STYLE}?v=1,32." type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <h2 class="central">
+                    Goods Received Note</h2>
+                <table class="summary">
+                    <tbody>
+                        <tr>
+                            <td>
+                                DELIVERY DATE:
+                            </td>
+                            <td>
+                                {DELIVERY_DATE}
+                            </td>
+                            <td>
+                                GRN No.:
+                            </td>
+                            <td style="color: Red;">
+                                {GRN}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="underline-me">
+                                VENDOR INFORMATION
+                            </td>
+                            <td colspan="2" class="underline-me">
+                                INTERNAL INFORMATION
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                SUPPLIER
+                            </td>
+                            <td>
+                                {SUPPLIER}
+                            </td>
+                            <td>
+                                LOCATION
+                            </td>
+                            <td>
+                                {LOCATION}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DN No:
+                            </td>
+                            <td>
+                                {DNN}
+                            </td>
+                            <td>
+                                OFFICE:
+                            </td>
+                            <td>
+                                {OFFICE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DRC/DDG OR No.:
+                            </td>
+                            <td>
+                                {ORNO}
+                            </td>
+                            <td>
+                                DRC/DDG PO No.:
+                            </td>
+                            <td>
+                                {PONO}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="span3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="{LOGO1}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{LOGO2}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DANISH REFUGEE COUNCIL<br />
+                                Borgergade 10<br />
+                                DK-1300 Copenhagen<br />
+                                Denmark<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px;">
+                                COUNTRY OFFICE, UGANDA<br />
+                                4688 Kalungi Road<br />
+                                Muyenga, Kampala<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://WWW.drc.dk">WWW.drc.dk</a><br />
+                                <a href="http://WWW.danishdemininggroup.dk">www.danishdemininggroup.dk</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="goods-detail">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">
+                            </th>
+                            <th style="width: 25%">
+                                Goods Description
+                            </th>
+                            <th>
+                                Unit
+                            </th>
+                            <th>
+                                Quantity Ordered
+                            </th>
+                            <th>
+                                Quantity Delivered
+                            </th>
+                            <th>
+                                Quantity Damaged
+                            </th>
+                            <th style="width: 25%">
+                                Comments
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {DETAILS}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="7">
+                                <strong>Additional Remarks:</strong><br />
+                                {ADDITONALRMARKS}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <!--<table id='goods-condition'>
+			<tbody>
+			<tr>
+			<td><input type="checkbox" />&nbsp;&nbsp; Goods Received/ Good Condition</td>
+			<td><input type="checkbox" />&nbsp;&nbsp; Goods Received in Correct Qty.</td>
+			<td><input type="checkbox" />&nbsp;&nbsp; Goods Received Damaged  </td>
+			<td><input type="checkbox" />&nbsp;&nbsp; Shortfall in Qty.</td>
+			</tr>
+			</tbody></table>-->
+                <table id="transporter">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>TRANSPORTER Delivered by (name) :</strong>
+                            </td>
+                            <td>
+                                {TRANSPORTER_NAME}
+                            </td>
+                            <td>
+                                <strong>Company</strong>
+                            </td>
+                            <td>
+                                {TRANSPORTER_COMPANY}
+                            </td>
+                            <td>
+                                <strong>No. Plate</strong>
+                            </td>
+                            <td>
+                                {VEHICLE_PLATE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                and or<br />
+                                <strong>Driver license/ID No.:</strong>
+                            </td>
+                            <td>
+                                {DRIVER_ID}
+                            </td>
+                            <td>
+                                <strong>Signature:</strong>
+                            </td>
+                            <td>
+                                <sub>______________________________________</sub>
+                            </td>
+                            <td>
+                                <strong>Date</strong>
+                            </td>
+                            <td>
+                                {SIGNATURE_DATE}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table id="receiver">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <strong>DRC/DGG Received by (name) :</strong>
+                            </td>
+                            <td>
+                                {RECEIVED_BY}
+                            </td>
+                            <td>
+                                <strong>Title</strong>
+                            </td>
+                            <td colspan="3" align="left">
+                                {TITLE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                <strong>Signature</strong>
+                            </td>
+                            <td>
+                                <!--<img src="{SIGNATURE2}" alt="" style="max-width: 80px;" />-->
+                                {SIGNATURE2}
+                            </td>
+                            <td>
+                                <strong>Date</strong>
+                            </td>
+                            <td>
+                                {SIGNATURE_DATE}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

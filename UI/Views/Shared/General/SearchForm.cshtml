@@ -1,0 +1,35 @@
+﻿@using SCMS.Resource
+<form id="top-search" action="/QuickSearch/" method="post" class="form">
+<select name="category_search" id="category_search">
+    <option value="Item Number" selected="selected" >@Resources.Global_String_ItemNo</option>
+    <option value="Item Name" >@Resources.Global_String_ItemName</option>
+    <option value="PO Number" >@Resources.Global_String_PONo</option>
+    <option value="OR Number" >@Resources.Global_String_ORNo</option>
+</select>
+<div class="field" style="float: left; max-width: 100px;">
+    <p class="text small">
+        <input type="search" name="search_text" id="search_text" placeholder="Type query" required pattern=".{2,}"
+            title="@Resources.Shared_General_SearchInstruction" /></p>
+</div>
+@*<a href="#" id="search_button" title="Search documents category"></a>*@
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#search_button").click(function () {
+
+            var val = $('#search_text').val();
+
+            if (val.length > 0) {
+                $('#top-search').submit();
+            } else {
+
+                $('#search_text').animate({ "background-color": "#f00" }, "slow", "linear", function () {
+
+                    $('#search_text').css("background-color", "#fff");
+
+                });
+
+            }
+        });
+    });
+</script>

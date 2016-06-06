@@ -1,0 +1,158 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.PurchaseOrder
+
+@{
+    int itemCount = Model.ORItems == null ? 0 : Model.ORItems.Count;
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "PODiv",
+        LoadingElementId = "loading",
+        HttpMethod = "Post",
+        Url = Url.Action("AddItemsToPO"),
+        OnBegin = "return VerifyPOItemNumbers(" + itemCount + ")",
+        OnSuccess = "CloseDialog"
+
+    };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@if (Model.OrderRequest != null)
+{
+    using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        <table width="50%" align="center">
+            <tr>
+                <td width="50%" align="right">
+                    @Resources.Global_String_ProjectTitle:
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.ProjectId, Model.Projects, new { onchange = "javascript:loadProjectDonors4OR(this)" })
+                    @Html.ValidationMessageFor(m => m.ProjectId)
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    @Resources.Budget_CategoryList_ProjectNo:
+                </td>
+                <td id="projectDiv">
+                    @Html.DropDownListFor(m => m.ProjectDonorId, Model.ProjectDonors, new { id = "pdId", onchange = "javascript:loadOrItems()" })
+                    @Html.ValidationMessageFor(m => m.ProjectDonorId)
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    @Resources.PurchaseOrder_AddPOItems_SelectOR:
+                </td>
+                <td>
+                    @Html.DropDownListFor(m => m.OrderRequestId, Model.OrderRequests, new { id = "orId", onchange = "javascript:loadOrItems()" })
+                    @Html.ValidationMessageFor(m => m.OrderRequestId)
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    <b>@Resources.Global_String_ORCurrency:</b>
+                </td>
+                <td>
+                    @Model.OrderRequest.Currency.ShortName
+                </td>
+            </tr>
+            <tr>
+                <td width="50%" align="right">
+                    <b>@Resources.Budget_CategoryList_ProjectNo:</b>
+                </td>
+                <td>
+                    @Model.OrderRequest.ProjectDonor.ProjectNumber
+                </td>
+            </tr>
+        </table>
+        <h4 style="text-align: center;">@Resources.PurchaseOrder_AddPOItems_SelectORItemsToAdd</h4>
+        if(!Model.SameCurrency)
+        {
+            <center style="font-style: italic">@string.Format(Resources.PurchaseOrder_AddPOItems_Note, Model.OrderRequest.Currency.ShortName, Model.Currency.ShortName)</center>
+        }
+        <p id="budgetCheckStatus">
+        </p>
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="grideven">
+                <th width="10%">
+                    @Resources.Global_String_ItemName
+                </th>
+                <th width="20%">
+                    @Resources.Global_String_Description
+                </th>
+                <th width="10%">
+                    @Resources.Global_String_Quantity
+                </th>
+                <th width="10%">
+                    @Resources.PurchaseOrder_AddPOItems_UnitPrice
+                </th>
+                <th width="10%">
+                    @Resources.PurchaseOrder_AddPOItems_TotalPrice
+                </th>
+                <th width="20%">
+                    @Resources.Budget_CreateSubLine_LineNumber
+                </th>
+                <th width="10%">
+                    @Resources.Global_String_Remarks
+                </th>
+                <th width="10%">
+                    @Resources.PurchaseOrder_AddPOItems_SelectToAdd
+                </th>
+            </tr>
+            @{string row = "";  }
+            @for (int i = 0; i < Model.ORItems.Count; i++)
+            {
+                row = "row" + i;
+                <tr id="@row">
+                    <td>
+                        @Model.ORItems[i].ItemName
+                        @Html.HiddenFor(m => m.ORItems[i].Id, new { @id = "orItem" + i })
+                    </td>
+                    <td>
+                        @Model.ORItems[i].ItemDescription
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ORItems[i].Quantity, new { id = "quantity" + i, onblur = "javascript:computePOItemTotals(" + i + ")", @class = "numericTb" })
+                        @Html.ValidationMessageFor(m => m.ORItems[i].Quantity, Resources.Global_String_OnlyNumericRequired)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ORItems[i].EstimatedUnitPrice, new { id = "unitPrice" + i, onblur = "javascript:computePOItemTotals(" + i + ")", @class = "numericTb" })
+                        @Html.ValidationMessageFor(m => m.ORItems[i].EstimatedUnitPrice, Resources.Global_String_OnlyNumericRequired)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ORItems[i].EstimatedPrice, new { id = "totalPrice" + i, @class = "numericTb", @readonly = "readonly" })
+                        @Html.ValidationMessageFor(m => m.ORItems[i].EstimatedPrice, Resources.Global_String_OnlyNumericRequired)
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(m => m.ORItems[i].BudgetLineId, Model.ORItems[i].BudgetLines, new { @id = "blId" + i, onchange = "javascript:checkBLBalance(" + i + ")" })
+                        @Html.ValidationMessageFor(m => m.ORItems[i].BudgetLineId, Resources.Global_String_Required)
+                    </td>
+                    <td>
+                        @Html.TextBoxFor(m => m.ORItems[i].Remarks)
+                    </td>
+                    <td align="center">
+                        @Html.CheckBoxFor(m => m.ORItems[i].AddToPO, new { @id = "addToPO" + i })
+                    </td>
+                </tr>
+            }
+        </table>
+        <table width="98%" align="center">
+            <tr>
+                <td width="50%" align="right">
+                    <input type="submit" value="@Resources.PurchaseOrder_AddPOItems_AddItems" class="btn green" />
+                </td>
+                <td width="50%">
+                    @Html.HiddenFor(model => model.Id, new { @id = "poId" })
+                    <input type="button" value=" @Resources.Global_String_Cancel " class="btn green" onclick="CloseDialog()" />
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{ 
+    <p style="font-size:small; font-style: italic; font-weight: bold">
+        @Resources.PurchaseOrder_AddPOItems_NoItems
+    </p>
+}

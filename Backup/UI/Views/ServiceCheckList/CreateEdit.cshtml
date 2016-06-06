@@ -1,0 +1,52 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SCheckList
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "SCListDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("CreateEdit"),
+      OnSuccess = "CloseDialog();if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+  };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.EntitySCL.Id)
+    <table>
+        <tr>
+            <td align="right">@Resources.Global_String_Name:
+            </td>
+            <td>
+                @Html.DropDownListFor(p => p.EntitySCL.ServiceCategoryId, Model.CheckListCatories, Resources.Global_String_PleaseSelect)<br />
+                @Html.ValidationMessageFor(p => p.EntitySCL.ServiceCategoryId)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Global_String_Name:
+            </td>
+            <td>
+                @Html.EditorFor(model => model.EntitySCL.Name)<br />
+                @Html.ValidationMessageFor(model => model.EntitySCL.Name)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Global_String_Description
+            </td>
+            <td>
+                @Html.EditorFor(model => model.EntitySCL.Discription)
+                @Html.ValidationMessageFor(model => model.EntitySCL.Discription)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                &nbsp;
+            </td>
+            <td>
+                <input type="submit" class="btn green" value="@Resources.Global_String_Save" />
+            </td>
+        </tr>
+    </table>
+}

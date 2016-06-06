@@ -1,0 +1,134 @@
+﻿@using SCMS.Resource
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="SCMS" />
+    <meta name="author" content="SCMS" />
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- CSS -->
+    
+    @MvcHtmlString.Create(HttpUtility.HtmlDecode(Html.Telerik().StyleSheetRegistrar()
+            .StyleSheets(st => st.AddGroup("scsmcss", group =>  group.Combined(true).Compress(true)
+                        .Add("~/Content/themes/copenhagen/css/base.css")
+                        .Add("~/Content/themes/copenhagen/css/style.css")
+                        .Add("~/Content/css/Reports.css")
+                        .Add("~/Content/css/zebra_dialog.css")
+                        .Add("~/Content/css/notification.css")
+                        .Add("~/Content/css/pager.css")
+                        .Add("~/Content/themes/scms1/jquery-ui-1.8.20.scms1.css")
+                        .Add("~/Content/css/flexigrid.pack.css")
+                        .Add("~/Content/css/jquery.autocomplete.css")
+                        .Add("~/Content/2012.3.1018/telerik.common.css")
+                        .Add("~/Content/2012.3.1018/telerik.sitefinity.css")
+                        .Add("~/Content/2012.3.1018/telerik.rtl.css").Version("0.02"))).ToHtmlString()))
+    
+    <script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.scms1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/flexigrid.pack.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/easybox.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/accord.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/general.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/Grid.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/requestReview.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/procument.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/notification.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/sorter.js?V=8123.adk")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/popup-dialog.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/zebra_dialog.js")" type="text/javascript"></script>
+    <!---->
+
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body onload="LoadRequests();">
+    <div id='top-bar' class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="25%" align="left"> 
+                            <table>
+                                <tr>
+                                    <td id="notificationDiv">
+                                        <div style="width:auto;">                    
+                                            <dl class="dropdown" style="">
+                                                <dt>
+                                                    <span id="linkglobal" class="notification noti-blue" title="@Resources.RequestReview_String_NoNotification">!</span>
+                                                </dt>
+                                            </dl>
+                                        </div>  
+                                    </td>
+                                    <td style="padding-left: 30px;" title="@ViewBag.CountryProgramme">
+                                       <b>@ViewBag.CountryProg</b>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                        <td width="50%" align="center">
+                            <h2>@Resources.Global_String_SupplyChainManagementSystem.ToUpper()</h2>
+                        </td>
+                        <td width="25%" align="right">
+                            <b>@ViewBag.LoggedInUser</b> &nbsp;&nbsp;&nbsp&nbsp; &nbsp;&nbsp;&nbsp&nbsp; &nbsp;&nbsp;&nbsp&nbsp; &nbsp;&nbsp;&nbsp&nbsp;
+                            <a href="/Account/LogOut" title="@Resources.Shared_Login_Logout" id='log-out'></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                @RenderPage("~/Views/Shared/General/TopDropDownMenu.cshtml")
+            </div>
+        </div>
+    </div>
+    <div id='middle-bar' class='container'>
+        <div class="row">
+            <div class="twelve columns">
+                @RenderBody()
+            </div>
+            <!-- div for popup -->
+            <div id="popup-dialog">
+                <img id="popup-loading" style="display: none;" src='../../Content/images/lazy-loading-image.gif'
+                    alt='@Resources.Global_String_Processing' />
+                <div id="popup-page" style="font-family:Arial; font-size: 12px;">
+                </div>
+            </div>
+            <input type="hidden" id="uploadStatus" value="complete" />
+            <input type="hidden" id="uploadStatusValue" value="1" />
+        </div>
+    </div> 
+    @RenderPage("~/Views/Shared/General/Footer.cshtml")       
+
+    @(MvcHtmlString.Create(HttpUtility.HtmlDecode(
+        Html.Telerik()
+            .ScriptRegistrar()
+            .jQuery(false)
+            .jQueryValidation(false)
+            .DefaultGroup(group => group.DefaultPath("~/Scripts/2012.3.1018").Combined(true).Compress(true)
+                                      /*  .Add("~/Scripts/jquery.validate.min.js")
+                                        .Add("~/Scripts/jquery.validate.unobtrusive.min.js")
+                                        .Add("~/Scripts/jquery-ui-1.8.20.scms1.min.js")
+                                        .Add("~/Scripts/jquery.unobtrusive-ajax.js")
+                                        .Add("~/Scripts/js/flexigrid.pack.js")
+                                        .Add("~/Scripts/js/easybox.min.js")
+                                        .Add("~/Scripts/js/accord.js")
+                                        .Add("~/Scripts/js/general.js")
+                                        .Add("~/Scripts/js/ajax.js")
+                                        .Add("~/Scripts/js/requestReview.js")
+                                        .Add("~/Scripts/js/procument.js")
+                                        .Add("~/Scripts/js/notification.js")
+                                        .Add("~/Scripts/js/sorter.js")
+                                        .Add("~/Scripts/js/popup-dialog.js")
+                                        .Add("~/Scripts/js/zebra_dialog.js") */
+              ).ToHtmlString())))
+</body>
+</html>

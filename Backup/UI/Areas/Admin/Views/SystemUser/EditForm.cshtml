@@ -1,0 +1,130 @@
+﻿@using SCMS.CoreBusinessLogic.Settings
+@using SCMS.Resource
+@model SCMS.UI.Areas.Admin.Models.SystemUser.SystemUserModel
+@using Telerik.Web.Mvc.UI
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+<table width="98%" align="center" border="0" cellpadding="2" cellspacing="2" style=" border-bottom: 1px solid Grey;">
+    <tr class="gridheader2">
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_FirstName</td>
+        <td width="34%">@Resources.SystemUser_CreateOrEdit_LastName</td>
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_IDNumber</td>
+    </tr>
+    <tr>
+        <td width="33%">
+            @Html.TextBoxFor(model => model.FirstName)<br />
+            @Html.ValidationMessageFor(model => model.FirstName, Resources.Global_String_Required)
+        </td>
+        <td width="34%">
+            @Html.EditorFor(model => model.OtherNames)<br />
+            @Html.ValidationMessageFor(model => model.OtherNames, Resources.Global_String_Required)
+        </td>
+        <td width="33%">
+            @Html.EditorFor(model => model.IdNumber)<br />
+            @Html.ValidationMessageFor(model => model.IdNumber, Resources.Global_String_Required)
+        </td>
+    </tr>
+    <tr class="gridheader2">
+        <td width="33%">@Resources.Global_String_CountrySubOffice</td>
+        <td width="34%">@Resources.Global_String_Designation</td>
+        <td width="33%">@Resources.Approver_ApproverList_FinanceLimit</td>
+    </tr>
+    <tr>
+        <td>
+            @Html.DropDownListFor(model => model.SelectedCountrySubOfficeId, Model.AvailableCountrySubOffices)<br />
+            @Html.ValidationMessageFor(model => model.SelectedCountrySubOfficeId, Resources.Global_String_Required)
+        </td>
+        <td>
+             @*@(Html.Telerik().ComboBox()
+                .Name(@Html.FieldNameFor(model => model.SelectedDesignationId))
+                .ClientEvents(events => events.OnLoad(Html.FieldNameFor(x=>x.SelectedDesignationId) + "_onLoad"))
+                .Value(Model.SelectedDesignationId.ToString())
+                .HtmlAttributes(new { style = "width: 99%;", @class = "form"})
+                .AutoFill(true)
+                .DataBinding(binding => binding.Ajax().Select("GetDesignations", "Designation", new { area = "" }))
+                .Filterable(filtering =>
+                {
+                    filtering.FilterMode(AutoCompleteFilterMode.Contains);
+                })
+                .HighlightFirstMatch(true))
+                <script type="text/javascript">
+                    function @(Html.FieldNameFor(x=>x.SelectedDesignationId))_onLoad(){
+                        $('#@(Html.FieldNameFor(x=>x.SelectedDesignationId))').data('tComboBox').reload();
+                   }
+                </script>*@
+            @Html.DropDownListFor(model => model.SelectedDesignationId, Model.AvailableDesignation)<br />
+            @Html.ValidationMessageFor(model => model.SelectedDesignationId, Resources.Global_String_Required)            
+        </td>
+        <td>
+            @Html.DropDownListFor(model => model.FinanceLimitId, Model.FinanceLimits, Resources.Global_String_PleaseSelect)
+            @Html.ValidationMessageFor(model => model.FinanceLimitId, Resources.Global_String_Required)
+        </td>
+    </tr>
+    <tr class="gridheader2">
+        <td width="33%">@Resources.Global_String_PhoneNumber</td>
+        <td width="34%">@Resources.SystemUser_CreateOrEdit_AccountStatus</td>
+        <td width="33%">@Resources.SystemUser_CreateOrEdit_Role_s</td>
+    </tr>
+    <tr>
+        <td valign="top">
+            @Html.EditorFor(model => model.OfficialPhone)<br />
+            @Html.ValidationMessageFor(model => model.OfficialPhone)
+        </td>
+        <td valign="top">
+            @Html.EditorFor(model => model.Active) @Resources.SystemUser_CreateOrEdit_Active 
+            <br />
+            @Html.EditorFor(model => model.Locked) @Resources.SystemUser_CreateOrEdit_Locked
+        </td>
+        <td>
+            @if (UserContext.HasPermission(StandardPermissionProvider.RolesManage))
+            {
+                foreach (var role in Model.AvailableRoles)
+                {
+                    <input name="@Html.FieldNameFor(model => model.SelectedRoleIds)" type="checkbox" value="@role.Value" @(role.Selected ? "checked=\"checked\"" : "") /> @role.Text <br />            
+                }
+            }
+        </td>
+    </tr>
+</table>
+<br />
+<table width="98%" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td width="50%">
+            @if (Model.Id.IsNotEmpty())
+            {
+                <table>
+                    <tr>
+                        <td><b>@Resources.SystemUser_CreateOrEdit_LastIpAddress:</b></td>
+                        <td>@Html.DisplayFor(model => model.LastIpAddress)</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Resources.SystemUser_CreateOrEdit_LastLoginDate:</b></td>
+                        <td>@Model.LastLoginDate.FormatLongDatePatternWithTime()</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Resources.SystemUser_CreateOrEdit_FailedLoginAttempts:</b></td>
+                        <td>@Html.DisplayFor(model => model.UserLoginCount)</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Resources.SystemUser_CreateOrEdit_DateCreated:</b></td>
+                        <td>@Model.Created.FormatLongDatePatternWithTime()</td>
+                    </tr>
+                    <tr>
+                        <td><b>@Resources.SystemUser_CreateOrEdit_LastModified:</b></td>
+                        <td>@Model.Modified.FormatLongDatePatternWithTime()</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.ActionLink(Resources.Global_String_BackToList, "Index")
+                        </td>
+                        <td></td>
+                    </tr>
+                </table>
+            }
+        </td>
+        <td width="50%" align="right" valign="top">
+            <input type="submit" class="btn green" value="@Resources.Global_String_Save" /> 
+        </td>
+    </tr>
+</table>

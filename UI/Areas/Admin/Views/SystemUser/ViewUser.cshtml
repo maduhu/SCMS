@@ -1,0 +1,201 @@
+﻿@using SCMS.CoreBusinessLogic.Settings
+@using SCMS.Resource
+
+@model SCMS.UI.Areas.Admin.Models.SystemUser.SystemUserModel
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.SystemUser_ViewUser_SCMSUserDetails</h3></div>
+    <br />
+    <table width="98%" align="center" border="0" cellpadding="2" cellspacing="2" style=" border-bottom: 1px solid Grey;">
+        <tr class="gridheader2">
+            <td width="25%">@Resources.Global_String_Name</td>
+            <td width="25%">@Resources.Global_String_EmailAddress</td>
+            <td width="25%">@Resources.Global_String_PhoneNumber</td>
+            <td width="25%">@Resources.SystemUser_CreateOrEdit_Photo</td>            
+        </tr>
+        <tr>
+            <td>
+                @Model.FirstName
+                @Html.Raw("&nbsp;")
+                @Model.OtherNames
+            </td>
+            <td>
+                @Model.Email
+            </td>
+            <td>
+                @Model.OfficialPhone
+            </td>
+            <td rowspan="6" align="center">
+                <table align="center">
+                    <tr>
+                        <td>
+                            @if (Model.PhotoLocation.IsNotNullOrWhiteSpace())
+                            {                            
+                                <img src="@Url.Content(Model.PhotoLocation)" width="150" alt="" />                            
+                            }
+                            else
+                            { 
+                                <img src="@Url.Content("~/Content/themes/copenhagen/images/noPhoto.jpg")" width="150" alt="@Resources.SystemUser_ViewProfile_NoPhoto" />                            
+                            }
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @if (Model.PersonSignatureImageId != null)
+                            {
+                                <img src="@Url.Action("Photo", "Person", new { id = Model.PersonSignatureImageId, area = "" })" alt="" style="max-width: 150px;" />
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td>@Resources.Global_String_Designation</td>
+            <td>@Resources.Global_String_CountrySubOffice</td>
+            <td>@Resources.SystemUser_CreateOrEdit_Role_s</td>
+        </tr>
+        <tr>
+            <td>
+                @foreach (var desg in Model.AvailableDesignation)
+                {
+                    if (desg.Value == Model.SelectedDesignationId.ToString())
+                    { 
+                        @desg.Text
+                        break;
+                    }
+                }
+            
+            </td>
+            <td>
+                @foreach (var office in Model.AvailableCountrySubOffices)
+                {
+                    if (office.Value == Model.SelectedCountrySubOfficeId.ToString())
+                    { 
+                        @office.Text
+                        break;
+                    }
+                }
+            </td>
+            <td>
+                @{
+                    string roles = "";
+                    foreach (var role in Model.AvailableRoles)
+                    {
+                        if (role.Selected)
+                        {
+                            if (roles.Length > 0)
+                            {
+                                roles += ", " + role.Text;
+                            }
+                            else
+                            {
+                                roles = role.Text;
+                            }
+                        }
+                    }
+                    @Html.Raw(roles)
+                }
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td>@Resources.Approver_ApproverList_FinanceLimit</td>
+            <td>@Resources.SystemUser_CreateOrEdit_Available</td>
+            <td>@Resources.SystemUser_CreateOrEdit_AccountStatus</td>
+        </tr>
+        <tr>
+            <td>
+                @if (Model.FinanceLimitId != null)
+                {
+                    foreach (var financeLimit in Model.FinanceLimits)
+                    {
+                        if (financeLimit.Value == Model.FinanceLimitId.ToString())
+                        { 
+                            @financeLimit.Text
+                            break;
+                        }
+                    }
+                }
+                else
+                { 
+                    @Resources.SystemUser_ViewProfile_NotSet.ToUpper()
+                }
+            </td>
+            <td>
+                @if (Model.Available)
+                { 
+                    @Resources.Global_String_Yes.ToUpper()
+                }
+                else
+                { 
+                    @Resources.SystemUser_ViewProfile_No.ToUpper()
+                }
+            </td>
+            <td>
+                @if (Model.Active)
+                { 
+                    @Html.Raw(Resources.SystemUser_CreateOrEdit_Active + ", ")
+                }
+                else
+                { 
+                    @Html.Raw(Resources.SystemUser_ViewProfile_Disabled + ", ")
+                }
+                @if (Model.Locked)
+                { 
+                    @Resources.SystemUser_CreateOrEdit_Locked
+                }
+                else
+                { 
+                    @Resources.SystemUser_ViewProfile_Unlocked
+                }
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" valign="top">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            @if (Model.Id.IsNotEmpty())
+                            {
+                                <table>
+                                    <tr>
+                                        <td><b>@Resources.SystemUser_CreateOrEdit_LastIpAddress:</b></td>
+                                        <td>@Html.DisplayFor(model => model.LastIpAddress)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Resources.SystemUser_CreateOrEdit_LastLoginDate:</b></td>
+                                        <td>@Model.LastLoginDate.FormatLongDatePatternWithTime()</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Resources.SystemUser_CreateOrEdit_FailedLoginAttempts:</b></td>
+                                        <td>@Html.DisplayFor(model => model.UserLoginCount)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Resources.SystemUser_CreateOrEdit_DateCreated:</b></td>
+                                        <td>@Model.Created.FormatLongDatePatternWithTime()</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>@Resources.SystemUser_CreateOrEdit_LastModified:</b></td>
+                                        <td>@Model.Modified.FormatLongDatePatternWithTime()</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            @Ajax.ActionLink(Resources.Global_String_BackToList, "List", new { id = "Edit" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "AdminSystemUserDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("List")
+                                       })
+                                        </td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+</div>

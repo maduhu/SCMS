@@ -1,0 +1,20 @@
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\UI.dll
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\UI.pdb
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\Auth.dll
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\EntityFramework.dll
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\Auth.pdb
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\bin\EntityFramework.xml
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\obj\Debug\ResolveAssemblyReference.cache
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\obj\Debug\UI.dll
+D:\projects\DRC\DRC SUPPLY CHAIN\UI\obj\Debug\UI.pdb
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\UI.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\UI.pdb
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\Auth.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\CoreBusinessLogic.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\EntityFramework.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\Auth.pdb
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\CoreBusinessLogic.pdb
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\bin\EntityFramework.xml
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\obj\Debug\UI.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\UI\obj\Debug\UI.pdb

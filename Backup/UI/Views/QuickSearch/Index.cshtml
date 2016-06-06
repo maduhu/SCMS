@@ -1,0 +1,26 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.QuickSearch_String_QuickSearch + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<h3>@ViewBag.SearchTitle</h3>
+
+@if (ViewBag.Results.Count > 0)
+{
+<section class="search-results">
+@foreach (SCMS.UI.Controllers.SimpleViewData h in ViewBag.Results)
+{
+    <article>
+    <h4>@h.Description</h4>
+    <div>
+    <a href="@h.Link/@h.Id">@Resources.Global_String_ViewMoreDetails</a>
+    </div>
+    </article>
+}.
+</section>
+}
+else
+{
+    <h4 style="color:#ae1a28;">@Resources.QuickSearch_String_NoMatchesFound</h4>
+}

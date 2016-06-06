@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{59EAC4DA-30EA-4666-A23B-7CCEC052EDF4}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCMS.Utils</RootNamespace>
+    <AssemblyName>SCMS.Utils</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constants.cs" />
+    <Compile Include="MonthUtility.cs" />
+    <Compile Include="CustomComparer.cs" />
+    <Compile Include="DataTables\DataTablesModelBinder.cs" />
+    <Compile Include="DataTables\DataTablesPageRequest.cs" />
+    <Compile Include="DTOs\CompletionCertificateSummary.cs" />
+    <Compile Include="DTOs\FleetRegistrationSummary.cs" />
+    <Compile Include="DTOs\GeneralInventorySummary.cs" />
+    <Compile Include="DTOs\OrderRequestSummary.cs" />
+    <Compile Include="DTOs\ProcurementPlanSummary.cs" />
+    <Compile Include="DTOs\PurchaseOrderSummary.cs" />
+    <Compile Include="DTOs\RequestForPaymentSummary.cs" />
+    <Compile Include="DTOs\TenderAnalysisSummary.cs" />
+    <Compile Include="DTOs\WarehouseReleaseOrderSummary.cs" />
+    <Compile Include="File\ImageUtility.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BudgetLineSorter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCMS.Model\SCMS.Model.csproj">
+      <Project>{115A8BB2-CEE4-4F8F-B171-B3EB668DC95A}</Project>
+      <Name>SCMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Resources\SCMS.Resource.csproj">
+      <Project>{26034CFE-7B64-4906-BD26-BA85CBD57798}</Project>
+      <Name>SCMS.Resource</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

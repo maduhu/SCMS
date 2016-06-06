@@ -1,0 +1,70 @@
+﻿@using SCMS.Resource
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.GoodsReceivedNote_RegisterAsset_ManageAssets
+        </h3>
+    </div>
+    <br />
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            //new { Key = "pageInput", Value = GridPagerStyles.PageInput },
+            //new { Key = "nextPrevious", Value = GridPagerStyles.NextPrevious },
+            //new { Key = "numeric", Value = GridPagerStyles.Numeric },
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        //GridPagerStyles pagerStyles = GridPagerStyles.NextPrevious;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.AssetView>()
+            .Name("ManageAssets")
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.AssetNumber).Title(Resources.Global_String_AssetNo).Width("16%");
+                columns.Bound(o => o.AssetName).Title(Resources.Global_String_AssetName).Width("17%");
+                columns.Bound(o => o.currentProject).Title(Resources.Budget_CategoryList_ProjectNo).Width("17%");
+                columns.Bound(o => o.WarehouseName).Title(Resources.Global_String_Warehouse).Width("16%");
+                columns.Bound(o => o.AssignedTo).Title(Resources.Inventory_AssetInventoryPopup_AssignedTo).Width("17%");
+                columns.Bound(e => e.AssetId).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false).HtmlAttributes(new { align = "center"})
+                    .ClientTemplate(
+                    "" + @Ajax.ActionLink(Resources.GoodsReceivedNote_AssetManagment_Dispose, "LoadDesposeAsset", new { assetId = "<#= AssetId #>" },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        //OnBegin = string.Format("ShowDialogue('{0} :: <#= AssetNumber #>')", Resources.GoodsReceivedNote_AssetManagment_Dispose),
+                        //OnBegin = "ShowDialogue(" + Resources.GoodsReceivedNote_AssetManagment_Dispose + " :: <#= AssetNumber #>)",
+                        OnBegin = "ShowDialogue()",
+                        OnSuccess = "CenterPopup"
+                    }).ToHtmlString().Replace("&#39", "\"") + "&nbsp;|&nbsp;" +
+
+                    @Ajax.ActionLink(Resources.GoodsReceivedNote_AssetManagment_Handover, "LoadTransferAsset", new { assetId = "<#= AssetId #>" },
+                    new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        //OnBegin = string.Format("ShowDialogue('{0} :: <#= AssetNumber #>')", Resources.GoodsReceivedNote_AssetManagment_Dispose),
+                        //OnBegin = "ShowDialogue(" + Resources.GoodsReceivedNote_AssetManagment_Dispose + " :: <#= AssetNumber #>)",
+                        OnBegin = "ShowDialogue()",
+                        OnSuccess = "CenterPopup"
+                    }).ToHtmlString().Replace("&#39", "\"") + "");
+                //http://www.telerik.com/community/forums/aspnet-mvc/grid/conditional-use-of-actionlink-helpers-in-client-templates.aspx
+
+            })
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_AssetInventCustomBinding", "Inventory"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Filterable()
+            .Groupable()
+    )
+
+    <br />
+</div>

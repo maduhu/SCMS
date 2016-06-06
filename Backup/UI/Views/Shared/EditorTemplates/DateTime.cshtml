@@ -1,0 +1,29 @@
+﻿@model Nullable<System.DateTime>
+@if ( Model.HasValue ) {
+   @Html.TextBox( "" , String.Format( "{0:yyyy-MM-dd}" , Model.Value ) , new  { @class = "datepicker", @readonly="readonly" } )
+}
+else {
+   @Html.TextBox("", String.Format("{0:yyyy-MM-dd}", DateTime.Today), new { @class = "datepicker", @readonly="readonly" })
+}
+@{
+string name = ViewData.TemplateInfo.HtmlFieldPrefix;
+string id = name.Replace( ".", "_" );
+}
+<script type="text/javascript">
+    jQuery.noConflict();
+    $(document).ready(function () {
+        $("#@id").datepicker
+            ({
+                dateFormat: 'yy-mm-dd',
+                showStatus: true,
+                showWeeks: true,
+                highlightWeek: true,
+                numberOfMonths: 1,
+                showAnim: "scale",
+                showOptions: {
+                    origin: ["top", "left"],
+                    direction: 'up'
+                }
+            });
+    });
+</script>

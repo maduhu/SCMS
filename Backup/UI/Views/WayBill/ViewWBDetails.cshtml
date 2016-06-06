@@ -1,0 +1,321 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.ViewWayBill
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.WayBill_ViewWBDetails_WayBillDetails</h3>
+    </div>
+    <h4 style="text-align: center;">@Model.EntityWBill.RefNumber</h4>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+        border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr class="gridheader">
+            <th colspan="4" align="left">
+                &nbsp;&nbsp; @Resources.WayBill_ViewWBDetails_TRANSACTIONDETAILS
+            </th>
+        </tr>
+        <tr>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_IssuingOffice
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_OriginWH
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DestinationOffice
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DestinationWH
+            </th>
+        </tr>
+        <tr>
+            <td style="width: 25%; text-align: center;">
+                @Model.OrignSOfiice.Name
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.OrrignWH.Name
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.destinationWH.CountrySubOffice.Name
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.destinationWH.Name
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DateofLoading
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DateofDispatch
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_Consignee
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_ViewWBDetails_Consigneecontactno
+            </th>
+        </tr>
+        <tr>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.LoadingDate.Value.ToString("dd/MM/yyyy")
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.DispatchDate.Value.ToString("dd/MM/yyyy")
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.consignee.ShortName
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.consignee.OfficialPhone
+            </td>
+        </tr>
+        <tr>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WRForm_LoadWRF_WRO
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DRCVehicleRegNo
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DRCvehicleodometerkm
+            </th>
+            <th style="width: 25%; text-align: center;">
+                @Resources.WayBill_LoadWB_DRCvehiclecallsigncontactno
+            </th>
+        </tr>
+        <tr>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.WarehouseRelease.RefNumber
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.DRCVehicleRegNo
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.DRCVehicleMileage
+            </td>
+            <td style="width: 25%; text-align: center;">
+                @Model.EntityWBill.DRCVehicleContactNo
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="0">
+        <tr class="gridheader">
+            <th width="100%" align="left">
+                &nbsp;&nbsp; @Resources.WayBill_LoadWB_LOADINGDISPATCHDETAILS
+            </th>
+        </tr>
+        <tr>
+            <td width="100%" align="left">
+                <table width="100%" align="center" cellspacing="0" cellpadding="2" border="1" style="border: 1px solid grey;
+                    border-collapse: collapse; font-size: 12px;">
+                    <tr>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.Global_String_SerialNo
+                        </th>
+                        <th style="width: 25%; text-align: center;">
+                            @Resources.WayBill_LoadWB_EquipmentitemCommodity
+                        </th>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.Global_String_Unit
+                        </th>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.Global_String_Weight
+                        </th>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.WayBill_LoadWB_QtyDispatched
+                        </th>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.Global_String_QtyReceived
+                        </th>
+                        <th style="width: 10%; text-align: center;">
+                            @Resources.Global_String_QtyDamaged
+                        </th>
+                        <th style="width: 15%; text-align: center;">
+                            @Resources.Global_String_Remarks
+                        </th>
+                    </tr>
+                    @{ string itemName, serialNo, weight = Resources.Global_String_NA; }
+                    @foreach (var item in Model.WRItems)
+                    {
+                        if (item.Inventory.Item.ItemCategory.CategoryCode == "C")
+                        {
+                            itemName = item.Inventory.Item.Name;
+                            serialNo = item.Inventory.Item.SerialNumber;
+                        }
+                        else
+                        {
+                            itemName = item.Asset.Name;
+                            serialNo = item.Asset.SerialNumber;
+                        }
+                    
+                        <tr class="gridodd">
+                            <td style="text-align: left;">
+                                @serialNo
+                            </td>
+                            <td style="text-align: left;">
+                                @itemName
+                            </td>
+                            <td style="text-align: center;">
+                                @item.Inventory.Item.UnitOfMeasure.Code
+                            </td>
+                            <td style="text-align: right;">
+                                @if (item.Inventory.Item.ItemCategory.CategoryCode == "C")
+                                {
+                                    @weight
+                                }
+                                else
+                                {
+                                    @item.Asset.Weight
+                                }
+                            </td>
+                            <td style="text-align: right;">
+                                @item.Quantity
+                            </td>
+                            <td style="text-align: right;">
+                                @item.QuantityReceived
+                            </td>
+                            <td style="text-align: right;">
+                                @item.QuantityDamaged
+                            </td>
+                            <td style="text-align: left;">
+                                @item.Comments
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" style="border: 1px solid grey;
+        border-collapse: collapse; font-size: 12px;">
+        <tr class="gridheader">
+            <th width="100%" align="left">
+                &nbsp;&nbsp; @Resources.WayBill_ViewWBDetails_LOADINGDISPATCHADDITIONALREMARKS
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td width="100%" align="left">
+                @Model.EntityWBill.LoadingRemarks
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" style="border: 1px solid grey;
+        border-collapse: collapse; font-size: 12px;">
+        <tr class="gridheader">
+            <th colspan="2" align="left">
+                &nbsp;&nbsp; @Resources.WayBill_ViewWBDetails_WRCertificateOfItems
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td style="text-align: left; font-style: italic; width: 50%;">
+                <i><strong>@Resources.Global_String_DRCDDG </strong>@Resources.WayBill_ViewWBDetails_WBitemsReceivedBy</i>
+            </td>
+            <td style="text-align: left; width: 50%;">
+                <strong>@Resources.WayBill_LoadWB_DriverName:</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                @Model.EntityWBill.DriverName
+            </td>
+        </tr>
+        <tr class="gridodd">
+            <td style="text-align: left;">
+                <strong>@Resources.Global_String_StaffName:</strong> &nbsp;
+                @Model.issuer.StaffName
+            </td>
+            <td style="text-align: left;">
+                <strong>@Resources.WayBill_ViewWBDetails_VehicleRegNo:</strong>&nbsp;
+                @Model.EntityWBill.DRCVehicleRegNo
+            </td>
+        </tr>
+        <tr class="gridodd">
+            <td style="text-align: left;">
+                <strong>@Resources.Global_String_Title:</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+                @Model.issuer.Designation
+            </td>
+            <td style="text-align: left;">
+                <strong>@Resources.Global_String_Company:</strong> &nbsp;
+                @Model.EntityWBill.TransportCompany &nbsp;&nbsp;&nbsp;&nbsp; <strong>@Resources.WayBill_ViewWBDetails_LicenseIDNo:</strong>
+                &nbsp;
+                @Model.EntityWBill.DriverLicenseNo
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center;">
+                <p style="text-align: left; font-size: 12px;">
+                    @Resources.WayBill_ViewWBDetails_loadingTitle</p>
+                @if (Model.EntityWBill.Staff != null && Model.EntityWBill.Staff.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.EntityWBill.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td style="text-align: left;">
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" style="border: 1px solid grey;
+        border-collapse: collapse; font-size: 12px;">
+        <tr class="gridheader">
+            <th colspan="2" align="left">
+                &nbsp;&nbsp; @Resources.WayBill_ViewWBDetails_certificationofreceipt
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: left; width: 50%; vertical-align: top;">
+                <strong>@Resources.WayBill_ViewWBDetails_ReceivedinLocation:</strong>
+                @Model.DestnationOfiice.Location.Name
+            </td>
+            <td style="text-align: left; width: 50%; vertical-align: top;">
+                <strong>@Resources.WayBill_ViewWBDetails_ArrivalDate:</strong>
+                @if (Model.EntityWBill.ArrivalDate.HasValue)
+                {
+                    @Model.EntityWBill.ArrivalDate.Value.ToString("dd/MM/yyyy")
+                }
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; vertical-align: top;">
+                <strong>@Resources.WayBill_ViewWBDetails_Receivedbyname:</strong>
+                @if (Model.ReceivedBy != null)
+                { @Model.ReceivedBy.StaffName}
+            </td>
+            <td style="text-align: left; vertical-align: top;">
+                <strong>@Resources.WayBill_LoadWB_DRCvehicleodometerkm:</strong>
+                @Model.EntityWBill.RecvDRCVehicleOdometer
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: left; vertical-align: top;">
+                <strong>@Resources.Global_String_Title:</strong>
+                @if (Model.ReceivedBy != null)
+                { @Model.ReceivedBy.Designation}
+            </td>
+            <td style="text-align: left; vertical-align: top;">
+                <strong>@Resources.WayBill_LoadWB_TotalDistancekm:</strong>
+                @Model.EntityWBill.RecvDRCVehicleTotalDistance
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; vertical-align: top;">
+                <p style="text-align: left; font-size: 12px;">
+                    @Resources.WayBill_ViewWBDetails_consigneesignature</p>
+                @if (Model.EntityWBill.Staff1 != null && Model.EntityWBill.Staff1.Person.SignatureImage != null)
+                {
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.EntityWBill.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td style="text-align: left;">
+                &nbsp;
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <a class="btn btn-primary"  href="@Url.Action("pdf", "WB", new { area = "Reports", WBid = Model.EntityWBill.Id })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+        @Resources.WayBill_ViewWBDetails_GetPDFofWB</a>
+    <br />
+</div>
+<br />
+<p>
+    @Html.ActionLink(Resources.Global_String_BackToList, "Index")
+</p>

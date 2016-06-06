@@ -1,0 +1,157 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.ProcurementPlan
+
+@{ bool canEdit = UserContext.HasPermission(StandardPermissionProvider.ProcurementPlanManage);}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.Global_String_ProcurementPlan :: @Model.ProjectDonor.ProjectNumber</h3></div>
+    <br />
+
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="33%">
+                @Resources.OrderRequest_AddPPItems2OR_OfficePreparing
+            </th>
+            <th align="center" width="33%">
+                @Resources.Global_String_PreparedByName
+            </th>
+            <th align="center" colspan="2">
+                @Resources.Global_String_Date
+            </th>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Model.CountrySubOffice.Name
+            </td>
+            <td align="center" valign="top">
+                @if (Model.Staff4 != null)
+                { 
+                    @Model.Staff4.StaffName
+                }
+            </td>
+            <td align="center" colspan="2">
+                @Model.PreparedOn.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Global_String_PreparedByTitle
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectStartDate
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectEndDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center" title="@Model.ProjectDonor.Project.Name">
+                @Model.ProjectDonor.ProjectNumber
+            </td>
+            <td align="center">
+                @if (Model.Staff4 != null)
+                { 
+                    @Model.Staff4.StaffDesignation
+                }
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.StartDate.ToString(Constants.DATE_FORMAT)
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.EndDate.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+    </table>   
+    <center>  
+        @Ajax.ActionLink(Resources.ProcurementPlan_CreatePPStep2_AddItemToPP, "CreatePPItem", new { ppId = Model.Id }, new AjaxOptions
+        {
+            OnBegin = string.Format("ShowDialogue('{0}')", Resources.ProcurementPlan_CreatePPStep2_AddItemToPP),
+            UpdateTargetId = "popup-page",
+            LoadingElementId = "popup-loading",
+            OnSuccess = "ClearForm();CenterPopup();"
+        }) 
+    </center>
+
+    @if (Model.PPItemList.Count > 0)
+    {
+        <table align="center" width="98%" class="cardTable">
+            <tr>
+                <th>@Resources.Global_String_ItemName</th>
+                <th>@Resources.Report_ConsumableInventory_TotalQty</th>
+                <th>@Resources.Global_String_BL</th>
+                <th>@Resources.ProcurementPlan_ViewPP_ProcuredPOIssued</th>
+                <th>@Resources.ProcurementPlan_ViewPP_Delivered</th>
+                <th>@Resources.ProcurementPlan_ViewPP_BalanceNotDelivered</th>
+                <th>@Resources.ProcurementPlan_ViewPP_BalanceNotOrdered</th>
+                <th>@Resources.ProcurementPlan_ViewPP_ApproxCBM</th>
+                <th>@Resources.ProcurementPlan_ViewPP_WarehouseSpaceRequired</th>
+                <th>@Resources.Global_String_Currency</th>
+                <th>@Resources.OrderRequest_AddItemInEditMode_EstUnitPrice</th>
+                <th>@Resources.OrderRequest_AddItemInEditMode_EstTotalPrice</th>
+                @if(canEdit)
+                {
+                    <th>@Resources.Global_String_Manage</th>
+                }
+            </tr>
+            @foreach (var item in Model.PPItemList)
+            {
+                <tr>                
+                    <td title="@item.ItemDescription">@item.Item.Name</td>     
+                    <td align="center">@item.Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                    <td align="center" title="@item.ProjectBudget.Description">@item.ProjectBudget.LineNumber</td>
+                    <td align="center">@item.ProcuredAmount.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                    <td align="center">@item.DeliveredAmount.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                    <td align="center">@item.BalanceNotDelivered.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                    <td align="center">@item.BalanceNotOrdered.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                    <td align="center">@item.ApproximateCBM</td>
+                    <td align="center">@if (item.WarehouseSpaceRequired.HasValue) { @item.WarehouseSpaceRequired.Value.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)} else { @Html.Raw("-") }</td>
+                    <td align="center">@item.Currency.ShortName</td>
+                    <td align="right">@item.UnitCost.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                    <td align="right">@item.TotalCost.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                    @if(canEdit)
+                    {
+                        <td align="center">
+                            @Ajax.ActionLink(Resources.Global_String_Edit, "EditPPItem", new AjaxOptions
+                            {
+                                OnBegin = string.Format("ShowDialogue('{0}')", Resources.ProcurementPlan_CreatePPStep2_EditPPItem),
+                                UpdateTargetId = "popup-page",
+                                LoadingElementId = "popup-loading",
+                                Url = Url.Action("EditPPItem/" + item.Id),
+                                OnSuccess = "CenterPopup();"
+                            }) 
+                            @Ajax.ActionLink(Resources.Global_String_Remove, "RemovePPItem", new AjaxOptions
+                            {
+                                UpdateTargetId = "ppDiv",
+                                LoadingElementId = "loading",
+                                Url = Url.Action("RemovePPItem", new { id = item.Id, ppId = Model.Id }),
+                                Confirm = Resources.ProcurementPlan_CreatePPStep2_ConfirmRemove
+                            })
+                        </td>
+                    }
+                </tr>
+            }
+        </table>
+    }  
+    
+    <table align="center" width="98%">
+        <tr>
+            <td width="50%">
+                <input type="button" class="btn green" value="@Resources.ProcurementPlan_CreatePPStep2_EditPP" onclick="sendRequest('/ProcurementPlan/EditPP/@Model.Id', 'ppDiv', 'loading')" />
+            </td>
+            <td width="50%" align="right">
+                @if (Model.PPItemList.Count > 0)
+                {
+                    <input type="button" class="btn green" value="@Resources.Global_String_SubmitForApproval" onclick="if(confirm('@Resources.Global_String_SubmitForApproval?')){sendRequest('/ProcurementPlan/SubmitPP/@Model.Id', 'ppDiv', 'loading');}if (document.getElementById('table') != null) {initSorter();sorter.size(20);}" />
+                }
+            </td>
+        </tr>
+    </table>    
+    
+    <br />
+</div>
+         
+
+

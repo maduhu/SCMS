@@ -1,0 +1,25 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.BudgetLine
+@{AjaxOptions ajaxOpts = new AjaxOptions { UpdateTargetId = "budgetDiv", LoadingElementId = "loading", HttpMethod = "Post", Url = Url.Action("UpdateLinkToMB"),
+    OnSuccess="HidePopupDiv" };}
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{ 
+    <table>
+        <tr>
+            <td align="right"><b>@Resources.Budget_CategoryList_BLPopupHeader:</b></td>
+            <td>@Html.DisplayFor(b=>Model.LineNumber)</td>
+        </tr>
+        <tr>
+            <td align="right"><b>@Resources.Budget_EditLinkToMB_MBCategory:</b></td>
+            <td>@Html.DropDownListFor(b => b.GeneralLedgerId, Model.GeneralLedgerCodes)</td>
+        </tr>
+        <tr>
+            <td align="right">@Html.HiddenFor(b=>b.BudgetLineId)</td>
+            <td>
+                <input type="submit" class="btn green"  value=" @Resources.Global_String_Save " />&nbsp;
+                <input type="button" class="btn green"  value="@Resources.Global_String_Cancel" onclick="javascript:CloseDialog()" />
+            </td>
+        </tr>
+    </table>
+}

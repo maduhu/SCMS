@@ -1,0 +1,66 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.USupplier
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "popup-page",
+      LoadingElementId = "popup-loading",
+      HttpMethod = "Post",
+      Url = Url.Action("AddNewSupplier4TA/" + ViewBag.TAID),
+      OnSuccess = "cleanTANumbers();CenterPopup();"
+  };}
+
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/jquery.autocomplete.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<table align="center" style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <td align="center">
+            <div style="width:auto; padding:6px; border:1px solid #A7B601; background:#fff; border-radius: 6px 6px 6px 6px; margin-left: auto; margin-right: auto;">
+                @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+                {
+                    @Html.ValidationSummary(true)
+                    <h4>@Resources.PurchaseOrder_AddNewSupplier4PO_AddNewSupplier</h4>
+                    <table border="0" cellpadding="2" cellspacing="0" width="400">
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_Name<font color="red">*</font>:
+                            </td>
+                            <td width="60%">
+                                @Html.TextBoxFor(m => m.Name, new { id = "supplierName", name = "supplierName" })
+                                @Html.ValidationMessageFor(m => m.Name)   
+                                <script type="text/javascript">
+                                    var $jq = jQuery.noConflict();
+                                    $jq("#supplierName").autocomplete("/Supplier/SearchSuppliers");
+                                </script>                    
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_Address:
+                            </td>
+                            <td width="60%">
+                                @Html.TextAreaFor(m => m.Address)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_PhoneNumber:
+                            </td>
+                            <td width="60%">
+                                @Html.TextBoxFor(m => m.PrimaryPhone)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" class="btn green" value="@Resources.TenderAnalysis_AddNewSupplier4TA_AddSupplier" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </td>
+    </tr>
+</table>

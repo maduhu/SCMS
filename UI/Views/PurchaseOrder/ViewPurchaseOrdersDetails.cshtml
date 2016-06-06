@@ -1,0 +1,579 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.PurchaseOrder
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Model.RefNumber
+            @if (Model.IsInternational)
+            {
+                @string.Format("[{0}]", Constants.INTERNATIONAL)
+            }
+            else
+            {
+                @string.Format("[{0}]", Constants.LOCAL)
+            }
+        </h3>
+    </div>
+    @if (Model.CanEdit)
+    {
+        string editUrl = "EditPO/" + Model.Id;
+        <center>
+            @Ajax.ActionLink(Resources.PurchaseOrder_String_EditPO, "EditPO", new { id =  Model.Id}, new AjaxOptions
+            {
+                UpdateTargetId = "PODiv",
+                LoadingElementId = "loading",
+                Url = Url.Action(editUrl)
+            }) |
+            @Ajax.ActionLink(Resources.PurchaseOrder_ViewPurchaseOrders_DeletePO, "DeletePO", new AjaxOptions
+            {
+                UpdateTargetId = "PODiv",
+                LoadingElementId = "loading",
+                Url = Url.Action("DeletePO/" + Model.Id),
+                Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.RefNumber),
+                OnSuccess = "usermsg('" + Resources.PurchaseOrder_String_PODeleted + "');if (document.getElementById('table') != null) {initSorter();sorter.size(50);}"
+            })
+        </center>
+    }
+    else if (Model.CanApprove)
+    {
+        string linkText = null;
+        string actionName = null;
+        if (!Model.IsApproved && !Model.IsRejected)
+        {
+            linkText = Resources.PurchaseOrder_String_AuthorizePurchaseOrder;
+            actionName = "LoadPurchaseOrder";
+        }
+        if (linkText != null)
+        {
+        <center id="canApprove">
+            @Ajax.ActionLink(linkText, actionName, "RequestReview", new { id = "" }, new AjaxOptions
+            {
+                OnBegin = "ShowDialogueOR('" + linkText + ": " + Model.RefNumber + "')",
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                Url = Url.Action(actionName + "/" + Model.Id, "RequestReview"),
+                OnSuccess = "CenterPopupPO();"
+            })
+        </center>
+        }
+    }
+    else
+    {
+        <br />
+    }
+    <center>
+        <b style="font-weight: bold;">@Resources.Global_String_Date:&nbsp;&nbsp;</b>
+        @if (UserContext.HasPermission(StandardPermissionProvider.BackDateDocument))
+        { 
+                <td align="center" title="@Resources.PurchaseOrder_BackDatePO_BackDatePO" style="cursor: pointer;" onclick="ShowDialogue('@Resources.PurchaseOrder_BackDatePO_BackDatePO :: @Model.RefNumber');sendRequest('/PurchaseOrder/BackDatePO/@Model.Id', 'popup-page', 'popup-loading');CenterPopup();">
+                    @Model.PODate.ToString(Constants.DATE_FORMAT)
+                </td>
+        }
+        else
+        {
+                <td align="center">
+                    @Model.PODate.ToString(Constants.DATE_FORMAT)
+                </td>
+        }
+    </center>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th align="center" width="33.3%">
+                @Resources.Global_String_PurchaseOrderNo
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_ORPPRefNo
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_PaymentTerms
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.RefNumber
+            </td>
+            <td align="center">
+                @if (Model.HasMoreThanOneOR)
+                { 
+                    @Resources.Global_String_Various
+                }
+                else if (Model.OrderRequest != null)
+                {
+                    @Model.OrderRequest.RefNumber
+                }
+                else
+                {
+                    @Model.PPNumber
+                }                
+            </td>
+            <td align="center" title="@Model.PaymentTerm.Description">
+                @Model.PaymentTerm.Code
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.PurchaseOrder_String_QuotationRef
+            </th>
+            <th align="center">
+                @Resources.Global_String_Currency
+            </th>
+            <th align="center">
+                @Resources.GoodsReceivedNote_LoadGRNVerifyItems_DeliveryDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.QuotationRef
+            </td>
+            <td align="center">
+                @Model.Currency.ShortName
+            </td>
+            <td align="center">
+                @Model.LatestDeliveryDate.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.PurchaseOrder_EditPO_ToSupplier
+            </th>
+            <th align="center">
+                @Resources.Global_String_DeliveryAddress
+            </th>
+            <th align="center">
+                @Resources.Global_String_ShippingTerms
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.Supplier.Name
+            </td>
+            <td align="center">
+                @Model.Location.Name
+            </td>
+            <td align="center" title="@Model.ShippingTerm.Description">
+                @Model.ShippingTerm.Name
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.PurchaseOrder_String_POType
+            </th>
+            <th align="center">
+                @Resources.PurchaseOrder_String_TenderingType
+            </th>
+            <th align="center">
+                @Resources.PurchaseOrder_String_TenderNumber
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @if (Model.IsInternational)
+                { 
+                    @Constants.INTERNATIONAL
+                }
+                else
+                {
+                    @Constants.LOCAL
+                }
+            </td>
+            <td align="center">
+                @if (Model.TenderingTypeId.HasValue)
+                { 
+                    @Model.TenderingType.Name
+                }
+            </td>
+            <td align="center">
+                @Model.TenderNumber
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.Global_String_ItemName
+            </th>
+            <th align="center">
+                @Resources.Global_String_UoM
+            </th>
+            <th align="center">
+                @Resources.Global_String_Quantity
+            </th>
+            <th align="center">
+                @Resources.PurchaseOrder_AddPOItems_UnitPrice
+            </th>
+            <th align="center">
+                @Resources.PurchaseOrder_AddPOItems_TotalPrice
+            </th>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Global_String_BL
+            </th>
+            @if (Model.HasMoreThanOneOR)
+            { 
+                <th align="center">
+                    @Resources.Global_String_ORPPRefNo
+                </th>
+            }
+            <th align="center">
+                @Resources.Global_String_Remarks
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.POItems.Count; i++)
+        {            
+            <tr class="gridodd">
+                <td style="width: 20%;" title="@if (Model.POItems[i].OrderRequestItem != null)
+                                               {@Model.POItems[i].OrderRequestItem.ItemDescription}
+                                               else if (Model.POItems[i].ProcurementPlanItem != null)
+                                               {@Model.POItems[i].ProcurementPlanItem.ItemDescription}">
+                    @if (Model.POItems[i].OrderRequestItem != null)
+                    {
+                        @Model.POItems[i].OrderRequestItem.ItemName
+                    }
+                    else if (Model.POItems[i].ProcurementPlanItem != null)
+                    {
+                        @Model.POItems[i].ProcurementPlanItem.Item.Name
+                    }
+                    else
+                    { 
+                        @Html.Raw(Resources.Global_String_TransportCost)
+                    }
+                </td>
+                <td style="width: 10%; text-align: center;">
+                    @if (Model.POItems[i].OrderRequestItem != null)
+                    {
+                        @Model.POItems[i].OrderRequestItem.Item.UnitOfMeasure.Code
+                    }
+                    else
+                    {
+                        @Model.POItems[i].ProcurementPlanItem.Item.UnitOfMeasure.Code
+                    }
+                </td>
+                <td style="width: 10%; text-align: center;">
+                    @Model.POItems[i].Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td style="width: 10%; text-align: right;">
+                    @Model.POItems[i].UnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td style="width: 10%; text-align: right;">
+                    @Model.POItems[i].TotalPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td style="width: 10%; text-align: center;">
+                    @Model.POItems[i].ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber
+                </td>
+                <td style="width: 5%; text-align: center;" title="@Model.POItems[i].ProjectBudget.Description">
+                    @Model.POItems[i].ProjectBudget.LineNumber
+                </td>
+                @if (Model.HasMoreThanOneOR)
+                { 
+                    <td style="width: 15%; text-align: center;">
+                        @if(Model.POItems[i].OrderRequestItemId.HasValue)
+                        {
+                            @Model.POItems[i].OrderRequestItem.OrderRequest.RefNumber
+                        }
+                        else
+                        {
+                            @Model.POItems[i].ProcurementPlanItem.ProcurementPlan.RefNumber
+                        }
+                    </td>
+                }
+                <td style="width: 10%; text-align: left;">
+                    @Model.POItems[i].Remarks
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="3" class="gridheader" align="right">
+                @Resources.Global_String_CurrencyOfPurchaseOrder:&nbsp;
+            </td>
+            <td align="center">
+                @Model.Currency.ShortName
+            </td>
+            <td class="gridheader" align="right">
+                @Resources.Global_String_Total:&nbsp;
+            </td>
+            <td align="right">
+                @if (Model.TotalAmount != null)
+                {
+                    <b>@Model.TotalAmount.Value.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</b>
+                }
+            </td>
+            <td colspan="3" class="gridheader">&nbsp;@Resources.Global_String_POValue
+            </td>
+        </tr>
+        @*<tr>
+            <td colspan="3" class="gridheader" align="right">
+                @Resources.Global_String_MasterBudgetCurrency:&nbsp;
+            </td>
+            <td align="center">
+                @if (Model.Currency1 != null)
+                { 
+                    @Model.Currency1.ShortName
+                }
+            </td>
+            <td class="gridheader" align="right">
+                @Resources.Global_String_Total:&nbsp;
+            </td>
+            <td align="right">
+                @if (Model.MBValue != null)
+                {
+                    <b>@Model.MBValue.Value.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</b>
+                }
+            </td>
+            <td colspan="3" class="gridheader">&nbsp;@Resources.Global_String_POValue
+            </td>
+        </tr>*@
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr>
+            <th colspan="4">
+                @Resources.PurchaseOrder_LoadOtherPODetails_DocumentationRequired
+            </th>
+        </tr>
+        <tr>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.ProformaRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_String_ProformaInvoice
+            </td>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.CommercialInvoiceRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_String_CommercialInvoice
+            </td>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.WayBillRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_String_WaybillAirbill
+            </td>
+            <td width="25%">&nbsp;@Html.CheckBoxFor(p => p.PackingListRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_String_PackingList
+            </td>
+        </tr>
+        <tr>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.DeliveryNoteRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_String_DeliveryNote
+            </td>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.ManualsRequired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_LoadOtherPODetails_Manuals
+            </td>
+            <td width="25%">
+                @Html.CheckBoxFor(p => p.CertificatesReqired, new { disabled = "disabled" })
+                @Resources.PurchaseOrder_LoadOtherPODetails_Certificates
+            </td>
+            <td width="25%">
+                <table>
+                    <tr>
+                        <td style="border-color: White;">@Html.CheckBoxFor(p => p.OtherRequired, new { disabled = "disabled" })
+                        </td>
+                        <td style="border-color: White;">@Model.OtherSpecify
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Resources.PurchaseOrder_LoadOtherPODetails_ShippingMarks
+            </th>
+            <th>
+                @Resources.PurchaseOrder_LoadOtherPODetails_ConsigneeAddress
+            </th>
+            <th>
+                @Resources.Global_String_EmailAddress 1
+            </th>
+            <th>
+                @Resources.Global_String_EmailAddress 2
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @Model.ShippingMarks
+                &nbsp;
+            </td>
+            <td align="center">
+                @Model.ConsigneeAddress
+            </td>
+            <td id="csEmail1" align="center">
+                @Model.ConsigneeEmail1
+            </td>
+            <td id="csEmail2" align="center">
+                @Model.ConsigneeEmail2
+            </td>
+        </tr>
+        <tr>
+            <th>
+                @Resources.PurchaseOrder_LoadOtherPODetails_PreFinancing
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        <tr>
+            <td align="center">
+                <table border="0">
+                    <tr>
+                        <td style="border-color: White;">@Html.CheckBoxFor(p => p.PrefinancingGuaranteeRequired, new { disabled = "disabled" })
+                        </td>
+                        <td style="border-color: White;">
+                            @if (Model.PFGPercentage != null)
+                            {
+                                @Model.PFGPercentage.Value.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                                @Html.Raw(" %")
+                            }
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    @if (UserContext.HasPermission(StandardPermissionProvider.PurchaseOrderManage))
+    {         
+        <center>
+            @Ajax.ActionLink(Resources.PurchaseOrder_String_ManageAttachments, "LoadAttachDocs", new { id = Model.Id }, new AjaxOptions
+            {
+                UpdateTargetId = "PODiv",
+                LoadingElementId = "loading",
+                Url = Url.Action("LoadAttachDocs", new { id = Model.Id })
+            })
+        </center>
+    }
+    @if (Model.AttachedDocuments != null && Model.AttachedDocuments.Count > 0)
+    {
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="4" border="1" class="cardTable">
+            <tr class="gridheader">
+                <th width="100%">
+                    @Resources.Global_String_AttachedDocuments
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <ol>
+                        @foreach (var doc in Model.AttachedDocuments)
+                        { 
+                            <li>
+                                <a href="@Url.Action("GetAttachment", new { docId = doc.Id })" target="_blank">
+                                    @string.Format("{0} ({1})", doc.Name, doc.RefNo)
+                                </a>
+                            </li>
+                        }
+                    </ol>
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="4" border="1" class="cardTable">
+        <tr class="gridheader">
+            <td width="20%">
+                @Resources.Approver_ApproverList_Authorization
+            </td>
+            <td width="40%">
+                @Resources.Global_String_PreparedBy
+            </td>
+            <td width="40%">
+                @Resources.Global_String_ApprovedBy
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Name:
+            </td>
+            <td>
+                @if (Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffName
+                }
+            </td>
+            <td>
+                @if (Model.Staff != null)
+                {
+                    @Model.Staff.StaffName
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Title:
+            </td>
+            <td>
+                @if (Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffDesignation
+                }
+            </td>
+            <td>
+                @if (Model.Staff != null)
+                {
+                    @Model.Staff.StaffDesignation
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Date:
+            </td>
+            <td>
+                @if (Model.IsSubmitted && Model.Staff1 != null)
+                {
+                    @Model.PreparedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+            <td>
+                @if (Model.IsApproved && Model.ApprovedBy != null)
+                {
+                    @Model.ApprovedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Signature:
+            </td>
+            <td>
+                @if (Model.IsSubmitted && Model.Staff1 != null && Model.Staff1.StaffSignature != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td>
+                @if (Model.IsApproved && Model.Staff != null && Model.Staff.StaffSignature != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+        </tr>
+    </table>
+    <hr />
+    @if (Model.IsApproved == true)
+    {
+        if (!Model.IsInternational)
+        {
+        <a class="btn btn-primary"  href="@Url.Action("PurchaseOrder", "PDFReports", new { refNumber = Model.RefNumber })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf</a>
+        <br />
+        
+        }
+        else
+        {
+        <a class="btn btn-primary"  href="@Url.Action("PurchaseOrderInternational", "PDFReports", new { refNumber = Model.RefNumber })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf</a>
+        <br />
+        }
+    }
+</div>
+<p>
+    @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new { id = "ViewPurchaseOrders" }, new AjaxOptions
+    {
+        UpdateTargetId = "PODiv",
+        LoadingElementId = "loading",
+        Url = Url.Action("ViewPurchaseOrders")
+    })
+</p>

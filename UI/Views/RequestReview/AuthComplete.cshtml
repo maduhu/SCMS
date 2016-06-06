@@ -1,0 +1,17 @@
+﻿@using SCMS.Resource
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.RequestReview_String_AuthorizationComplete</h3>
+    </div>
+    <table align="center">
+        <tr>
+            <td align="center">@ViewBag.Message</td>
+        </tr>
+        <tr>
+            <td align="center"><a class="btn btn-primary" target="_blank" href="@ViewBag.PdfURL">@Resources.RequestReview_String_ViewAndPrint</a></td>
+        </tr>
+        <tr>
+            <td align="center"><a class="reviewLink" href="#" onclick="CloseDialog()">@Resources.Global_String_Close</a></td>
+        </tr>
+    </table>
+</div>

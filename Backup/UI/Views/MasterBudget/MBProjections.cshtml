@@ -1,0 +1,107 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.MBProjection>
+<div class="partialViewCard">
+<div class="partialViewCardHeader"><h3>@Resources.MasterBudget_MBProjections_MasterBudgetProjections</h3></div>
+<br />
+@if (Model.Count() > 0)
+{
+    <!-- Since this view is rendered after any action, the status of our request is posted here. 1 = success, 0 = failure
+         Common failure will be because of attempting to enter a category number or subline number that already exists-->
+    <input type="hidden" id="actionStatus" value="@ViewBag.ActionStatus" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.StatusMsg" />
+    <table width="98%" align="center" cellspacing="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr class="gridheader">
+            <th width="10%">
+                @Resources.Budget_CategoryList_CategoryNo
+            </th>
+            <th width="50%">
+                @Resources.Budget_EditLinkToMB_MBCategory
+            </th>
+            <th width="15%">
+                @Resources.MasterBudget_CreateProjection_AmountProjected
+            </th>
+            <th width="10%">
+                @Resources.Global_String_Currency
+            </th>
+            @if (UserContext.HasPermission(StandardPermissionProvider.MasterBudgetProjectionManage))
+            {
+                <th width="15%">
+                    @Resources.Global_String_Manage
+                </th>
+            }
+        </tr>
+    @foreach (var item in Model)
+    {
+        <tr class="gridodd">
+            <td align="center">
+                @Html.DisplayFor(modelItem => item.EntityProjection.MasterBudgetCategory.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntityProjection.MasterBudgetCategory.Description)
+            </td>            
+            <th align="right">
+                @Html.DisplayFor(modelItem => item.AmountProjected)
+            </th>
+            <th align="center">
+                @Html.DisplayFor(modelItem => item.EntityProjection.Currency.ShortName)
+            </th>
+            @if (UserContext.HasPermission(StandardPermissionProvider.MasterBudgetProjectionManage))
+            {
+                <td align="center">
+                    @Ajax.ActionLink(Resources.Global_String_Edit, "MBPIndex", new { id = "EditProjection" }, new AjaxOptions
+                    {
+                        OnBegin = string.Format("ShowDialogue('{0} :: " + item.EntityProjection.MasterBudgetCategory.Number + "')", Resources.Global_String_Edit),
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("EditProjection/" + item.Id.ToString())
+                    }) |
+                    @Ajax.ActionLink(Resources.Global_String_Delete, "MBPIndex", new { id = "DeleteProjection" }, new AjaxOptions
+                    {
+                        UpdateTargetId = "budgetDiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("DeleteProjection/" + item.Id.ToString()),
+                        Confirm = string.Format(Resources.MasterBudget_MBProjections_ConfirmDelete, item.EntityProjection.MasterBudgetCategory.Description)
+                    })
+                </td>
+            }
+        </tr>
+    }
+    </table>
+}
+@if (Model.Count() < 1)
+{
+    <table width="98%" align="center" cellspacing="0" cellpadding="5" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr class="gridheader">
+            <th width="10%">
+                @Resources.Budget_CategoryList_CategoryNo
+            </th>
+            <th width="50%">
+                @Resources.Budget_EditLinkToMB_MBCategory
+            </th>
+            <th width="15%">
+                @Resources.MasterBudget_CreateProjection_AmountProjected
+            </th>
+            <th width="10%">
+                @Resources.Global_String_Currency
+            </th>
+            <th width="15%">
+                @Resources.Global_String_Manage
+            </th>
+        </tr>
+        <tr>
+            <td colspan="5" align="center">
+                @Ajax.ActionLink(Resources.Global_String_AddNew, "MBPIndex", new { id = "CreateProjection" }, new AjaxOptions
+                {
+                    OnBegin = string.Format("ShowDialogue('{0}')", Resources.MasterBudget_MBPIndex_NewMBProjection),
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    Url = Url.Action("CreateProjection/" + ViewBag.Id),
+                })
+            </td>
+        </tr>
+    </table>
+}
+<br />
+</div>

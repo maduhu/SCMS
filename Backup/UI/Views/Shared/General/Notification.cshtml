@@ -1,0 +1,65 @@
+﻿<div id="notification">
+    <ul id="noti-root">
+        <li><a href="#" class="m-title">AUTHORIZATION (NO)</a>
+            <ul>
+                <li><a href="#" title="">ALL DOCUMENTS (NO)</a></li>
+                <li><a href="#" title="">RFP – ECF – SPM (NO)</a></li>
+                <li>
+                    <div id="ortapoAuth">
+                        <a href="#" title="" onclick="LoadRequestsForAuth();">OR – TA – PO (NO)</a>
+                    </div>
+                 </li>
+                <li><a href="#" title="">WRN (NO)</a></li>
+                <li><a href="#" title="">TAF (NO)</a></li>
+            </ul>
+        </li>
+        <li><a id="notHeader" href="#" class="m-title">NOTIFICATIONS (NO)</a>
+            <ul>
+                <li><a href="#" title="">ALL DOCUMENTS (NO)</a></li>
+                <li><a href="#" title="">RFP – ECF – SPM (NO)</a></li>
+                <li>
+                    <div id="ortapoApprove">
+                        <a href="#" title="" onclick="LoadRequests();">OR – TA – PO (NO)</a>
+                    </div>
+                </li>
+                <li><a href="#" title="">WRN (NO)</a></li>
+                <li><a href="#" title="">TAF (NO)</a></li>
+                <li><a href="#" title="">GRN - WB (NO)</a></li>
+            </ul>
+        </li>
+        <li><a href="#" class="m-title">REPORTS</a>
+            <ul>
+                <li><a href="#" title="">PRIOIR REPORTS</a></li>
+                <li><a href="#" title="">RFP – ECF – SPM (NO)</a></li>
+                <li><a href="#" title="" class="m-title">GENERATE REPORTS</a>
+                    <ul>
+                        <li><a href="#" title="">BUDGET</a></li>
+                        <li><a href="#" title="">INVENTORY</a></li>
+                        <li><a href="#" title="" class="m-title">STATISTICS</a>
+                            <ul>
+                                <li><a href="#" title="">PROCUREMENT STATS</a></li>
+                                <li><a href="#" title="">OR – TA – PO (NO)</a></li>
+                                <li><a href="#" title="">WRN (NO)</a></li>
+                                <li><a href="#" title="">TAF (NO)</a></li>
+                                <li><a href="#" title="">GRN - WB (NO)</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#" title="">PRIOR REPORTS</a></li>
+                        <li><a href="#" title="">TAF (NO)</a></li>
+                        <li><a href="#" title="">GRN - WB (NO)</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("ul#noti-root").accordionMenu({
+            accordion: true,
+            speed: 300,
+            closedSign: '',
+            openedSign: ''
+        });
+    });
+</script>

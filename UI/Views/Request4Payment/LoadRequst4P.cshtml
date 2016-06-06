@@ -1,0 +1,218 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.Request4Payment
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "R4PDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("SaveR4P"),
+      OnBegin = "return validateRFP()",
+      OnSuccess = "javascript:usermsg('" + Resources.Request4Payment_LoadRequest4P_SuccessMessage + "');if (document.getElementById('table') != null) {initSorter();sorter.size(50);}",
+      OnFailure = "javascript:errormsg()",
+      Confirm = Resources.Global_String_SubmitForReview
+  };}
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.Request4Payment_LoadRequest4P_NewRFP: @Model.EntityPaymentRqst.RefNumber</h3></div>
+    @using (Ajax.BeginForm(null,null,ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        <br />
+        <table width="98%" border="0" align="center" style="margin-left: auto; margin-right: auto;">
+            <tr class="gridheader">
+                <td width="33.3%">
+                    @Resources.Global_String_RFPNo
+                </td>
+                <td width="33.3%">
+                    @Model.EntityPaymentRqst.PaymentRqstType
+                    @Html.HiddenFor(x => x.EntityPaymentRqst.PaymentRqstType)
+                    @Html.ValidationMessageFor(x => x.EntityPaymentRqst.PaymentRqstType)
+                </td>
+                <td width="33.3%">
+                    @Resources.Global_String_Date
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(m => m.EntityPaymentRqst.RefNumber, new { @readonly = "readonly" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.ReferenceId, Model.dropdownlist, Resources.Global_String_PleaseSelect, new { id = "dplpo", onchange = "javascript:GetR4PaymentDetails2(this)" })
+                    @Html.ValidationMessageFor(x => x.ReferenceId)
+                </td>
+                <td>
+                    @Html.HiddenFor(m => m.EntityPaymentRqst.RequestDate)
+                    @Html.EditorFor(m => m.EntityPaymentRqst.PreparedOn)
+                    @Html.ValidationMessageFor(m => m.EntityPaymentRqst.PreparedOn)
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <td>
+                    @Resources.Global_String_SubjectPurpose
+                </td>                
+                <td>
+                    @Resources.Global_String_Currency
+                </td>
+                <td>
+                    @Resources.Global_String_TotalPayment
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.TextBoxFor(m => m.EntityPaymentRqst.Subject, new { @class = "textcontent", @id = "subject" })
+                    @Html.ValidationMessageFor(m => m.EntityPaymentRqst.Subject)
+                </td> 
+                <td>
+                    @Html.DropDownListFor(x => x.EntityPaymentRqst.CurrencyId, Model.Currencies, Resources.Global_String_PleaseSelect, new { @disabled = "disabled" })
+                    @Html.ValidationMessageFor(x => x.EntityPaymentRqst.CurrencyId)
+                    @Html.HiddenFor(x => x.EntityPaymentRqst.CurrencyId)
+                </td>
+                <td>
+                    @Html.TextBoxFor(m => m.EntityPaymentRqst.TotalAmount, new { @class = "numericTb", @id = "tbTotalAmount", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(m => m.EntityPaymentRqst.TotalAmount)
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <td>
+                    @Resources.Request4Advance_CreateRFA_PaymentTo
+                </td>
+                <td>
+                    @Resources.Global_String_PaymentType
+                </td>
+                <td>
+                    @Resources.Global_String_PaymentTerms
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DropDownListFor(x => x.EntityPaymentRqst.SupplierId, Model.Suppliers, Resources.Global_String_PleaseSelect, new { @class = "textcontent", @disabled = "disabled" })
+                    @Html.HiddenFor(x => x.EntityPaymentRqst.SupplierId)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.EntityPaymentRqst.PaymentTypeId, Model.Paymenttype, Resources.Global_String_PleaseSelect, new { @id = "paymentType" })
+                    @Html.ValidationMessageFor(x => x.EntityPaymentRqst.PaymentTypeId)
+                </td>
+                <td>
+                    @Html.DropDownListFor(x => x.EntityPaymentRqst.PaymentTermId, Model.PaymentTerms, Resources.Global_String_PleaseSelect, new { @class = "textcontent", @id = "paymentTerm" })
+                    @Html.ValidationMessageFor(x => x.EntityPaymentRqst.PaymentTermId)
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;" colspan="3" class="gridheader">
+                    @Resources.Request4Advance_CreateRFADetail_RequestFor:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3" style="text-align: left;">
+                    <table width="100%">
+                        <tr>
+                            <td>
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "FullPayment", new { @id = "FullPayment" })
+                                    @Resources.Request4Payment_String_FullPayment</div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Rate_Instalment", new { @id = "Rate_Instalment" })
+                                    @Resources.Request4Payment_String_RateInstallment</div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Adv_Payment_percentage", new { @id = "Adv_Payment_percentage" })
+                                    @Resources.Request4Payment_String_AdvPayment</div>
+                            </td>
+                            <td>
+                                <div>
+                                    @Html.RadioButtonFor(x => x.EntityPaymentRqst.RequestFor, "Adv_Final_Payment_percentage", new { @id = "Adv_Final_Payment_percentage" })
+                                    @Resources.Request4Payment_String_AdvFinalPayment</div>
+                            </td>
+                        </tr>
+                    </table>
+                    @Html.ValidationMessageFor(x => x.EntityPaymentRqst.RequestFor)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <table width="100%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+                        border-collapse: collapse; padding: 5px; font-size: 12px;">
+                        <tr class="gridheader">
+                            <th colspan="4" align="center">
+                                @Resources.Global_String_PaymentDetails
+                            </th>
+                        </tr>
+                        @if (Model.paymentDetais.Count() > 0)
+                        {
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th style="width: 25%;">
+                                    @Resources.Budget_CategoryList_ProjectNo
+                                </th>
+                                <th style="width: 45%;">
+                                    @Resources.Budget_CreateSubLine_LineNumber
+                                </th>
+                                <th style="width: 25%;">
+                                    @Resources.Global_String_Amount
+                                </th>
+                            </tr>
+                            for (int i = 1; i <= Model.paymentDetais.Count; i++)
+                            {                            
+                                <tr>
+                                    <td align="left">
+                                        @i
+                                    </td>
+                                    <td>
+                                        @Model.paymentDetais[i - 1].projectNo
+                                        @Html.HiddenFor(x => x.paymentDetais[i - 1].PorjectNoId)
+                                        @Html.HiddenFor(x => x.paymentDetais[i - 1].PoItemId)
+                                    </td>
+                                    <td align="left">@Model.paymentDetais[i - 1].BudgetLine
+                                        @Html.Raw("&nbsp;")
+                                        @Model.paymentDetais[i - 1].BudgetLineDescription
+                                        @Html.HiddenFor(x => x.paymentDetais[i - 1].BudgetLineId)
+                                    </td>
+                                    <td>
+                                        @Html.TextBoxFor(x => x.paymentDetais[i - 1].Amount, new { @class = "numericTb", @id = "lineAmount" + i, @onblur = "javascript:checkLineLimit(" + i + "," + Model.paymentDetais.Count + ")", @autocomplete = "off" })
+                                        @Html.Raw("<input type=\"hidden\" id=\"lineLimit" + i + "\" value=\"" + Model.paymentDetais[i - 1].Amount + "\" /> ")
+                                        @Html.ValidationMessageFor(x => x.paymentDetais[i - 1].Amount)
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    &nbsp;
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: left;" colspan="3" class="gridheader">
+                    @Resources.Global_String_Remarks:
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    @Html.TextAreaFor(m => m.EntityPaymentRqst.Remarks, new { @rows = "3"})
+                    @Html.ValidationMessageFor(m => m.EntityPaymentRqst.Remarks)
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <p>
+            &nbsp;&nbsp;
+            <input type="submit" class="btn green"  value="@Resources.Global_String_SubmitForReview" />
+        </p>
+        <div style="text-align: center;">
+            @if (Model.IsSaved)
+            {
+                <span class="action_message">@Model.usermsg</span>
+            }
+            else
+            {<span class="field-validation-error">@Model.usermsg</span> }
+        </div>
+    }
+</div>

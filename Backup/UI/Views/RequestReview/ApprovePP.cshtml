@@ -1,0 +1,228 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@using SCMS.CoreBusinessLogic.NotificationsManager
+@model SCMS.Model.ProcurementPlan
+           
+@{
+    string successMsg = string.Empty;
+    if (Model.ActionType == NotificationHelper.approvalCode || Model.ActionType == NotificationHelper.approvalIICode)
+    {
+        successMsg = Resources.RequestReview_String_PPApproved;
+    }
+    else if(Model.ActionType == NotificationHelper.reviewCode)
+    {
+        successMsg = Resources.RequestReview_String_PPReviewed;
+    }
+    else if(Model.ActionType==NotificationHelper.authorizationCode)
+    {
+        successMsg = Resources.RequestReview_String_PPAuthorized;
+    }
+    
+    AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "popup-page",
+        LoadingElementId = "popup-loading",
+        HttpMethod = "Post",
+        Url = Url.Action("ApprovePP"),
+        OnBegin = "return VerifyPPApproval()",
+        OnSuccess = string.Format("ReviewComplete('{0}.', '{1}');ReloadPP('{2}');", successMsg, Resources.Global_String_ApprovalComplete, Model.Id)
+    };
+}
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.RequestReview_String_ProcurementPlanApproval</h3></div>
+    <br />
+    <h4 style="text-align: center;">@Model.RefNumber</h4>
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="33%">
+                @Resources.OrderRequest_AddPPItems2OR_OfficePreparing
+            </th>
+            <th align="center" width="33%">
+                @Resources.Global_String_PreparedByName
+            </th>
+            <th align="center" colspan="2">
+                @Resources.Global_String_Date
+            </th>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Model.CountrySubOffice.Name
+            </td>
+            <td align="center" valign="top">
+                @if(Model.Staff4!=null)
+                {
+                    @Model.Staff4.StaffName
+                }
+            </td>
+            <td align="center" colspan="2">
+                @Model.PreparedOn.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Global_String_PreparedByTitle
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectStartDate
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectEndDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center" title="@Model.ProjectDonor.Project.Name">
+                @Model.ProjectDonor.ProjectNumber
+            </td>
+            <td align="center">
+                @if(Model.Staff4!=null)
+                {
+                    @Model.Staff4.StaffDesignation
+                }
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.StartDate.ToString(Constants.DATE_FORMAT)
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.EndDate.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="25%">
+                @Resources.Global_String_ApprovedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_ReviewedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_ApprovedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_AuthorizedBy
+            </th>
+        </tr>
+        <tr>
+            <td title="@if(Model.Staff != null){ @Model.Staff.StaffName }">
+                @if (Model.IsApproved1 && Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                } &nbsp;
+            </td>
+            <td title="@if(Model.Staff3 != null){ @Model.Staff3.StaffName }">
+                @if (Model.IsReviewed && Model.Staff3 != null && Model.Staff3.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff3.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td title="@if(Model.Staff1 != null){ @Model.Staff1.StaffName }">
+                @if (Model.IsApproved2 && Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td title="@if(Model.Staff2 != null){ @Model.Staff2.StaffName }">
+                @if (Model.IsAuthorized && Model.Staff2 != null && Model.Staff2.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff2.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th title="@if(Model.Staff != null){ @Model.Staff.StaffName }">
+                @if (Model.IsApproved1 && Model.Staff != null)
+                { 
+                    @Model.Staff.StaffDesignation
+                }&nbsp;
+            </th>
+            <th title="@if(Model.Staff3 != null){ @Model.Staff3.StaffName }">
+                @if (Model.IsReviewed && Model.Staff3 != null)
+                { 
+                    @Model.Staff3.StaffDesignation
+                }
+            </th>
+            <th title="@if(Model.Staff1 != null){ @Model.Staff1.StaffName }">
+                @if (Model.IsApproved2 && Model.Staff1 != null)
+                { 
+                    @Model.Staff1.StaffDesignation
+                }
+            </th>
+            <th title="@if(Model.Staff2 != null){ @Model.Staff2.StaffName }">
+                @if (Model.IsAuthorized && Model.Staff2 != null)
+                { 
+                    @Model.Staff2.StaffDesignation
+                }
+            </th>
+        </tr>
+    </table>
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.ActionType)
+        <input type="hidden" id="itemCount" value="@Model.PPItemList.Count" />
+        if (Model.PPItemList.Count > 0)
+        {
+            <table align="center" width="98%" class="cardTable">
+                <tr>
+                    <th>@Resources.Global_String_ItemName</th>
+                    <th>@Resources.Report_GenInventory_ItemDescription</th>
+                    <th>@Resources.Global_String_Unit</th>
+                    <th>@Resources.Global_String_Qty</th>
+                    <th>@Resources.OrderRequest_AddItemInEditMode_EstUnitPrice</th>
+                    <th>@Resources.OrderRequest_AddItemInEditMode_EstTotalPrice</th>
+                    <th>@Resources.Global_String_Currency</th>
+                    <th>@Resources.Global_String_BL</th>
+                    <th>@Resources.Global_String_Approve?</th>
+                </tr>
+                @for (int i = 0; i < Model.PPItemList.Count; i++)
+                {
+                    <tr>                
+                        <td>@Model.PPItemList[i].Item.Name</td>
+                        <td>@Model.PPItemList[i].ItemDescription</td>
+                        <td>@Model.PPItemList[i].Item.UnitOfMeasure.Code</td>
+                        <td align="center">
+                            @Html.TextBoxFor(m => Model.PPItemList[i].Quantity, new { id="qty" + i, @class = "numericTb", onblur = "ComputePPTotals(" + i + ")" })
+                            @Html.ValidationMessageFor(m => Model.PPItemList[i].Quantity)
+                        </td>
+                        <td align="right">
+                            @Html.TextBoxFor(m => Model.PPItemList[i].UnitCost, new { id="unitCost" + i, @class = "numericTb", onblur = "ComputePPTotals(" + i + ")" })
+                            @Html.ValidationMessageFor(m => Model.PPItemList[i].UnitCost)
+                        </td>
+                        <td align="right">
+                            @Html.TextBoxFor(m => Model.PPItemList[i].TotalCost, new { id="totalCost" +  i, @class = "numericTb", @readonly = "readonly" })                            
+                        </td>
+                        <td align="center">
+                            @Html.DropDownListFor(m=>Model.PPItemList[i].CurrencyId, Model.PPItemList[i].Currencies)
+                        </td>
+                        <td align="center">@Html.DropDownListFor(m => Model.PPItemList[i].BudgetLineId, Model.PPItemList[i].BudgetLines)</td>
+                        <td align="center">
+                            @Html.CheckBoxFor(m => Model.PPItemList[i].IsApproved)
+                            @Html.HiddenFor(m => Model.PPItemList[i].Id)
+                        </td>                        
+                    </tr>
+                }
+            </table>
+        }      
+        <table align="center" width="98%">
+            <tr>
+                <td width="50%" align="right">
+                    <input type="submit" class="btn tertiary" value="@Resources.Global_String_Approve" />
+                </td>
+                <td width="50%">
+                    <input type="button" class="btn tertiary" value="@Resources.Global_String_Reject" onclick="sendRequest('/RequestReview/RejectPP?ppId=@Model.Id'+'&actionType=@Model.ActionType', 'popup-page', 'popup-loading'); CenterPopup();" />
+                </td>
+            </tr>
+        </table>    
+    }
+    <br />
+</div>
+         
+
+

@@ -1,0 +1,128 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.GlobalSettings_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<div id="gsMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.GlobalSettings_Index_Header</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="AdminGlobalSettingsDiv">
+        <!-- Content goes here-->
+        <div class="partialViewCard">
+            <div class="partialViewCardHeader">
+                <h3>
+                    @Resources.GlobalSettings_Index_Header</h3>
+            </div>
+            <br />
+            <table align="center" cellpadding="5" style="width: 600px;">
+                <tr>
+                    <td width="25%">
+                        <a href="/CountrySubOffice/" class="btn globalSettings" title="@Resources.Global_String_ManageCountrySubOffices">@Resources.CountrySuboffice_Index_Header</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Location/" class="btn globalSettings" title="@Resources.Location_ListView_ManageLocations">@Resources.Global_String_Locations</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Currency/" class="btn globalSettings" title="@Resources.Currency_ListView_ManageCurrencies">@Resources.Global_String_Currencies</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/ExchangeRate/" class="btn globalSettings" title="@Resources.ExchangeRate_ListView_ManageExchangeRates">@Resources.Global_String_ExchangeRates</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+                        <a href="/ItemClassification/" class="btn globalSettings" title="@Resources.ItemClassification_ListView_ManageItemClassifications">@Resources.Global_String_ItemClassifications</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Item/" class="btn globalSettings" title="@Resources.Item_ListView_ManageItems">@Resources.Global_String_Items</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/UnitOfMeasure/" class="btn globalSettings" title="@Resources.Global_String_ManageUnitsOfMeasure">@Resources.Global_String_UnitsOfMeasure</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Designation/" class="btn globalSettings" title="@Resources.Global_String_ManageDesignations">@Resources.Global_String_Designations</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+                        <a href="/ShippingTerm/" class="btn globalSettings" title="@Resources.Global_String_ManageShippingTerms">@Resources.Global_String_ShippingTerms</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Supplier/" class="btn globalSettings" title="@Resources.Global_String_ManageSuppliers">@Resources.Global_String_Suppliers</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/PaymentTerm/" class="btn globalSettings" title="@Resources.Global_String_ManagePaymentTerms">@Resources.Global_String_PaymentTerms</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/PaymentType/" class="btn globalSettings" title="@Resources.Global_String_ManagePaymentTypes">@Resources.Global_String_PaymentTypes</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+                        <a href="/VehicleMake/" class="btn globalSettings" title="@Resources.Global_String_ManageVehicleMakes">@Resources.Global_String_VehicleMakes</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/InsuranceType/" class="btn globalSettings" title="@Resources.Global_String_ManageInsuranceTypes">@Resources.Global_String_InsuranceTypes</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/FleetAccesory/" class="btn globalSettings" title="@Resources.Global_String_ManageFleetAccessories">@Resources.Global_String_FleetAccessories</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/FleetIncidence/" class="btn globalSettings" title="@Resources.Global_String_ManageFleetIncidences">@Resources.Global_String_FleetIncidences</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+                        <a href="/DutyType/" class="btn globalSettings" title="@Resources.Global_String_ManageDutyTypes">@Resources.Global_String_DutyTypes</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/WareHouse/" class="btn globalSettings" title="@Resources.Global_String_ManageWarehouses">@Resources.Global_String_Warehouses</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/TenderingType/" class="btn globalSettings" title="@Resources.PurchaseOrder_String_ManageTenderingTypes">@Resources.PurchaseOrder_String_TenderingTypes</a>
+                    </td>
+                    <td width="25%">
+                        <a href="/Donor/" class="btn globalSettings" title="@Resources.Global_String_ManageDonors">@Resources.Global_String_Donors</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td width="25%">
+                        <a href="/Country/" class="btn globalSettings" title="@Resources.Global_String_ManageCountries">@Resources.Global_String_Countries</a>
+                    </td>
+                    <td width="25%">
+                        @if (UserContext.HasPermission(StandardPermissionProvider.CountryProgrammesManage))
+                        {
+                            <a href="/CountryProgramme/" class="btn globalSettings" title="@Resources.Global_String_ManageCountryProgrammes">@Resources.Global_String_CountryProgrammes</a>
+                        }
+                    </td>
+                    <td width="25%">
+                        <a href="/ServiceCheckList/" class="btn globalSettings" title="@Resources.Global_String_ManageServiceCheckList">@Resources.Global_String_ServiceCheckList</a>
+                    </td>
+                    <td width="25%">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,109 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.OrderRequest
+@{AjaxOptions ajaxOpts = new AjaxOptions
+      {
+          UpdateTargetId = "requestDiv",
+          LoadingElementId = "loading",
+          HttpMethod = "Post",
+          Url = Url.Action("UpdateOrderRequest"),
+          OnSuccess = "CloseDialog"
+      };}
+
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.OrderRequest_AddPPItems2OR_EditOR:: @Model.RefNumber</h3>
+    </div>
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+            
+        <table width="98%" align="center" cellpadding="0">
+            <tr>
+                <th align="center" width="34%">
+                    @Resources.Global_String_RefNo
+                </th>
+                <th align="center" width="33%">
+                    @Resources.Global_String_Date
+                </th>
+                <th align="center" width="33%">
+                    @Resources.Global_String_ORCurrency
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.TextBoxFor(m => m.RefNumber, new { @readonly = "readonly" })
+                    @Html.HiddenFor(m => m.Id)
+                </td>
+                <td align="center">
+                    @Html.HiddenFor(m => m.OrderDate)
+                    @Model.OrderDate.Value.ToString("dd/MM/yyyy")
+                </td>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.CurrencyId, Model.Currencies, Resources.Global_String_PleaseSelect, new { @id = "currencyId" })
+                    @Html.ValidationMessageFor(x => x.CurrencyId)
+                </td>
+            </tr>
+            <tr>
+                <th align="center">
+                    @Resources.Global_String_ProjectProgramme
+                </th>
+                <th align="center">
+                    @Resources.Budget_CategoryList_ProjectNo
+                </th>
+                <th align="center">
+                    @Resources.Budget_CategoryList_Donor
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.ProjectId, Model.Projects, Resources.Global_String_PleaseSelect, new { @id = "dplProject", onchange = "javascript:selectedIndexChangePONos(this)" })
+                    @Html.ValidationMessageFor(x => x.ProjectId)
+                </td>
+                <td align="center">
+                    <div id="ProjectNoDiv">
+                        @Html.DropDownListFor(x => x.ProjectDonorId, Model.ProjectDonors, Resources.Global_String_PleaseSelect, new { @id = "dplProNo", onchange = "javascript:selectedIndexChange(this)" })
+                        @Html.ValidationMessageFor(x => x.ProjectDonorId)</div>
+                </td>
+                <td align="center">
+                    <div id="donorDiv" style="font-size: 12px;">
+                        @Model.ProjectDonor.Donor.Name
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <th align="center">
+                    @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDate
+                </th>
+                <th align="center">
+                    @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDestination
+                </th>
+                <th align="center">
+                    @Resources.OrderRequest_EditOrderRequest_FinalDeliveryDestination
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.EditorFor(m => m.DeliveryDate)
+                    @Html.ValidationMessageFor(m => m.DeliveryDate)
+                </td>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.RequestedDestinationId, Model.Locations, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.RequestedDestinationId)
+                </td>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.FinalDestinationId, Model.Locations, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.FinalDestinationId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" id="orbutton" class="btn green" value="@Resources.Global_String_SaveChanges" />
+                </td>
+            </tr>
+        </table>    
+    }
+</div>

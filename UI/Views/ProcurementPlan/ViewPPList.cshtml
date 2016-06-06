@@ -1,0 +1,59 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ProcurementPlan>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Global_String_ProcurementPlans</h3>
+    </div>
+    <br />
+   
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.PPModelView>()
+            .Name("PP")
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.RefNo).Title(Resources.Global_String_RefNo).HtmlAttributes(new { align = "center" }).Width("22%");
+                columns.Bound(o => o.ProjectName).Title(Resources.Global_String_ProjectTitle).Width("24%");
+                columns.Bound(o => o.ProjectNo).Title(Resources.Budget_CategoryList_ProjectNo).Width("16%");
+                columns.Bound(o => o.DonorShortName).Title(Resources.Budget_CategoryList_Donor).Width("14%");
+                columns.Bound(o => o.CountrySubOffice).Title(Resources.ProcurementPlan_ViewPPList_PrepOffice).Width("16%");
+                columns.Bound(o => o.PreparedOn).Title(Resources.Global_String_DatePrepared).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}");
+            })
+
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_GenPPCustomBinding", "ProcurementPlan"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onRowSelected"))
+            .Filterable()
+            .Groupable()
+            .Sortable()
+    )
+
+
+    <br />
+</div>
+<script type="text/javascript">
+    function onRowSelected(e) {
+        var ppId = e.row.cells[0].innerHTML;
+        sendRequest('/ProcurementPlan/ViewPP/' + ppId, 'ppDiv', 'loading');
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(20);
+        }
+    }
+
+</script>
+

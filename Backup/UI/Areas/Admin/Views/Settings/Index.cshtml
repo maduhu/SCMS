@@ -1,0 +1,98 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.Settings_Index_SCMSSettings + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+@model SCMS.UI.Areas.Admin.Models.Settings.SettingsModel 
+           
+<div id="rfpMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.Settings_Index_SystemSettings</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+                <table cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td>
+                            &nbsp; 
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>            
+            </div>
+    </div>
+    <br />
+    <div id="AdminSettingsDiv">
+        <div class="partialViewCard">
+            <div class="partialViewCardHeader"><h3>@Resources.Settings_Index_SCMSSettings</h3></div>
+            <br />
+            @using (Html.BeginForm("Index", "Settings", FormMethod.Post, new { @class = "form" }))
+            {   
+                <table align="center">
+                    <tr>
+                        <td colspan="2">
+                            @Html.ValidationSummary(true)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">@Resources.Global_String_AdministratorEmail</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.AdminEmail) <br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.AdminEmail)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_MaximumLoginRetries</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.MaxLoginRetries)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.MaxLoginRetries)</td>
+                    </tr>
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_HideMenusBasedOnPermissions</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.HideMenusBasedOnPermissions)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.HideMenusBasedOnPermissions)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_MaximumPersonPhotoSize</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.PersonPhotoMaxSize)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.PersonPhotoMaxSize)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_MaximumSignatureImageSize</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.SignaturePhotoMaxSize)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.SignaturePhotoMaxSize)</td>
+                    </tr>
+        
+
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_SupportedImageTypes</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.ImageTypes)<br />
+                            @Resources.Settings_Index_MustBeSeparatedByComma<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.ImageTypes)</td>
+                    </tr>
+
+                    <tr>
+                        <td align="right">@Resources.Settings_Index_PersonPhotosFolder</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.PersonPhotoUploadPath)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.PersonPhotoUploadPath)</td>
+                    </tr>
+                    <tr>
+                        <td align="right">@Html.LabelFor(x=>x.CommonSettings.GridPageSize)</td>
+                        <td>@Html.EditorFor(model => model.CommonSettings.GridPageSize)<br />
+                            @Html.ValidationMessageFor(model => model.CommonSettings.GridPageSize)</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" class="btn green" value="@Resources.Global_String_SaveChanges" /> </td>
+                    </tr>
+                </table>
+                <br />
+            }
+        </div>
+    </div>
+</div>

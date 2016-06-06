@@ -1,0 +1,140 @@
+﻿@using SCMS.CoreBusinessLogic.Settings
+@using SCMS.Resource
+<div id='nav-container'>
+    <ul id="nav">
+        <li><a href="/Dashboard/">@Resources.Global_String_Home</a></li>
+        <li><a class="hsubs" href="#">@Resources.Global_String_Procurement</a>
+            <ul class="subs">
+                @if (UserContext.HasPermission(StandardPermissionProvider.OrderRequestViewAll))
+                {
+                    <li><a href="/OrderRequest/" title="">@Resources.Global_String_OrderRequest (<span>@Resources.Global_String_OR</span>)</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.PurchaseOrderViewAll))
+                {
+                    <li><a href="/PurchaseOrder/" title="">@Resources.Global_String_PurchaseOrder (<span>@Resources.Global_String_PO</span>)</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.CompletionCertificateView))
+                {
+                    <li><a href="/CompletionCertificate/" title="">@Resources.Global_String_CompletionNote</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProcurementPlanView))
+                {
+                    <li><a href="/ProcurementPlan/" title="">@Resources.Global_String_ProcurementPlan</a></li>
+                }
+            </ul>
+        </li>
+        <li><a class="hsubs" href="#">@Resources.Global_String_Warehousing</a>
+            <ul class="subs">
+                @if (UserContext.HasPermission(StandardPermissionProvider.GoodsReceivedNoteViewAll))
+                {
+                    <li><a href="/GoodsReceivedNote/" title="">@Resources.Global_String_GoodsReceivedNote</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.WarehouseReleaseOrderViewAll))
+                {
+                    <li><a href="/WRForm/" title="">@Resources.Global_String_WHReleaseOrder</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.GoodsIssuedVoucherViewAll))
+                {
+                    <li><a href="/GoodsIssuedVoucher/" title="">@Resources.GoodsIssuedVoucher_Index_GoodsIssuedVoucher</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.StockManagementViewAll))
+                {
+                    <li><a href="/BinCard/" title="">@Resources.Global_String_StockManagement</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.InventoryViewGeneral))
+                {
+                    <li><a href="/Inventory/" title="">@Resources.Global_String_InventoryManagement</a> </li>
+                }
+            </ul>
+        </li>
+        <li><a class="hsubs" href="#">@Resources.Global_String_Fleet</a>
+            <ul class="subs">                
+                @if (UserContext.HasPermission(StandardPermissionProvider.InventoryViewGeneral))
+                {
+                    <li><a href="/FleetManager/" title="">@Resources.Global_String_FleetManagement</a></li>
+                }
+            </ul>
+        </li>
+        <li><a class="hsubs" href="#">@Resources.Global_String_Finance</a>
+            <ul class="subs">
+                @if (UserContext.HasPermission(StandardPermissionProvider.RequestForPaymentViewAll))
+                {
+                    <li><a href="/Request4Payment/" title="">@Resources.Global_String_RequestForPayment</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.RequestForPaymentPostFunds))
+                {
+                    <li><a href="/FundPosting/" title="">@Resources.Global_String_PostFunds</a></li>
+                }
+            </ul>
+        </li>
+        <li><a href="#" class="hsubs">@Resources.Global_String_Budget</a>
+            <ul class="subs">
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetView))
+                {
+                    <li><a href="/Budget/" title="">@Resources.Global_String_BudgetManagement</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetView))
+                { 
+                    <li><a href="/MasterBudget/GLMasterBudget" title="">@Resources.Global_String_GLBudget</a></li>
+                }
+                @if (UserContext.HasPermission(StandardPermissionProvider.MasterBudgetView))
+                {
+                    <li><a href="/MasterBudget/" title="">@Resources.General_String_MasterBudget</a></li>
+                }
+            </ul>
+        </li>
+        <li><a href="#" class="hsubs">@Resources.Global_String_Reports</a>
+            <ul class="subs">
+                <li><a href="@Url.Action("Index", "ProcurementReports", new { area = "Reports" })" title="@Resources.Global_String_ProcurementManagementReports">
+                    @Resources.Global_String_Procurement </a></li>
+                <li><a href="@Url.Action("Index", "FinanceReports", new { area = "Reports" })" title="@Resources.Global_String_FinanceManagementReports">
+                    @Resources.Global_String_FinanceManagement</a></li>
+                <li><a href="@Url.Action("Index", "InventoryReports", new { area = "Reports" })" title="@Resources.Global_String_InventoryManagementReports">
+                    @Resources.Global_String_Inventory</a></li>
+                <li><a href="@Url.Action("Index", "FleetReports", new { area = "Reports" })" title="@Resources.Global_String_FleetManagementReports">
+                    @Resources.Global_String_FleetManagement</a></li>
+                <li><a href="@Url.Action("Index", "DocumentReports", new { area = "Reports" })" title="@Resources.Global_String_DocumentManagementReports">
+                    @Resources.Global_String_Documents</a></li>
+                <li><a href="@Url.Action("Index", "BudgetReports", new { area = "Reports" })" title="@Resources.Global_String_BudgetManagementReports">
+                    @Resources.Global_String_BudgetManagement</a></li>
+            </ul>
+        </li>
+        @if(UserContext.HasPermission(StandardPermissionProvider.AccessAdminPanel))
+        {
+            <li><a href="#" class="hsubs">@Resources.Global_String_Administration</a>
+                <ul class="subs">
+                    @if (UserContext.HasPermission(StandardPermissionProvider.SystemUsersView))
+                    {
+                        <li><a href="@Url.Content("~/Admin/SystemUser")" title="">@Resources.Global_String_SystemUserList</a></li>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.RolesManage))
+                    {
+                        <li><a href="@Url.Content("~/Admin/Role")" title="">@Resources.Global_String_RolesList</a></li>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.AclManage))
+                    {
+                        <li><a href="@Url.Content("~/Admin/Security/Permissions")" title="">@Resources.Global_String_ManageACL</a></li>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.SettingsManage))
+                    {
+                        <li><a href="@Url.Content("~/Admin/Settings")" title="">@Resources.Global_String_ManageSettings</a></li>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ApproversView))
+                    {
+                        <li><a href="@Url.Content("~/Admin/Approver")" title="">@Resources.Global_String_ManageApprovers</a></li>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.GlobalSettingsManage))
+                    {
+                        <li><a href="/GlobalSettings/" title="">@Resources.GlobalSettings_Index_Header</a></li>
+                    }
+                    <li><a href="@Url.Content("~/Admin/SystemUser/ViewProfile")" title="">@Resources.Global_String_MyProfile</a></li>
+                </ul>
+            </li>
+        }
+        else
+        {
+            <li><a href="@Url.Content("~/Admin/SystemUser/ViewProfile")" title="">@Resources.Global_String_MyProfile</a></li>
+        }        
+    </ul>
+    @*@RenderPage("~/Views/Shared/General/SearchForm.cshtml")*@
+</div>

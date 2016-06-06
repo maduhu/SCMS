@@ -1,0 +1,278 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Warehouse Release Form</title>
+    <link rel="stylesheet" href="{STYLE}?v=1.2320" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <h2 class="central">
+                    Warehouse Release Form
+                </h2>
+                <br />
+                <table class="summary default">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Date:
+                            </td>
+                            <td>
+                                {DATE}
+                            </td>
+                            <td>
+                                No.:
+                            </td>
+                            <td style="color: Red;">
+                                {REF_NO}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="underline-me">
+                                Requester
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                {NAME}
+                            </td>
+                            <td>
+                                Title
+                            </td>
+                            <td>
+                                {TITLE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Office
+                            </td>
+                            <td>
+                                {OFFICE}
+                            </td>
+                            <td>
+                                Signature
+                            </td>
+                            <td>
+                                {SIGNATURE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" class="underline-me">
+                                Request approved by
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Name
+                            </td>
+                            <td>
+                                {APPROVER-NAME}
+                            </td>
+                            <td>
+                                Title
+                            </td>
+                            <td>
+                                {APPROVER-TITLE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Office
+                            </td>
+                            <td>
+                                {APPROVER-OFICE}
+                            </td>
+                            <td>
+                                Signature
+                            </td>
+                            <td>
+                                {SIGNATURE2}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="span3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="{LOGO1}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{LOGO2}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DANISH REFUGEE COUNCIL
+                                <br />
+                                Borgergade 10
+                                <br />
+                                DK-1300 Copenhagen
+                                <br />
+                                Denmark
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px;">
+                                COUNTRY OFFICE, UGANDA
+                                <br />
+                                4688 Kalungi Road
+                                <br />
+                                Muyenga, Kampala
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://WWW.drc.dk">WWW.drc.dk </a>
+                                <br />
+                                <a href="http://WWW.danishdemininggroup.dk">www.danishdemininggroup.dk </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="goods-detail default">
+                    <thead>
+                        <tr>
+                            <th style="width: 3%">
+                            </th>
+                            <th style="width: 25%">
+                                Item/Goods Description
+                            </th>
+                            <th>
+                                Unit
+                            </th>
+                            <th>
+                                Serial No.
+                            </th>
+                            <th>
+                                Asset No.
+                            </th>
+                            <th>
+                                Quantity
+                            </th>
+                            <th style="width: 25%">
+                                Comments
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {DETAILS}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="default bordered" style="margin-top: 10px; margin-bottom: 10px;">
+                    <tbody>
+                        <tr>
+                            <td class="underline-me">
+                                Recipient
+                            </td>
+                            <td>
+                                Received by (name):
+                            </td>
+                            <td>
+                                {RECEIVER_NAME}
+                            </td>
+                            <td>
+                                Title
+                            </td>
+                            <td>
+                                {RECEIVER_TITLE}
+                            </td>
+                            <td>
+                                Office
+                            </td>
+                            <td>
+                                {RECEIVER_UNIT}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                            </td>
+                            <td>
+                                Signature
+                            </td>
+                            <td>
+                                {RECEIVER_SIGNATURE}
+                            </td>
+                            <td>
+                                Date
+                            </td>
+                            <td>
+                                {RECEIVER_DATE}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="default bordered" style="margin-top: 10px; margin-bottom: 10px;">
+                    <tbody>
+                        <tr>
+                            <td class="underline-me">
+                                Warehouse
+                            </td>
+                            <td>
+                                Released by (name):
+                            </td>
+                            <td>
+                                <br />
+                                <sub>--------------------------------------------------------</sub>
+                            </td>
+                            <td>
+                                Title
+                            </td>
+                            <td>
+                                <br />
+                                <sub>--------------------------------------------------------</sub>
+                            </td>
+                            <td>
+                                Office
+                            </td>
+                            <td>
+                                <br />
+                                <sub>--------------------------------------------------------</sub>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                            </td>
+                            <td>
+                                Signature
+                            </td>
+                            <td>
+                                <br />
+                                <sub>--------------------------------------------------------</sub>
+                            </td>
+                            <td>
+                                Date
+                            </td>
+                            <td>
+                                <br />
+                                <sub>--------------------------------------------------------</sub>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

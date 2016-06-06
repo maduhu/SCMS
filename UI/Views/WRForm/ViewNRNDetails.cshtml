@@ -1,0 +1,316 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.WarehouseRelease
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.WRForm_LoadWRF_WRO</h3>
+    </div>
+    @if (Model.CanApprove && Model.IsSubmitted)
+    {
+        string linkText = null;
+        string actionName = null;
+        if (!Model.IsApproved && !Model.IsRejected)
+        {
+            linkText = Resources.WRForm_ViewNRNDetails_ApproveWRO;
+            actionName = "LoadWRO";
+        }
+        if (linkText != null)
+        {
+        <center>
+                @Ajax.ActionLink(linkText, actionName, "RequestReview", new { id = "" }, new AjaxOptions
+                {
+                    OnBegin = "ShowDialogueOR('" + linkText + ": " + Model.RefNumber + "')",
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    Url = Url.Action(actionName + "/" + Model.Id, "RequestReview"),
+                    OnSuccess = "CenterPopup"
+                }) 
+            </center>
+        }
+    }
+    else if (!Model.IsSubmitted)
+    {
+        <center>
+                @Ajax.ActionLink(Resources.WRForm_ViewNRNDetails_EditWRO, "LoadEditRO", new { ROId = Model.Id }, new AjaxOptions
+                {
+                    OnBegin = "ShowDialogueOR('" + Resources.WRForm_ViewNRNDetails_EditWRO + "')",
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    OnSuccess = "CenterPopup"
+                }) | 
+                @Ajax.ActionLink(Resources.WRForm_ViewNRNDetails_DeleteWRO, "DeletRO", new { ROId = Model.Id }, new AjaxOptions
+                {
+                    UpdateTargetId = "wrfDiv",
+                    LoadingElementId = "loading",
+                    Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.RefNumber)
+                })
+            </center>
+    }
+    else
+    {
+        <br />
+    }
+    <h4 style="text-align: center;">@Model.RefNumber</h4>
+    <b style="font-weight: bold; font-size: 12px;">&nbsp;&nbsp;&nbsp;Requestor</b>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th width="20%">
+                @Resources.Global_String_Name
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Title
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Office
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Signature
+            </th>
+            <th width="20%">
+                @Resources.Global_String_RequestDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @if (Model.Staff1 != null)
+                {
+                    @Model.Staff1.Person.FirstName
+                    @Html.Raw("&nbsp;")
+                    @Model.Staff1.Person.OtherNames
+                }
+            </td>
+            <td align="center">
+                @if (Model.Staff1 != null)
+                {
+                    @Model.Staff1.Designation.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.Staff1 != null)
+                {
+                    @Model.Staff1.CountrySubOffice.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                {
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 80px;" />
+                }
+            </td>
+            <td align="center">
+                @Model.PreparedOn.ToString("dd/MM/yyyy h:mm tt")
+            </td>
+        </tr>
+    </table>
+    <br />
+    <b style="font-weight: bold; font-size: 12px;">&nbsp;&nbsp;&nbsp;@Resources.Global_String_ApprovedBy</b>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th width="20%">
+                @Resources.Global_String_Name
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Title
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Office
+            </th>
+            <th width="20%">
+                @Resources.Global_String_Signature
+            </th>
+            <th width="20%">
+                @Resources.Global_String_RequestDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.Staff.Person.FirstName
+                    @Html.Raw("&nbsp;")
+                    @Model.Staff.Person.OtherNames
+                }
+            </td>
+            <td align="center">
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.Staff.Designation.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.Staff.CountrySubOffice.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.IsApproved && Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                {
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 80px;" />
+                }
+            </td>
+            <td align="center">
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.ApprovedOn.Value.ToString("dd/MM/yyyy h:mm tt")
+                }
+            </td>
+        </tr>
+    </table>
+    <br />
+    @if (!Model.IsSubmitted)
+    { <div style="width: 98%;">
+        &nbsp;&nbsp;&nbsp;
+        @Ajax.ActionLink(Resources.Global_String_AddItem, "ReleaseItem", new { ROId = Model.Id }, new AjaxOptions
+       {
+           OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_AddItem),
+           UpdateTargetId = "popup-page",
+           LoadingElementId = "popup-loading",
+           OnSuccess = "CenterPopup"
+       })
+    </div>
+    }
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey; border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr class="gridheader">
+            <th></th>
+            <th>
+                @Resources.WRForm_LoadWRF_ItemGoodsDescription
+            </th>
+            <th>
+                @Resources.Global_String_UnitMessure
+            </th>
+            <th>
+                @Resources.Global_String_SerialNo
+            </th>
+            <th>
+                @Resources.Global_String_AssetNo
+            </th>
+            <th>
+                @Resources.Global_String_Quantity
+            </th>
+            <th>
+                @Resources.Global_String_Comments
+            </th>
+            @if (Model.CanEdit)
+            {  <th>
+                @Resources.Global_String_Manage
+            </th>
+            }
+        </tr>
+        @{int x = 0; string rowClass = ""; int count = 0; string itemName, serialNo, AssetNo; }
+        @foreach (var item in Model.WarehouseReleaseItems)
+        {
+            if (x % 2 == 0) { rowClass = "grideven"; }
+            if (x % 2 != 0) { rowClass = "gridodd"; }
+            if (item.Inventory.Item.ItemCategory.CategoryCode == "C")
+            {
+                itemName = item.Inventory.Item.Name;
+                serialNo = item.Inventory.Item.SerialNumber;
+                AssetNo = @Resources.Global_String_NA;
+            }
+            else
+            {
+                itemName = item.Asset.Name;
+                serialNo = item.Asset.SerialNumber;
+                AssetNo = item.Asset.AssetNumber;
+            }
+            if (x >= 0) { x = x + 1; }
+            count = count + 1;
+            <tr class="gridodd">
+                <td style="width: 5%; text-align: center;">
+                    @count
+                </td>
+                <td style="width: 23%; text-align: left;">
+                    @itemName
+                </td>
+                <td style="width: 13%; text-align: center;">
+                    @item.Inventory.Item.UnitOfMeasure.Code
+                </td>
+                <td style="width: 14%; text-align: center;">
+                    @serialNo
+                </td>
+                <td style="width: 15%; text-align: left;">
+                    @AssetNo
+                </td>
+                <td style="width: 10%; text-align: center;">
+                    @item.Quantity
+                </td>
+                <td style="width: 10%; text-align: left;">
+                    @item.Comments
+                </td>
+                @if (!Model.IsSubmitted)
+                {
+                    <td>
+                        @*@Ajax.ActionLink("Edit", "EditItem", new { @wrnItmId = item.Id }, new AjaxOptions
+                   {
+                       OnBegin = "ShowDialogue('Edit WRN Item')",
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       OnSuccess = "CenterPopupPO"
+
+                   })*@ &nbsp;&nbsp;
+                        @Ajax.ActionLink(Resources.Global_String_Remove, "DeleteWRNItem", new { @wrnId = Model.Id, @wrnItmId = item.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "wrfDiv",
+                       LoadingElementId = "loading",
+                       Confirm = Resources.WRForm_LoadWRF_confirmDeleteWRItem,
+                       OnSuccess = "usermsgg"
+                   })
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+    <br />
+    <b style="font-weight: bold; font-size: 12px;">&nbsp;&nbsp;&nbsp;Receipient</b>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th width="33%">
+                @Resources.Global_String_Name
+            </th>
+            <th width="33%">
+                @Resources.Global_String_Title
+            </th>
+            <th width="34%">
+                @Resources.Global_String_Office
+            </th>
+        </tr>
+        <tr>
+            <td align="center">
+                @if (Model.Staff2 != null)
+                {
+                    @Model.Staff2.Person.FirstName
+                    @Html.Raw("&nbsp;")
+                    @Model.Staff2.Person.OtherNames
+                }
+            </td>
+            <td align="center">
+                @if (Model.Staff2 != null)
+                {
+                    @Model.Staff2.Designation.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.Staff2 != null)
+                {
+                    @Model.Staff2.CountrySubOffice.Name
+                }
+            </td>
+        </tr>
+    </table>
+    <br />
+    @if (!Model.IsSubmitted)
+    {
+        <input type="button" class="btn btn-primary" value="  @Resources.Global_String_SubmitForApproval  " onclick="sendRequest('SubmitWRN/@Model.Id    ', 'wrfDiv', 'loading'); document.getElementById('wrfItemDiv').innerHTML='';initSorter();sorter.size(50);" />
+    }
+    @if (Model.IsApproved)
+    {
+        <a class="btn btn-primary"  href="@Url.Action("WRO", "PDFReports", new { area = "Reports", refNumber = @Model.RefNumber })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.WRForm_ViewNRNDetails_GetPDFofWRN</a>
+    }
+    <br />
+</div>
+<br />
+<p>
+    @Html.ActionLink(Resources.Global_String_BackToList, "Index")
+</p>

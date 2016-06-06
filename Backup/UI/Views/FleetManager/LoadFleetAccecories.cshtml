@@ -1,0 +1,43 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.Equipment2Fleet
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "fleetDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("AddNewAccesory"),
+      OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');initPostFundsView(2);CloseDialog();",
+      OnFailure = "javascript:errormsg()"
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmAccesory" }))
+{
+    @Html.ValidationSummary(true)
+    <br />
+    @Html.HiddenFor(x => x.FleetId)
+    <table width="500px" align="center" cellpadding="0">
+        <tr>
+            <td align="center" class="gridheader2" style="width: 20%;">
+                @Resources.Global_String_Item @Resources.Global_String_Name
+            </td>
+            <td align="center">
+                @Html.DropDownListFor(x => x.EquipmentId, Model.Accesories, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.EquipmentId, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr>
+            <td align="center" class="gridheader2" style="width: 20%;">
+                @Resources.Global_String_Qty
+            </td>
+            <td align="center">
+                @Html.TextBoxFor(x => x.Quantity)
+                @Html.ValidationMessageFor(x => x.Quantity, Resources.Global_String_Required)
+            </td>
+        </tr>
+    </table>
+    <hr />
+               
+    <center>
+        <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " /></center>
+}

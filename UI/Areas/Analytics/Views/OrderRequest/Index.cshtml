@@ -1,0 +1,69 @@
+﻿@using SCMS.Resource
+
+@model SCMS.UI.Areas.Analytics.Models.Search.ORSearchFormViewModel
+           
+@{
+    ViewBag.Title = "Order Request | Analytics | SCMS";
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<link href="@Url.Content("~/Content/ui-components/jtable/themes/standard/green/jtable_green.css")" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="@Url.Content("~/Content/ui-components/jtable/jquery.jtable.min.js?v=bx38")"></script>
+<div class="row">
+    <div class="twelve columns">
+        <h3>
+            REPORTS: Order Requests Periodic Overview</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="three columns">
+    <form action="@Url.Action("Search")" method="post" >
+        <fieldset>
+            <legend>Search For</legend>
+            <ul>
+            <li><label>From:</label> @Html.EditorFor(model => model.startDate, "DateTime2")
+            @Html.ValidationMessageFor(model => model.startDate)</li>
+            <li><label>Up To:</label> @Html.EditorFor(model => model.endDate, "DateTime2")
+            @Html.ValidationMessageFor(model => model.endDate)</li>
+            </ul>
+            <a href="#" class="btn btn-primary" id="search_or">Search for Requests</a>
+        </fieldset>
+        </form>
+    </div>
+        <div class="nine columns">
+    <div id='results'></div>
+    </div>
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $('#results').jtable({
+            title: 'Results: Matching Orders',
+            paging: true,
+            pageSize: 10,
+            sorting: true,
+            actions: {
+                listAction: '@Url.Action("PagedSearch")'
+            },
+            fields: {
+            OrderDate: {
+                    title: 'Order Date',
+                    width: '50%'
+                },
+                RefNumber: {
+                    title: 'RefNumber',
+                    width:'50%'
+                }                
+            }
+        });
+
+        //
+        $('#search_or').click(function (e) {
+            e.preventDefault();
+            $('#results').jtable('load', { startDate: $('#startDate').val(), endDate: $('#endDate').val() });
+        });
+    });
+
+</script>
+

@@ -1,0 +1,66 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ItemCategory>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.ItemCategory_Index_Header</h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {    
+        <table width="98%" align="center" cellspacing="0" cellpadding="5" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <th>
+                    @Resources.Global_String_Code
+                </th>
+                <th>
+                    @Resources.Global_String_Name
+                </th>
+                <th>
+                    @Resources.Global_String_Manage
+                </th>
+            </tr>
+            @{int x = 0; string rowClass = ""; }
+            @foreach (var item in Model)
+            {
+                if (x % 2 == 0) { rowClass = "grideven"; }
+                if (x % 2 != 0) { rowClass = "gridodd"; }
+                if (x >= 0) { x = x + 1; }
+                <tr class="gridodd">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryCode)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "CreateEdit", new { @iid = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "ContentDiv",
+                        LoadingElementId = "loading"
+                    })
+                        &nbsp;
+                        @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteItem", new { @iid = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "ContentDiv",
+                        LoadingElementId = "loading",
+                        Confirm = string.Format(Resources.Global_String_ConfirmDelete, item.CategoryName)
+                    })
+                    </td>
+                </tr>
+            }
+        </table>    
+    }
+    else
+    {
+        <br />
+        <i>@Resources.ItemCategory_ListView_NoCategories</i>
+    }
+    <br />
+    <div>
+        <span class="action_message">@ViewBag.Message</span>
+    </div>
+    <div>
+        <span class="field-validation-error">@ViewBag.Error</span>
+    </div>
+</div>

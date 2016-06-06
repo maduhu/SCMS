@@ -1,0 +1,53 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SelectEvaluators
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "TADetailsDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("SaveEvaluator/" + ViewBag.TAID),
+      OnSuccess = "usermsgg(); CloseDialog();",
+  };}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<table align="center" style="margin-left: auto; margin-right: auto;"><tr><td align="center">
+    <div style="width:auto; padding:6px; border:1px solid #A7B601; background:#fff; border-radius: 6px 6px 6px 6px; margin-left: auto; margin-right: auto;">
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        <table width="350">
+            <tr>
+                <td width="40%" align="right">
+                    @Resources.TenderAnalysis_AddEvaluator_EvaluatorName:
+                </td>
+                <td width="60%">
+                    @Html.DropDownListFor(x => x.StaffID, Model.Staffs, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(model => model.StaffID, Resources.Global_String_Required)
+                    @Html.HiddenFor(x => x.EntityTenderEvaluator.Id)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    @Resources.TenderAnalysis_AddEvaluator_LevelOfEvaluation:
+                </td>
+                <td>@Html.DropDownListFor(model => model.Priority, Model.ApprovalLevels, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(model => model.Priority, Resources.Global_String_Required)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                    <input type="submit" class="btn green"  value="@Resources.TenderAnalysis_AddEvaluator_AddEvaluator" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                </td>
+            </tr>
+        </table>
+    }
+    </div>
+    </td></tr></table>

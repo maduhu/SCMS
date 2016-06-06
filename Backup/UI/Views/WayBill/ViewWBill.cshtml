@@ -1,0 +1,135 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.ViewWayBill>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+        @Resources.WayBill_ViewWBill_WBs
+        </h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                        </span>
+                    </div>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+            <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table"
+                class="tinytable">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>
+                                @Resources.WayBill_LoadWB_WBNo</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.WayBill_LoadWB_OriginWH</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.WayBill_LoadWB_DestinationWH</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.WRForm_LoadWRF_Recipient</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.WayBill_LoadWB_DateofDispatch</h3>
+                        </th>
+                        <th>
+                            <h3>
+                                @Resources.WayBill_ViewWBDetails_ArrivalDate</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        
+                        <tr class="gridodd" onclick="sendRequest('/WayBill/ViewWBDetails/@item.EntityWBill.Id', 'wbDiv', 'loading')" style=" cursor:pointer;">
+                            <td style="width: 15%;">
+                                @item.EntityWBill.RefNumber
+                            </td>
+                            <td style="width: 20%;">
+                                @item.OrrignWH.Name
+                            </td>
+                            <td style="width: 20%;">
+                                @item.destinationWH.Name
+                            </td>
+                            <td style="width: 20%;">
+                                @item.issuer.StaffName
+                            </td>
+                            <td align="center" style="width: 13%;">
+                                @item.EntityWBill.DispatchDate.Value.ToString("dd/MM/yyyy")
+                            </td>
+                            <td align="center" style="width: 12%;">
+                                @if (item.EntityWBill.ArrivalDate.HasValue)
+                                {
+                                    @item.EntityWBill.ArrivalDate.Value.ToString("dd/MM/yyyy")
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.Count() < 1)
+    {
+        <i>@Resources.WayBill_ViewWBill_NoWBs</i>
+    }
+    <br />
+</div>

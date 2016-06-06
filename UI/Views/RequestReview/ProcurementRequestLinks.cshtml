@@ -1,0 +1,361 @@
+﻿@using SCMS.Resource
+@using SCMS.CoreBusinessLogic.NotificationsManager
+@model SCMS.UI.Models.RequestReviewModel
+@{
+    int numReview = 0;
+    int procReview = 0;
+    int approvalORs = 0;
+    int inventory = 0;
+    int finReview = 0;
+    int totalNotif = 0;
+    string notifClass = "";
+    string notifTitle = "";
+    string notifValue = "";
+    procReview += Model.OrderRequests != null ? Model.OrderRequests.Count : 0;
+    procReview += Model.PurchaseOrders != null ? Model.PurchaseOrders.Count : 0;
+    procReview += Model.ProcurementPlansForApproval != null ? Model.ProcurementPlansForApproval.Count : 0;
+    procReview += Model.ProcurementPlansForApproval2 != null ? Model.ProcurementPlansForApproval2.Count : 0;
+    procReview += Model.ProcurementPlansForReview != null ? Model.ProcurementPlansForReview.Count : 0;
+    procReview += Model.CompletionCertificates != null ? Model.CompletionCertificates.Count : 0;
+    approvalORs += Model.ApprovalOrderRequests != null ? Model.ApprovalOrderRequests.Count : 0;
+
+    finReview += Model.PaymentRequests != null ? Model.PaymentRequests.Count : 0;
+
+    inventory += Model.WarehouseReleases != null ? Model.WarehouseReleases.Count : 0;
+    inventory += Model.GoodsReceivedNotes != null ? Model.GoodsReceivedNotes.Count : 0;    
+    
+    numReview = procReview + finReview + inventory + approvalORs;
+
+    int numAuth = 0;
+    int procAuth = 0;
+    int finAuth = 0;
+    procAuth += Model.AuthOrderRequests != null ? Model.AuthOrderRequests.Count : 0;
+    procAuth += Model.ProcurementPlansForAuth != null ? Model.ProcurementPlansForAuth.Count : 0;
+
+    finAuth += Model.AuthPaymentRequests != null ? Model.AuthPaymentRequests.Count : 0;
+
+    numAuth = procAuth + finAuth;
+
+    totalNotif = numReview + numAuth;
+    if (totalNotif > 1)
+    {
+        notifClass = "notification noti-yellow";
+        notifTitle = string.Format(Resources.RequestReview_String_MoreThanOneNotification, totalNotif);
+        notifValue = totalNotif.ToString();
+    }
+    else if(totalNotif == 1)
+    {
+        notifClass = "notification noti-yellow";
+        notifTitle = string.Format(Resources.RequestReview_String_OneNotification, totalNotif);
+        notifValue = totalNotif.ToString();
+    }
+    else
+    {
+        notifClass = "notification noti-blue";
+        notifTitle = Resources.RequestReview_String_NoNotification;
+        notifValue = "!";
+    }
+    
+}
+<div style="width:auto;">                    
+    <dl class="dropdown" style="">
+        <dt>
+            <span id="linkglobal" class="@notifClass">@notifValue</span>
+        </dt>
+        <dd>
+            <div id="noti-accordion">
+                
+                <!-- Auth RFP -->
+                @if (Model.AuthPaymentRequests != null && Model.AuthPaymentRequests.Count > 0)
+                {
+                    <h3><a>@Resources.Request4Payment_String_AuthorizeRFP (@Model.AuthPaymentRequests.Count)</a></h3>
+                    <div>
+                    <ul>
+                        @foreach (var rfp in Model.AuthPaymentRequests)
+                        { 
+                            <li>
+                                @Ajax.ActionLink(rfp.EntityPaymentRqst.RefNumber, "../RequestReview/", new { id = "LoadRFPForAuth" }, new AjaxOptions
+                                {
+                                    OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_AuthorizeRequestForPayment, rfp.EntityPaymentRqst.RefNumber),
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    Url = Url.Action("../RequestReview/LoadRFPForAuth/" + rfp.EntityPaymentRqst.Id),
+                                    OnSuccess = "CenterPopupRFP"
+                                }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                    </ul>
+                    </div>
+                } 
+
+                <!-- Auth OR -->
+                @if (Model.AuthOrderRequests != null && Model.AuthOrderRequests.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_AuthorizeOR (@Model.AuthOrderRequests.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var or in Model.AuthOrderRequests)
+                            { 
+                                <li>
+                                    @Ajax.ActionLink(or.RefNumber, "../RequestReview/", new { id = "LoadOrderRequestForAuth" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.OrderRequest_String_AuthorizeOrderRequest, or.RefNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/LoadOrderRequestForAuth/" + or.Id),
+                                        OnSuccess = "CenterPopupOR"
+                                    }, new { @class = "reviewLink" }) 
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+
+                <!-- Authorize PP -->
+                @if (Model.ProcurementPlansForAuth != null && Model.ProcurementPlansForAuth.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_AuthorizePP (@Model.ProcurementPlansForAuth.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var pp in Model.ProcurementPlansForAuth)
+                            {
+                                <li>
+                                    @Ajax.ActionLink(pp.ProjectDonor.ProjectNumber, "../RequestReview/", new { id = "ApprovePP" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_AuthorizeProcurementPlan, pp.ProjectDonor.ProjectNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/ApprovePP", new { ppId = pp.Id.ToString(), actionType = pp.ActionType }),
+                                        OnSuccess = "CenterPopup"
+                                    }, new { @class = "reviewLink" }) 
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+                  
+                <!-- Review RFP -->      
+                @if (Model.PaymentRequests != null && Model.PaymentRequests.Count > 0)
+                {
+                    <h3><a href="#">@Resources.Request4Payment_String_ReviewRFP (@Model.PaymentRequests.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var rfp in Model.PaymentRequests)
+                            { 
+                                <li>
+                                    @Ajax.ActionLink(rfp.EntityPaymentRqst.RefNumber, "../RequestReview/", new { id = "ReviewRFP" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ReviewRequestForPayment, rfp.EntityPaymentRqst.RefNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/ReviewRFP/" + rfp.EntityPaymentRqst.Id),
+                                        OnSuccess = "CenterPopupRFP"
+                                    }, new { @class = "reviewLink" }) 
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+                                
+                <!-- Review OR -->
+                @if (Model.OrderRequests != null && Model.OrderRequests.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ReviewOR (@Model.OrderRequests.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var or in Model.OrderRequests)
+                            { 
+                                <li>
+                                    @Ajax.ActionLink(or.RefNumber, "../RequestReview/", new { id = "LoadOrderRequest" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.OrderRequest_String_ReviewOrderRequest, or.RefNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/LoadOrderRequest/" + or.Id),
+                                        OnSuccess = "CenterPopupOR"
+                                    }) 
+                                </li>
+                            }   
+                        </ul>
+                    </div>
+                }
+
+                <!-- Review PP -->
+                @if (Model.ProcurementPlansForReview != null && Model.ProcurementPlansForReview.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ReviewPP (@Model.ProcurementPlansForReview.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var pp in Model.ProcurementPlansForReview)
+                            {
+                                <li>
+                                    @Ajax.ActionLink(pp.ProjectDonor.ProjectNumber, "../RequestReview/", new { id = "ApprovePP" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ReviewProcurementPlan, pp.ProjectDonor.ProjectNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/ApprovePP", new { ppId = pp.Id.ToString(), actionType = pp.ActionType }),
+                                        OnSuccess = "CenterPopup"
+                                    }, new { @class = "reviewLink" }) 
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                }
+                
+                <!-- Approve OR -->
+                @if (Model.ApprovalOrderRequests != null && Model.ApprovalOrderRequests.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ApproveOR (@Model.ApprovalOrderRequests.Count)</a></h3>
+                    <div>
+                        <ul>
+                            @foreach (var or in Model.ApprovalOrderRequests)
+                            { 
+                                <li>
+                                    @Ajax.ActionLink(or.RefNumber, "../RequestReview/", new { id = "LoadOrderRequest" }, new AjaxOptions
+                                    {
+                                        OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.OrderRequest_String_ApproveOrderRequest, or.RefNumber),
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        Url = Url.Action("../RequestReview/LoadOrderRequestForApproval/" + or.Id),
+                                        OnSuccess = "CenterPopupOR"
+                                    }) 
+                                </li>
+                            }   
+                        </ul>
+                    </div>
+                }
+
+                <!-- Approve PO -->
+                @if (Model.PurchaseOrders != null && Model.PurchaseOrders.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ApprovePO (@Model.PurchaseOrders.Count)</a></h3>
+                    <div>
+                        <ul>
+                        @foreach (var po in Model.PurchaseOrders)
+                        {
+                            <li>
+                                @Ajax.ActionLink(po.RefNumber, "../RequestReview/", new { id = "LoadPurchaseOrder" }, new AjaxOptions
+                            {
+                                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.PurchaseOrder_String_ReviewPurchaseOrder, po.RefNumber),
+                                UpdateTargetId = "popup-page",
+                                LoadingElementId = "popup-loading",
+                                Url = Url.Action("../RequestReview/LoadPurchaseOrder/" + po.Id),
+                                OnSuccess = "CenterPopupPO"
+                            }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                }    
+                     
+                <!-- Approve WRO -->
+                @if (Model.WarehouseReleases != null && Model.WarehouseReleases.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ApproveWRO (@Model.WarehouseReleases.Count)</a></h3>
+                    <div>
+                        <ul>
+                        @foreach (var wrn in Model.WarehouseReleases)
+                        {
+                            <li>
+                                @Ajax.ActionLink(wrn.RefNumber, "../RequestReview/", new { id = "LoadWRO" }, new AjaxOptions
+                            {
+                                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ApproveWarehouseReleaseOrder, wrn.RefNumber),
+                                UpdateTargetId = "popup-page",
+                                LoadingElementId = "popup-loading",
+                                Url = Url.Action("../RequestReview/LoadWRO/" + wrn.Id),
+                                OnSuccess = "CenterPopup"
+                            }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                }    
+
+                <!-- Approve GRN -->
+                @if (Model.GoodsReceivedNotes != null && Model.GoodsReceivedNotes.Count > 0)
+                {
+                    <h3><a href="#">@Resources.GoodsReceivedNote_ViewGRNDetails_VerifyGRN (@Model.GoodsReceivedNotes.Count)</a></h3>
+                    <div>
+                        <ul>
+                        @foreach (var grn in Model.GoodsReceivedNotes)
+                        {
+                            <li>
+                                @Ajax.ActionLink(grn.RefNumber, "../GoodsReceivedNote/", new { id = "VerifyGRN" }, new AjaxOptions
+                                {
+                                    OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_VerifyGoodsReceivedNote, grn.RefNumber),
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    Url = Url.Action("../GoodsReceivedNote/VerifyGRN/" + grn.Id.ToString()),
+                                    OnSuccess = "CenterPopup"
+                                }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                }    
+
+                <!-- Approve PP -->
+                @if ((Model.ProcurementPlansForApproval != null && Model.ProcurementPlansForApproval.Count > 0)
+                    || (Model.ProcurementPlansForApproval2 != null && Model.ProcurementPlansForApproval2.Count > 0))
+                {
+                    int totalCount = Model.ProcurementPlansForApproval.Count + Model.ProcurementPlansForApproval2.Count;
+                    <h3><a href="#">@Resources.RequestReview_String_ApprovePP (@totalCount)</a></h3>
+                    <div>
+                        <ul>
+                        @foreach (var pp in Model.ProcurementPlansForApproval)
+                        {
+                            <li>
+                                @Ajax.ActionLink(pp.ProjectDonor.ProjectNumber, "../RequestReview/", new { id = "ApprovePP" }, new AjaxOptions
+                                {
+                                    OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ApproveProcurementPlan, pp.ProjectDonor.ProjectNumber),
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    Url = Url.Action("../RequestReview/ApprovePP", new { ppId = pp.Id.ToString(), actionType = pp.ActionType }),
+                                    OnSuccess = "CenterPopup"
+                                }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        @foreach (var pp in Model.ProcurementPlansForApproval2)
+                        {
+                            <li>
+                                @Ajax.ActionLink(pp.ProjectDonor.ProjectNumber, "../RequestReview/", new { id = "ApprovePP" }, new AjaxOptions
+                                {
+                                    OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ApproveProcurementPlan, pp.ProjectDonor.ProjectNumber),
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    Url = Url.Action("../RequestReview/ApprovePP", new { ppId = pp.Id.ToString(), actionType = pp.ActionType }),
+                                    OnSuccess = "CenterPopup"
+                                }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                }    
+
+                <!-- Approve CC -->
+                @if (Model.CompletionCertificates != null && Model.CompletionCertificates.Count > 0)
+                {
+                    <h3><a href="#">@Resources.RequestReview_String_ApproveCC (@Model.CompletionCertificates.Count)</a></h3>
+                    <div>
+                        <ul>
+                        @foreach (var cc in Model.CompletionCertificates)
+                        {
+                            <li>
+                                @Ajax.ActionLink(cc.EntityCC.RefNumber, "../RequestReview/", new { id = "LoadCCForApproval" }, new AjaxOptions
+                                {
+                                    OnBegin = string.Format("ShowDialogue('{0}: " + cc.EntityCC.RefNumber + "')", Resources.RequestReview_ProcurementRequestLinks_ApproveCC),
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    Url = Url.Action("../RequestReview/LoadCCForApproval/" + cc.EntityCC.Id.ToString()),
+                                    OnSuccess = "CenterPopup"
+                                }, new { @class = "reviewLink" }) 
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                }    
+            </div>
+        </dd>
+    </dl>
+</div>

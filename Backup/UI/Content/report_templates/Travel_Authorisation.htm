@@ -1,0 +1,374 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{REPORT_TITLE}</title>
+    <link rel="stylesheet" href="{STYLE}?v=1,32." type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="row-fluid">
+                    <div class="span3">
+                        &nbsp;&nbsp;
+                    </div>
+                    <div class="span9">
+                        <h2 class="central" style="text-decoration: underline;">
+                            Travel Authorization Form
+                        </h2>
+                        <h3 class="central" style="color: Red;">
+                            No.: {REQ_NO.}</h3>
+                    </div>
+                </div>
+                <br />
+                <table class="summary">
+                    <tbody>
+                        <tr>
+                            <td>
+                                Date:
+                            </td>
+                            <td>
+                                {DATE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Traveller’s Name:
+                            </td>
+                            <td>
+                                {TRAVELLER}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Title/Position:
+                            </td>
+                            <td>
+                                {POSITION}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+            </div>
+            <div class="span3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="{LOGO1}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{LOGO2}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DANISH REFUGEE COUNCIL<br />
+                                Borgergade 10<br />
+                                DK-1300 Copenhagen<br />
+                                Denmark<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px;">
+                                COUNTRY OFFICE, UGANDA<br />
+                                4688 Kalungi Road<br />
+                                Muyenga, Kampala<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://WWW.drc.dk">WWW.drc.dk</a><br />
+                                <a href="http://WWW.danishdemininggroup.dk">www.danishdemininggroup.dk</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="black-borders default" >
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <p style="text-align: left;">
+                                            Purpose of Travel:</p>
+                                    </div>
+                                    <div class="span9">
+                                        <strong>{PURPOSE}</strong>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p style="text-decoration: underline;">
+                                    Travel & Itinerary information
+                                </p>
+                                <br />
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <p style="text-align: center;">
+                                            Destination:</p>
+                                    </div>
+                                    <div class="span9">
+                                        {DESTINATION}
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <center>
+                                            <input type="checkbox" value="{DOMESTIC}" />&nbsp;Domestic</center>
+                                    </div>
+                                    <div class="span9">
+                                        <input type="checkbox" value="{INTERNATIONAL}" />&nbsp;International
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <center>
+                                            <input type="checkbox" value="{EMPLOYEE}" />&nbsp;Employee</center>
+                                    </div>
+                                    <div class="span2">
+                                        <input type="checkbox" value="{CONSULTANT}" />&nbsp; Consultant
+                                    </div>
+                                    <div class="span3">
+                                        <input type="checkbox" value="{PATICIPANT}" />&nbsp; Activity Participant
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <center>
+                                            &nbsp; Means of Travel:
+                                        </center>
+                                    </div>
+                                    <div class="span2">
+                                        <input type="checkbox" value="{AIR}" />&nbsp; Air
+                                    </div>
+                                    <div class="span2">
+                                        <input type="checkbox" value="{ROAD}" />&nbsp; Road
+                                    </div>
+                                    <div class="span2">
+                                        <input type="checkbox" value="{SEA}" />&nbsp; Sea
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <center>
+                                            &nbsp; Dates of Travel:
+                                        </center>
+                                    </div>
+                                    <div class="span1">
+                                        From
+                                    </div>
+                                    <div class="span2">
+                                        <strong>{FROM-DATE}</strong>
+                                    </div>
+                                    <div class="span1">
+                                        To:
+                                    </div>
+                                    <div class="span2">
+                                        <strong>{TO-DATE}</strong>
+                                    </div>
+                                    <div class="span2">
+                                        Total no. of nights:
+                                    </div>
+                                    <div class="span1">
+                                        <strong>{NO-OF-NIGHTS}</strong>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span3">
+                                        <center>
+                                            Itinerary:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        </center>
+                                    </div>
+                                    <div class="span1">
+                                        From
+                                    </div>
+                                    <div class="span2">
+                                        <strong>{FROM-LOC}</strong>
+                                    </div>
+                                    <div class="span1">
+                                        To:
+                                    </div>
+                                    <div class="span2">
+                                        <strong>{TO-LOC}</strong>
+                                    </div>
+                                    <div class="span1">
+                                        Via:
+                                    </div>
+                                    <div class="span2">
+                                        <strong>{VIA-LOC}</strong>
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    <div class="span1">
+                                        <p style="text-align: left;">
+                                            Remarks:</p>
+                                    </div>
+                                    <div class="span9">
+                                        <strong>{REMARKS}</strong>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail"
+                    id="Table1">
+                    <thead>
+                        <tr>
+                            <th style="width: 10%;">
+                                Travel Dates
+                            </th>
+                            <th style="width: 14%;">
+                                Destination
+                            </th>
+                            <th style="width: 10%;">
+                                No. Of Nights
+                            </th>
+                            <th style="width: 10%;">
+                                Per Diem/Daily Allowance Rate
+                            </th>
+                            <th style="width: 10%;">
+                                Total Allowance Rate
+                            </th>
+                            <th style="width: 10%;">
+                                Advance Required
+                            </th>
+                            <th style="width: 10%;">
+                                Currency
+                            </th>
+                            <th style="width: 12%;">
+                                Project No
+                            </th>
+                            <th style="width: 12%;">
+                                Budget Line
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {TRAVELDATES}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" class="goods-detail" id="Table2">
+                    <thead>
+                        <tr>
+                            <th style="width: 34%;">
+                                Description of other anticipated Expenses
+                            </th>
+                            <th style="width: 14%;">
+                                Total cost of Expenses
+                            </th>
+                            <th style="width: 14%;">
+                                Advance Required
+                            </th>
+                            <th style="width: 12%;">
+                                Currency
+                            </th>
+                            <th style="width: 12%;">
+                                Project No
+                            </th>
+                            <th style="width: 12%;">
+                                Budget Line
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {EXPENSEDTAILS}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2" rowspan="2" align="right">
+                                Total advance required for Per Diem/daily allowance & other anticipated expenses
+                            </th>
+                            <th align="center">
+                                Total Advance Required
+                            </th>
+                            <th align="right">
+                                Currency
+                            </th>
+                            <th colspan="2" rowspan="2">
+                            </th>
+                        </tr>
+                        <tr>
+                            <td align="right">
+                                {TAFVALUE} &nbsp;
+                            </td>
+                            <td align="center">
+                                {TAFCURRENCY}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th align="right">
+                                Master Budget Currency:&nbsp;
+                            </th>
+                            <td align="center">
+                                {MBCURRENCY}
+                            </td>
+                            <th colspan="2" align="right">
+                                Total:&nbsp;
+                            </th>
+                            <td align="right">
+                                {TOTALMBVALUE}
+                            </td>
+                            <th>
+                                &nbsp;TAF Value
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail">
+                    <thead>
+                        <tr class="gridheader">
+                            <th width="19%">
+                                Authorization
+                            </th>
+                            <th width="27%">
+                                TAF Request Prepared by
+                            </th>
+                            <th width="27%">
+                                Finance Review/Approval of BL/PN
+                            </th>
+                            <th width="27%">
+                                TAF Authorized by Manager/CD
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {AUTHORISATION}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

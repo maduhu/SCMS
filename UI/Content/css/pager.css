@@ -1,0 +1,46 @@
+/* 
+    Document   : pager
+    Created on : Oct 19, 2011, 4:08:09 PM
+    Author     : Frank
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+#tablewrapper {width:98%; margin:0 auto}
+#tablewrapper2 {width:98%; margin:0 auto}
+#tableheader {height:35px;}
+.search {float:left; padding:6px; border:1px solid #A7B601; background:#fff; border-radius: 6px 6px 6px 6px; font-weight:bold;}
+#tableheader select {float:left; font-size:12px; width:125px; padding:2px 4px 4px}
+#tableheader input {float:left; font-size:12px; width:225px; padding:2px 4px 4px; margin-left:4px}
+.details {float:right; padding-top:12px}
+.details div {float:left; margin-left:15px; font-size:12px}
+.tinytable {width:100%; border:1px solid #c6d5e1;}
+.tinytable th {background-color: #A7B601; text-align:left; color:#cfdce7; border:1px solid #fff; border-right:none; vertical-align: middle;}
+.tinytable th h3 {font:12px Verdana,Arial; text-align: center; font-weight: bold; color: #fff}
+.tinytable td {font:11px Verdana,Arial;padding:4px 6px 6px; border-bottom:1px solid #c6d5e1; border-right:1px solid #c6d5e1}
+.tinytable .head h3 {background:url(../images/pager/sort.gif) 7px no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .desc, .sortable .asc {background-color: #A7B601;}
+.tinytable .desc h3 {background:url(../images/pager/desc.gif) 7px no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .asc h3 {background:url(../images/pager/asc.gif) 7px no-repeat; cursor:pointer; padding-left:18px}
+.tinytable .head:hover, .tinytable .desc:hover, .tinytable .asc:hover {color:#fff}
+.tinytable .evenrow td {background:#fff}
+.tinytable .oddrow td {background:#fff}
+.evenrow:hover {background:#c6d5e1}
+.oddrow:hover {background:#c6d5e1}
+.tinytable td.evenselected {background:#ecf2f6}
+.tinytable td.oddselected {background:#ecf2f6}
+.tinytable tfoot {background:#fff; font-weight:bold}
+.tinytable tfoot td {padding:6px 8px 8px}
+#tablefooter {height:15px; margin-top:20px}
+#tablenav {float:left}
+#tablenav img {cursor:pointer}
+#tablenav div {float:left; margin-right:15px}
+#tablelocation {float:right; font-size:12px}
+#tablelocation select {margin-right:3px}
+#tablelocation div {float:left; margin-left:15px}
+.page {margin-top:2px; font-style:italic}
+#selectedrow td {background:#c6d5e1}

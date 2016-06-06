@@ -1,0 +1,562 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.OrderRequest
+@{
+    ViewBag.Title = Resources.Global_String_OrderRequest;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_OR: @Model.RefNumber</h3>
+    </div>
+    @if (Model.CanEdit)
+    {
+        <center>
+            @Ajax.ActionLink(Resources.OrderRequest_AddPPItems2OR_EditOR, "Index", new { id = "EditOR" }, new AjaxOptions
+       {
+           OnBegin = string.Format("ShowDialogue('{0}')", Resources.OrderRequest_AddPPItems2OR_EditOR),
+           UpdateTargetId = "popup-page",
+           LoadingElementId = "popup-loading",
+           Url = Url.Action("EditOrderRequest/" + Model.Id),
+           OnSuccess = "CenterPopup"
+       }) |
+            @Ajax.ActionLink(Resources.OrderRequest_String_DeleteOR, "Index", new { id = "DeleteOR" }, new AjaxOptions
+       {
+           UpdateTargetId = "requestDiv",
+           LoadingElementId = "loading",
+           Url = Url.Action("DeleteOrderRequest/" + Model.Id),
+           Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.RefNumber),
+           OnSuccess = "usermsg('" + Resources.OrderRequest_String_SuccessMsg + "');if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+       })
+        </center>
+    }
+    else if (Model.CanApprove)
+    {
+        string linkText = null;
+        string actionName = null;
+        if (Model.IsReviewed == true && Model.IsAuthorized == false && Model.IsRejected != true)
+        {
+            linkText = Resources.OrderRequest_String_AuthorizeOrderRequest;
+            actionName = "LoadOrderRequestForAuth";
+        }
+        else if (Model.IsApproved && Model.IsReviewed == false && Model.IsRejected != true)
+        {
+            linkText = Resources.OrderRequest_String_ReviewOrderRequest;
+            actionName = "LoadOrderRequest";
+        }
+        else if (Model.IsSubmitted && !Model.IsApproved && Model.IsRejected != true)
+        {
+            linkText = Resources.OrderRequest_String_ApproveOrderRequest;
+            actionName = "LoadOrderRequestForApproval";
+        }
+        if (linkText != null)
+        {
+            <center id="canApprove">
+                @Ajax.ActionLink(linkText, actionName, "RequestReview", new { id = "EditOR" }, new AjaxOptions
+           {
+               OnBegin = "ShowDialogueOR('" + linkText + ": " + Model.RefNumber + "')",
+               UpdateTargetId = "popup-page",
+               LoadingElementId = "popup-loading",
+               Url = Url.Action(actionName + "/" + Model.Id, "RequestReview"),
+               OnSuccess = "CenterPopupOR();"
+           }) 
+            </center>
+        }
+        else
+        {
+            <br />
+        }
+    }
+    else if(Model.CanPreparePO)
+    {
+        <center>
+            <a href="@Url.Action("PreparePO", new { id = Model.Id})">@Resources.Global_String_PreparePO</a>
+        </center>
+    }
+    else
+    {
+        <br />
+    }
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th align="center" width="33.3%">
+                @Resources.Global_String_RefNo
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_Date
+            </th>
+            <th align="center" width="33.3%">
+                @Resources.Global_String_ORCurrency
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td align="center">
+                @Model.RefNumber
+            </td>
+            @if (UserContext.HasPermission(StandardPermissionProvider.BackDateDocument))
+            { 
+                <td align="center" title="@Resources.OrderRequest_BackDateOR_BackDateOR" style="cursor: pointer;" onclick="ShowDialogue('@Resources.OrderRequest_BackDateOR_BackDateOR :: @Model.RefNumber');sendRequest('/OrderRequest/BackDateOR/@Model.Id', 'popup-page', 'popup-loading');CenterPopup();">
+                    @if (Model.OrderDate.HasValue)
+                    {
+                        @Model.OrderDate.Value.ToString(Constants.DATE_FORMAT)
+                    }
+                </td>
+            }
+            else
+            {
+                <td align="center">
+                    @if (Model.OrderDate.HasValue)
+                    {
+                        @Model.OrderDate.Value.ToString(Constants.DATE_FORMAT)
+                    }
+                </td>
+            }
+            <td align="center">
+                @Model.Currency.ShortName
+                <input type="hidden" id="currencyId" name="currencyId" value="@Model.CurrencyId" />
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.Budget_CreateProject_ProjectName
+            </th>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Budget_CategoryList_Donor
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td align="center">
+                @Model.ProjectDonor.Project.Name
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.ProjectNumber
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.Donor.ShortName
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">
+                @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDate
+            </th>
+            <th align="center">
+                @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDestination
+            </th>
+            <th align="center">
+                @Resources.OrderRequest_EditOrderRequest_FinalDeliveryDestination
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td align="center">
+                @if (Model.DeliveryDate.HasValue)
+                {
+                    @Model.DeliveryDate.Value.ToString(Constants.DATE_FORMAT)
+                }
+            </td>
+            <td align="center">
+                @if (Model.Location1 != null)
+                {
+                    @Model.Location1.Name
+                }
+            </td>
+            <td align="center">
+                @if (Model.Location != null)
+                {
+                    @Model.Location.Name
+                }
+            </td>
+        </tr>
+    </table>
+    @if (Model.CanEdit)
+    {
+        @Html.Raw("<br />&nbsp;&nbsp;&nbsp;")
+        @Ajax.ActionLink(Resources.OrderRequest_AddNewItem4OR_AddNewItem, "Index", new { id = "LoadRequestItem" }, new AjaxOptions
+   {
+       OnBegin = string.Format("ShowDialogue('{0}')", Resources.OrderRequest_AddNewItem4OR_AddNewItem),
+       UpdateTargetId = "popup-page",
+       LoadingElementId = "popup-loading",
+       Url = Url.Action("AddItemInEditMode/" + Model.Id),
+       OnSuccess = "ClearFormById('#' + 'frmORItem');CenterPopup();"
+   })
+    }
+    <br />
+    &nbsp;&nbsp; @Resources.OrderRequest_ViewOrderRequestItems_ItemsText
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th style="width: 5%; text-align: center;">
+                #
+            </th>
+            <th style="width: 15%;">
+                @Resources.Global_String_Item
+            </th>
+            <th style="width: 20%;">
+                @Resources.Global_String_Description
+            </th>
+            <th style="width: 10%;">
+                @Resources.Global_String_Unit
+            </th>
+            <th style="width: 5%; text-align: center;">
+                @Resources.Global_String_Qty
+            </th>
+            <th style="width: 10%;">
+                @Resources.OrderRequest_AddItemInEditMode_EstUnitPrice
+            </th>
+            <th style="width: 10%;">
+                @Resources.OrderRequest_AddItemInEditMode_EstTotalPrice
+            </th>
+            <th style="width: 10%;">
+                @Resources.Global_String_PN
+            </th>
+            <th style="width: 5%; text-align: center;">
+                @Resources.Global_String_BL
+            </th>
+            <th style="width: 10%;">
+                @Resources.Global_String_Remarks
+            </th>
+            @if (Model.CanEdit)
+            {
+                <th>
+                    @Resources.Global_String_Manage
+                </th>
+            }
+        </tr>
+        @{int count = 0;}
+        @foreach (var item in Model.OrderRequestItems.ToList())
+        {
+            count = count + 1;
+            <tr class="gridodd">
+                <td align="center">
+                    @count
+                </td>
+                <td>
+                    @item.Item.Name
+                </td>
+                <td>
+                    @item.ItemDescription
+                </td>
+                <td align="center">
+                    @item.Item.UnitOfMeasure.Code
+                </td>
+                <td align="center">
+                    @item.Quantity
+                </td>
+                <td align="right">
+                    @item.EstimatedUnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td align="right">
+                    @item.EstimatedPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td align="center">
+                    @item.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber
+                </td>
+                <td align="center">
+                    @item.ProjectBudget.LineNumber
+                </td>
+                <td>
+                    @item.Remarks
+                </td>
+                <td>
+                    @if (Model.CanEdit)
+                    { 
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditItem" }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.OrderRequest_String_EditORItem),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       Url = Url.Action("EditItemInEditMode/" + item.Id),
+                       OnSuccess = "ComputeTotals();CenterPopup();"
+                   }) 
+                        @Html.Raw("&nbsp;|&nbsp;") 
+                        @Ajax.ActionLink(Resources.Global_String_Remove, "RemoveItemInEditMode", new { id = item.Id, orId = Model.Id }, new AjaxOptions
+                   {
+                       UpdateTargetId = "requestDiv",
+                       LoadingElementId = "loading",
+                       Confirm = string.Format(Resources.Global_String_ConfirmDelete, item.Item.Name),
+                       OnSuccess = string.Format("usermsg('{0}');", Resources.OrderRequest_String_DeletedItemMsg)
+                   })
+                    }
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="3" class="gridheader" align="right">
+                @Resources.OrderRequest_String_CurrencyOfOrderRequest &nbsp;
+            </td>
+            <td align="center">
+                @Model.Currency.ShortName
+            </td>
+            <td class="gridheader" colspan="2" align="right">
+                @Resources.Global_String_Total &nbsp;
+            </td>
+            <td align="right">
+                <b>@if (Model.TotalAmount.HasValue)
+                   { @Model.TotalAmount.Value.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)}</b>
+            </td>
+            @if (Model.CanEdit)
+            {
+                <td colspan="4" class="gridheader">
+                    &nbsp;@Resources.OrderRequest_String_ORValue
+                </td>
+            }
+            else
+            { 
+                <td colspan="3" class="gridheader">
+                    &nbsp;@Resources.OrderRequest_String_ORValue
+                </td>
+            }
+        </tr>
+        <tr>
+            <td colspan="3" class="gridheader" align="right">
+                @Resources.Global_String_MasterBudgetCurrency &nbsp;
+            </td>
+            <td align="center">
+                @if (Model.Currency1 != null)
+                { 
+                    @Model.Currency1.ShortName
+                }
+            </td>
+            <td class="gridheader" colspan="2" align="right">
+                @Resources.Global_String_Total &nbsp;
+            </td>
+            <td align="right">
+                <b>@if (Model.MBValue.HasValue)
+                   { @Model.MBValue.Value.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)}</b>
+            </td>
+            @if (Model.CanEdit)
+            {
+                <td colspan="4" class="gridheader">
+                    &nbsp;@Resources.OrderRequest_String_ORValue
+                </td>
+            }
+            else
+            { 
+                <td colspan="3" class="gridheader">
+                    &nbsp;@Resources.OrderRequest_String_ORValue
+                </td>
+            }
+        </tr>
+        <tr>
+            @if (Model.CanEdit)
+            {
+                <td colspan="11" rowspan="3" align="left" valign="top">
+                    <b>@Resources.Global_String_AdditionalRemarks:</b><br />
+                    @Model.Remarks
+                </td>
+            }
+            else
+            { 
+                <td colspan="10" rowspan="3" align="left" valign="top">
+                    <b>@Resources.Global_String_AdditionalRemarks:</b><br />
+                    @Model.Remarks
+                </td>
+            }
+        </tr>
+        <tr>
+        </tr>
+        <tr>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="2" border="1" class="cardTable">
+        <tr class="gridheader">
+            <td width="16%">
+                @Resources.Approver_ApproverList_Authorization
+            </td>
+            <td width="21%">
+                @Resources.Global_String_Requester
+            </td>
+            <td width="21%">
+                @Resources.Global_String_ApprovedBy
+            </td>
+            <td width="21%">
+                @Resources.Global_String_FinanceReviewOfBL
+            </td>
+            <td width="21%">
+                @Resources.Global_String_AuthorizedByManager
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Name:
+            </td>
+            <td>
+                @if (Model.Staff2 != null)
+                {
+                    @Model.Staff2.StaffName
+                }
+            </td>
+            <td>
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.Staff.StaffName
+                }
+            </td>
+            <td>
+                @if (Model.IsReviewed == true && Model.Staff3 != null)
+                {
+                    @Model.Staff3.StaffName
+                }
+            </td>
+            <td>
+                @if (Model.IsAuthorized == true && Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffName
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Title:
+            </td>
+            <td>
+                @if (Model.Staff2 != null)
+                {
+                    @Model.Staff2.StaffDesignation
+                }
+            </td>
+            <td>
+                @if (Model.IsApproved && Model.Staff != null)
+                {
+                    @Model.Staff.StaffDesignation
+                }
+            </td>
+            <td>
+                @if (Model.IsReviewed == true && Model.Staff3 != null)
+                {
+                    @Model.Staff3.StaffDesignation
+                }
+            </td>
+            <td>
+                @if (Model.IsAuthorized == true && Model.Staff1 != null)
+                {
+                    @Model.Staff1.StaffDesignation
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Date:
+            </td>
+            <td>
+                @if(Model.PreparedOn.HasValue && Model.IsSubmitted)
+                {
+                    @Model.PreparedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+            <td>
+                @if (Model.ApprovedOn.HasValue && Model.IsApproved)
+                { 
+                    @Model.ApprovedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+                &nbsp;
+            </td>
+            <td>
+                @if (Model.ReviewedOn.HasValue && Model.IsReviewed == true)
+                {
+                    @Model.ReviewedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+            <td>
+                @if (Model.AuthorizedOn.HasValue && Model.IsAuthorized == true)
+                {
+                    @Model.AuthorizedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Signature:
+            </td>
+            <td>
+                @if (Model.IsSubmitted && Model.Staff2 != null && Model.Staff2.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff2.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td>
+                @if (Model.IsApproved && Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+                &nbsp;
+            </td>
+            <td>
+                @if (Model.IsReviewed == true && Model.Staff3 != null && Model.Staff3.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff3.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td>
+                @if (Model.IsAuthorized == true && Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+        </tr>
+    </table>
+    @if (Model.BudgetCheckResults != null && Model.BudgetCheckResults.Count > 0)
+    {
+        <br />
+        <center style="text-align: center; color: Red; font-weight: bold; font-style: italic;">@Resources.OrderRequest_ViewOrderRequestItems_FundsUnavailableMessage</center>
+        <table align="center" class="cardTable">
+            <tr>
+                <th>@Resources.Budget_CategoryList_ProjectNo</th>
+                <th>@Resources.Budget_CreateSubLine_LineNumber</th>
+                <th>@Resources.MasterBudget_MasterBudget_FundsAvailable</th>
+                <th>@Resources.OrderRequest_ViewOrderRequestItem_AmountChecked</th>
+            </tr>
+            @foreach (var bcr in Model.BudgetCheckResults)
+            {
+                <tr>
+                    <td>@bcr.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber</td>
+                    <td>@bcr.ProjectBudget.LineNumber @bcr.ProjectBudget.Description</td>
+                    <td style="color: Red; font-weight: bold;" align="right">@bcr.AvailableAmount.ToString("#,##0.00")</td>
+                    <td align="right">@bcr.AmountChecked.ToString("#,##0.00")</td>
+                </tr>
+            }
+        </table>
+    }
+    
+    <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+    @if (Model.CanEdit && Model.OrderRequestItems.Count > 0)
+    { 
+        <table width="98%" align="center">
+            <tr>
+                <td align="right" width="100%">
+                    <input type="button" class="btn green" value="  @Resources.Global_String_SubmitForApproval  " onclick="if(confirm('@Resources.Global_String_SubmitForApproval?')){sendRequest('SubmitOR/@Model.Id', 'requestDiv', 'loading'); LoadRequests();}" />
+                </td>
+            </tr>
+        </table>
+    }
+    else if (Model.IsAuthorized == true && UserContext.HasPermission(StandardPermissionProvider.OrderRequestPrint))
+    {
+        <hr />
+@*<a class="btn btn-primary" target="_blank" href="/Reports/OrderRequest/ViewOrder/@Model.EntityOR.Id" style="margin-left: 48%; margin-bottom: 2%;">
+            Get Pdf of OR</a>*@
+       
+        @*<a class="btn btn-primary" href="@Url.Action("pdf", "OrderRequest", new { area = "Reports", orId = Model.Id })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf</a>*@
+        
+        <a class="btn btn-primary" href="@Url.Action("OrderRequest", "PDFReports", new { refNumber = Model.RefNumber })" target="_blank" style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf</a>
+        <br />
+    }
+    else
+    { 
+        <br />
+    }
+</div>
+<br />
+<p>
+    @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new { id = "ViewOrderRequests" }, new AjaxOptions
+    {
+        UpdateTargetId = "requestDiv",
+        LoadingElementId = "loading",
+        Url = Url.Action("ViewOrderRequests")
+        
+    })
+</p>

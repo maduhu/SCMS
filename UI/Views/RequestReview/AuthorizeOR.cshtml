@@ -1,0 +1,363 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.OrderRequest
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "popup-page",
+      LoadingElementId = "popup-loading",
+      HttpMethod = "Post",
+      Url = Url.Action("AuthorizeOrder"),
+      OnBegin = "return VerifyBLBalance(" + Model.ORItemList.Count + ")",
+      OnSuccess = "AuthCompleteWithFundsCheck();ReloadOR('" + Model.Id + "')"
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<div class="partialViewCard" style="max-width: 1000px;">
+    <div class="partialViewCardHeader"><h3>@Resources.RequestReview_String_OrderRequestAuthorization</h3></div>
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        <h4 style="text-align: center;">@Model.RefNumber</h4>
+        <table width="98%" align="center">
+            <tr class="gridheader">
+                <th width="33.3%">
+                    @Resources.Global_String_OrderRequestNo
+                </th>
+                <th width="33.3%">
+                    @Resources.Global_String_Date
+                </th>
+                <th width="33.3%">
+                    @Resources.Global_String_ORCurrency
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Html.TextBoxFor(m => m.RefNumber, new { @readonly = "readonly" })
+                    @*@Html.EditorFor(m => m.EntityOrderRequest.RefNumber)*@
+                    @Html.HiddenFor(m => m.Id)
+                </td>
+                <td align="center">
+                    @Model.OrderDate.Value.ToString(Constants.DATE_FORMAT)
+                    @Html.HiddenFor(m => m.OrderDate)
+                </td>
+                <td align="center">
+                    @Html.DropDownListFor(x => x.CurrencyId, Model.Currencies, new { @disabled = "disabled", @id = "currencyId" })
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <th>
+                    @Resources.Global_String_Programme
+                </th>
+                <th>
+                    @Resources.Global_String_Project
+                </th>
+                <th>
+                    @Resources.Budget_CategoryList_Donor
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @foreach (var proj in Model.Projects)
+                    {
+                        if (proj.Value == Model.ProjectId.ToString())
+                        { 
+                            @proj.Text
+                            break;
+                        }
+                    } 
+                </td>
+                <td align="center">
+                    @Model.ProjectDonor.ProjectNumber
+                </td>
+                <td align="center">
+                   <div id="donorDiv">
+                        @Model.ProjectDonor.Donor.ShortName
+                    </div>
+                </td>
+            </tr>
+            <tr class="gridheader">
+                <th>
+                    @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDate
+                </th>
+                <th>
+                    @Resources.OrderRequest_EditOrderRequest_RequestedDeliveryDestination
+                </th>
+                <th>
+                    @Resources.OrderRequest_EditOrderRequest_FinalDeliveryDestination
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    @Model.DeliveryDate.Value.ToString(Constants.DATE_FORMAT)
+                    @Html.HiddenFor(m => m.DeliveryDate)
+                </td>
+                <td align="center">
+                    @if (Model.Location1 != null)
+                    { 
+                        @Model.Location1.Name
+                    }
+                </td>
+                <td align="center">
+                    @if (Model.Location != null)
+                    { 
+                        @Model.Location.Name
+                    }
+                </td>
+            </tr>
+        </table>
+        <hr />
+            <h4>&nbsp;&nbsp;@Resources.OrderRequest_String_OrderRequestItems</h4>
+        <p>&nbsp;&nbsp;@Resources.OrderRequest_ViewOrderRequestItems_ItemsText</p>
+        <p id="budgetCheckStatus"></p>
+        <table width="98%" align="center" border="1" style="border: 1px solid grey; border-collapse: collapse; font-size: 12px;
+           max-width: 800px;">
+            <tr class="gridheader">
+                <th width="5%">#</th>
+                <th width="15%">@Resources.Global_String_Item</th>
+                <th width="20%">@Resources.Global_String_Description</th>
+                <th width="10%">@Resources.Global_String_Unit</th>
+                <th width="10%">@Resources.Global_String_Qty</th>
+                <th width="10%">@Resources.OrderRequest_AddItemInEditMode_EstUnitPrice</th>
+                <th width="10%">@Resources.OrderRequest_AddItemInEditMode_EstTotalPrice</th>
+                <th width="10%">@Resources.Global_String_BL</th>
+                <th width="10%">@Resources.Global_String_Remarks</th>
+            </tr>
+            @{int num = 0; string pbDiv = ""; string rowId = "";}
+            @for (int i = 0; i < Model.ORItemList.Count; i++)
+            {
+                num = i + 1;
+                pbDiv = "PBlines" + num;
+                rowId = "row" + i;
+                <tr class="gridodd" id="@rowId">
+                    <td align="right">
+                        @num                   
+                    </td>
+                    <td>
+                        @Model.ORItemList[i].Item.Name
+                    </td>
+                    <td>
+                        @Html.DisplayFor(item => Model.ORItemList[i].ItemDescription)
+                        @Html.HiddenFor(item => Model.ORItemList[i].Id)
+                    </td>
+                    <td align="center">
+                        @Model.ORItemList[i].Item.UnitOfMeasure.Code           
+                    </td>
+                    <td>@Html.TextBoxFor(item => Model.ORItemList[i].Quantity, new { @class = "numericTb", @id = "qty" + i, onblur = "calculateTotals(" + i + ", " + Model.ORItemList.Count + ")" })</td>
+                    <td>@Html.TextBoxFor(item => Model.ORItemList[i].EstimatedUnitPrice, new { @class = "numericTb", @id = "unitPrice" + i, onblur = "calculateTotals(" + i + ", " + Model.ORItemList.Count + ")" })</td>
+                    <td>
+                        @Html.TextBoxFor(item => Model.ORItemList[i].EstimatedPrice, new { @class = "numericTb", @id = "totalPrice" + i, @readonly = "readonly" })
+                    </td>
+                    <td>
+                        <div id="@pbDiv">
+                            @Html.DropDownListFor(item => Model.ORItemList[i].BudgetLineId, Model.ORItemList[i].BudgetLines, new { @class = "smallControl", onchange = "javascript:checkBalance4Review(this)" })     
+                        </div>          
+                     </td>
+                    <td>@Html.TextBoxFor(item => Model.ORItemList[i].Remarks, new { @class = "smallControl", @readonly = "readonly" })</td>
+                </tr>
+            }
+            <tr>
+                <td colspan="3" class="gridheader3" align="right">@Resources.OrderRequest_String_CurrencyOfOrderRequest:&nbsp;</td>
+                <td align="center">@Model.Currency.ShortName</td>
+                <td class="gridheader3" align="right" colspan="2">@Resources.Global_String_Total:&nbsp;</td>
+                <td>@Html.TextBoxFor(m => m.TotalAmount, new { @class = "numericTb", @readonly = "readonly", @id = "totalVal" })</td>
+                <td colspan="2" class="gridheader3">@Resources.OrderRequest_String_ORValue</td>
+            </tr>
+            <tr>
+                <td colspan="3" class="gridheader3" align="right">@Resources.Global_String_MasterBudgetCurrency:&nbsp;</td>
+                <td align="center">
+                    @if (Model.Currency1 != null)
+                    { 
+                        @Model.Currency1.ShortName
+                    }
+                    @Html.HiddenFor(m => m.MBCurrencyId, new { id = "mbCurrencyId" })                        
+                </td>
+                <td class="gridheader3" align="right" colspan="2">@Resources.Global_String_Total:&nbsp;</td>
+                <td>
+                    @Html.TextBoxFor(item => Model.MBValue, new { @class = "numericTb", @id = "mbValue", @readonly = "readonly" })
+                    <input type="hidden" id="origLocalValue" />
+                    <input type="hidden" id="origFxValue" />
+                </td>
+                <td colspan="2" class="gridheader3">@Resources.OrderRequest_String_ORValue</td>
+            </tr>
+            <tr>
+                <td colspan="9">@Resources.Global_String_AdditionalRemarks</td>
+            </tr>
+            <tr>
+                <td colspan="9">@Html.TextAreaFor(item => Model.Remarks, new { @class = "expandedTextArea" })</td>
+            </tr>
+        </table>
+        <br />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="gridheader">
+                <td width="16%">
+                    @Resources.Approver_ApproverList_Authorization
+                </td>
+                <td width="21%">
+                    @Resources.Global_String_Requester
+                </td>            
+                <td width="21%">
+                    @Resources.Global_String_ApprovedBy
+                </td>
+                <td width="21%">
+                    @Resources.Global_String_FinanceReviewOfBL
+                </td>
+                <td width="21%">
+                    @Resources.Global_String_AuthorizedByManager
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Name:
+                </td>
+                <td>
+                    @if (Model.Staff2 != null)
+                    {
+                        @Model.Staff2.StaffName
+                    }
+                </td>
+                <td>
+                    @if (Model.IsApproved && Model.Staff != null)
+                    {
+                        @Model.Staff.StaffName
+                    }
+                </td>
+                <td>
+                    @if (Model.IsReviewed == true && Model.Staff3 != null)
+                    {
+                        @Model.Staff3.StaffName
+                    }
+                </td>
+                <td>
+                    @if (Model.IsAuthorized == true && Model.Staff1 != null)
+                    {
+                        @Model.Staff1.StaffName
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Title:
+                </td>
+                <td>
+                    @if (Model.Staff2 != null)
+                    {
+                        @Model.Staff2.StaffDesignation
+                    }
+                </td>
+                <td>
+                    @if (Model.IsApproved && Model.Staff != null)
+                    {
+                        @Model.Staff.StaffDesignation
+                    }
+                </td>
+                <td>
+                    @if (Model.IsReviewed == true && Model.Staff3 != null)
+                    {
+                        @Model.Staff3.StaffDesignation
+                    }
+                </td>
+                <td>
+                    @if (Model.IsAuthorized == true && Model.Staff1 != null)
+                    {
+                        @Model.Staff1.StaffDesignation
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Date:
+                </td>
+                <td>
+                    @if (Model.Staff2 != null)
+                    {
+                        @Model.PreparedOn.Value.ToString("dd/MM/yyyy h:mm tt")
+                    }
+                </td>
+                <td>
+                    @if (Model.ApprovedOn.HasValue && Model.IsApproved)
+                    { 
+                        @Model.ApprovedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                    }
+                    &nbsp;
+                </td>
+                <td>
+                    @if (Model.ReviewedOn.HasValue && Model.IsReviewed == true)
+                    {
+                        @Model.ReviewedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                    }
+                </td>
+                <td>
+                    @if (Model.AuthorizedOn.HasValue && Model.IsAuthorized == true)
+                    {
+                        @Model.AuthorizedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                    }
+                </td>
+            </tr>
+            <tr>
+                <td class="gridheader">
+                    @Resources.Global_String_Signature:
+                </td>
+                <td>
+                    @if (Model.Staff2.StaffSignature != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.Staff2.Person.Id, area = "" })" alt="" style="max-width: 150px;" />
+                    }
+                </td>
+                <td>
+                    @if (Model.IsApproved && Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                    }
+                    &nbsp;
+                </td>
+                <td>
+                    @if (Model.IsReviewed == true && Model.Staff3 != null && Model.Staff3.Person.SignatureImage != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.Staff3.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                    }
+                </td>
+                <td>
+                    @if (Model.IsAuthorized == true && Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                    { 
+                        <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                    }
+                </td>
+            </tr> 
+        </table>
+        if (Model.BudgetCheckResults != null && Model.BudgetCheckResults.Count > 0)
+        {
+            <br />
+            <input type="hidden" id="fundsInsufficientFor" value="OR" />
+            <center style="text-align: center; color: Red; font-weight: bold; font-style: italic;">@Resources.OrderRequest_ViewOrderRequestItems_FundsUnavailableMessage</center>
+            <table align="center" class="cardTable">
+                <tr>
+                    <th>@Resources.Budget_CategoryList_ProjectNo</th>
+                    <th>@Resources.Budget_CreateSubLine_LineNumber</th>
+                    <th>@Resources.MasterBudget_MasterBudget_FundsAvailable</th>
+                    <th>@Resources.OrderRequest_ViewOrderRequestItem_AmountChecked</th>
+                </tr>
+                @foreach (var bcr in Model.BudgetCheckResults)
+                {
+                    <tr>
+                        <td>@bcr.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber</td>
+                        <td>@bcr.ProjectBudget.LineNumber @bcr.ProjectBudget.Description</td>
+                        <td style="color: Red; font-weight: bold;" align="right">@bcr.AvailableAmount.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                        <td align="right">@bcr.AmountChecked.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                    </tr>
+                }
+            </table>
+        }
+        <br />
+        <table align="center">
+            <tr>
+                <td width="100%" align="center">
+                    <input type="submit" class="btn tertiary" value="@Resources.Global_String_Authorize" /> &nbsp; 
+                    <input type="button" class="btn tertiary" value=" @Resources.Global_String_Reject " onclick="sendRequest('/RequestReview/LoadRejectOrder/@Model.Id', 'popup-page', 'popup-loading'); CenterPopup();" />
+                </td>
+            </tr>
+        </table>
+    }
+    <br />
+</div>

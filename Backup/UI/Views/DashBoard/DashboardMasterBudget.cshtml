@@ -1,0 +1,63 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.MBCategory>
+@if (Model.Count() > 0)
+{
+
+    <table width="100%" align="center" cellspacing="0" cellpadding="5" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr>
+            <th rowspan="3" align="center" valign="middle">
+                <h3>@Resources.General_String_MasterBudget (@ViewBag.Currency)</h3>
+            </th>
+            <th colspan="4" align="center" class="gridheader">
+                @Resources.Global_String_GrandTotals.ToUpper()
+            </th>
+        </tr>
+        <tr>
+            <td align="right">
+                <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalBudget)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalCommitted)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m=>Model.ToList()[Model.Count()-1].TotalPosted)</b>
+            </td>
+            <td align="right">
+                <b>@Html.DisplayFor(m => Model.ToList()[Model.Count() - 1].RemainingBalance)</b>
+            </td>
+        </tr>
+        <tr class="gridheader">
+            <th align="center">@Resources.Budget_ViewBudget_TotalBudget</th>
+            <th align="center">@Resources.Budget_ViewBudget_TotalCommitted</th>
+            <th align="center">@Resources.Budget_ViewBudget_TotalPosted</th>
+            <th align="center">@Resources.Budget_ViewBudget_FundsRemaining</th>
+        </tr>
+    @{int x = 0; int pjCount = 0; string rowClass = ""; }
+    @for (int i = 0; i < Model.Count() - 1; i++ )
+    {
+        
+        <tr>
+            <td style="background-color: #FCD5B4;">
+                <b>@Html.DisplayFor(modelItem => Model.ToList()[i].EntityBudgetCategory.Description)</b>
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalBudget)</b>
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalCommitted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.ToList()[i].TotalPosted)
+            </td>
+            <td align="right" style="background-color: #DCE6F1;">
+                <b>@Html.DisplayFor(modelItem => Model.ToList()[i].RemainingBalance)</b>
+            </td>            
+        </tr>        
+    }
+    </table>
+}
+else
+{ 
+    <center><i>@Resources.MasterBudget_ViewMasterBudget_NoBudgets</i></center>
+}

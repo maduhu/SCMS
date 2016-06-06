@@ -1,0 +1,129 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.CoreBusinessLogic._Supplier.SupplierService.SupplierServiceView>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.Global_String_ManageSuppliers</h3></div>
+    <br />
+    @if (Model.Count() > 0)
+    {    
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                        </span>
+                    </div>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+                <thead>
+                    <tr>
+                        <th><h3>@Resources.Global_String_Name</h3></th>
+                        <th><h3>@Resources.Global_String_Address</h3></th>
+                        <th><h3>@Resources.Global_String_PrimaryPhone</h3></th>
+                        <th><h3>@Resources.Global_String_EmailAddress</h3></th>
+                        <th><h3>@Resources.Global_String_Fax</h3></th>
+                        <th><h3>@Resources.Global_String_URL</h3></th>
+                        <th><h3>@Resources.Global_String_Country</h3></th>
+                        <th><h3>@Resources.Global_String_Manage</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.Name)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.Address)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.PrimaryPhone)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.PrimaryEmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.Fax)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Supplier.WebAddress)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Country)
+                            </td>
+                            <td>
+                                @Ajax.ActionLink(Resources.Global_String_Edit, "CreateEdit", new { sid = item.Supplier.Id }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    OnBegin = string.Format("ShowDialogue('{0} :: " + item.Supplier.Name + "')", Resources.Supplier_ListView_EditSupplier),
+                                    OnSuccess = "CenterPopup"  
+                                }) 
+                                &nbsp;|&nbsp;
+                                @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteItem", new { @sid = item.Supplier.Id }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "ContentDiv",
+                                    LoadingElementId = "loading",
+                                    Confirm = string.Format(Resources.Global_String_ConfirmDelete, item.Supplier.Name),
+                                    OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+                                })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    }
+    else
+    {
+        <br />
+        <i>@Resources.Supplier_ListView_NoSuppliers</i>
+    }
+    <br />
+</div>

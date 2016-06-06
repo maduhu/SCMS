@@ -1,0 +1,1713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SCMSModelStoreContainer" CdmEntityContainer="SCMSEntities">
+    <EntitySetMapping Name="AccountCodes">
+      <EntityTypeMapping TypeName="SCMS.Model.AccountCode">
+        <MappingFragment StoreEntitySet="AccountCode">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AnnualCostProjections">
+      <EntityTypeMapping TypeName="SCMS.Model.AnnualCostProjection">
+        <MappingFragment StoreEntitySet="AnnualCostProjection">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="MasterBudgetCategoryId" ColumnName="MasterBudgetCategoryId" />
+          <ScalarProperty Name="AmountProjected" ColumnName="AmountProjected" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Approvers">
+      <EntityTypeMapping TypeName="SCMS.Model.Approver">
+        <MappingFragment StoreEntitySet="Approvers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ActivityCode" ColumnName="ActivityCode" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="AssistantId" ColumnName="AssistantId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="FinanceLimitId" ColumnName="FinanceLimitId" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Assets">
+      <EntityTypeMapping TypeName="SCMS.Model.Asset">
+        <MappingFragment StoreEntitySet="Asset">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="AssetNumber" ColumnName="AssetNumber" />
+          <ScalarProperty Name="Lifespan" ColumnName="Lifespan" />
+          <ScalarProperty Name="SalvageValue" ColumnName="SalvageValue" />
+          <ScalarProperty Name="DepreciationPeriods" ColumnName="DepreciationPeriods" />
+          <ScalarProperty Name="CurrentOwnerId" ColumnName="CurrentOwnerId" />
+          <ScalarProperty Name="CurrentProjectDonorId" ColumnName="CurrentProjectDonorId" />
+          <ScalarProperty Name="CurrentSubOfficeId" ColumnName="CurrentSubOfficeId" />
+          <ScalarProperty Name="CurrentWareHouseId" ColumnName="CurrentWareHouseId" />
+          <ScalarProperty Name="GoodsReceivedNoteItemId" ColumnName="GoodsReceivedNoteItemId" />
+          <ScalarProperty Name="IsReleased" ColumnName="IsReleased" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="IsAssigned" ColumnName="IsAssigned" />
+          <ScalarProperty Name="DepreciationType" ColumnName="DepreciationType" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="OpeningAccDepreciaiton" ColumnName="OpeningAccDepreciaiton" />
+          <ScalarProperty Name="PercentageDepr" ColumnName="PercentageDepr" />
+          <ScalarProperty Name="UseLifeSpan" ColumnName="UseLifeSpan" />
+          <ScalarProperty Name="CountryProgramId" ColumnName="CountryProgramId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="PurchaseValue" ColumnName="PurchaseValue" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="DepreciationCurrencyId" ColumnName="DepreciationCurrencyId" />
+          <ScalarProperty Name="IsFleet" ColumnName="IsFleet" />
+          <ScalarProperty Name="AcquisionDate" ColumnName="AcquisionDate" />
+          <ScalarProperty Name="OriginalProjectId" ColumnName="OriginalProjectId" />
+          <ScalarProperty Name="ActionType" ColumnName="ActionType" />
+          <ScalarProperty Name="IsDesposed" ColumnName="IsDesposed" />
+          <ScalarProperty Name="IsAssetStateChanged" ColumnName="IsAssetStateChanged" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssetLogs">
+      <EntityTypeMapping TypeName="SCMS.Model.AssetLog">
+        <MappingFragment StoreEntitySet="AssetLog">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Lifespan" ColumnName="Lifespan" />
+          <ScalarProperty Name="SalvageValue" ColumnName="SalvageValue" />
+          <ScalarProperty Name="NetBookValue" ColumnName="NetBookValue" />
+          <ScalarProperty Name="DepreciationMonthly" ColumnName="DepreciationMonthly" />
+          <ScalarProperty Name="DepreciationMonths" ColumnName="DepreciationMonths" />
+          <ScalarProperty Name="CurrentOwnerId" ColumnName="CurrentOwnerId" />
+          <ScalarProperty Name="CurrentProjectId" ColumnName="CurrentProjectId" />
+          <ScalarProperty Name="CurrentSubOfficeId" ColumnName="CurrentSubOfficeId" />
+          <ScalarProperty Name="CurrentWareHouseId" ColumnName="CurrentWareHouseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AssetManagments">
+      <EntityTypeMapping TypeName="SCMS.Model.AssetManagment">
+        <MappingFragment StoreEntitySet="AssetManagment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="ManagementAction" ColumnName="ManagementAction" />
+          <ScalarProperty Name="PartnerName" ColumnName="PartnerName" />
+          <ScalarProperty Name="currentProjectId" ColumnName="currentProjectId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ActionTakenBy" ColumnName="ActionTakenBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttachedDocuments">
+      <EntityTypeMapping TypeName="SCMS.Model.AttachedDocument">
+        <MappingFragment StoreEntitySet="AttachedDocument">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="FileContent" ColumnName="FileContent" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="AttachedOn" ColumnName="AttachedOn" />
+          <ScalarProperty Name="AttachedBy" ColumnName="AttachedBy" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bins">
+      <EntityTypeMapping TypeName="SCMS.Model.Bin">
+        <MappingFragment StoreEntitySet="Bin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="WHDemarcation" ColumnName="WHDemarcation" />
+          <ScalarProperty Name="OrderRequestItemId" ColumnName="OrderRequestItemId" />
+          <ScalarProperty Name="PackageId" ColumnName="PackageId" />
+          <ScalarProperty Name="WareHouseId" ColumnName="WareHouseId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="ProcurementPlanItemId" ColumnName="ProcurementPlanItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BinItems">
+      <EntityTypeMapping TypeName="SCMS.Model.BinItem">
+        <MappingFragment StoreEntitySet="BinItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BinId" ColumnName="BinId" />
+          <ScalarProperty Name="GoodsReceivedNoteItemId" ColumnName="GoodsReceivedNoteItemId" />
+          <ScalarProperty Name="WarehouseReleaseItemId" ColumnName="WarehouseReleaseItemId" />
+          <ScalarProperty Name="QTYReceived" ColumnName="QTYReceived" />
+          <ScalarProperty Name="QTYIssued" ColumnName="QTYIssued" />
+          <ScalarProperty Name="BalanceStock" ColumnName="BalanceStock" />
+          <ScalarProperty Name="ExpirelyDate" ColumnName="ExpirelyDate" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="WHManagerId" ColumnName="WHManagerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BudgetCategories">
+      <EntityTypeMapping TypeName="SCMS.Model.BudgetCategory">
+        <MappingFragment StoreEntitySet="BudgetCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BudgetCommitments">
+      <EntityTypeMapping TypeName="SCMS.Model.BudgetCommitment">
+        <MappingFragment StoreEntitySet="BudgetCommitment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+          <ScalarProperty Name="AmountCommitted" ColumnName="AmountCommitted" />
+          <ScalarProperty Name="DateCommitted" ColumnName="DateCommitted" />
+          <ScalarProperty Name="OrderRequestItemId" ColumnName="OrderRequestItemId" />
+          <ScalarProperty Name="PurchaseOrderItemId" ColumnName="PurchaseOrderItemId" />
+          <ScalarProperty Name="RFPBudgetLineId" ColumnName="RFPBudgetLineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BudgetPostings">
+      <EntityTypeMapping TypeName="SCMS.Model.BudgetPosting">
+        <MappingFragment StoreEntitySet="BudgetPosting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AmountPosted" ColumnName="AmountPosted" />
+          <ScalarProperty Name="DatePosted" ColumnName="DatePosted" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="RFPBudgetLineId" ColumnName="RFPBudgetLineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CheckListCategories">
+      <EntityTypeMapping TypeName="SCMS.Model.CheckListCategory">
+        <MappingFragment StoreEntitySet="CheckListCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="CountryprogrammeId" ColumnName="CountryprogrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CompletionCertificates">
+      <EntityTypeMapping TypeName="SCMS.Model.CompletionCertificate">
+        <MappingFragment StoreEntitySet="CompletionCertificate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="Purpose" ColumnName="Purpose" />
+          <ScalarProperty Name="ProjectTitle" ColumnName="ProjectTitle" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="WorksService" ColumnName="WorksService" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+          <ScalarProperty Name="DRCOfficeId" ColumnName="DRCOfficeId" />
+          <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Countries">
+      <EntityTypeMapping TypeName="SCMS.Model.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountryProgrammes">
+      <EntityTypeMapping TypeName="SCMS.Model.CountryProgramme">
+        <MappingFragment StoreEntitySet="CountryProgramme">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="ProgrammeName" ColumnName="ProgrammeName" />
+          <ScalarProperty Name="MBCurrencyId" ColumnName="MBCurrencyId" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="AdministratorEmail" ColumnName="AdministratorEmail" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountrySubOffices">
+      <EntityTypeMapping TypeName="SCMS.Model.CountrySubOffice">
+        <MappingFragment StoreEntitySet="CountrySubOffice">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsCountryHeadOffice" ColumnName="IsCountryHeadOffice" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CountrySubProgrammes">
+      <EntityTypeMapping TypeName="SCMS.Model.CountrySubProgramme">
+        <MappingFragment StoreEntitySet="CountrySubProgramme">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Currencies">
+      <EntityTypeMapping TypeName="SCMS.Model.Currency">
+        <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Symbol" ColumnName="Symbol" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="SCMS.Model.Department">
+        <MappingFragment StoreEntitySet="Department">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Depreciations">
+      <EntityTypeMapping TypeName="SCMS.Model.Depreciation">
+        <MappingFragment StoreEntitySet="Depreciation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="MonthlyDepreciation" ColumnName="MonthlyDepreciation" />
+          <ScalarProperty Name="AccDepreciation" ColumnName="AccDepreciation" />
+          <ScalarProperty Name="NetbookValue" ColumnName="NetbookValue" />
+          <ScalarProperty Name="Period" ColumnName="Period" />
+          <ScalarProperty Name="AnnualDepreciation" ColumnName="AnnualDepreciation" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Designations">
+      <EntityTypeMapping TypeName="SCMS.Model.Designation">
+        <MappingFragment StoreEntitySet="Designation">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Documents">
+      <EntityTypeMapping TypeName="SCMS.Model.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentAudits">
+      <EntityTypeMapping TypeName="SCMS.Model.DocumentAudit">
+        <MappingFragment StoreEntitySet="DocumentAudit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="VerifiedBy" ColumnName="VerifiedBy" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="ReviewedOn" ColumnName="ReviewedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="IsAprovedOn" ColumnName="IsAprovedOn" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="IsVerified" ColumnName="IsVerified" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentBackDatings">
+      <EntityTypeMapping TypeName="SCMS.Model.DocumentBackDating">
+        <MappingFragment StoreEntitySet="DocumentBackDating">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PreviousDate" ColumnName="PreviousDate" />
+          <ScalarProperty Name="NewDate" ColumnName="NewDate" />
+          <ScalarProperty Name="OrderRequestId" ColumnName="OrderRequestId" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="BackDatedBy" ColumnName="BackDatedBy" />
+          <ScalarProperty Name="BackDatedOn" ColumnName="BackDatedOn" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DocumentPreparers">
+      <EntityTypeMapping TypeName="SCMS.Model.DocumentPreparer">
+        <MappingFragment StoreEntitySet="DocumentPreparer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentCode" ColumnName="DocumentCode" />
+          <ScalarProperty Name="PreparerId" ColumnName="PreparerId" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Donors">
+      <EntityTypeMapping TypeName="SCMS.Model.Donor">
+        <MappingFragment StoreEntitySet="Donor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DutyTypes">
+      <EntityTypeMapping TypeName="SCMS.Model.DutyType">
+        <MappingFragment StoreEntitySet="DutyType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgramId" ColumnName="CountryProgramId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Equipment2Fleet">
+      <EntityTypeMapping TypeName="SCMS.Model.Equipment2Fleet">
+        <MappingFragment StoreEntitySet="Equipment2Fleet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FleetId" ColumnName="FleetId" />
+          <ScalarProperty Name="EquipmentId" ColumnName="EquipmentId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExchangeRates">
+      <EntityTypeMapping TypeName="SCMS.Model.ExchangeRate">
+        <MappingFragment StoreEntitySet="ExchangeRate">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MainCurrencyId" ColumnName="MainCurrencyId" />
+          <ScalarProperty Name="LocalCurrencyId" ColumnName="LocalCurrencyId" />
+          <ScalarProperty Name="Rate" ColumnName="Rate" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FinanceLimits">
+      <EntityTypeMapping TypeName="SCMS.Model.FinanceLimit">
+        <MappingFragment StoreEntitySet="FinanceLimit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Limit" ColumnName="Limit" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FleetDailyManagements">
+      <EntityTypeMapping TypeName="SCMS.Model.FleetDailyManagement">
+        <MappingFragment StoreEntitySet="FleetDailyManagement">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FleetId" ColumnName="FleetId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="StartMilleage" ColumnName="StartMilleage" />
+          <ScalarProperty Name="EndMilleage" ColumnName="EndMilleage" />
+          <ScalarProperty Name="DistancedCovered" ColumnName="DistancedCovered" />
+          <ScalarProperty Name="TotalFuelConsumed" ColumnName="TotalFuelConsumed" />
+          <ScalarProperty Name="IncidenceId" ColumnName="IncidenceId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="DriverInChargeId" ColumnName="DriverInChargeId" />
+          <ScalarProperty Name="FuelCost" ColumnName="FuelCost" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FleetDetails">
+      <EntityTypeMapping TypeName="SCMS.Model.FleetDetail">
+        <MappingFragment StoreEntitySet="FleetDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+          <ScalarProperty Name="ModelYear" ColumnName="ModelYear" />
+          <ScalarProperty Name="PlateNo" ColumnName="PlateNo" />
+          <ScalarProperty Name="EngineNo" ColumnName="EngineNo" />
+          <ScalarProperty Name="ChassisNo" ColumnName="ChassisNo" />
+          <ScalarProperty Name="InsuranceTypeId" ColumnName="InsuranceTypeId" />
+          <ScalarProperty Name="InsuranceExpiryDate" ColumnName="InsuranceExpiryDate" />
+          <ScalarProperty Name="InitialMilleage" ColumnName="InitialMilleage" />
+          <ScalarProperty Name="FuelType" ColumnName="FuelType" />
+          <ScalarProperty Name="FleetType" ColumnName="FleetType" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="DutyTypeId" ColumnName="DutyTypeId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="DriverInfoId" ColumnName="DriverInfoId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FleetEquipments">
+      <EntityTypeMapping TypeName="SCMS.Model.FleetEquipment">
+        <MappingFragment StoreEntitySet="FleetEquipment">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="EquipmentName" ColumnName="EquipmentName" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FleetMajorIncidences">
+      <EntityTypeMapping TypeName="SCMS.Model.FleetMajorIncidence">
+        <MappingFragment StoreEntitySet="FleetMajorIncidences">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgramId" ColumnName="CountryProgramId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GarageInfoes">
+      <EntityTypeMapping TypeName="SCMS.Model.GarageInfo">
+        <MappingFragment StoreEntitySet="GarageInfo">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FleetId" ColumnName="FleetId" />
+          <ScalarProperty Name="Dateken" ColumnName="Dateken" />
+          <ScalarProperty Name="ReasonType" ColumnName="ReasonType" />
+          <ScalarProperty Name="IfServiceCurrentMilleage" ColumnName="IfServiceCurrentMilleage" />
+          <ScalarProperty Name="IfServiceNextMilleage" ColumnName="IfServiceNextMilleage" />
+          <ScalarProperty Name="OtherProblemsDescription" ColumnName="OtherProblemsDescription" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="DateOutOfGarage" ColumnName="DateOutOfGarage" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="MilleageOut" ColumnName="MilleageOut" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GarageSeviceChecks">
+      <EntityTypeMapping TypeName="SCMS.Model.GarageSeviceCheck">
+        <MappingFragment StoreEntitySet="GarageSeviceCheck">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GarageInfoId" ColumnName="GarageInfoId" />
+          <ScalarProperty Name="ServiceCheckId" ColumnName="ServiceCheckId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="ServiceId" ColumnName="ServiceId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GeneralLedgers">
+      <EntityTypeMapping TypeName="SCMS.Model.GeneralLedger">
+        <MappingFragment StoreEntitySet="GeneralLedger">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MasterBudgetCategoryId" ColumnName="MasterBudgetCategoryId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsIssuedVouchers">
+      <EntityTypeMapping TypeName="SCMS.Model.GoodsIssuedVoucher">
+        <MappingFragment StoreEntitySet="GoodsIssuedVoucher">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="TransporterVehiclePlateNo" ColumnName="TransporterVehiclePlateNo" />
+          <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+          <ScalarProperty Name="WaybillNo" ColumnName="WaybillNo" />
+          <ScalarProperty Name="WareHouseReleaseId" ColumnName="WareHouseReleaseId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="Receivedby" ColumnName="Receivedby" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsIssuedVoucherItems">
+      <EntityTypeMapping TypeName="SCMS.Model.GoodsIssuedVoucherItem">
+        <MappingFragment StoreEntitySet="GoodsIssuedVoucherItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GoodsIssuedVoucherId" ColumnName="GoodsIssuedVoucherId" />
+          <ScalarProperty Name="WarehouseReleaseItemId" ColumnName="WarehouseReleaseItemId" />
+          <ScalarProperty Name="QTYDelivered" ColumnName="QTYDelivered" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsReceivedNotes">
+      <EntityTypeMapping TypeName="SCMS.Model.GoodsReceivedNote">
+        <MappingFragment StoreEntitySet="GoodsReceivedNote">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="DnNumber" ColumnName="DnNumber" />
+          <ScalarProperty Name="DeliverDate" ColumnName="DeliverDate" />
+          <ScalarProperty Name="CountryOfficeId" ColumnName="CountryOfficeId" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="GoodCondition" ColumnName="GoodCondition" />
+          <ScalarProperty Name="CorrectQuantity" ColumnName="CorrectQuantity" />
+          <ScalarProperty Name="GoodsDamaged" ColumnName="GoodsDamaged" />
+          <ScalarProperty Name="Shortfall" ColumnName="Shortfall" />
+          <ScalarProperty Name="DeliveredBy" ColumnName="DeliveredBy" />
+          <ScalarProperty Name="DeliveryCompany" ColumnName="DeliveryCompany" />
+          <ScalarProperty Name="VehicleRegNumber" ColumnName="VehicleRegNumber" />
+          <ScalarProperty Name="DriverLicenseNumber" ColumnName="DriverLicenseNumber" />
+          <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="Index" ColumnName="Index" />
+          <ScalarProperty Name="Verified" ColumnName="Verified" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="ReceptionApprovedBy" ColumnName="ReceptionApprovedBy" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+          <ScalarProperty Name="WareHouseId" ColumnName="WareHouseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GoodsReceivedNoteItems">
+      <EntityTypeMapping TypeName="SCMS.Model.GoodsReceivedNoteItem">
+        <MappingFragment StoreEntitySet="GoodsReceivedNoteItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="GoodsReceivedNoteId" ColumnName="GoodsReceivedNoteId" />
+          <ScalarProperty Name="PurchaseOrderItemId" ColumnName="PurchaseOrderItemId" />
+          <ScalarProperty Name="QuantityDelivered" ColumnName="QuantityDelivered" />
+          <ScalarProperty Name="QuantityDamaged" ColumnName="QuantityDamaged" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="IsInventory" ColumnName="IsInventory" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InsuranceTypes">
+      <EntityTypeMapping TypeName="SCMS.Model.InsuranceType">
+        <MappingFragment StoreEntitySet="InsuranceType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inventories">
+      <EntityTypeMapping TypeName="SCMS.Model.Inventory">
+        <MappingFragment StoreEntitySet="Inventory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="WareHouseId" ColumnName="WareHouseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="SCMS.Model.Item">
+        <MappingFragment StoreEntitySet="Item">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemCategoryId" ColumnName="ItemCategoryId" />
+          <ScalarProperty Name="ItemClassificationId" ColumnName="ItemClassificationId" />
+          <ScalarProperty Name="UnitOfMessureId" ColumnName="UnitOfMessureId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="ModelId" ColumnName="ModelId" />
+          <ScalarProperty Name="TypeId" ColumnName="TypeId" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemCategories">
+      <EntityTypeMapping TypeName="SCMS.Model.ItemCategory">
+        <MappingFragment StoreEntitySet="ItemCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemClassifications">
+      <EntityTypeMapping TypeName="SCMS.Model.ItemClassification">
+        <MappingFragment StoreEntitySet="ItemClassification">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PercentageDepr" ColumnName="PercentageDepr" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemModels">
+      <EntityTypeMapping TypeName="SCMS.Model.ItemModel">
+        <MappingFragment StoreEntitySet="ItemModel">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemPackages">
+      <EntityTypeMapping TypeName="SCMS.Model.ItemPackage">
+        <MappingFragment StoreEntitySet="ItemPackage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="shortName" ColumnName="shortName" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PackSize" ColumnName="PackSize" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemTypes">
+      <EntityTypeMapping TypeName="SCMS.Model.ItemType">
+        <MappingFragment StoreEntitySet="ItemType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgramId" ColumnName="CountryProgramId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="SCMS.Model.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MasterBudgetCategories">
+      <EntityTypeMapping TypeName="SCMS.Model.MasterBudgetCategory">
+        <MappingFragment StoreEntitySet="MasterBudgetCategory">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Notifications">
+      <EntityTypeMapping TypeName="SCMS.Model.Notification">
+        <MappingFragment StoreEntitySet="Notification">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ApproverId" ColumnName="ApproverId" />
+          <ScalarProperty Name="SentToDelegate" ColumnName="SentToDelegate" />
+          <ScalarProperty Name="SendDate" ColumnName="SendDate" />
+          <ScalarProperty Name="IsRespondedTo" ColumnName="IsRespondedTo" />
+          <ScalarProperty Name="ResponseDate" ColumnName="ResponseDate" />
+          <ScalarProperty Name="OrderRequestId" ColumnName="OrderRequestId" />
+          <ScalarProperty Name="TenderAnalysisId" ColumnName="TenderAnalysisId" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="PaymentRequestId" ColumnName="PaymentRequestId" />
+          <ScalarProperty Name="GoodsReceivedNoteId" ColumnName="GoodsReceivedNoteId" />
+          <ScalarProperty Name="WarehouseReleaseId" ColumnName="WarehouseReleaseId" />
+          <ScalarProperty Name="ProcurementPlanId" ColumnName="ProcurementPlanId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderRequests">
+      <EntityTypeMapping TypeName="SCMS.Model.OrderRequest">
+        <MappingFragment StoreEntitySet="OrderRequest">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="DeliveryDate" ColumnName="DeliveryDate" />
+          <ScalarProperty Name="RequestedDestinationId" ColumnName="RequestedDestinationId" />
+          <ScalarProperty Name="FinalDestinationId" ColumnName="FinalDestinationId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="ReviewedOn" ColumnName="ReviewedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="FromOneBL" ColumnName="FromOneBL" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="RejectedReviewRemarks" ColumnName="RejectedReviewRemarks" />
+          <ScalarProperty Name="RejectedAuthorizeRemarks" ColumnName="RejectedAuthorizeRemarks" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="MBCurrencyId" ColumnName="MBCurrencyId" />
+          <ScalarProperty Name="MBValue" ColumnName="MBValue" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderRequestItems">
+      <EntityTypeMapping TypeName="SCMS.Model.OrderRequestItem">
+        <MappingFragment StoreEntitySet="OrderRequestItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="OrderRequestId" ColumnName="OrderRequestId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="EstimatedUnitPrice" ColumnName="EstimatedUnitPrice" />
+          <ScalarProperty Name="EstimatedPrice" ColumnName="EstimatedPrice" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="ProcurementPlanItemId" ColumnName="ProcurementPlanItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentDossierDocuments">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentDossierDocument">
+        <MappingFragment StoreEntitySet="PaymentDossierDocument">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="PaymentRequestId" ColumnName="PaymentRequestId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentRequests">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentRequest">
+        <MappingFragment StoreEntitySet="PaymentRequest">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="PaymentRqstType" ColumnName="PaymentRqstType" />
+          <ScalarProperty Name="VoucherNumber" ColumnName="VoucherNumber" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="SPMId" ColumnName="SPMId" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="RequestFor" ColumnName="RequestFor" />
+          <ScalarProperty Name="PaymentTermId" ColumnName="PaymentTermId" />
+          <ScalarProperty Name="PaymentTypeId" ColumnName="PaymentTypeId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="ReviewedOn" ColumnName="ReviewedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="RejectedReviewRemarks" ColumnName="RejectedReviewRemarks" />
+          <ScalarProperty Name="RejectedAuthorizeRemarks" ColumnName="RejectedAuthorizeRemarks" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="MBCurrencyId" ColumnName="MBCurrencyId" />
+          <ScalarProperty Name="MBValue" ColumnName="MBValue" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="FundsPosted" ColumnName="FundsPosted" />
+          <ScalarProperty Name="PostedOn" ColumnName="PostedOn" />
+          <ScalarProperty Name="PostedBy" ColumnName="PostedBy" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentRequestBudgetLines">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentRequestBudgetLine">
+        <MappingFragment StoreEntitySet="PaymentRequestBudgetLine">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaymentRequestId" ColumnName="PaymentRequestId" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PurchaseOrderItemId" ColumnName="PurchaseOrderItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentTerms">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentTerm">
+        <MappingFragment StoreEntitySet="PaymentTerm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentTypes">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentType">
+        <MappingFragment StoreEntitySet="PaymentType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentVouchers">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentVoucher">
+        <MappingFragment StoreEntitySet="PaymentVoucher">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="PaymentRequestId" ColumnName="PaymentRequestId" />
+          <ScalarProperty Name="ProjectBankAccount" ColumnName="ProjectBankAccount" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PaymentVoucherBudgetLines">
+      <EntityTypeMapping TypeName="SCMS.Model.PaymentVoucherBudgetLine">
+        <MappingFragment StoreEntitySet="PaymentVoucherBudgetLine">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaymentVoucherId" ColumnName="PaymentVoucherId" />
+          <ScalarProperty Name="PaymentRequestItemId" ColumnName="PaymentRequestItemId" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="GeneralLedgerId" ColumnName="GeneralLedgerId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PermissionRecords">
+      <EntityTypeMapping TypeName="SCMS.Model.PermissionRecord">
+        <MappingFragment StoreEntitySet="PermissionRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="People">
+      <EntityTypeMapping TypeName="SCMS.Model.Person">
+        <MappingFragment StoreEntitySet="Person">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="OtherNames" ColumnName="OtherNames" />
+          <ScalarProperty Name="PhotoLocation" ColumnName="PhotoLocation" />
+          <ScalarProperty Name="SignatureImage" ColumnName="SignatureImage" />
+          <ScalarProperty Name="OfficialEmail" ColumnName="OfficialEmail" />
+          <ScalarProperty Name="OfficialPhone" ColumnName="OfficialPhone" />
+          <ScalarProperty Name="IDNo" ColumnName="IDNo" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcurementPlans">
+      <EntityTypeMapping TypeName="SCMS.Model.ProcurementPlan">
+        <MappingFragment StoreEntitySet="ProcurementPlan">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+          <ScalarProperty Name="PreparingOfficeId" ColumnName="PreparingOfficeId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="IsApproved1" ColumnName="IsApproved1" />
+          <ScalarProperty Name="IsApproved2" ColumnName="IsApproved2" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="ApprovedBy1" ColumnName="ApprovedBy1" />
+          <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+          <ScalarProperty Name="ApprovedBy2" ColumnName="ApprovedBy2" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="ApprovedOn1" ColumnName="ApprovedOn1" />
+          <ScalarProperty Name="ApprovedOn2" ColumnName="ApprovedOn2" />
+          <ScalarProperty Name="ReviewedOn" ColumnName="ReviewedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="Approval1RejectMessage" ColumnName="Approval1RejectMessage" />
+          <ScalarProperty Name="Approval2RejectMessage" ColumnName="Approval2RejectMessage" />
+          <ScalarProperty Name="ReviewRejectMessage" ColumnName="ReviewRejectMessage" />
+          <ScalarProperty Name="AuthorizationRejectMessage" ColumnName="AuthorizationRejectMessage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProcurementPlanItems">
+      <EntityTypeMapping TypeName="SCMS.Model.ProcurementPlanItem">
+        <MappingFragment StoreEntitySet="ProcurementPlanItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProcurementPlanId" ColumnName="ProcurementPlanId" />
+          <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+          <ScalarProperty Name="AddedToOR" ColumnName="AddedToOR" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsRemoved" ColumnName="IsRemoved" />
+          <ScalarProperty Name="DeliveredAmount" ColumnName="DeliveredAmount" />
+          <ScalarProperty Name="ApproximateCBM" ColumnName="ApproximateCBM" />
+          <ScalarProperty Name="WarehouseSpaceRequired" ColumnName="WarehouseSpaceRequired" />
+          <ScalarProperty Name="IsApproved2" ColumnName="IsApproved2" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="SCMS.Model.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectBudgets">
+      <EntityTypeMapping TypeName="SCMS.Model.ProjectBudget">
+        <MappingFragment StoreEntitySet="ProjectBudget">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="BudgetCategoryId" ColumnName="BudgetCategoryId" />
+          <ScalarProperty Name="TotalBudget" ColumnName="TotalBudget" />
+          <ScalarProperty Name="TotalCommitted" ColumnName="TotalCommitted" />
+          <ScalarProperty Name="TotalPosted" ColumnName="TotalPosted" />
+          <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
+          <ScalarProperty Name="GeneralLedgerId" ColumnName="GeneralLedgerId" />
+          <ScalarProperty Name="OverrunAdjustment" ColumnName="OverrunAdjustment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectDonors">
+      <EntityTypeMapping TypeName="SCMS.Model.ProjectDonor">
+        <MappingFragment StoreEntitySet="ProjectDonor">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ProjectManagerId" ColumnName="ProjectManagerId" />
+          <ScalarProperty Name="OverrunAdjustment" ColumnName="OverrunAdjustment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrders">
+      <EntityTypeMapping TypeName="SCMS.Model.PurchaseOrder">
+        <MappingFragment StoreEntitySet="PurchaseOrder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="OrderRequestId" ColumnName="OrderRequestId" />
+          <ScalarProperty Name="PaymentTermId" ColumnName="PaymentTermId" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="ShippingTermId" ColumnName="ShippingTermId" />
+          <ScalarProperty Name="DeliveryAddress" ColumnName="DeliveryAddress" />
+          <ScalarProperty Name="FromOneBL" ColumnName="FromOneBL" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="ShippingMarks" ColumnName="ShippingMarks" />
+          <ScalarProperty Name="ConsigneeAddress" ColumnName="ConsigneeAddress" />
+          <ScalarProperty Name="ConsigneeEmail1" ColumnName="ConsigneeEmail1" />
+          <ScalarProperty Name="ConsigneeEmail2" ColumnName="ConsigneeEmail2" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="RejectedReviewRemarks" ColumnName="RejectedReviewRemarks" />
+          <ScalarProperty Name="RejectedAuthorizeRemarks" ColumnName="RejectedAuthorizeRemarks" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="QuotationRef" ColumnName="QuotationRef" />
+          <ScalarProperty Name="MBCurrencyId" ColumnName="MBCurrencyId" />
+          <ScalarProperty Name="MBValue" ColumnName="MBValue" />
+          <ScalarProperty Name="AdditionalRemarks" ColumnName="AdditionalRemarks" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+          <ScalarProperty Name="PODate" ColumnName="PODate" />
+          <ScalarProperty Name="LatestDeliveryDate" ColumnName="LatestDeliveryDate" />
+          <ScalarProperty Name="OtherSpecify" ColumnName="OtherSpecify" />
+          <ScalarProperty Name="PFGPercentage" ColumnName="PFGPercentage" />
+          <ScalarProperty Name="ProformaRequired" ColumnName="ProformaRequired" />
+          <ScalarProperty Name="CommercialInvoiceRequired" ColumnName="CommercialInvoiceRequired" />
+          <ScalarProperty Name="WayBillRequired" ColumnName="WayBillRequired" />
+          <ScalarProperty Name="PackingListRequired" ColumnName="PackingListRequired" />
+          <ScalarProperty Name="DeliveryNoteRequired" ColumnName="DeliveryNoteRequired" />
+          <ScalarProperty Name="ManualsRequired" ColumnName="ManualsRequired" />
+          <ScalarProperty Name="CertificatesReqired" ColumnName="CertificatesReqired" />
+          <ScalarProperty Name="OtherRequired" ColumnName="OtherRequired" />
+          <ScalarProperty Name="PrefinancingGuaranteeRequired" ColumnName="PrefinancingGuaranteeRequired" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+          <ScalarProperty Name="IsInternational" ColumnName="IsInternational" />
+          <ScalarProperty Name="TenderingTypeId" ColumnName="TenderingTypeId" />
+          <ScalarProperty Name="TenderNumber" ColumnName="TenderNumber" />
+          <ScalarProperty Name="WaiverAcquired" ColumnName="WaiverAcquired" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrderDocuments">
+      <EntityTypeMapping TypeName="SCMS.Model.PurchaseOrderDocument">
+        <MappingFragment StoreEntitySet="PurchaseOrderDocument">
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrderItems">
+      <EntityTypeMapping TypeName="SCMS.Model.PurchaseOrderItem">
+        <MappingFragment StoreEntitySet="PurchaseOrderItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PurchaseOrderId" ColumnName="PurchaseOrderId" />
+          <ScalarProperty Name="OrderRequestItemId" ColumnName="OrderRequestItemId" />
+          <ScalarProperty Name="ProcurementPlanItemId" ColumnName="ProcurementPlanItemId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rebookings">
+      <EntityTypeMapping TypeName="SCMS.Model.Rebooking">
+        <MappingFragment StoreEntitySet="Rebooking">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FromBudgetLineId" ColumnName="FromBudgetLineId" />
+          <ScalarProperty Name="ToBudgetLineId" ColumnName="ToBudgetLineId" />
+          <ScalarProperty Name="FromAmount" ColumnName="FromAmount" />
+          <ScalarProperty Name="ToAmount" ColumnName="ToAmount" />
+          <ScalarProperty Name="IsFullRebook" ColumnName="IsFullRebook" />
+          <ScalarProperty Name="RebookedBy" ColumnName="RebookedBy" />
+          <ScalarProperty Name="RebookedOn" ColumnName="RebookedOn" />
+          <ScalarProperty Name="BudgetPostingId" ColumnName="BudgetPostingId" />
+          <ScalarProperty Name="BudgetCommitmentId" ColumnName="BudgetCommitmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SCMS.Model.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="IsSystemRole" ColumnName="IsSystemRole" />
+          <ScalarProperty Name="SystemName" ColumnName="SystemName" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePermissionRecords">
+      <EntityTypeMapping TypeName="SCMS.Model.RolePermissionRecord">
+        <MappingFragment StoreEntitySet="RolePermissionRecord">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="PermissionRecordId" ColumnName="PermissionRecordId" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ServiceCheckLists">
+      <EntityTypeMapping TypeName="SCMS.Model.ServiceCheckList">
+        <MappingFragment StoreEntitySet="ServiceCheckList">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ServiceCategoryId" ColumnName="ServiceCategoryId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Discription" ColumnName="Discription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="SCMS.Model.Setting">
+        <MappingFragment StoreEntitySet="Settings">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ShippingTerms">
+      <EntityTypeMapping TypeName="SCMS.Model.ShippingTerm">
+        <MappingFragment StoreEntitySet="ShippingTerm">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="SCMS.Model.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="CountrySubOfficeId" ColumnName="CountrySubOfficeId" />
+          <ScalarProperty Name="FinanceLimitId" ColumnName="FinanceLimitId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suppliers">
+      <EntityTypeMapping TypeName="SCMS.Model.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PrimaryPhone" ColumnName="PrimaryPhone" />
+          <ScalarProperty Name="SecondaryPhone" ColumnName="SecondaryPhone" />
+          <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+          <ScalarProperty Name="SecondaryEmail" ColumnName="SecondaryEmail" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="WebAddress" ColumnName="WebAddress" />
+          <ScalarProperty Name="LogoLocation" ColumnName="LogoLocation" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemPrivileges">
+      <EntityTypeMapping TypeName="SCMS.Model.SystemPrivilege">
+        <MappingFragment StoreEntitySet="SystemPrivilege">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemRolePrivileges">
+      <EntityTypeMapping TypeName="SCMS.Model.SystemRolePrivilege">
+        <MappingFragment StoreEntitySet="SystemRolePrivilege">
+          <ScalarProperty Name="UserRoleId" ColumnName="UserRoleId" />
+          <ScalarProperty Name="PrivilegeId" ColumnName="PrivilegeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUsers">
+      <EntityTypeMapping TypeName="SCMS.Model.SystemUser">
+        <MappingFragment StoreEntitySet="SystemUser">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="PIN" ColumnName="PIN" />
+          <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="Locked" ColumnName="Locked" />
+          <ScalarProperty Name="LastIpAddress" ColumnName="LastIpAddress" />
+          <ScalarProperty Name="UserLoginCount" ColumnName="UserLoginCount" />
+          <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="IsAvailable" ColumnName="IsAvailable" />
+          <ScalarProperty Name="PasswordResetCode" ColumnName="PasswordResetCode" />
+          <ScalarProperty Name="GenerationTime" ColumnName="GenerationTime" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SystemUserRoles">
+      <EntityTypeMapping TypeName="SCMS.Model.SystemUserRole">
+        <MappingFragment StoreEntitySet="SystemUserRole">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="SystemUserId" ColumnName="SystemUserId" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TenderingTypes">
+      <EntityTypeMapping TypeName="SCMS.Model.TenderingType">
+        <MappingFragment StoreEntitySet="TenderingType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="MinValue" ColumnName="MinValue" />
+          <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="IsInternational" ColumnName="IsInternational" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UnitOfMeasures">
+      <EntityTypeMapping TypeName="SCMS.Model.UnitOfMeasure">
+        <MappingFragment StoreEntitySet="UnitOfMeasure">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleMakes">
+      <EntityTypeMapping TypeName="SCMS.Model.VehicleMake">
+        <MappingFragment StoreEntitySet="VehicleMake">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VehicleModels">
+      <EntityTypeMapping TypeName="SCMS.Model.VehicleModel">
+        <MappingFragment StoreEntitySet="VehicleModel">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="MakeId" ColumnName="MakeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WareHouses">
+      <EntityTypeMapping TypeName="SCMS.Model.WareHouse">
+        <MappingFragment StoreEntitySet="WareHouse">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="SubOfficeId" ColumnName="SubOfficeId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseReleases">
+      <EntityTypeMapping TypeName="SCMS.Model.WarehouseRelease">
+        <MappingFragment StoreEntitySet="WarehouseRelease">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="GoodCondition" ColumnName="GoodCondition" />
+          <ScalarProperty Name="CorrectQuantity" ColumnName="CorrectQuantity" />
+          <ScalarProperty Name="NotReleased" ColumnName="NotReleased" />
+          <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+          <ScalarProperty Name="ReceivingUnit" ColumnName="ReceivingUnit" />
+          <ScalarProperty Name="ReceiptDate" ColumnName="ReceiptDate" />
+          <ScalarProperty Name="ReleasedBy" ColumnName="ReleasedBy" />
+          <ScalarProperty Name="ReleaseDate" ColumnName="ReleaseDate" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="RejectedWRFComments" ColumnName="RejectedWRFComments" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="ApprovedOn" ColumnName="ApprovedOn" />
+          <ScalarProperty Name="RejectedOn" ColumnName="RejectedOn" />
+          <ScalarProperty Name="WareHouseId" ColumnName="WareHouseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WarehouseReleaseItems">
+      <EntityTypeMapping TypeName="SCMS.Model.WarehouseReleaseItem">
+        <MappingFragment StoreEntitySet="WarehouseReleaseItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WarehouseReleaseId" ColumnName="WarehouseReleaseId" />
+          <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+          <ScalarProperty Name="QuantityReceived" ColumnName="QuantityReceived" />
+          <ScalarProperty Name="QuantityDamaged" ColumnName="QuantityDamaged" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WayBills">
+      <EntityTypeMapping TypeName="SCMS.Model.WayBill">
+        <MappingFragment StoreEntitySet="WayBill">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RefNumber" ColumnName="RefNumber" />
+          <ScalarProperty Name="WRNId" ColumnName="WRNId" />
+          <ScalarProperty Name="IssuingOffice" ColumnName="IssuingOffice" />
+          <ScalarProperty Name="IssuerWarehouse" ColumnName="IssuerWarehouse" />
+          <ScalarProperty Name="DestinationOffice" ColumnName="DestinationOffice" />
+          <ScalarProperty Name="DestinationWarehouse" ColumnName="DestinationWarehouse" />
+          <ScalarProperty Name="LoadingDate" ColumnName="LoadingDate" />
+          <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+          <ScalarProperty Name="Consignee" ColumnName="Consignee" />
+          <ScalarProperty Name="DRCVehicleRegNo" ColumnName="DRCVehicleRegNo" />
+          <ScalarProperty Name="DRCVehicleMileage" ColumnName="DRCVehicleMileage" />
+          <ScalarProperty Name="DRCVehicleContactNo" ColumnName="DRCVehicleContactNo" />
+          <ScalarProperty Name="LoadingRemarks" ColumnName="LoadingRemarks" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="PreparedBy" ColumnName="PreparedBy" />
+          <ScalarProperty Name="DriverName" ColumnName="DriverName" />
+          <ScalarProperty Name="VehicleRegNo" ColumnName="VehicleRegNo" />
+          <ScalarProperty Name="TransportCompany" ColumnName="TransportCompany" />
+          <ScalarProperty Name="DriverLicenseNo" ColumnName="DriverLicenseNo" />
+          <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+          <ScalarProperty Name="ArrivalDate" ColumnName="ArrivalDate" />
+          <ScalarProperty Name="DRCVehicleTotalDistance" ColumnName="DRCVehicleTotalDistance" />
+          <ScalarProperty Name="RecordCount" ColumnName="RecordCount" />
+          <ScalarProperty Name="RecvDstnationOfficeId" ColumnName="RecvDstnationOfficeId" />
+          <ScalarProperty Name="RecvDRCVehicleOdometer" ColumnName="RecvDRCVehicleOdometer" />
+          <ScalarProperty Name="RecvDRCVehicleTotalDistance" ColumnName="RecvDRCVehicleTotalDistance" />
+          <ScalarProperty Name="IsReceived" ColumnName="IsReceived" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GenralInventories">
+      <EntityTypeMapping TypeName="SCMS.Model.GenralInventory">
+        <MappingFragment StoreEntitySet="GenralInventory">
+          <ScalarProperty Name="AssetName" ColumnName="AssetName" />
+          <ScalarProperty Name="AssetSerialNo" ColumnName="AssetSerialNo" />
+          <ScalarProperty Name="AssetNumber" ColumnName="AssetNumber" />
+          <ScalarProperty Name="Lifespan" ColumnName="Lifespan" />
+          <ScalarProperty Name="SalvageValue" ColumnName="SalvageValue" />
+          <ScalarProperty Name="DepreciationPeriods" ColumnName="DepreciationPeriods" />
+          <ScalarProperty Name="IsReleased" ColumnName="IsReleased" />
+          <ScalarProperty Name="Weight" ColumnName="Weight" />
+          <ScalarProperty Name="IsAssigned" ColumnName="IsAssigned" />
+          <ScalarProperty Name="DepreciationType" ColumnName="DepreciationType" />
+          <ScalarProperty Name="PercentageDepr" ColumnName="PercentageDepr" />
+          <ScalarProperty Name="UseLifeSpan" ColumnName="UseLifeSpan" />
+          <ScalarProperty Name="PurchaseValue" ColumnName="PurchaseValue" />
+          <ScalarProperty Name="IsFleet" ColumnName="IsFleet" />
+          <ScalarProperty Name="AcquisionDate" ColumnName="AcquisionDate" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="ItemSerialNo" ColumnName="ItemSerialNo" />
+          <ScalarProperty Name="CurrencyName" ColumnName="CurrencyName" />
+          <ScalarProperty Name="CurrencyShortName" ColumnName="CurrencyShortName" />
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ItemClassication" ColumnName="ItemClassication" />
+          <ScalarProperty Name="ClassificationDescription" ColumnName="ClassificationDescription" />
+          <ScalarProperty Name="UnitOfMeasure" ColumnName="UnitOfMeasure" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="ProjectShortName" ColumnName="ProjectShortName" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="DonorShortName" ColumnName="DonorShortName" />
+          <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Warehouse" ColumnName="Warehouse" />
+          <ScalarProperty Name="Locatioin" ColumnName="Locatioin" />
+          <ScalarProperty Name="CountryProgramId" ColumnName="CountryProgramId" />
+          <ScalarProperty Name="AssetId" ColumnName="AssetId" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+          <ScalarProperty Name="WareHouseId" ColumnName="WareHouseId" />
+          <ScalarProperty Name="UnitOfMeasureId" ColumnName="UnitOfMeasureId" />
+          <ScalarProperty Name="ItemCategoryId" ColumnName="ItemCategoryId" />
+          <ScalarProperty Name="ClassicationId" ColumnName="ClassicationId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="DesignationId" ColumnName="DesignationId" />
+          <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InventoryQTies">
+      <EntityTypeMapping TypeName="SCMS.Model.InventoryQTY">
+        <MappingFragment StoreEntitySet="InventoryQTY">
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+          <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="ClasificationName" ColumnName="ClasificationName" />
+          <ScalarProperty Name="UnitCode" ColumnName="UnitCode" />
+          <ScalarProperty Name="UnitDescription" ColumnName="UnitDescription" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_BudgetPipeline">
+      <EntityTypeMapping TypeName="SCMS.Model.V_BudgetPipeline">
+        <MappingFragment StoreEntitySet="V_BudgetPipeline">
+          <ScalarProperty Name="ProjectDonorId" ColumnName="ProjectDonorId" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryNumber" ColumnName="CategoryNumber" />
+          <ScalarProperty Name="BudgetLine" ColumnName="BudgetLine" />
+          <ScalarProperty Name="BLDescription" ColumnName="BLDescription" />
+          <ScalarProperty Name="RFPPost" ColumnName="RFPPost" />
+          <ScalarProperty Name="RFPPostDate" ColumnName="RFPPostDate" />
+          <ScalarProperty Name="BudgetLineId" ColumnName="BudgetLineId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_BudgetPipeLineReport">
+      <EntityTypeMapping TypeName="SCMS.Model.V_BudgetPipeLineReport">
+        <MappingFragment StoreEntitySet="V_BudgetPipeLineReport">
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+          <ScalarProperty Name="CategoryNumber" ColumnName="CategoryNumber" />
+          <ScalarProperty Name="BudgetLine" ColumnName="BudgetLine" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="TotalBudget" ColumnName="TotalBudget" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="ProjectPeriod" ColumnName="ProjectPeriod" />
+          <ScalarProperty Name="ProjectDuration" ColumnName="ProjectDuration" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="PostedFunds" ColumnName="PostedFunds" />
+          <ScalarProperty Name="PostDate" ColumnName="PostDate" />
+          <ScalarProperty Name="PostFundDate" ColumnName="PostFundDate" />
+          <ScalarProperty Name="PostDateNo" ColumnName="PostDateNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_DocumentStatus">
+      <EntityTypeMapping TypeName="SCMS.Model.V_DocumentStatus">
+        <MappingFragment StoreEntitySet="V_DocumentStatus">
+          <ScalarProperty Name="DocumentId" ColumnName="DocumentId" />
+          <ScalarProperty Name="DocumentType" ColumnName="DocumentType" />
+          <ScalarProperty Name="preparedBy" ColumnName="preparedBy" />
+          <ScalarProperty Name="DocPreparedBy" ColumnName="DocPreparedBy" />
+          <ScalarProperty Name="DocReviewedBy" ColumnName="DocReviewedBy" />
+          <ScalarProperty Name="ReviewedBy" ColumnName="ReviewedBy" />
+          <ScalarProperty Name="AuthorizedBy" ColumnName="AuthorizedBy" />
+          <ScalarProperty Name="DocAuthorizedBy" ColumnName="DocAuthorizedBy" />
+          <ScalarProperty Name="VerifiedBy" ColumnName="VerifiedBy" />
+          <ScalarProperty Name="DocVerifiedBy" ColumnName="DocVerifiedBy" />
+          <ScalarProperty Name="ApprovedBy" ColumnName="ApprovedBy" />
+          <ScalarProperty Name="DocApprovedBy" ColumnName="DocApprovedBy" />
+          <ScalarProperty Name="PreparedOn" ColumnName="PreparedOn" />
+          <ScalarProperty Name="ReviewedOn" ColumnName="ReviewedOn" />
+          <ScalarProperty Name="AuthorizedOn" ColumnName="AuthorizedOn" />
+          <ScalarProperty Name="IsSubmitted" ColumnName="IsSubmitted" />
+          <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
+          <ScalarProperty Name="IsReviewed" ColumnName="IsReviewed" />
+          <ScalarProperty Name="IsAuthorized" ColumnName="IsAuthorized" />
+          <ScalarProperty Name="IsRejected" ColumnName="IsRejected" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="IssueDate" ColumnName="IssueDate" />
+          <ScalarProperty Name="DocNo" ColumnName="DocNo" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="DocValue" ColumnName="DocValue" />
+          <ScalarProperty Name="DocStatus" ColumnName="DocStatus" />
+          <ScalarProperty Name="StatusDate" ColumnName="StatusDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VBudgetDetails">
+      <EntityTypeMapping TypeName="SCMS.Model.VBudgetDetail">
+        <MappingFragment StoreEntitySet="VBudgetDetails">
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectShortName" ColumnName="ProjectShortName" />
+          <ScalarProperty Name="BugdetCategory" ColumnName="BugdetCategory" />
+          <ScalarProperty Name="BugdetCategoryNo" ColumnName="BugdetCategoryNo" />
+          <ScalarProperty Name="BugdetLine" ColumnName="BugdetLine" />
+          <ScalarProperty Name="LineNumber" ColumnName="LineNumber" />
+          <ScalarProperty Name="BugdetLineID" ColumnName="BugdetLineID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+          <ScalarProperty Name="TotalBudget" ColumnName="TotalBudget" />
+          <ScalarProperty Name="TotalCommitted" ColumnName="TotalCommitted" />
+          <ScalarProperty Name="TotalPosted" ColumnName="TotalPosted" />
+          <ScalarProperty Name="RemainingBalance" ColumnName="RemainingBalance" />
+          <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+          <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+          <ScalarProperty Name="DonorShortName" ColumnName="DonorShortName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VProjectDonors">
+      <EntityTypeMapping TypeName="SCMS.Model.VProjectDonor">
+        <MappingFragment StoreEntitySet="VProjectDonors">
+          <ScalarProperty Name="DonorName" ColumnName="DonorName" />
+          <ScalarProperty Name="DonorShortName" ColumnName="DonorShortName" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="DonorId" ColumnName="DonorId" />
+          <ScalarProperty Name="CurrencyId" ColumnName="CurrencyId" />
+          <ScalarProperty Name="DonorProNo" ColumnName="DonorProNo" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+          <ScalarProperty Name="ProjectNumber" ColumnName="ProjectNumber" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+          <ScalarProperty Name="ProjectShortName" ColumnName="ProjectShortName" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VStaffDetails">
+      <EntityTypeMapping TypeName="SCMS.Model.VStaffDetail">
+        <MappingFragment StoreEntitySet="VStaffDetails">
+          <ScalarProperty Name="StaffID" ColumnName="StaffID" />
+          <ScalarProperty Name="StaffName" ColumnName="StaffName" />
+          <ScalarProperty Name="PhotoLocation" ColumnName="PhotoLocation" />
+          <ScalarProperty Name="SignatureImage" ColumnName="SignatureImage" />
+          <ScalarProperty Name="OfficialEmail" ColumnName="OfficialEmail" />
+          <ScalarProperty Name="OfficialPhone" ColumnName="OfficialPhone" />
+          <ScalarProperty Name="IDNo" ColumnName="IDNo" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="ShortName" ColumnName="ShortName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
+          <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+          <ScalarProperty Name="SubOfficeName" ColumnName="SubOfficeName" />
+          <ScalarProperty Name="CountryProgrammeId" ColumnName="CountryProgrammeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="BINCARDPDF" FunctionName="SCMS.Model.Store.BINCARDPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.BINCARDPDF_Result">
+          <ScalarProperty Name="BINNO" ColumnName="BINNO" />
+          <ScalarProperty Name="Issuedate" ColumnName="Issuedate" />
+          <ScalarProperty Name="ConvertedIssueDate" ColumnName="ConvertedIssueDate" />
+          <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+          <ScalarProperty Name="QntyIssued" ColumnName="QntyIssued" />
+          <ScalarProperty Name="QntyReceived" ColumnName="QntyReceived" />
+          <ScalarProperty Name="BalanceStock" ColumnName="BalanceStock" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="WareHouseManager" ColumnName="WareHouseManager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GIVPDF" FunctionName="SCMS.Model.Store.GIVPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.GIVPDF_Result">
+          <ScalarProperty Name="GIVNumber" ColumnName="GIVNumber" />
+          <ScalarProperty Name="ORNumber" ColumnName="ORNumber" />
+          <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+          <ScalarProperty Name="Umeasure" ColumnName="Umeasure" />
+          <ScalarProperty Name="QntyRequested" ColumnName="QntyRequested" />
+          <ScalarProperty Name="Qntydelivered" ColumnName="Qntydelivered" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="GRNPDF" FunctionName="SCMS.Model.Store.GRNPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.GRNPDF_Result">
+          <ScalarProperty Name="GRNNumber" ColumnName="GRNNumber" />
+          <ScalarProperty Name="ORNo" ColumnName="ORNo" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Umeasure" ColumnName="Umeasure" />
+          <ScalarProperty Name="packaginUnit" ColumnName="packaginUnit" />
+          <ScalarProperty Name="Qnty" ColumnName="Qnty" />
+          <ScalarProperty Name="Qntydelivered" ColumnName="Qntydelivered" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="OrderRequestPDF" FunctionName="SCMS.Model.Store.OrderRequestPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.OrderRequestPDF_Result">
+          <ScalarProperty Name="ORNumber" ColumnName="ORNumber" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Umeasure" ColumnName="Umeasure" />
+          <ScalarProperty Name="Qnty" ColumnName="Qnty" />
+          <ScalarProperty Name="EstUnitPrice" ColumnName="EstUnitPrice" />
+          <ScalarProperty Name="EstTotalPrice" ColumnName="EstTotalPrice" />
+          <ScalarProperty Name="BL" ColumnName="BL" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="POPDFPROC" FunctionName="SCMS.Model.Store.POPDFPROC">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.POPDFPROC_Result">
+          <ScalarProperty Name="PONumber" ColumnName="PONumber" />
+          <ScalarProperty Name="ProjectNo" ColumnName="ProjectNo" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Umeasure" ColumnName="Umeasure" />
+          <ScalarProperty Name="Qnty" ColumnName="Qnty" />
+          <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="BL" ColumnName="BL" />
+          <ScalarProperty Name="remarks" ColumnName="remarks" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="ProcurementPlanPDF" FunctionName="SCMS.Model.Store.ProcurementPlanPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.ProcurementPlanPDF_Result">
+          <ScalarProperty Name="PPNumber" ColumnName="PPNumber" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Qnty" ColumnName="Qnty" />
+          <ScalarProperty Name="BL" ColumnName="BL" />
+          <ScalarProperty Name="DeliverAmount" ColumnName="DeliverAmount" />
+          <ScalarProperty Name="ApproxCBM" ColumnName="ApproxCBM" />
+          <ScalarProperty Name="WareHouseSpace" ColumnName="WareHouseSpace" />
+          <ScalarProperty Name="Currency" ColumnName="Currency" />
+          <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+          <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="STOCKCARDPDF" FunctionName="SCMS.Model.Store.STOCKCARDPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.STOCKCARDPDF_Result">
+          <ScalarProperty Name="BINNO" ColumnName="BINNO" />
+          <ScalarProperty Name="Issuedate" ColumnName="Issuedate" />
+          <ScalarProperty Name="ConvertedIssueDate" ColumnName="ConvertedIssueDate" />
+          <ScalarProperty Name="DNNumber" ColumnName="DNNumber" />
+          <ScalarProperty Name="DocNumber" ColumnName="DocNumber" />
+          <ScalarProperty Name="QntyIssued" ColumnName="QntyIssued" />
+          <ScalarProperty Name="QntyReceived" ColumnName="QntyReceived" />
+          <ScalarProperty Name="BalanceStock" ColumnName="BalanceStock" />
+          <ScalarProperty Name="WareHouseManager" ColumnName="WareHouseManager" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="WROPDF" FunctionName="SCMS.Model.Store.WROPDF">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SCMS.Model.WROPDF_Result">
+          <ScalarProperty Name="WRONumber" ColumnName="WRONumber" />
+          <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+          <ScalarProperty Name="Umeasure" ColumnName="Umeasure" />
+          <ScalarProperty Name="Qnty" ColumnName="Qnty" />
+          <ScalarProperty Name="AssetWeight" ColumnName="AssetWeight" />
+          <ScalarProperty Name="Comments" ColumnName="Comments" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

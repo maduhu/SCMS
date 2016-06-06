@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/css/bootstrap.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/bootstrap-responsive.min.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/zebra_dialog.css")" rel="stylesheet">
+    <link href="@Url.Content("~/Content/css/style.css")" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="span2 offset4">
+                <div id='feedback'>
+                    @RenderBody()
+                    <br />
+                    <p> @Html.ActionLink("Back", "Index","Home") </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,233 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.BudgetCategory>
+<div class="partialViewCard">
+<div class="partialViewCardHeader"><h3>@Resources.Budget_CategoryList_Header: @ViewBag.ProjectNo</h3></div>
+<table cellpadding="2">
+    <tr>
+        <td align="right"><b>@Resources.Budget_CategoryList_ProjectNo:</b></td>
+        <td>@ViewBag.ProjectNo</td>
+    </tr>
+    <tr>
+        <td align="right"><b>@Resources.Budget_CategoryList_Donor:</b></td>
+        <td>@ViewBag.Donor</td>
+    </tr>
+    <tr>
+        <td align="right"><b>@Resources.Budget_CategoryList_Currency:</b></td>
+        <td>@ViewBag.Currency</td>
+    </tr>
+    <tr>
+        <td colspan="2" align="center">
+            @Ajax.ActionLink(Resources.Budget_CategoryList_EditProject, "Index", new { id = "Edit" }, new AjaxOptions
+            {
+                UpdateTargetId = "budgetDiv",
+                LoadingElementId = "loading",
+                Url = Url.Action("EditProject/" + ViewBag.Id)
+            })
+        </td>
+    </tr>
+</table>
+
+@if (Model.Count() > 0)
+{
+    <!-- Since this view is rendered after any action, the status of our request is posted here. 1 = success, 0 = failure
+         Common failure will be because of attempting to enter a category number or subline number that already exists-->
+    <input type="hidden" id="actionStatus" value="@ViewBag.ActionStatus" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.StatusMsg" />
+    <table width="98%" align="center" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th rowspan="2" valign="middle" width="8%">
+                @Resources.Budget_CategoryList_CategoryNo.
+            </th>
+            <th rowspan="2" valign="middle" width="10%">
+                @Resources.Budget_CategoryList_CategoryName
+            </th>
+            <th colspan = "4">
+                @Resources.Budget_CategoryList_BL
+            </th>
+            <th rowspan="2" valign="middle" width="10%">@Resources.Global_String_Manage</th>
+        </tr>
+        <tr class="gridheader">
+            <th width="5%">
+                No.
+            </th>
+            <th width="37%">
+                @Resources.Budget_CategoryList_Description
+            </th>
+            <th width="15%">
+                @Resources.Budget_CategoryList_BudgetAmount
+            </th>
+            <th width="15%">
+                @Resources.Budget_CategoryList_AllowedOverrun
+            </th>
+        </tr>
+    @{int x = 0; string rowClass = ""; }
+    @foreach (var item in Model)
+    {
+        if (x % 2 == 0) { rowClass = "grideven"; }
+        if (x % 2 != 0) { rowClass = "gridodd"; }
+        if (x >= 0) { x = x + 1; }
+        <tr class="grideven">
+            <td align="center">
+                <b>@Html.DisplayFor(modelItem => item.Number)</b>
+            </td>
+            <td colspan="3">
+                <b>@Html.DisplayFor(modelItem => item.Name)</b>
+            </td>
+            <td align="right"><b>@Html.DisplayFor(modelItem => item.TotalBudget)</b></td>
+            <td>&nbsp;</td>
+            <td align="center">
+                @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditCategory" }, new AjaxOptions
+                {
+                    OnBegin = "ShowDialogue('" + item.Name + "')",
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    Url = Url.Action("EditCategory/" + item.BudgetCategoryId.ToString())
+                }) &nbsp;|&nbsp;
+                @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteCategory" }, new AjaxOptions
+                {
+                    UpdateTargetId = "budgetDiv",
+                    LoadingElementId = "loading",
+                    Url = Url.Action("DeleteCategory/" + item.BudgetCategoryId.ToString()),
+                    Confirm = string.Format(Resources.Budget_CategoryList_ConfirmDeleteCategory, item.Name)
+                })
+            </td>
+        </tr>
+        for (int i = 0; i < item.SubLines.Count; i++ )
+        { 
+            <tr class="gridodd">
+                <td colspan="2" style="border-top-style: none; border-bottom-style: none;" align="right">
+                    @if (item.SubLines.Count == (i+1))
+                    {
+                        @Ajax.ActionLink(Resources.Budget_CategoryList_AddBL, "Index", new { id = "CreateSubLine" }, new AjaxOptions
+                        {
+                            OnBegin = string.Format("ShowDialogue('{0}: " + item.Name + "')", Resources.Budget_CategoryList_CategoryPopupHeader),
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            Url = Url.Action("CreateSubLine/" + item.BudgetCategoryId.ToString()),
+                            OnSuccess = "ClearForm"
+                        })
+                    }
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(s => item.SubLines[i].LineNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(s => item.SubLines[i].Description)
+                </td>
+                <td align="right">
+                    @Html.DisplayFor(s => item.SubLines[i].TotalBudget)
+                </td>
+                <td align="right">
+                    @if (item.SubLines[i].EntityBudgetSubLine.OverrunAdjustment.HasValue)
+                    {
+                        @item.SubLines[i].EntityBudgetSubLine.OverrunAdjustment.Value.ToString("#,##0.00")
+                    }
+                    else
+                    {
+                        <center>-</center>
+                    }
+                </td>
+                <td align="center">                 
+                    @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditSubLine" }, new AjaxOptions
+                    {
+                        OnBegin = string.Format("ShowDialogue('{0}: " + item.SubLines[i].LineNumber + "')", Resources.Budget_CategoryList_BLPopupHeader),
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("EditSubLine/" + item.SubLines[i].EntityBudgetSubLine.Id.ToString()),
+                        OnSuccess = "CleanUpSublineNos"
+                    })  &nbsp;|&nbsp;
+                    @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteSubLine" }, new AjaxOptions
+                    {
+                        UpdateTargetId = "budgetDiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("DeleteSubLine/" + item.SubLines[i].EntityBudgetSubLine.Id.ToString()),
+                        Confirm = string.Format(Resources.Budget_CategoryList_ConfirmDeleteBL, item.SubLines[i].Description)
+                    })
+                </td>
+            </tr>
+        }
+           if (item.SubLines.Count < 1)
+           { 
+            <tr class="gridodd">
+                <td colspan="2" align="right">
+                    @Ajax.ActionLink(Resources.Budget_CategoryList_AddBL, "Index", new { id = "CreateSubLine" }, new AjaxOptions
+                    {
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_CategoryList_NewBLPopupHeader),
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("CreateSubLine/" + item.BudgetCategoryId.ToString()),
+                        OnSuccess = "ClearForm"
+                    })
+                </td>
+                <td colspan="2">                
+                </td>
+                <td></td><td></td>
+            </tr>
+           }
+    }    
+    <tr>
+        <td colspan="2" align="right" valign="baseline" style="border-right-style: none;">
+            &nbsp;
+            @Ajax.ActionLink(Resources.Budget_CategoryList_AddNewCategory, "Index", new { id = "CreateCategory" }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_CategoryList_NewCategoryPopupHeader),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                Url = Url.Action("CreateCategory/" + ViewBag.Id)
+            })
+        </td>
+        <td colspan="4" align="right" style="border-left-style: none;">
+            <input type="button" value="@Resources.Budget_CategoryList_LinkToMB" class="btn green"  onclick="sendRequest('LinkToMB/@ViewBag.Id', 'budgetDiv', 'loading')" />&nbsp;
+            <input type="button" value="  @Resources.Global_String_Finish  " class="btn green"  onclick="sendRequest('ViewBudget/@ViewBag.Id', 'budgetDiv', 'loading')" />&nbsp;
+        </td>
+    </tr>
+    </table>
+    @*<table width="98%" align="center">
+        <tr>
+            <td width="100%" align="right">
+               <input type="button" value="Link to MB" onclick="sendRequest('LinkToMB/@ViewBag.Id', 'budgetDiv', 'loading')" />&nbsp;
+               <input type="button" value="  Finish  " onclick="sendRequest('ViewBudget/@ViewBag.Id', 'budgetDiv', 'loading')" />
+            </td>
+        </tr>
+    </table>*@
+    <br />
+}
+@if (Model.Count() < 1)
+{
+    <table width="98%" align="center" cellspacing="0" cellpadding="5" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th rowspan="2" valign="middle">
+                @Resources.Budget_CategoryList_CategoryNo.
+            </th>
+            <th rowspan="2" valign="middle">
+                @Resources.Budget_CategoryList_CategoryName
+            </th>
+            <th colspan = "2">
+                @Resources.Budget_CategoryList_BL
+            </th>
+            <th rowspan="2" valign="middle">@Resources.Global_String_Manage</th>
+        </tr>
+        <tr class="gridheader">
+            <th width="10%">
+                No.
+            </th>
+            <th width="30%">
+                @Resources.Budget_CategoryList_Description
+            </th>
+        </tr>
+        <tr>
+            <td colspan="5" align="center">
+            @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new { id = "CreateCategory" }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogue('{0}')", Resources.Budget_CategoryList_NewCategoryPopupHeader),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                Url = Url.Action("CreateCategory/" + ViewBag.Id)
+            })
+            </td>
+        </tr>
+    </table>
+    <br />
+}
+</div>
+

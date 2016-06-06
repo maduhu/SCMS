@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="#" title="Procurement"  description="">
+    <siteMapNode url="#" title="Procurement"  description="">
+      <siteMapNode url="/OrderRequest/" title="ORDER REQUEST (&lt;span&gt;OR&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/TenderAnalysis/" title="TENDER ANALYSIS (&lt;span&gt;TA&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/PurchaseOrder/" title="PURCHASE ORDER (&lt;span&gt;PO&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/Request4Payment/" title="REQUEST FOR PAYMENT (&lt;span&gt;RFP&lt;/span&gt;)"  description="" />
+    </siteMapNode>
+    <siteMapNode url="#" title="Inventory"  description="">
+      <siteMapNode url="/GoodsReceivedNote/" title="GOODS RECEIVED NOTE (&lt;span&gt;GRN&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/WRForm/" title="WH RELEASE NOTE (&lt;span&gt;WRN&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/WayBill/" title="WAYBILL (&lt;span&gt;WB&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/Inventory/" title="VIEW INVENTORY"  description="" />
+      <siteMapNode url="/Asset/" title="ASSETS"  description="" />
+    </siteMapNode>
+    <siteMapNode url="#" title="Finance"  description="">
+      <siteMapNode url="/Request4Payment/" title="REQUEST FOR PAYMENT (&lt;span&gt;RFP&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/Request4Advance/" title="REQUEST FOR ADVANCE (&lt;span&gt;RFA&lt;/span&gt;)"  description="" />
+      <siteMapNode url="/ExpenseClaim/" title="EXPENCE CLAIM (&lt;span&gt;ECF&lt;/span&gt;)"  description="" />
+      <siteMapNode url="#" title="SALARY PAYMENT (&lt;span&gt;SPM&lt;/span&gt;)"  description="" />
+    </siteMapNode>
+    <siteMapNode url="#" title="Budget"  description="">
+      <siteMapNode url="#" title="PROJECT BUDGETS (&lt;span&gt;PB&lt;/span&gt;)"  description="" >
+        <siteMapNode url="/Budget/" title="VIEW BUDGET"  description="" />
+        <siteMapNode url="/Budget/" title="CREATE BUDGET"  description="">
+          <siteMapNode url="#" title="BUDGET INFORMATION"  description="" />
+        </siteMapNode>
+      </siteMapNode>
+      <siteMapNode url="#" title="MASTER BUDGETS (&lt;span&gt;MB&lt;/span&gt;)"  description="" >
+        <siteMapNode url="/MasterBudget/" title="VIEW MASTER BUDGET"  description="" />
+        <siteMapNode url="/MasterBudget/MBCIndex" title="MANAGE MB CATEGORIES"  description="" />
+        <siteMapNode url="/MasterBudget/MBPIndex" title="MANAGE MB PROJECTIONS"  description="" />
+      </siteMapNode>
+    </siteMapNode>
+    <siteMapNode url="#" title="Travel Authorization"  description="">
+      <siteMapNode url="#" title="TRAVEL AUTHORIZATION (&lt;span&gt;TAF&lt;/span&gt;)"  description="" />
+    </siteMapNode>
+    <siteMapNode url="#" title="Administration" permissions="AccessAdminPanel"  description="">
+      <siteMapNode url="~/Admin/SystemUser" title="System Users List" permissions="SystemUsersManage"  description="" />
+      <siteMapNode url="~/Admin/Role" title="Roles List" permissions="RolesManage"  description="" />
+      <siteMapNode url="~/Admin/Security/Permissions" title="Acl Manage" permissions="AclManage" description="" />
+      <siteMapNode url="~/Admin/Settings" title="Manage Settings" permissions="SettingsManage"  description="" />
+      <siteMapNode url="~/Admin/Approver" title="Manage Approvers" permissions="SettingsManage"  description="" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>

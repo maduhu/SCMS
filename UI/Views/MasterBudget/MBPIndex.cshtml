@@ -1,0 +1,44 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.MasterBudget_MBPIndex_MBProjections + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<div id="budgetsMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.MasterBudget_MBPIndex_MBProjections</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new { id = "CreateProjection" }, new AjaxOptions
+                        {
+                            OnBegin = string.Format("ShowDialogue('{0}')", Resources.MasterBudget_MBPIndex_NewMBProjection),
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            Url = Url.Action("CreateProjection/" + ViewBag.Id),
+                        })
+                    </td>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Html.ActionLink(Resources.General_String_MasterBudget, "Index")
+                    </td>
+                </tr>
+            </table>            
+        </div>
+    </div>
+    <br /> 
+    <div id="loading" style="display:none; color:Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="budgetDiv">
+        <!-- Content goes here-->
+        @Html.Action("MBProjections")
+    </div>
+</div>

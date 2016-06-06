@@ -1,0 +1,62 @@
+﻿@using SCMS.Resource
+@{    
+    ViewBag.Title = Resources.GoodsIssuedVoucher_Index_GoodsIssuedVoucher + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<div id="GivMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.GoodsIssuedVoucher_Index_GoodsIssuedVoucher</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.OrderRequestManage))
+                    {
+                        <td class="arrowLink" title="@Resources.GoodsIssuedVoucher_LoadGiv_NewGoodsIssuedVoucher">
+                            @Ajax.ActionLink(Resources.GoodsIssuedVoucher_LoadGiv_NewGiv, "LoadGiv", new AjaxOptions
+                            {
+                                UpdateTargetId = "givDiv",
+                                LoadingElementId = "loading"
+                            })
+                        </td>
+                        <td></td>
+                    }
+                    else
+                    { 
+                        <td>&nbsp;</td>
+                    }
+                </tr>
+                <tr>
+                    <td class="arrowLink" title="@Resources.GoodsIssuedVoucher_LoadGiv_ViewGoodsIssuedVoucher">
+                        @Ajax.ActionLink(Resources.GoodsIssuedVoucher_LoadGiv_ViewGIV, "ViewGIVs", new AjaxOptions
+                            {
+                                UpdateTargetId = "givDiv",
+                                LoadingElementId = "loading"
+                            })
+                    </td>
+                    <td>&nbsp;</td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="givDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+        @Html.Action("ViewGIVs")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(20);
+        }
+    });
+</script>

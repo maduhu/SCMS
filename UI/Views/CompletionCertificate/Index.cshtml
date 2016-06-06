@@ -1,0 +1,69 @@
+﻿@using SCMS.Resource
+@{    
+    ViewBag.Title = Resources.CompletionCertficate_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<div id="GRNMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.CompletionCertificate_Index_Header</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.RequestForPaymentViewAll))
+                    {
+                        <td class="arrowLink">
+                            @Ajax.ActionLink(Resources.Global_String_AddNew, "LoadCC", new AjaxOptions
+                       {
+                           UpdateTargetId = "CompletionDiv",
+                           LoadingElementId = "loading"
+                       })
+                        </td>
+                    }
+                    else
+                    { 
+                        <td>
+                            &nbsp;
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.RequestForPaymentViewAll))
+                    {
+                        <td class="arrowLink">
+                            @Ajax.ActionLink(Resources.CompletionCertificate_Index_ViewCC, "ViewCC", new AjaxOptions
+                           {
+                               UpdateTargetId = "CompletionDiv",
+                               LoadingElementId = "loading",
+                               OnSuccess = "if (document.getElementById('table') != null) {initSorter(); sorter.size(20); }"
+                           })
+                        </td>
+                    }
+                    else
+                    { 
+                        <td>
+                            &nbsp;
+                        </td>
+                    }
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="CompletionDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+        @Html.Action("ViewCC")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();sorter.size(20);
+        }
+    });
+</script>

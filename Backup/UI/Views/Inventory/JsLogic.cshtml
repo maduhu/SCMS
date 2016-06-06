@@ -1,0 +1,22 @@
+﻿@using SCMS.Resource
+<script type="text/javascript">
+    
+    $(document).ready(function () {
+
+        $('.iDelete').bind('click', function (e) {
+            e.preventDefault();
+            $.Zebra_Dialog('<strong>Zebra_Dialog</strong>, a small, compact and highly' +
+                'configurable dialog box plugin for jQuery', {
+                    'type': 'question',
+                    'title': 'Custom buttons',
+                    'buttons': [
+                                { caption: 'Yes', callback: function () { alert('"Yes" was clicked') } },
+                                { caption: 'No', callback: function () { alert('"No" was clicked') } },
+                                { caption: 'Cancel', callback: function () { alert('"Cancel" was clicked') } }
+                            ]
+            });
+        });
+
+    });
+
+</script>

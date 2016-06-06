@@ -1,0 +1,131 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.ProcurementPlan
+           
+@{AjaxOptions ajaxOpts = new AjaxOptions
+    {
+        UpdateTargetId = "requestDiv",
+        LoadingElementId = "loading",
+        HttpMethod = "Post",
+        Url = Url.Action("AddPPItems2OR"),
+        OnBegin = "return CheckIfOneIsSelected()"
+    };
+}
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.OrderRequest_AddPPItems2OR_Header :: @Model.ProjectDonor.ProjectNumber</h3></div>
+    <br />
+
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="33%">
+                @Resources.OrderRequest_AddPPItems2OR_OfficePreparing
+            </th>
+            <th align="center" width="33%">
+                @Resources.Global_String_PreparedBy 
+            </th>
+            <th align="center" colspan="2">
+                @Resources.Global_String_Date
+            </th>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Model.CountrySubOffice.Name
+            </td>
+            <td align="center" valign="top">
+                @if(Model.Staff4 != null)
+                {
+                    @Model.Staff4.StaffName
+                }
+            </td>
+            <td align="center" colspan="2">
+                @Model.PreparedOn.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Global_String_PreparedByTitle
+            </th>
+            <th align="center" colspan="2">
+                @Resources.Global_String_ORCurrency
+            </th>
+        </tr>
+        <tr>
+            <td align="center" title="@Model.ProjectDonor.Project.Name">
+                @Model.ProjectDonor.ProjectNumber
+            </td>
+            <td align="center">
+                @if (Model.Staff4 != null)
+                {
+                    @Model.Staff4.StaffDesignation
+                }
+            </td>
+            <td align="center" colspan="2">
+                @ViewBag.Currency
+            </td>
+        </tr>
+    </table> 
+    <br />
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.OrderRequestId)
+        if (Model.ProcurementPlanItems.Count > 0)
+        {
+            <table align="center" width="98%" class="cardTable">
+                <tr>
+                    <th>@Resources.Global_String_ItemName</th>
+                    <th>@Resources.Global_String_Description</th>
+                    <th>@Resources.Global_String_Unit</th>
+                    <th>@Resources.Report_ConsumableInventory_TotalQty</th>
+                    <th>@Resources.Global_String_QtyOrdered</th>
+                    <th>@Resources.Global_String_QtyToOrder</th>
+                    <th>@Resources.OrderRequest_AddItemInEditMode_EstUnitPrice</th>
+                    <th>@Resources.OrderRequest_AddItemInEditMode_EstTotalPrice</th>
+                    <th>@Resources.Budget_CreateSubLine_LineNumber</th>
+                    <th>@Resources.OrderRequest_AddPPItems2OR_AddToOR</th>
+                </tr>
+                @for (int i = 0; i < Model.PPItemList.Count; i++)
+                {                    
+                    string totalQty = "totalQty" + i;
+                    <tr>                
+                        <td>@Model.PPItemList[i].Item.Name</td>
+                        <td>@Model.PPItemList[i].ItemDescription</td>
+                        <td>@Model.PPItemList[i].Item.UnitOfMeasure.Code</td>
+                        <td align="center">@Model.PPItemList[i].Quantity</td>
+                        <td align="center">@Model.PPItemList[i].ProcuredAmount</td>
+                        <td align="center">
+                            @Html.TextBoxFor(m => Model.PPItemList[i].QuantityToOrder, new { @class = "numericTb", @id = "qty" + i, onblur = "calculateORPPTotals(" + i + ")" } )
+                            <input type="hidden" id="@totalQty" value="@Model.PPItemList[i].QuantityToOrder" />
+                        </td>
+                        <td align="right">@Html.TextBoxFor(m => Model.PPItemList[i].UnitCost, new { @class = "numericTb", @id = "unitPrice" + i, onblurr = "calculateORPPTotals(" + i + ")" })</td>
+                        <td align="right">@Html.TextBoxFor(m => Model.PPItemList[i].TotalCost, new { @id = "totalPrice" + i, @class = "numericTb", @readonly = "readonly" })</td>
+                        <td align="center" title="@Model.PPItemList[i].ProjectBudget.Description">@Model.PPItemList[i].ProjectBudget.LineNumber</td>
+                        <td align="center">
+                            @Html.CheckBoxFor(m => Model.PPItemList[i].AddedToOR)
+                            @Html.HiddenFor(m => Model.PPItemList[i].Id)
+                        </td>
+                    </tr>
+                }
+            </table>
+        }  
+    
+        <table align="center" width="98%">
+            <tr>
+                <td width="50%">
+                    <input type="button" class="btn green" value="@Resources.OrderRequest_AddPPItems2OR_EditOR" onclick="sendRequest('/OrderRequest/EditOrderRequestFromPP', 'requestDiv', 'loading')" />
+                </td>
+                <td width="50%" align="right">
+                    <input type="submit" class="btn green" value="@Resources.OrderRequest_AddPPItems2OR_AddSelected" />
+                </td>
+            </tr>
+        </table>    
+    }
+    <br />
+</div>
+         
+
+

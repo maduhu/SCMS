@@ -1,0 +1,44 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.SystemUser_Index_SCMSSystemUsers + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<div id="rfpMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.SystemUser_Create_SystemUsers</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Html.ActionLink(Resources.Global_String_AddNew, "Create")
+                    </td>
+                    <!--td class="arrowLink">
+                        @Html.ActionLink(Resources.SystemUser_Index_SendWelcomeMessage, "SendWelcomeMsg")
+                    </td>-->
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Html.ActionLink(Resources.Global_String_SystemUserList, "Index")
+                    </td>                
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="@Url.Content("~/Content/images/loading_indicator.gif")" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="AdminSystemUserDiv">
+        <!-- Content goes here-->
+        @Html.Action("List")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        //initSorter();
+        //sorter.size(50);
+    });
+</script>

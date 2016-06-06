@@ -1,0 +1,77 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ProjectDonor>
+@{
+    ViewBag.Title = Resources.Budget_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/jquery.autocomplete.js")" type="text/javascript"></script>
+<div id="budgetsMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.Budget_Index_ProjectBudgets</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Budget_Index_CurrentProjects, "ProjectList", new AjaxOptions
+                   {
+                       UpdateTargetId = "budgetDiv",
+                       LoadingElementId = "loading",
+                       Url = Url.Action("ProjectList"),
+                       OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(50);}"
+                   }) 
+                    </td>
+                    <td>
+                        @Ajax.ActionLink(Resources.Budget_Index_ExpiredProjects, "ProjectExpList", new AjaxOptions
+                           {
+                               UpdateTargetId = "budgetDiv",
+                               LoadingElementId = "loading",
+                               Url = Url.Action("ProjectExpList"),
+                               OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(50);}"
+                           })
+                    </td>
+                </tr>
+                <tr>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                    {
+                        <td class="arrowLink">
+                            @Ajax.ActionLink(Resources.Budget_Index_CreateProject, "Index", new { id = "CreateProject" }, new AjaxOptions
+                            {
+                                UpdateTargetId = "budgetDiv",
+                                LoadingElementId = "loading",
+                                Url = Url.Action("CreateProject")
+                            })
+                        </td>
+                    }
+                    else
+                    { 
+                        <td>&nbsp;</td>
+                    }
+                </tr>
+            </table>            
+        </div>
+    </div>
+    <br />
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tr>
+            <td width="50%" align="center"><div id="popupDiv" class="popup" style="display: none;"></div></td><td width="50%"></td>
+        </tr>
+    </table>    
+    <div id="loading" style="display:none; color:Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="budgetDiv">
+        <!-- Content goes here-->
+        @Html.Action("ProjectList")
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(50);
+        }
+    });
+</script>

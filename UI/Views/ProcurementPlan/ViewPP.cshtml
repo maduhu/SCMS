@@ -1,0 +1,353 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@using SCMS.CoreBusinessLogic.NotificationsManager
+@model SCMS.Model.ProcurementPlan
+@{bool canEdit = UserContext.HasPermission(StandardPermissionProvider.ProcurementPlanManage) && (!Model.IsSubmitted || (Model.IsRejected && !Model.IsReviewed))
+      && Model.PreparedBy.Equals(UserContext.CurrentUser.StaffId);
+  bool canAddItems = UserContext.HasPermission(StandardPermissionProvider.ProcurementPlanManage);
+      }
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.Global_String_ProcurementPlan :: @Model.RefNumber</h3></div>   
+    @if (canEdit)
+    {
+        <center>  
+            @Ajax.ActionLink(Resources.ProcurementPlan_CreatePPStep2_EditPP, "EditPP", new { id = Model.Id }, new AjaxOptions
+       {
+           UpdateTargetId = "ppDiv",
+           LoadingElementId = "loading"
+       }) | 
+            @Ajax.ActionLink(Resources.ProcurementPlan_ViewPP_DeletePP, "DeletePP", new { id = Model.Id }, new AjaxOptions
+       {
+           UpdateTargetId = "ppDiv",
+           LoadingElementId = "loading",
+           Confirm = Resources.ProcurementPlan_ViewPP_ConfirmDelete
+       }) 
+        </center>
+    }
+    else if(Model.IsSubmitted && Model.CanApprove && Model.ProcurementPlanItems.Where(p => !p.IsApproved).Count() > 0)
+    {
+        <center id="canApprove">  
+            @Ajax.ActionLink(Resources.RequestReview_String_ApprovePP, "ApprovePP", "RequestReview", new { ppId = Model.Id, actionType = NotificationHelper.approvalCode }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ApproveProcurementPlan, Model.ProjectDonor.ProjectNumber),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                OnSuccess = "CenterPopup();document.getElementById('canApprove').innerHTML ='&nbsp;';"
+            }) 
+        </center>
+    }
+    else if(Model.IsSubmitted && Model.CanApproveII && Model.ProcurementPlanItems.Where(p => p.IsReviewed && !p.IsApproved2).Count() > 0)
+    {
+        <center id="canApprove">  
+            @Ajax.ActionLink(Resources.RequestReview_String_ApprovePP, "ApprovePP", "RequestReview", new { ppId = Model.Id, actionType = NotificationHelper.approvalIICode }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ApproveProcurementPlan, Model.ProjectDonor.ProjectNumber),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                OnSuccess = "CenterPopup();document.getElementById('canApprove').innerHTML ='&nbsp;';"
+            }) 
+        </center>
+    }
+    else if(Model.IsSubmitted && Model.CanReview && Model.ProcurementPlanItems.Where(p => p.IsApproved && !p.IsReviewed).Count() > 0)
+    {
+        <center id="canApprove">  
+            @Ajax.ActionLink(Resources.RequestReview_String_ReviewPP, "ApprovePP", "RequestReview", new { ppId = Model.Id, actionType = NotificationHelper.reviewCode }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_ReviewProcurementPlan, Model.ProjectDonor.ProjectNumber),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                OnSuccess = "CenterPopup();document.getElementById('canApprove').innerHTML ='&nbsp;';"
+            }) 
+        </center>
+    }
+    else if(Model.IsSubmitted && Model.CanAuthorize && Model.ProcurementPlanItems.Where(p => p.IsApproved2 && !p.IsAuthorized).Count() > 0)
+    {
+        <center id="canApprove">  
+            @Ajax.ActionLink(Resources.RequestReview_String_AuthorizePP, "ApprovePP", "RequestReview", new { ppId = Model.Id, actionType = NotificationHelper.authorizationCode }, new AjaxOptions
+            {
+                OnBegin = string.Format("ShowDialogueOR('{0}: {1}')", Resources.RequestReview_String_AuthorizeProcurementPlan, Model.ProjectDonor.ProjectNumber),
+                UpdateTargetId = "popup-page",
+                LoadingElementId = "popup-loading",
+                OnSuccess = "CenterPopup();document.getElementById('canApprove').innerHTML ='&nbsp;';"
+            }) 
+        </center>
+    }
+    else if(canAddItems)
+    {
+        <center>
+            @Ajax.ActionLink(Resources.ProcurementPlan_String_AddItemsToPP, "PPDetails", new { id = Model.Id }, new AjaxOptions
+            {
+                UpdateTargetId = "ppDiv",
+                LoadingElementId = "loading"
+            })
+        </center>
+    }
+    else 
+    {
+        <br />
+    }
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="33%">
+                @Resources.OrderRequest_AddPPItems2OR_OfficePreparing
+            </th>
+            <th align="center" width="33%">
+                @Resources.Global_String_PreparedByName
+            </th>
+            <th align="center" colspan="2">
+                @Resources.Global_String_Date
+            </th>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Model.CountrySubOffice.Name
+            </td>
+            <td align="center" valign="top">
+                @if(Model.Staff4!=null)
+                {
+                    @Model.Staff4.StaffName
+                }
+            </td>
+            <td align="center" colspan="2">
+                @Model.PreparedOn.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <th align="center">
+                @Resources.Budget_CategoryList_ProjectNo
+            </th>
+            <th align="center">
+                @Resources.Global_String_PreparedByTitle
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectStartDate
+            </th>
+            <th align="center" width="17%">
+                @Resources.ProcurementPlan_CreatePPStep2_ProjectEndDate
+            </th>
+        </tr>
+        <tr>
+            <td align="center" title="@Model.ProjectDonor.Project.Name">
+                @Model.ProjectDonor.ProjectNumber
+            </td>
+            <td align="center">
+                @if(Model.Staff4!=null)
+                {
+                    @Model.Staff4.StaffDesignation
+                }
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.StartDate.ToString(Constants.DATE_FORMAT)
+            </td>
+            <td align="center">
+                @Model.ProjectDonor.EndDate.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellpadding="0" class="cardTable">
+        <tr>
+            <th align="center" width="25%">
+                @Resources.Global_String_ApprovedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_ReviewedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_ApprovedBy
+            </th>
+            <th align="center" width="25%">
+                @Resources.Global_String_AuthorizedBy
+            </th>
+        </tr>
+        <tr>
+            <td title="@if(Model.Staff != null){ @Model.Staff.StaffName }">
+                @if (Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                } &nbsp;
+            </td>
+            <td title="@if(Model.Staff3 != null){ @Model.Staff3.StaffName }">
+                @if (Model.Staff3 != null && Model.Staff3.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff3.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td title="@if(Model.Staff1 != null){ @Model.Staff1.StaffName }">
+                @if (Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td title="@if(Model.Staff2 != null){ @Model.Staff2.StaffName }">
+                @if (Model.Staff2 != null && Model.Staff2.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff2.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+        </tr>
+        <tr>
+            <th title="@if(Model.Staff != null){ @Model.Staff.StaffName }">
+                @if (Model.Staff != null)
+                { 
+                    @Model.Staff.StaffDesignation
+                }&nbsp;
+            </th>
+            <th title="@if(Model.Staff3 != null){ @Model.Staff3.StaffName }">
+                @if (Model.Staff3 != null)
+                { 
+                    @Model.Staff3.StaffDesignation
+                }
+            </th>
+            <th title="@if(Model.Staff1 != null){ @Model.Staff1.StaffName }">
+                @if (Model.Staff1 != null)
+                { 
+                    @Model.Staff1.StaffDesignation
+                }
+            </th>
+            <th title="@if(Model.Staff2 != null){ @Model.Staff2.StaffName }">
+                @if (Model.Staff2 != null)
+                { 
+                    @Model.Staff2.StaffDesignation
+                }
+            </th>
+        </tr>
+    </table>
+    <br />
+    <div id="ppItems">
+        @*&nbsp;&nbsp;&nbsp;
+        @Ajax.ActionLink(Resources.ProcurementPlan_PPItemsList_AllItems, "ViewPPItems", new { id = Model.Id, type = "all" }, new AjaxOptions
+   {
+       UpdateTargetId = "ppItems",
+       LoadingElementId = "loading",
+       OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+   }, new { style = "font-weight: bold;" }) | 
+        @Ajax.ActionLink(Resources.ProcurementPlan_PPItemsList_ActivieItems, "ViewPPItems", new { id = Model.Id, type = "active" }, new AjaxOptions
+   {
+       UpdateTargetId = "ppItems",
+       LoadingElementId = "loading",
+       OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+   }) | 
+        @Ajax.ActionLink(Resources.ProcurementPlan_PPItemsList_InactiveItems, "ViewPPItems", new { id = Model.Id, type = "inactive" }, new AjaxOptions
+   {
+       UpdateTargetId = "ppItems",
+       LoadingElementId = "loading",
+       OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+   }) |
+        @Ajax.ActionLink(Resources.ProcurementPlan_PPItemsList_RemovedItems, "ViewPPItems", new { id = Model.Id, type = "removed" }, new AjaxOptions
+   {
+       UpdateTargetId = "ppItems",
+       LoadingElementId = "loading",
+       OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+   })
+        <br /><br />
+        *@
+        
+        @if (Model.PPItemList.Count > 0)
+        {
+            <div id="tablewrapper">
+                <div id="tableheader">
+                    <div class="search">
+                        <b>@Resources.Global_String_SearchBy:</b><br />
+                        <select id="columns" onchange="sorter.search('query')">
+                        </select>
+                        <input type="text" id="query" onkeyup="sorter.search('query')" />
+                    </div>
+                    <span class="details">
+                        <div>
+                            @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                            </span>
+                        </div>
+                    </span>
+                </div>
+                <br />
+                <br />
+                <br />
+                <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+                    <thead>
+                        <tr>
+                            <th><h3>@Resources.Global_String_ItemName</h3></th>
+                            <th><h3>@Resources.Report_ConsumableInventory_TotalQty</h3></th>
+                            <th><h3>@Resources.Global_String_BL</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_ProcuredPOIssued</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_Delivered</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_BalanceNotDelivered</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_BalanceNotOrdered</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_ApproxCBM</h3></th>
+                            <th><h3>@Resources.ProcurementPlan_ViewPP_WarehouseSpaceRequired</h3></th>
+                            <th><h3>@Resources.Global_String_Currency</h3></th>
+                            <th><h3>@Resources.OrderRequest_AddItemInEditMode_EstUnitPrice</h3></th>
+                            <th><h3>@Resources.OrderRequest_AddItemInEditMode_EstTotalPrice</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PPItemList)
+                        {                            
+                            <tr class="gridodd">     
+                                <td title="@item.ItemDescription">@item.Item.Name</td>     
+                                <td align="center">@item.Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                                <td align="center" title="@item.ProjectBudget.Description">@item.ProjectBudget.LineNumber</td>
+                                <td align="center">@item.ProcuredAmount.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                                <td align="center">@item.DeliveredAmount.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                                <td align="center">@item.BalanceNotDelivered.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                                <td align="center">@item.BalanceNotOrdered.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)</td>
+                                <td align="center">@item.ApproximateCBM</td>
+                                <td align="center">@if (item.WarehouseSpaceRequired.HasValue) { @item.WarehouseSpaceRequired.Value.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)} else { @Html.Raw("-") }</td>
+                                <td align="center">@item.Currency.ShortName</td>
+                                <td align="right">@item.UnitCost.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                                <td align="right">@item.TotalCost.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div id="tablefooter">
+                    <div id="tablenav">
+                        <div>
+                            <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                                onclick="sorter.move(-1,true)" />
+                            <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                                onclick="sorter.move(-1)" />
+                            <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                                onclick="sorter.move(1)" />
+                            <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                                onclick="sorter.move(1,true)" />
+                        </div>
+                        <div>
+                            <select id="pagedropdown">
+                            </select>
+                        </div>
+                        <div>
+                            <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                        </div>
+                    </div>
+                    <div id="tablelocation">
+                        <div>
+                            <select onchange="sorter.size(this.value)">
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20" selected="selected">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                            <span>@Resources.Global_String_EntriesPerPage</span>
+                        </div>
+                        <div class="page">
+                            @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        { 
+            <center style=" font-style: italic">@Resources.ProcurementPlan_ViewPP_NoItems</center>
+        }
+    </div>
+    <br />
+    @if (Model.IsAuthorized)
+    {
+        <a class="btn btn-primary" target="_blank" href="/Reports/PDFReports/ProcurementPlan?refNumber=@Model.RefNumber"  style="margin-left: 48%; margin-bottom: 2%;">
+            @Resources.Budget_ViewBudget_DownloadPdf
+        </a>
+    }
+</div>

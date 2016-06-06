@@ -1,0 +1,84 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.Asset
+<script src="@Url.Content("~/Scripts/js/ajax.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Global_String_AssetDepreciation</h3>
+    </div>
+    <br />
+    <table>
+        <tr>
+            <td align="right" valign="top" class="editor-label" style="font-weight: bold;">
+                @Resources.Global_String_AssetName:
+            </td>
+            <td align="left" class="editor-field">
+                @Html.DropDownListFor(x => x.Id, Model.Assets, Resources.Global_String_PleaseSelect, new { @id = "assetId", onchange = "javascript:AssetDepreciationDetails(this);" })
+                @Html.ValidationMessageFor(x => x.Id)
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <center><strong> @Resources.Inventory_ViewDeprSummary_AnnualDepreciation</strong></center>
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            //new { Key = "pageInput", Value = GridPagerStyles.PageInput },
+            //new { Key = "nextPrevious", Value = GridPagerStyles.NextPrevious },
+            //new { Key = "numeric", Value = GridPagerStyles.Numeric },
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        //GridPagerStyles pagerStyles = GridPagerStyles.NextPrevious;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+
+        }
+        var currency = Model.Depreciations.Count() > 0 ? "( " + Model.Depreciations.ToList()[0].Asset.Currency.ShortName + " )" : string.Empty;
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.Depreciation>()
+        .Name("Depreciations")
+        .DataKeys(keys => keys.Add(o => o.Id))
+        .Columns(columns =>
+        {
+            columns.Bound(c => c.Id).Hidden();
+            columns.Bound(c => c.Id).Title(Resources.Global_String_Year).Width("10%").HtmlAttributes(new { align = "center" }).ClientTemplate("<#= ++index #>").Filterable(false);
+            columns.Bound(c => c.Date).Title(Resources.Global_String_Date).Format("{0: dd/MM/yyyy}").Width("20%").HtmlAttributes(new { align = "center" });
+            columns.Bound(c => c.AnnualDepreciation).Title(Resources.Inventory_ViewDeprSummary_AnnualDepr + currency).Format("{0:n2}").Width("20%").HtmlAttributes(new { align = "right" });
+            columns.Bound(c => c.AccDepreciation).Title(Resources.Inventory_ViewDeprSummary_CummulativeDepr + currency).Format("{0:n2}").Width("25%").HtmlAttributes(new { align = "right" });
+            columns.Bound(c => c.NetbookValue).Title(Resources.Inventory_ViewDeprSummary_NetbookValue + currency).Format("{0:n2}").Width("25%").HtmlAttributes(new { align = "right" });
+        })
+        .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Position(GridPagerPosition.Both))
+        .Sortable(settings => settings.Enabled(true).SortMode(GridSortMode.SingleColumn))
+        .Selectable()
+        .ClientEvents(events => events.OnRowSelected("onRowSelected"))
+        .ClientEvents(events => events.OnDataBinding("onDataBinding"))
+        .DataBinding(dataBinding => dataBinding.Ajax().Select("DeprecsumFiltering", "Inventory", new { assetId = (Guid)ViewData["assetId"] }))
+        //.Groupable()
+
+            //.Sortable()
+            .Filterable()
+
+)
+    <br />
+</div>
+
+<script type="text/javascript">
+    function onRowSelected(e) {
+        var annualyearId = e.row.cells[0].innerHTML;
+        sendAjaxRequest('/Inventory/ViewDetailDepr/' + annualyearId, 'Depreciation Details');
+    }
+
+    var index = 0;
+
+    function onDataBinding() {
+        var grid = $('#Depreciations').data('tGrid')
+        index = (grid.currentPage - 1) * grid.pageSize;
+    }
+
+</script>

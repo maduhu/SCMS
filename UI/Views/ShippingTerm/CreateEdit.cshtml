@@ -1,0 +1,42 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.ShippingTerm
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "ShipingDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("CreateEdit"),
+      OnSuccess = "CloseDialog();if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+  };
+}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td align="right">@Resources.Global_String_Name<font color="red">*</font>:</td>
+            <td>
+                @Html.EditorFor(model => model.Name)<br />
+                @Html.ValidationMessageFor(model => model.Name)
+                @Html.HiddenFor(model => model.Id)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">@Resources.Global_String_Description:</td>
+            <td>
+                @Html.TextAreaFor(model => model.Description)<br />
+                @Html.ValidationMessageFor(model => model.Description)
+            </td>
+        </tr>
+        <tr>
+            <td align="right">&nbsp;</td>
+            <td>
+                <input type="submit" class="btn green" value="@Resources.Global_String_Save" />
+            </td>
+        </tr>
+    </table>
+}

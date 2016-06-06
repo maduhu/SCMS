@@ -1,0 +1,118 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.RebookModel
+           
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "budgetDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("RebookPostedAmount"),
+      OnSuccess = "CloseDialog();"
+  };}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    <h4 style="text-align: center;">@Resources.Global_String_RebookBudgetAmount.ToUpper()</h4>  
+    <table align="center" class="cardTable" style="min-width: 700px;">
+        <tr>
+            <th>@Resources.Global_String_Date</th>
+            <th>@Resources.Global_String_Amount</th>
+            <th>@Resources.Global_String_PostedBy</th>
+            <th>@Resources.Global_String_OR</th>
+            <th>@Resources.Global_String_PO</th>
+            <th>@Resources.Global_String_RFP</th>
+            <th>@Resources.Global_String_ItemName</th>
+        </tr>
+        @if (Model.CurrentBudgetLine.RFPBudgetLineId.HasValue)
+        {
+            <tr>
+                <td align="center">
+                    @Model.CurrentBudgetLine.DatePosted.ToString("dd/MM/yyyy")
+                </td>
+                <td align="right">
+                    @Model.CurrentBudgetLine.AmountPosted.ToString("#,##0.00")
+                    @Html.HiddenFor(m => m.CurrentBudgetLine.Id)
+                    @Html.HiddenFor(m => m.CurrentProjectId)
+                </td>
+                <td title="@Model.CurrentBudgetLine.Staff.Designation.Name">
+                    @Model.CurrentBudgetLine.Staff.Person.FirstName &nbsp; @Model.CurrentBudgetLine.Staff.Person.OtherNames
+                </td>
+                @if (Model.CurrentBudgetLine.RFPBudgetLineId.HasValue)
+                { 
+                    <td>@Model.CurrentBudgetLine.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.OrderRequest.RefNumber</td>
+                    <td>@Model.CurrentBudgetLine.PaymentRequestBudgetLine.PurchaseOrderItem.PurchaseOrder.RefNumber</td>
+                    <td>@Model.CurrentBudgetLine.PaymentRequestBudgetLine.PaymentRequest.RefNumber</td>
+                    <td title="@Model.CurrentBudgetLine.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.ItemDescription">@Model.CurrentBudgetLine.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.Item.Name</td>
+                }
+            </tr>
+        }
+    </table>
+    
+    <br />
+    <table align="center" style="border: 1px solid Gray; border-collapse: collapse; min-width: 700px;">
+        <tr>
+            <th width="100%">
+                @Resources.Global_String_RebookTo
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <table align="center">
+                    <tr>
+                        <td width="50%" align="right">
+                            @Resources.Budget_CreateProject_ProjectName:
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(m => m.ProjectId, Model.Projects, Resources.Global_String_PleaseSelect, new { onchange = "javascript:GetProjectDonors4Rebooking(this)" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="right">
+                            @Resources.Budget_CategoryList_ProjectNo:
+                        </td>
+                        <td id="pdDiv">
+                            @Html.DropDownListFor(m => m.ProjectDonorId, Model.ProjectDonors, Resources.Global_String_PleaseSelect, new { onchange = "javascript:GetBudgetLines4Rebooking(this)" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="right">
+                            @Resources.Budget_CreateSubLine_LineNumber:
+                        </td>
+                        <td id="blDiv">
+                            @Html.DropDownListFor(m => m.BudgetLineId, Model.BudgetLines, Resources.Global_String_PleaseSelect)<br />
+                            @Html.ValidationMessageFor(m => m.BudgetLineId, Resources.Global_String_Required)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="right">
+                        
+                        </td>
+                        <td>
+                            @Html.CheckBoxFor(m => m.FullRebooking, new { id = "fullRebook", onclick = "javascript:FullPartRebook(this)" }) @Resources.Global_String_RebookFullAmount
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="right">
+                            @Resources.Global_String_RebookAmount
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(m => m.NewBudgetLine.AmountPosted, new { id = "tbAmount", @class = "numericTb", onblur = "javascript:CheckRebookAmount()", @readonly = "readonly" })<br />
+                            @Html.ValidationMessageFor(m => m.NewBudgetLine.AmountPosted, Resources.Global_String_OnlyNumericRequired)
+                            <input type="hidden" id="originalAmount" value="@Model.CurrentBudgetLine.AmountPosted" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <input type="submit" value="@Resources.Global_String_Rebook" class="btn green" />
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+}
+

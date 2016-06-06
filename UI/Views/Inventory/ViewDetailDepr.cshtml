@@ -1,0 +1,69 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.Depreciation>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Inventory_ViewDetailDepr_MonthlyDeprBtn &nbsp; @Model.FirstOrDefault().Date.ToString("dd/MM/yyyy")
+            &nbsp;@Resources.Global_String_And.ToLower() &nbsp;@Model.LastOrDefault().Date.ToString("dd/MM/yyyy")</h3>
+    </div>
+    <br />
+    <table width="700" align="center" cellpadding="0" cellspacing="0" border="0" id="table"
+        class="tinytable">
+        <thead>
+            <tr>
+                <th>
+                    <h3>
+                        @Resources.Global_String_Month</h3>
+                </th>
+                <th>
+                    <h3>
+                        @Resources.Global_String_Date</h3>
+                </th>
+                <th>
+                    <h3>
+                        @Resources.Inventory_ViewDetailDepr_MonthlyDepr</h3>
+                </th>
+                <th>
+                    <h3>
+                        @Resources.Inventory_ViewDeprSummary_CummulativeDepr</h3>
+                </th>
+                <th>
+                    <h3>
+                        @Resources.Inventory_ViewDeprSummary_AnnualDepr</h3>
+                </th>
+                <th>
+                    <h3>
+                        @Resources.Inventory_ViewDeprSummary_NetbookValue</h3>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="gridodd">
+                    <td style="width: 10%;">
+                        @item.Period
+                    </td>
+                    <td align="center" style="width: 17%;">
+                        @item.Date.ToShortDateString()
+                    </td>
+                    <td align="right" style="width: 17%;">
+                        @item.MonthlyDepreciation.ToString("#,##0.00")
+                    </td>
+                    <td align="right" style="width: 18%;">
+                        @item.AccDepreciation.ToString("#,##0.00")
+                    </td>
+                    <td align="right" style="width: 18%;">
+                        @item.AnnualDepreciation.ToString("#,##0.00")
+                    </td>
+                    <td align="right" style="width: 18%;">
+                        @item.NetbookValue.ToString("#,##0.00")
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+</div>
+<br />
+&nbsp;<a onclick="CloseDialog()" href="#">@Resources.Global_String_Close</a> 

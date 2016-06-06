@@ -1,0 +1,63 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.Dashboard_Index_Title;
+    ViewBag.LoggedUser = ViewBag.LoggedInUser;
+    Layout = "~/Views/Shared/_DashBoardLayout.cshtml";
+}
+<div class="dashboardMain">
+<div class="partialViewCard">
+    <div style="width: 100%; border-radius: 10px 10px 0px 0px; text-align: center; background-color: #A7B601;
+        color: #fff; cursor: pointer;" id="accordion_toggler" title="Hide" class="partialViewCardHeader">
+        <h3>@Resources.Dashboard_Index_Statistics</h3>
+    </div>
+    <div class="accordion_content">
+        <table width="100%" cellpadding="5">
+            <tr>
+                <td align="center" width="100%">
+                    <img src="/DashBoard/GetDocsChart" />
+                    @if (UserContext.HasPermission(StandardPermissionProvider.MasterBudgetView))
+                    {
+                        <img src="/DashBoard/GetORChart" />
+                    }
+                </td>
+                @*  <td align="right" valign="top" width="50%">
+                    &nbsp;@Html.Action("DocsDashBoard")
+                </td>*@
+            </tr>
+        </table>
+    </div>
+    <br />
+</div>
+<br />
+@if (UserContext.HasPermission(StandardPermissionProvider.MasterBudgetView))
+{                        
+    <div class="partialViewCard">
+        <div style="width: 100%; border-radius: 10px 10px 0px 0px; text-align: center; background-color: #A7B601;
+            color: #fff; cursor: pointer;" id="accordion_toggler2" title="Hide" class="partialViewCardHeader">
+            <h3>@Resources.General_String_MasterBudget</h3>
+        </div>
+        <div class="accordion_content">
+            @*<img src="/DashBoard/GetRainfallChart" />
+            <img src="/DashBoard/GetORChart" />*@ @*<img src="/DashBoard/GetDocsChart" />*@
+            <table width="100%">
+                <tr>
+                    <td width="100%">
+                        @Html.Action("MasterBudget")                    
+                    </td>
+                </tr>
+            </table>        
+        </div>
+        <br />
+    </div>
+}
+<script type="text/javascript">
+    $('#accordion_toggler').click(function () {
+        $(this).next('.accordion_content').slideToggle();
+    });
+
+//    $('#accordion_toggler2').click(function () {
+//        $(this).next('.accordion_content').slideToggle();
+//    });
+
+</script>
+</div>

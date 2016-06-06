@@ -1,0 +1,45 @@
+﻿@using SCMS.UI.Areas.Admin.Models.SystemUser
+@using SCMS.Resource
+@model SystemUserListModel
+@using Telerik.Web.Mvc.UI
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.SystemUser_Create_SystemUsers</h3>
+    </div>
+    <br />
+    @(Html.Telerik().Grid<GridSystemUserModel>()
+                    .Name("systemusers-grid")
+                    .Columns(columns =>
+                    {
+                        columns.Bound(x => x.Id)
+                            .Template(@<text>
+                            @Ajax.ActionLink(Resources.Global_String_View, "ViewUser", new { id = item.Id }, new AjaxOptions
+                            {
+                                UpdateTargetId = "AdminSystemUserDiv",
+                                LoadingElementId = "loading",
+                                Url = Url.Action("ViewUser/" + item.Id)
+                            })
+                            </text>)
+                            .ClientTemplate("<a data-ajax=\"true\" data-ajax-loading=\"#loading\" data-ajax-method=\"Get\" data-ajax-mode=\"replace\" data-ajax-update=\"#AdminSystemUserDiv\" href=\""+Url.Action("ViewUser/")+"<#= Id #>\">" + Resources.Global_String_View + "</a>")
+                            .Filterable(false).Sortable(false).Title("");
+                        columns.Bound(x => x.FirstName).Title("First Name");
+                        columns.Bound(x => x.OtherNames).Title("Other Names");
+                        columns.Bound(x => x.OfficialEmail).Title(Resources.Global_String_Email);
+                        columns.Bound(x => x.Active).ClientTemplate("<#= Active ? \"true\" : \"<font color='red'>false</font>\" #>").Title(Resources.SystemUser_CreateOrEdit_Active);
+                        columns.Bound(x => x.Locked).ClientTemplate("<#= Locked ?  \"<font color='red'>false</font>\" : \"true\" #>").Title(Resources.SystemUser_CreateOrEdit_Locked);
+                        columns.Bound(x => x.FinancialLimitName).Title(Resources.Approver_ApproverList_FinanceLimit);
+                        columns.Bound(x => x.OfficialPhone).Title(Resources.Global_String_PhoneNo);
+                        columns.Bound(x => x.Id).Filterable(false).Sortable(false).Title("")
+                            .Template(@<text>@Html.ActionLink(Resources.Global_String_Edit, "Edit", new { id = item.Id })</text>)
+                            .ClientTemplate("<a href=\"" + Url.Action("Edit/") + "<#= Id #>\">" + Resources.Global_String_Edit + "</a>");
+                    })
+                    .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                    .DataBinding(dataBinding => dataBinding.Ajax().Select("SystemUserList", "SystemUser"))
+                    .Filterable()
+                    .Sortable()
+                    .EnableCustomBinding(true))
+    <br />
+</div>

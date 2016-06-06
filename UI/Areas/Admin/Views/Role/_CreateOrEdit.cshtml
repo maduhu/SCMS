@@ -1,0 +1,49 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Areas.Admin.Models.Role.RoleModel
+@{
+    Layout = null;
+}
+
+@Html.ValidationSummary(true)
+@Html.HiddenFor(model => model.Id)
+<table>
+    <tr>
+        <td align="right">@Resources.Global_String_Name:</td>
+        <td>
+            @Html.EditorFor(model => model.Name)<br />
+            @Html.ValidationMessageFor(model => model.Name)
+        </td>
+    </tr>
+    <tr>
+        <td align="right">@Resources.Role_CreateOrEdit_SystemName:</td>
+        <td>
+            @Html.EditorFor(model => model.SystemName)<br />
+            @Html.ValidationMessageFor(model => model.SystemName)
+        </td>
+    </tr>
+    <tr>
+        <td align="right">@Resources.Global_String_Description:</td>
+        <td>
+            @Html.TextAreaFor(model => model.Description)<br />
+            @Html.ValidationMessageFor(model => model.Description)
+        </td>
+    </tr>
+    <tr>
+        <td align="right"></td>
+        <td>
+            @Html.EditorFor(model => model.Active) @Resources.Role_CreateOrEdit_IsActive
+        </td>
+    </tr>
+    <tr>
+        <td align="right"></td>
+        <td>
+            @Html.EditorFor(model => model.IsSystemRole) @Resources.Role_CreateOrEdit_IsSystemRole 
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <input type="submit" class="btn green" value=" @Resources.Global_String_Save " /> &nbsp; 
+            <input type="button" class="btn green" value="@Resources.Global_String_Cancel" onclick="CloseDialog()" /> </td>
+    </tr>
+</table>

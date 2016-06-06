@@ -1,0 +1,87 @@
+﻿@using SCMS.Resource
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.BinCard_Index_BinCard</h3>        
+        @*<input type="image" onclick="export_grid('xls'); return false;" src="@Url.Content("~/Content/reports/excel_csv.png")" class="pull-right" style="height:16px;width:16px;" name="export" value="xls" />*@
+    </div>
+    <br />
+    @(Html.Telerik().Grid<SCMS.Model.BinCard>()
+        .Name("BinCard")
+        .DataKeys(x =>
+        {
+            x.Add(y => y.Id).RouteKey("Id");
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.RefNumber).Title(Resources.BinCard_LoadBin_BinCardNo);
+            columns.Bound(o => o.Description).Title(Resources.BinCard_LoadBin_BinCardDescription);
+            columns.Bound(o => o.ItemName).Title(Resources.BinCard_ViewBinCard_BinItem);
+            columns.Bound(o => o.QTY).Title(Resources.Global_String_Qty);
+            columns.Bound(o => o.WareHouseName).Title(Resources.Global_String_Warehouse);
+            columns.Bound(o => o.WHDemarcation).Title(Resources.BinCard_LoadBin_WHDemarcation);
+        })
+        .DetailView(details => details.ClientTemplate(string.Format( "<h4>{0}</h4>",Resources.BinCard_ViewBinCard_BinCardMaintace)+
+              Html.Telerik().Grid<SCMS.Model.BinItems>()
+                   .Name("items_grid_<#= Id #>")
+                   .DataKeys(x =>
+                   {
+                       x.Add(y => y.Id).RouteKey("Id");
+                   })
+                    .Columns(columns =>
+                    {
+
+                        columns.Bound(e => e.IssueDate).Title(Resources.Global_String_Date).Format("{0:d}");
+                        columns.Bound(e => e.DnNumber).Title(Resources.GoodsReceivedNote_DownloadTemplate_DNNo);
+                        columns.Bound(e => e.RefNumber).Title(Resources.BinCard_ViewBinCard_GRNorROorGIVNos);
+                        columns.Bound(e => e.QTYReceived).Title(Resources.Global_String_QtyReceived);
+                        columns.Bound(e => e.QTYIssued).Title(Resources.Global_String_QtyIssued);
+                        columns.Bound(e => e.BalanceStock).Title(Resources.BinCard_ViewBinCard_BalanceStock);
+                        columns.Bound(e => e.Remarks).Title(Resources.Global_String_Remarks);
+                    })
+       
+        
+                   .DataBinding(dataBinding => dataBinding.Ajax()
+                   .Select("GetBinItemList", "BinCard", new { binId = "<#= Id #>" }))
+                   .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                   .Sortable()
+                   .Filterable()
+                   .EnableCustomBinding(true)
+                   .ToHtmlString()                 
+       ))
+        .DataBinding(dataBinding => dataBinding.Ajax()
+        .Select("GetBinCardList", "BinCard"))
+        .Sortable()
+        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+        .Filterable()
+        .EnableCustomBinding(true))
+       
+    <br />
+    <div>
+        <span class="action_message">@ViewBag.Message</span>
+    </div>
+    <div>
+        <span class="field-validation-error">@ViewBag.Error</span>
+    </div>
+</div>
+<script type="text/javascript">
+
+    var itemPacksexportLink = "@(@Html.Raw(Url.Action("ExportBinCardList", "BinCard", new { page = 1, orderBy = "~", filter = "~" }).SafeHtmlInputValue()))";
+
+
+    function onDataBinding(e) { }
+
+    function onDataBound(e) {
+        var grid = $('#BinCard').data('tGrid');
+        itemPacksexportLink = itemPacksexportLink.replace(/page=([^&]*)/, 'page=' + grid.currentPage);
+        itemPacksexportLink = itemPacksexportLink.replace(/orderBy=([^&]*)/, 'orderBy=' + (grid.orderBy || '~'));
+        itemPacksexportLink = itemPacksexportLink.replace(/filter=(.*)/, 'filter=' + (grid.filterBy || '~'));
+    }
+
+    function export_grid(type) {
+        window.open(itemPacksexportLink + "&type=" + type, '_blank');
+    }
+
+</script>

@@ -1,0 +1,263 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.ViewR4Payment>
+@{
+    ViewBag.Title = "ViewR4P";
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Global_String_RequestForPayment</h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <script src="@Url.Content("~/Scripts/js/modalite.js")" type="text/javascript"></script>
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                        </span>
+                    </div>
+                </span>
+            </div>
+            <br /><br />
+            <div id="export-panel">
+            <a href="#" id="to-pdf" title="@SCMS.Resource.Resources.OrderRequest_ViewOrderRequests_ExportSelectionPdf">@SCMS.Resource.Resources.OrderRequest_ViewOrderRequests_ExportSelectionPdf</a>
+                <a href="#" id="to-msexcel" title="@SCMS.Resource.Resources.OrderRequest_ViewOrderRequests_ExportSelectionExcel">@SCMS.Resource.Resources.OrderRequest_ViewOrderRequests_ExportSelectionExcel</a>
+                <div id="export-info">@SCMS.Resource.Resources.Global_String_Export</div>
+                </div>
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+                <thead>
+                    <tr>
+                        <th><h3>@Resources.Global_String_RFPNo</h3></th>
+                        <th><h3>@Resources.Global_String_Supplier</h3></th>
+                        <th><h3>@Resources.Global_String_PONo</h3></th>
+                        <th><h3>@Resources.Global_String_PN</h3></th>
+                        <th><h3>@Resources.Global_String_Currency</h3></th>
+                        <th><h3>@Resources.Global_String_Amount</h3></th>
+                        <th><h3>@Resources.Global_String_Status</h3></th>
+                        <th><h3>@Resources.Global_String_StatusDate</h3></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr data-rfp-id="@item.EntityPaymentRqst.Id" onclick="sendRequest('/Request4Payment/ViewR4PDetails/@item.EntityPaymentRqst.Id', 'R4PDiv', 'loading')" style=" cursor:pointer;">
+                            <td align="center">
+                                @item.EntityPaymentRqst.RefNumber
+                            </td>
+                            <td align="left">
+                                @item.EntityPaymentRqst.Supplier.Name
+                            </td>
+                            <td>
+                                @if (item.EntityPaymentRqst.PurchaseOrder != null)
+                                {
+                                    @item.EntityPaymentRqst.PurchaseOrder.RefNumber
+                                }
+                            </td>
+                            <td>
+                                @if (item.EntityPaymentRqst.PurchaseOrder != null)
+                                {
+                                    @item.EntityPaymentRqst.PurchaseOrder.ProjectDonor.ProjectNumber
+                                }
+                            </td>
+                            <td align="center">
+                                @item.EntityPaymentRqst.Currency.ShortName
+                            </td>
+                            <td align="right">
+                                @item.EntityPaymentRqst.TotalAmount.ToString("##,##0.00")
+                            </td>
+                            <td align="center">
+                                @if (item.EntityPaymentRqst.FundsPosted == true)
+                                { 
+                                    <b style="color: Blue; font-weight: bold;">
+                                        @Resources.Global_String_StatusFP
+                                    </b>
+                                }
+                                else if (item.EntityPaymentRqst.IsAuthorized == true)
+                                { 
+                                    <b style="color: Green; font-weight: bold;">
+                                        @Resources.Global_String_StatusAU
+                                    </b>
+                                }
+                                else if (item.EntityPaymentRqst.IsRejected)
+                                {
+                                    <b style="color: Red; font-weight: bold;">
+                                        @Resources.Global_String_StatusRJ
+                                    </b>
+                                }
+                                else if (item.EntityPaymentRqst.IsReviewed == true)
+                                {
+                                    @Resources.Global_String_StatusRV
+                                }
+                                else
+                                { 
+                                    @Resources.Global_String_StatusCR
+                                }
+                            </td>
+                            <td align="right">
+                                @if (item.EntityPaymentRqst.FundsPosted == true)
+                                { 
+                                    @item.EntityPaymentRqst.PostedOn.Value.ToString("dd/MM/yyyy")
+                                }
+                                else if (item.EntityPaymentRqst.IsAuthorized == true)
+                                { 
+                                    @item.EntityPaymentRqst.AuthorizedOn.Value.ToString("dd/MM/yyyy")
+                                }
+                                else if (item.EntityPaymentRqst.IsRejected)
+                                {
+                                    if (item.EntityPaymentRqst.IsReviewed == true)
+                                    { 
+                                        @item.EntityPaymentRqst.AuthorizedOn.Value.ToString("dd/MM/yyyy")
+                                    }
+                                    else
+                                    { 
+                                        @item.EntityPaymentRqst.ReviewedOn.Value.ToString("dd/MM/yyyy")
+                                    }
+                                }
+                                else if (item.EntityPaymentRqst.IsReviewed == true)
+                                {
+                                    @item.EntityPaymentRqst.ReviewedOn.Value.ToString("dd/MM/yyyy")
+                                }
+                                else
+                                { 
+                                    @item.EntityPaymentRqst.PreparedOn.ToString("dd/MM/yyyy")
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @if (Model.Count() < 1)
+    {
+        <i>@Resources.Request4Payment_ViewR4P_NoRFPs</i>
+    }
+    <br />
+</div>
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+
+        jQuery("#to-pdf").click(function (e) {
+
+            e.preventDefault();
+            if (jQuery("#to-pdf").data('in-progress') == 'TRUE') {
+                return;
+            }
+            jQuery('#export-panel').toggleClass('ajax-loading-indicator');
+
+            jQuery("#to-pdf").data('in-progress', 'TRUE');
+
+            var matches = jQuery("tr[data-included='YES']");
+            var ids = '';
+            //console.log(matches.length);
+
+            jQuery.each(matches, function (index, value) {
+                ids += jQuery(value).data('rfp-id') + '|';
+            });
+
+            //console.log(ids);
+            jQuery.post("/Reports/Request4Payment/SelectedRFPsPdf", { ids: ids },
+                function (data) {
+
+                    if (data == '#N/A') {
+                        $.modalite('<p class="error">@SCMS.Resource.Resources.Global_String_NoResults</p>', {
+                            theme: 'dark',
+                            width: 300
+                        });
+
+                    } else {
+
+                        $.modalite('<iframe style="border: none; width: 900px; height: 500px;" src="' + data + '"></iframe>', {
+                            width: 900,
+                            theme: 'dark'
+                        })
+                    }
+                    jQuery("#to-pdf").data('in-progress', '');
+                    jQuery('#export-panel').toggleClass('ajax-loading-indicator');
+                });
+        });
+
+        jQuery("#to-msexcel").click(function (e) {
+
+            e.preventDefault();
+            if (jQuery("#to-msexcel").data('in-progress') == 'TRUE') {
+                return;
+            }
+            jQuery('#export-panel').toggleClass('ajax-loading-indicator');
+
+            jQuery("#to-msexcel").data('in-progress', 'TRUE');
+
+            var matches = jQuery("tr[data-included='YES']");
+            var ids = '';
+
+            jQuery.each(matches, function (index, value) {
+                ids += jQuery(value).data('rfp-id') + '|';
+            });
+
+            //console.log(ids);
+            jQuery.post("/Reports/Request4Payment/SelectedRFPsExcel", { ids: ids },
+                function (data) {
+                    $('#ajax-loader').hide();
+                    if (data == '#N/A') {
+
+                        $.modalite('<p class="error">@SCMS.Resource.Resources.Global_String_NoResults</p>', {
+                            theme: 'dark',
+                            width: 300
+                        });
+
+                    } else {
+
+                        dynamicIframe({ url: data });
+                    }
+                    jQuery("#to-msexcel").data('in-progress', '');
+                    jQuery('#export-panel').toggleClass('ajax-loading-indicator');
+                });
+        });
+
+    });
+
+</script>

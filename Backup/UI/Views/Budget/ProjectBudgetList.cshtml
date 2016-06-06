@@ -1,0 +1,189 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ProjectDonor>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @ViewBag.HeaderText</h3>
+    </div>
+    @if (Model.Count() > 0)
+    {    
+        <br />
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                        </span>
+                    </div>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table"
+                class="tinytable">
+                <thead>
+                    <tr>
+                        <th style="width: 12%;">
+                            <h3>
+                                @Resources.Budget_CategoryList_ProjectNo</h3>
+                        </th>
+                        <th style="width: 22%;">
+                            <h3>
+                                @Resources.Budget_CreateProject_ProjectName</h3>
+                        </th>
+                        <th style="width: 16%;">
+                            <h3>
+                                @Resources.Budget_CreateProject_ProjectManager</h3>
+                        </th>
+                        <th style="width: 12%;">
+                            <h3>
+                                @Resources.Budget_CategoryList_Donor</h3>
+                        </th>
+                        <th style="width: 12%;">
+                            <h3>
+                                @Resources.Budget_CategoryList_Currency</h3>
+                        </th>
+                        <th style="width: 14%;">
+                            <h3>
+                                @Resources.Global_String_Budget</h3>
+                        </th>
+                        @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                        {
+                            <th style="width: 10%;">
+                                <h3>
+                                    @Resources.Global_String_Manage</h3>
+                            </th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ProjectNumber)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Project.Name)
+                            </td>
+                            <td>
+                                @if (item.Staff != null)
+                                { 
+                                    @item.Staff.Person.FirstName 
+                                    @Html.Raw("&nbsp;")
+                                    @item.Staff.Person.OtherNames                                                                 
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Donor.Name)
+                            </td>
+                            <td align="center">
+                                @Html.DisplayFor(modelItem => item.Currency.ShortName)
+                            </td>
+                            <td align="center">
+                                @if (item.BudgetCategories.Count > 0)
+                                {
+                                    @Ajax.ActionLink(Resources.Global_String_View, "Index", new { id = "ViewBudget" }, new AjaxOptions
+                                    {
+                                        UpdateTargetId = "budgetDiv",
+                                        LoadingElementId = "loading",
+                                        Url = Url.Action("ViewBudget/" + item.Id.ToString())
+                                    })
+                               if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                               {
+                                    @Html.Raw("&nbsp; | &nbsp;")
+                                    @Ajax.ActionLink(Resources.Budget_ProjectBudgetList_LinkToGL, "Index", new { id = "LinkToMB" }, new AjaxOptions
+                                            {
+                                                UpdateTargetId = "budgetDiv",
+                                                LoadingElementId = "loading",
+                                                Url = Url.Action("LinkToMB/" + item.Id.ToString())
+                                            })            
+                               }
+                                }
+                                else if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                                {
+                                    @Ajax.ActionLink(Resources.Budget_ProjectBudgetList_CreateBudget, "Index", new { id = "CreateBudget" }, new AjaxOptions
+                                    {
+                                        UpdateTargetId = "budgetDiv",
+                                        LoadingElementId = "loading",
+                                        Url = Url.Action("CategoryList/" + item.Id.ToString())
+                                    })
+                                }
+                                else
+                                { 
+                                    @Html.Raw("<i style=\"font-style: italic;\">" + Resources.Budget_ProjectBudgetList_NoBudget + "</i>")
+                                }
+                            </td>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                            {
+                                <td align="center">
+                                    @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "Edit" }, new AjaxOptions
+                               {
+                                   UpdateTargetId = "budgetDiv",
+                                   LoadingElementId = "loading",
+                                   Url = Url.Action("EditProject/" + item.Id.ToString())
+                               }) |
+                                    @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "Delete" }, new AjaxOptions
+                               {
+                                   UpdateTargetId = "budgetDiv",
+                                   LoadingElementId = "loading",
+                                   Url = Url.Action("DeleteProject/" + item.Id.ToString()),
+                                   Confirm = string.Format(Resources.Budget_ProjectBudgetList_ConfirmDeleteProject, item.ProjectNumber)                                   
+                               })
+                                </td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10" selected="selected">10</option>
+                            <option value="20">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>              
+    }
+    @if (Model.Count() < 1)
+    {
+        <i>@Resources.Budget_ProjectBudgetList_NoProjects</i>
+    }
+    <br />
+</div>

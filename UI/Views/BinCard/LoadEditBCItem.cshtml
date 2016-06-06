@@ -1,0 +1,73 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.BinItem
+@{AjaxOptions ajaxOpts = new AjaxOptions
+{
+    UpdateTargetId = "bincardDiv",
+    LoadingElementId = "loading",
+    HttpMethod = "Post",
+    Url = Url.Action("UpdateBinCard"),
+    OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');CloseDialog();",
+    OnFailure = "javascript:errormsg()"
+};}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmeditbinit" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.Id)
+    
+    <table style="width: 450px; text-align: center;" cellpadding="0">
+        <tr>
+            <th style="text-align: center">
+                @Resources_morgan.BinCard_LoadAddBCItems_QTYReceived
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                @Html.TextBoxFor(x => x.QTYReceived)
+                @Html.ValidationMessageFor(x => x.QTYReceived)
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: center">
+                @Resources_morgan.BinCard_LoadAddBCItems_QTYIssued
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: center" id="oritemcontent">
+
+                @Html.TextBoxFor(x => x.QTYIssued)
+                @Html.ValidationMessageFor(x => x.QTYIssued)
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: center">
+                @Resources_morgan.Global_String_BalanceStock
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                @Html.DisplayFor(x => x.BalanceStock)
+            </td>
+        </tr>
+        <tr>
+            <th style="text-align: center">
+                @Resources.Global_String_Remarks
+            </th>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                @Html.TextAreaFor(x => x.Remarks)
+                @Html.ValidationMessageFor(x => x.Remarks, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center">
+                <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " /></td>
+        </tr>
+
+    </table>
+    
+}

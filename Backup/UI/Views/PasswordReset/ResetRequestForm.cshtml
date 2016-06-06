@@ -1,0 +1,31 @@
+﻿@using SCMS.Resource
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.PasswordReset_LinkSent_PasswordResetRequest
+        </h3>
+    </div>
+    <br />
+    <h4>&nbsp;&nbsp;&nbsp;@Resources.PasswordReset_ResetRequestForm_HavingTrouble</h4>
+    <p style="text-align: center;">
+        @Resources.PasswordReset_ResetRequestForm_InstructionMsg<br />
+        <i style="font-style: italic; font-size: 11px; font-weight: bold;">@Resources.PasswordReset_ResetRequestForm_NB</i>
+    </p>
+    <form action="Index" class="form" onsubmit="return RequestPasswordReset()">
+        <table width="40%" align="center" border="0" cellpadding="2" cellspacing="2">
+            <tr>
+                <td width="50%" align="right">@Resources.PasswordReset_ChangePassword_YourEmail:</td>
+                <td width="50%">
+                    <input type="text" id="email" name="email" autocomplete="Off" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="@Resources.PasswordReset_ResetRequestForm_SubmitRequest" class="btn tertiary" />
+                </td>
+            </tr>
+        </table>
+    </form>
+    <p id="statusmsg" style="text-align: center;"></p>
+</div>

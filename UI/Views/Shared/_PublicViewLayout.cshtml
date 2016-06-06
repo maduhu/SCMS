@@ -1,0 +1,72 @@
+﻿@using SCMS.Resource
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <meta name="description" content="SCMS" />
+    <meta name="author" content="SCMS" />
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- CSS -->
+    <link href="@Url.Content("~/Content/themes/copenhagen/css/base.css?v=1.7hs")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/themes/copenhagen/css/style.css?v=1.s5th")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/zebra_dialog.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/notification.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/pager.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/themes/scms1/jquery-ui-1.8.20.scms1.css")" rel="stylesheet"/>
+    <link href="@Url.Content("~/Content/css/flexigrid.pack.css")" rel="stylesheet" type="text/css" />    
+    <link href="@Url.Content("~/Content/css/jquery.autocomplete.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    @*<script src="@Url.Content("~/Scripts/jquery-ui-1.8.11.js")" type="text/javascript"></script>*@
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.scms1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/flexigrid.pack.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/easybox.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/accord.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/general.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/ajax.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/notification.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/sorter.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/popup-dialog.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/js/zebra_dialog.js")" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+    <div id='top-bar' class="container">
+        <div class="row">
+            <div class="twelve columns">
+                <table width="100%" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td width="25%" align="left">                            
+                            &nbsp;
+                        </td>
+                        <td width="50%" align="center"><h1 style="color: White;">@Resources.Global_String_SupplyChainManagementSystem.ToUpper()</h1></td>
+                        <td width="25%" align="right">
+                            &nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row">
+            <div class="twelve columns">
+                
+            </div>
+        </div>
+    </div>
+    <div id='middle-bar' class='container'>
+        <div class="row">
+            <div class="twelve columns">
+                @RenderBody()
+            </div>
+            
+        </div>
+    </div> 
+    @RenderPage("~/Views/Shared/General/Footer.cshtml")       
+</body>
+</html>

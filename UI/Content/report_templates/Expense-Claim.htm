@@ -1,0 +1,251 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>{REPORT_TITLE}</title>
+    <link rel="stylesheet" href="{STYLE}?v=1,32." type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="row-fluid">
+                    <div class="span3">
+                        &nbsp;&nbsp;
+                    </div>
+                    <div class="span9">
+                        <h2 class="central" style="text-decoration: underline;">
+                            Expense Claim Form
+                        </h2>
+                        <h4 class="central" style="color: Red;">
+                            No.: {REQ_NO.}</h4>
+                    </div>
+                </div>
+                <table class="goods-detail" align="center" cellspacing="0" cellpadding="0" border="1">
+                    <thead>
+                        <tr class="gridheader">
+                            <th align="center">
+                                Claim Date
+                            </th>
+                            <th align="center">
+                                Currency of Expense
+                            </th>
+                            <th align="center">
+                                Currency Converted to
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gridodd">
+                            <td align="center">
+                                {CLAIM-DATE}
+                            </td>
+                            <td align="center">
+                                {EC-CURRENCY}
+                            </td>
+                            <td align="center">
+                                {CURRENCY-CONVERTED2}
+                            </td>
+                        </tr>
+                    </tbody>
+                    <thead>
+                        <tr class="gridheader">
+                            <th align="center">
+                                Expense Claim by
+                            </th>
+                            <th align="center">
+                                Title
+                            </th>
+                            <th align="center">
+                                Exchg. Rate of Conversion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="gridodd">
+                            <td align="center">
+                                {CLAIM-BY}
+                            </td>
+                            <td align="center">
+                                {CAIM-TITLE}
+                            </td>
+                            <td align="center">
+                                {EXG-RATE}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br />
+            </div>
+            <div class="span3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="{LOGO1}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{LOGO2}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DANISH REFUGEE COUNCIL<br />
+                                Borgergade 10<br />
+                                DK-1300 Copenhagen<br />
+                                Denmark<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px;">
+                                COUNTRY OFFICE, UGANDA<br />
+                                4688 Kalungi Road<br />
+                                Muyenga, Kampala<br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://WWW.drc.dk">WWW.drc.dk</a><br />
+                                <a href="http://WWW.danishdemininggroup.dk">www.danishdemininggroup.dk</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail">
+                    <thead>
+                        <tr class="gridheader">
+                            <th rowspan="2">
+                                Description
+                            </th>
+                            <th colspan="3">
+                                Coding
+                            </th>
+                            <th colspan="2">
+                                Transaction
+                            </th>
+                            <th colspan="2">
+                                Currency Conversion
+                            </th>
+                        </tr>
+                        <tr class="gridheader">
+                            <th>
+                                Account Code
+                            </th>
+                            <th>
+                                Project No
+                            </th>
+                            <th>
+                                Budget Line
+                            </th>
+                            <th>
+                                Currency
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Exchg. Rate
+                            </th>
+                            <th>
+                                CNV* Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {DETAILS}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="2" class="gridheader">
+                                Master Budget Currency
+                            </th>
+                            <td align="center">
+                                {MB-CURRENCY}
+                            </td>
+                            <th class="gridheader" colspan="2">
+                                Total
+                            </th>
+                            <td align="right">
+                                {MB-TOTAL}
+                            </td>
+                            <th colspan="2" class="gridheader">
+                                Expence Claim Value
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail">
+                    <thead>
+                        <tr class="gridheader">
+                            <th width="19%">
+                                Authorization
+                            </th>
+                            <th width="27%">
+                                ECF Submitted by
+                            </th>
+                            <th width="27%">
+                                Finance Review/Approval of BL/PN
+                            </th>
+                            <th width="27%">
+                                EC Authorized by Manager/CD
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {AUTHORISATION}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" class="goods-detail"
+                    id="Table2">
+                    <thead>
+                        <tr class="gridheader">
+                            <th>
+                                Expense Claim
+                            </th>
+                            <th>
+                                Settlement paid by
+                            </th>
+                            <th>
+                                Settlement Received by
+                            </th>
+                            <th>
+                                Settlement
+                            </th>
+                            <th>
+                                Currency
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Exchg. Rate
+                            </th>
+                            <th>
+                                Converted Amount
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {EC-DETAILS}</tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.FleetDetail
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      OnBegin = "return IsPlateNoRegistered(); return IsEngineNoExist(); return IsChassisNoExist();",
+      UpdateTargetId = "fleetDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action(Model.Action),
+      OnSuccess = string.Format("usermsg('{0}');CloseDialog(); initPostFundsView(0);", Resources.Global_String_ProcessCompleted),
+      OnFailure = "javascript:errormsg()"
+  };}
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/jquery.autocomplete.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmFD" }))
+{
+    @Html.ValidationSummary(true)
+    <br />
+    @Html.HiddenFor(model => model.Id, new { Id="Id"})
+    @Html.HiddenFor(model => model.CountryProgrammeId)
+    @Html.HiddenFor(model => model.IssueDate)
+    
+    @*<input type="hidden" id="Id" value="@Model.Id" />*@
+    <table width="600px" align="center" cellpadding="0">
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.Global_String_AssetName
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_Brand
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.Global_String_Model
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top" id="assetIds">
+                @*<input type="text" name="AssetDescc" id="AssetDescc" onchange = "javascript:GetFilteredAssets()" />
+                <script type="text/javascript">
+                    var $jq = jQuery.noConflict();
+                    $jq("#AssetDescc").autocomplete("/GoodsReceivedNote/SearchAssetDesc");
+                </script>*@
+                @Html.DropDownListFor(x => x.AssetId, Model.Assets, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.AssetId, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.DropDownList("BrandID", Model.Brands, Resources.Global_String_PleaseSelect, new { onchange = "javascript:GetItemModels(this)" })
+            </td>
+            <td align="center" valign="top" id="ModelDiv">
+                @Html.DropDownListFor(x => x.ModelId, Model.Modelz, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.ModelId, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_ModelYear
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_PlateNo
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_EngineNo
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.ModelYear, new SelectList(Enumerable.Range(1900, DateTime.Now.Year - 1900 + 1).OrderByDescending(x => x)))
+                @Html.ValidationMessageFor(x => x.ModelYear, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.PlateNo, new {id = "pNo",  onblur = "IsPlateNoRegistered();" })
+                <div id="pnMsg" style="color: red"></div>
+                @Html.ValidationMessageFor(x => x.PlateNo, Resources.Global_String_Required)
+            </td>
+            <td align="center">
+                @Html.TextBoxFor(x => x.EngineNo, new {id = "ENo",  onblur = "IsEngineNoExist();" })
+                <div id="EnMsg" style="color: red"></div>
+                @Html.ValidationMessageFor(x => x.EngineNo, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_ChassisNo
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_InitialMileage
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_FleetType
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.ChassisNo, new {id = "CNo",  onblur = "IsChassisNoExist();" })
+                <div id="CnMsg" style="color: red"></div>
+                @Html.ValidationMessageFor(x => x.ChassisNo, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.TextBoxFor(x => x.InitialMilleage)
+                @Html.ValidationMessageFor(x => x.InitialMilleage, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.FleetType, new SelectList(
+                        new List<Object>{ 
+                            new { value = "Motor" , text = Resources.Global_String_Motor  },
+                            new { value = "Generator" , text = Resources.Global_String_Generator }
+                        }, "value", "text"), Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.FleetType, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_DutyType
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_InsuranceType
+            </td>
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_InsuranceExpiryDate
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.DutyTypeId, Model.DutyTypes, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.DutyTypeId, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.InsuranceTypeId, Model.InsuranceTypes, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.InsuranceTypeId, Resources.Global_String_Required)
+            </td>
+            <td align="center" valign="top">
+                @Html.EditorFor(x => x.InsuranceExpiryDate)
+                @Html.ValidationMessageFor(x => x.InsuranceExpiryDate, Resources.Global_String_Required)
+            </td>
+        </tr>
+        <tr class="gridheader2">
+            <td align="center" width="33.3%">
+                @Resources.FleetManager_LoadNewFleetDetail_FuelType
+            </td>
+            <td>@Resources.FleetManager_LoadNewFleetDetail_AsignedDriver
+            </td>
+            <td align="center">
+                @Resources.FleetManager_LoadNewFleetDetail
+            </td>
+        </tr>
+        <tr>
+            <td align="center" valign="top">
+                @Html.DropDownListFor(x => x.FuelType, new SelectList(
+                        new List<Object>{ 
+                            new { value = "Petrol" , text = Resources.Global_String_Petrol  },
+                            new { value = "Diesel" , text = Resources.Global_String_Diesel }
+                        }, "value", "text"), Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.FuelType, Resources.Global_String_Required)
+            </td>
+            <td align="center">
+                @Html.DropDownListFor(x => x.DriverInfoId, Model.Staffs, Resources.Global_String_PleaseSelect)
+                @Html.ValidationMessageFor(x => x.DriverInfoId, Resources.Global_String_Required)
+            </td>
+            <td align="center" rowspan="2"></td>
+        </tr>
+    </table>
+    <hr />
+               
+    <center>
+        <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " /></center>
+}

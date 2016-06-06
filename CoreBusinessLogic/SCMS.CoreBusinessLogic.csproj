@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A2EF0B29-83BA-4400-B797-F32BB092C938}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SCMS.CoreBusinessLogic</RootNamespace>
+    <AssemblyName>SCMS.CoreBusinessLogic</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation">
+      <HintPath>..\Libraries\FluentValidation\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc">
+      <HintPath>..\Libraries\FluentValidation\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=1.0.0.505, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\Libraries\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionFilters\ModelStateTempDataTransfer.cs" />
+    <Compile Include="ActionFilters\MyExceptionAttribute.cs" />
+    <Compile Include="BinCard\BinCardService.cs" />
+    <Compile Include="BinCard\IBinCardService.cs" />
+    <Compile Include="Budgeting\BudgetService.cs" />
+    <Compile Include="Budgeting\IBudgetService.cs" />
+    <Compile Include="Budgeting\IMasterBudgetService.cs" />
+    <Compile Include="Budgeting\MasterBudgetService.cs" />
+    <Compile Include="Caching\CacheService.cs" />
+    <Compile Include="Caching\ICacheService.cs" />
+    <Compile Include="CompletionCtificate\CompletionCertificateService.cs" />
+    <Compile Include="CompletionCtificate\ICompletionCertificateService.cs" />
+    <Compile Include="DutyType\DutyTypeService.cs" />
+    <Compile Include="DutyType\IDutyTypeService.cs" />
+    <Compile Include="Extensions\DateTimeExtensions.cs" />
+    <Compile Include="Extensions\DecimalExtensions.cs" />
+    <Compile Include="Extensions\GenericListTypeConverter.cs" />
+    <Compile Include="Extensions\GuidExtensions.cs" />
+    <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="Extensions\IDependencyResolveExtensions.cs" />
+    <Compile Include="Extensions\IEnumerableExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtensions.cs" />
+    <Compile Include="Extensions\PagingExtension.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Extensions\TypeExtensions.cs" />
+    <Compile Include="FleetAcceories\FleetAccesoriesService.cs" />
+    <Compile Include="FleetAcceories\IFleetAccesoriesService.cs" />
+    <Compile Include="FleetIncidences\FleetIncidenceService.cs" />
+    <Compile Include="FleetIncidences\IFleetIncidenceService.cs" />
+    <Compile Include="FleetManager\FleetDetailsService.cs" />
+    <Compile Include="FleetManager\IFleetDetailsService.cs" />
+    <Compile Include="General.cs" />
+    <Compile Include="CountrySubOffice\ICountrySubOffice.cs" />
+    <Compile Include="CountrySubOffice\CountrySubOffice.cs" />
+    <Compile Include="Designation\Designation.cs" />
+    <Compile Include="ExchangeRate\ExchangeRate.cs" />
+    <Compile Include="ExchangeRate\IExchangeRate.cs" />
+    <Compile Include="Designation\IDesignation.cs" />
+    <Compile Include="Country\Country.cs" />
+    <Compile Include="CountryProgramme\CountryProgramme.cs" />
+    <Compile Include="Currency\Currency.cs" />
+    <Compile Include="Country\ICountry.cs" />
+    <Compile Include="CountryProgramme\ICountryProgramme.cs" />
+    <Compile Include="Currency\ICurrency.cs" />
+    <Compile Include="GeneralHelper\BudgetSessionData.cs" />
+    <Compile Include="GeneralHelper\ParameterSessionData.cs" />
+    <Compile Include="GeneralHelper\ProcurementSessionData.cs" />
+    <Compile Include="GeneralHelper\GeneralHelperService.cs" />
+    <Compile Include="GeneralHelper\IGeneralHelperService.cs" />
+    <Compile Include="GeneralHelper\SessionData.cs" />
+    <Compile Include="GoodsIssuedVoucher\GoodsIssuedVoucherService.cs" />
+    <Compile Include="GoodsIssuedVoucher\IGoodsIssuedVoucherService.cs" />
+    <Compile Include="GoodsReceivedNote\GoodsReceivedNote.cs" />
+    <Compile Include="GoodsReceivedNote\IGoodsReceivedNote.cs" />
+    <Compile Include="InsuranceType\IInsuranceTypeService.cs" />
+    <Compile Include="InsuranceType\InsuranceTypeService.cs" />
+    <Compile Include="Item\IItem.cs" />
+    <Compile Include="Item\Item.cs" />
+    <Compile Include="Location\ILocation.cs" />
+    <Compile Include="Inventory\IInventory.cs" />
+    <Compile Include="Inventory\Inventory.cs" />
+    <Compile Include="ItemCategory\IItemCategory.cs" />
+    <Compile Include="ItemCategory\ItemCategory.cs" />
+    <Compile Include="ItemClassification\IItemClassification.cs" />
+    <Compile Include="ItemClassification\ItemClassification.cs" />
+    <Compile Include="Location\Location.cs" />
+    <Compile Include="NotificationsManager\INotificationService.cs" />
+    <Compile Include="NotificationsManager\NotifcationHelper.cs" />
+    <Compile Include="NotificationsManager\NotificationService.cs" />
+    <Compile Include="OrderRequest\IOrderRequest.cs" />
+    <Compile Include="OrderRequest\OrderRequest.cs" />
+    <Compile Include="Paging\IPagedList.cs" />
+    <Compile Include="Paging\PagedList.cs" />
+    <Compile Include="People\IPersonService.cs" />
+    <Compile Include="People\PersonService.cs" />
+    <Compile Include="ProcurementPlan\IProcurementPlanService.cs" />
+    <Compile Include="ProcurementPlan\ProcurementPlanService.cs" />
+    <Compile Include="Projects\ProjectService.cs" />
+    <Compile Include="IGeneral.cs" />
+    <Compile Include="Projects\IProjectService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseOrder\IPurchaseOrderService.cs" />
+    <Compile Include="PurchaseOrder\PurchaseOrderService.cs" />
+    <Compile Include="Request4Payment\IRequest4PaymentService.cs" />
+    <Compile Include="Request4Payment\Request4PaymentService.cs" />
+    <Compile Include="SCMSException.cs" />
+    <Compile Include="Security\AuthenticationService.cs" />
+    <Compile Include="Security\DefaultPermissionRecord.cs" />
+    <Compile Include="Security\EncryptionService.cs" />
+    <Compile Include="Security\IAuthenticationService.cs" />
+    <Compile Include="Security\IEncryptionService.cs" />
+    <Compile Include="Security\IPermissionProvider.cs" />
+    <Compile Include="Security\IPermissionService.cs" />
+    <Compile Include="Security\IUserContext.cs" />
+    <Compile Include="Security\PermissionService.cs" />
+    <Compile Include="Security\Providers\SCMSMembershipProvider.cs" />
+    <Compile Include="Security\Providers\SCMSRoleProvider.cs" />
+    <Compile Include="Security\StandardPermissionProvider.cs" />
+    <Compile Include="Security\SystemRoleNames.cs" />
+    <Compile Include="Settings\CommonSettings.cs" />
+    <Compile Include="Settings\ISettingService.cs" />
+    <Compile Include="Settings\ISystemSettings.cs" />
+    <Compile Include="Settings\SettingConfigurationProvider.cs" />
+    <Compile Include="Settings\SettingsHelper.cs" />
+    <Compile Include="Settings\SettingsService.cs" />
+    <Compile Include="StaffServices\IStaffService.cs" />
+    <Compile Include="StaffServices\StaffService.cs" />
+    <Compile Include="Supplier\ISupplier.cs" />
+    <Compile Include="Supplier\Supplier.cs" />
+    <Compile Include="UnitOfMeasure\IUnitOfMeasure.cs" />
+    <Compile Include="UnitOfMeasure\UnitOfMeasure.cs" />
+    <Compile Include="Users\ChangePasswordRequest.cs" />
+    <Compile Include="Users\ISystemUserService.cs" />
+    <Compile Include="Users\PasswordChangeResult.cs" />
+    <Compile Include="Users\SystemUserService.cs" />
+    <Compile Include="Users\UsersSystemUserService.cs.cs" />
+    <Compile Include="VehicleMake\IVehicleMakeService.cs" />
+    <Compile Include="VehicleMake\VehicleMakeService.cs" />
+    <Compile Include="WareHouse\IWareHouse.cs" />
+    <Compile Include="WareHouse\WareHouse.cs" />
+    <Compile Include="WB\IWayBillService.cs" />
+    <Compile Include="WB\WayBillService.cs" />
+    <Compile Include="Web\AdminAuthorizeAttribute.cs" />
+    <Compile Include="Web\AdminBaseController.cs" />
+    <Compile Include="Web\BaseController.cs" />
+    <Compile Include="Web\BaseModel.cs" />
+    <Compile Include="Web\IImageService.cs" />
+    <Compile Include="Web\ImageService.cs" />
+    <Compile Include="Web\PortalBaseController.cs" />
+    <Compile Include="Web\SCMSValidatorFactory.cs" />
+    <Compile Include="Web\SignedInAuthorizeAttribute.cs" />
+    <Compile Include="Web\ViewEngines\Razor\WebViewPage.cs" />
+    <Compile Include="Web\WebHelper.cs" />
+    <Compile Include="Web\WebUserContext.cs" />
+    <Compile Include="WRF\IWareHouseReleaseService.cs" />
+    <Compile Include="WRF\WareHouseReleaseService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCMS.Model\SCMS.Model.csproj">
+      <Project>{115A8BB2-CEE4-4F8F-B171-B3EB668DC95A}</Project>
+      <Name>SCMS.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Resources\SCMS.Resource.csproj">
+      <Project>{26034cfe-7b64-4906-bd26-ba85cbd57798}</Project>
+      <Name>SCMS.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCMS.Utils\SCMS.Utils.csproj">
+      <Project>{59EAC4DA-30EA-4666-A23B-7CCEC052EDF4}</Project>
+      <Name>SCMS.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\de\" />
+    <Folder Include="bin\Debug\es\" />
+    <Folder Include="bin\Debug\fr\" />
+    <Folder Include="bin\Debug\it\" />
+    <Folder Include="bin\Debug\nl\" />
+    <Folder Include="bin\Debug\pl\" />
+    <Folder Include="bin\Debug\pt\" />
+    <Folder Include="bin\Debug\ru\" />
+    <Folder Include="bin\Debug\sv\" />
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Person\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\CoreBusinessLogic.dll" />
+    <Content Include="bin\Debug\CoreBusinessLogic.pdb" />
+    <Content Include="bin\Debug\SCMS.Utils.dll" />
+    <Content Include="bin\Debug\SCMS.Utils.pdb" />
+    <Content Include="CoreBusinessLogic.csproj" />
+    <Content Include="obj\Debug\CoreBusinessLogic.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\CoreBusinessLogic.dll" />
+    <Content Include="obj\Debug\CoreBusinessLogic.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

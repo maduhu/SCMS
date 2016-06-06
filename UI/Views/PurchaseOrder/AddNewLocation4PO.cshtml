@@ -1,0 +1,68 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.ULocation
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "locationDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("AddNewLocation4PO"),
+      OnBegin = "CloseDialog",
+      OnSuccess = "document.getElementById('deliveryAddressID').focus();"
+  };}
+
+<script src="@Url.Content("~/Scripts/js/jquery-1.7.2.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/js/jquery.autocomplete.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<table align="center" style="margin-left: auto; margin-right: auto;">
+    <tr>
+        <td align="center">
+            <div style="width:auto; padding:6px; border:1px solid #A7B601; background:#fff; border-radius: 6px 6px 6px 6px; margin-left: auto; margin-right: auto;">
+                @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+                {
+                    @Html.ValidationSummary(true)
+                    <h4>@Resources.OrderRequest_AddNewLocation4OR_AddNewDelivAddress</h4>
+                    <table border="0" cellpadding="2" cellspacing="0" width="400">
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_Name:
+                            </td>
+                            <td width="60%">
+                                @Html.TextBoxFor(m => m.Name, new { id = "locationName", name = "locationName" })
+                                @Html.ValidationMessageFor(m => m.Name, Resources.Global_String_Required)   
+                                <script type="text/javascript">
+                                    var $jq = jQuery.noConflict();
+                                    $jq("#locationName").autocomplete("/Location/SearchLocations");
+                                </script>                       
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_ShortName:
+                            </td>
+                            <td width="60%">
+                                @Html.TextBoxFor(m => m.ShortName)
+                            </td>
+                        </tr>                        
+                        <tr>
+                            <td width="40%" align="right">
+                                @Resources.Global_String_Country:
+                            </td>
+                            <td width="60%">
+                                @Html.DropDownListFor(m => m.CountryId, Model.CountrySelect, Resources.Global_String_PleaseSelect)
+                                @Html.ValidationMessageFor(m => m.CountryId, Resources.Global_String_Required)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="submit" class="btn green" value="@Resources.Global_String_Save" />
+                            </td>
+                        </tr>
+                    </table>
+                }
+            </div>
+        </td>
+    </tr>
+</table>

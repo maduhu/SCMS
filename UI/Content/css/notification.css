@@ -1,0 +1,52 @@
+﻿.dropdown dl{ margin-left:5px; }
+.dropdown dd, .dropdown dt, .dropdown ul
+{ margin:0px; padding:0px; }
+.dropdown dd { position:relative; }
+
+/* DT styles for sliding doors */
+.dropdown dt #linkglobal {z-index: 3009988;}
+
+.dropdown dt #linkglobal.selected{
+    background:#C1CA5A url(privacyOn.png)
+    no-repeat scroll right center;
+    position: relative;
+    z-index: 3009988;
+}
+.dropdown dt a span {
+cursor:pointer; display:block; padding:5px;}
+
+#noti-accordion {
+	background:#C1CA5A none repeat scroll 0 0; display:none;
+    list-style:none; padding: 3px 0; position:absolute;
+    width:200px; left:0px; right:0; top: -5px;
+    border:1px solid #C1CA5A; cursor:pointer;
+    z-index: 3009988;
+    border-radius: 6px 6px 6px 6px;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+}
+
+#noti-accordion div ul li{
+margin:0; width:auto;
+}
+
+/* UL styles */
+.dropdown dd ul li{
+margin:0; width:auto;
+}
+.dropdown dd ul li b{
+background-color:#C1CA5A; margin:4px; width:auto;
+font-weight: bold; font-size: 12px;
+}
+.dropdown span.value { display:none;}
+#noti-accordion div ul li a {
+display:block; text-align:left; 
+font-weight:normal; width:auto;
+text-decoration:none; padding:2px 4px 3px 19px;
+font-size: 11px;
+}
+#noti-accordion div ul li a:hover{
+background: #DBEB29; color: #3E033E;
+}
+#noti-accordion div ul li a:visited{
+text-decoration:none;
+}

@@ -1,0 +1,75 @@
+﻿@using SCMS.CoreBusinessLogic.NotificationsManager
+@using SCMS.Resource
+@model SCMS.UI.Areas.Admin.Models.Approver.ApproverModel
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "approverDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("SaveApprover"),
+      OnBegin = "return ValidatedApprovers();",
+      OnSuccess = "CloseDialog();reloadTabs();"
+  };}
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table>
+        <tbody>            
+            <tr>
+                <td align="right">@Resources.Approver_CreateApprover_ActionType<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.ActionType, Model.ActionTypes, new { id = "actionType"})<br />
+                    @Html.ValidationMessageFor(model => model.ActionType)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Approver_CreateApprover_DocumentType<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.ActivityCode, Model.DocumentTypes, new { id = "activityCode", onchange = "javascript:selectFinanceLimit(this)" })<br />
+                    @Html.ValidationMessageFor(model => model.ActivityCode)
+                </td>
+            </tr>
+            @if (Model.ActivityCode != NotificationHelper.wrnCode && Model.ActivityCode != NotificationHelper.grnCode && Model.ActivityCode != NotificationHelper.ccCode
+                && Model.ActivityCode != NotificationHelper.paramsCode)
+            {
+                <tr>
+                    <td align="right">@Resources.Approver_ApproverList_FinanceLimit<font color="red">*</font>:</td>
+                    <td>
+                        @Html.DropDownListFor(model => model.FinancialLimitId, Model.FinancialLimits, new { onchange = "javascript:selectFinanceLimit(this)" })<br />
+                        @Html.ValidationMessageFor(model => model.FinancialLimitId)
+                    </td>
+                </tr>
+            }
+            <tr>
+                <td align="right">@Resources.Approver_CreateApprover_StaffResponsible<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.UserId, Model.SystemUsers, new { id = "staffResponsible" })<br />
+                    @Html.ValidationMessageFor(model => model.UserId)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Approver_ApproverList_Delegate<font color="red">*</font>:</td>
+                <td>
+                    @Html.DropDownListFor(model => model.AssistantId, Model.SystemUsers, new { id = "delegatedStaff" })<br />
+                    @Html.ValidationMessageFor(model => model.AssistantId)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    @Html.HiddenFor(model => model.Id, new { id = "approverId" })
+                    @if (ViewBag.Unlimited == true)
+                    { 
+                        <input type="hidden" id="unlimited" name="unlimited" value="1" />
+                    }
+                    <input type="submit" value=" @Resources.Global_String_Save " class="btn green" />&nbsp;
+                    <input type="button" value="@Resources.Global_String_Cancel" class="btn green" onclick="javascript:CloseDialog()" />
+                </td>
+            </tr>
+         </tbody>
+    </table>
+}

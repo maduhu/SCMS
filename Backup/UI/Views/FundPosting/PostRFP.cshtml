@@ -1,0 +1,32 @@
+﻿@using SCMS.Resource
+@using (Ajax.BeginForm(null, null, null, new { @class = "form" }))
+{ 
+    <table>
+        
+        <tbody>            
+            <tr>
+                <td align="right">@Resources.Global_String_Username:</td>
+                <td>
+                    @ViewBag.Username
+                    <input type="hidden" id="rfpId" name="rfpId" value="@ViewBag.RfpId" />
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Global_String_Password:</td>
+                <td>
+                    <input type="password" id="password" name="password" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input id="btnPost" type="button" class="btn green"  value="@Resources.Global_String_PostFunds.ToUpper()" onclick="javascript:PostFunds('/FundPosting/PostRFPFunds/', 0)" />&nbsp;
+                    <input id="btnCancel" type="button" class="btn green"  value="@Resources.Global_String_Cancel" onclick="javascript:CloseDialog()" />
+                </td>
+            </tr>
+            <tr>
+                <td id="statusMsg" colspan="2" align="center"></td>
+            </tr>
+         </tbody>
+    </table>
+}  

@@ -1,0 +1,72 @@
+﻿@using SCMS.Resource
+@{    
+    ViewBag.Title = Resources.GoodsReceivedNote_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<div id="GRNMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.Global_String_GoodsReceivedNote</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.GoodsReceivedNoteManage))
+                    {
+                        <td class="arrowLink">
+                            @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new { id = "LoadGRN" }, new AjaxOptions
+                           {
+                               UpdateTargetId = "ContentDiv",
+                               LoadingElementId = "loading",
+                               Url = Url.Action("LoadGRN")
+                           })
+                        </td>
+                    }
+                    else
+                    { 
+                        <td>&nbsp;</td>
+                    }
+                    @if (UserContext.HasPermission(StandardPermissionProvider.GoodsReceivedNoteDownloadTempate))
+                    {
+                        <td class="arrowLink">
+                            @Ajax.ActionLink(Resources.GoodsReceivedNote_Index_DownloadTemplate, "DownloadTemplate", new AjaxOptions
+                            {
+                                UpdateTargetId = "ContentDiv",
+                                LoadingElementId = "loading"
+                            })
+                        </td>
+                    }
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.GoodsReceivedNote_Index_ViewGRNs, "ViewGRNs", new AjaxOptions
+                        {
+                            UpdateTargetId = "ContentDiv",
+                            LoadingElementId = "loading"
+                        })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="ContentDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+        @Html.Action("ViewGRNs")
+    </div>
+    <div id="GRNemDiv" style="padding-left: 2px;">
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(10);
+        }
+    });
+</script>

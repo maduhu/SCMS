@@ -1,0 +1,62 @@
+﻿@using SCMS.Resource
+@{
+    ViewBag.Title = Resources.Global_String_Item + " - " + Resources.Global_String_SupplyChainManagementSystem;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+
+<div id="ParameterMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.Global_String_Item</h3>
+            <br />
+        </div>
+        <div style="font-size: 13px;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Global_String_AddNew, "Index", new AjaxOptions
+                        {
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            Url = Url.Action("CreateEdit"),
+                            OnBegin = string.Format("ShowDialogue('{0}')", Resources.OrderRequest_AddNewItem4OR_AddNewItem),
+                            OnSuccess = "CenterPopup"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Item_Index_ViewItems, "ListView", new AjaxOptions
+                   {
+                       UpdateTargetId = "ContentDiv",
+                       LoadingElementId = "loading",
+                       OnFailure = "Javascript:AjaxFailure()"
+                   })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.Item_Index_AddItemPackage, "CreateEditItemPackage", new AjaxOptions
+                        {
+                            UpdateTargetId = "popup-page",
+                            LoadingElementId = "popup-loading",
+                            Url = Url.Action("CreateEditItemPackage"),
+                            OnBegin = string.Format("ShowDialogue('{0}')", Resources.Item_Index_AddItemPackage),
+                            OnSuccess = "ClearForm();CenterPopup();"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Html.ActionLink(Resources.Global_String_BackToGlobalSettings, "Index", "GlobalSettings")
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="ContentDiv">
+        <!-- Content goes here-->
+        @Html.Action("ListView")
+    </div>
+</div>

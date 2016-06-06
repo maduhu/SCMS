@@ -1,0 +1,65 @@
+﻿@using SCMS.Resource
+<script type="text/javascript">
+$(document).ready(function () {
+
+    $('#logon').bind('click', function (e) {
+        e.preventDefault();
+        ShowLoginForm();
+    });
+
+    if ($('#feedback').val().length > 0) {
+        ShowLoginForm();
+    }
+
+    $('#logonForm').live("keypress", function (e) {
+        if (e.which == 13) {
+            if (($('#username').val().length < 3) || $('#passwd').val().length < 3) {
+
+                return false;
+            }
+            jQuery(this).submit();
+        }
+    });
+
+});
+
+
+function ShowLoginForm() {
+
+    var actionUrl = @Html.Raw(Json.Encode(Url.Action("LogIn", "Account")));
+
+    var feedbackMsg = '';
+    var passResetLink = '';
+    var fbMsg = $('#feedback').val();
+    if (fbMsg.length > 0) {
+        feedbackMsg = '<div class="login-error">*' + fbMsg + '</div>';
+        $('#feedback').val('');
+        passResetLink = '<a href="/PasswordReset/">@Resources.Shared_Login_ForgotPassword</a>';
+    }
+
+    var loginBox = '<form method="POST" action="' + actionUrl + '" id="logonForm"> <div class="login-block"><label>@Resources.Global_String_Username</label>' 
+    + '<input type="text" class="span2" placeholder="Username" name="username" id="username" required /></div>' 
+    + '<div class="login-block">  <label>@Resources.Global_String_Password</label>' + '<input type="password" class="span2" placeholder="Password" name="password" id="passwd" required /></div>' + '<input type="hidden" name="returnUrl" value="@Request.Params["ReturnUrl"].UrlEncode()" />' 
+    + '<div class="login-block"> <label>@Resources.Shared_Login_RememberMe</label><input type="checkbox" name="rememberMe" style="display:block-inline; width:20px;" /> ' + passResetLink + '</div>' + feedbackMsg + '</form>';
+
+    new $.Zebra_Dialog(loginBox, {
+        'custom_class': 'loginform',
+        'width': 370,
+        'buttons': [{
+            caption: '@Resources.Global_String_Login',
+            callback: function () {
+
+                if ($('#username').val().length < 3) {
+
+                    return false;
+                }
+
+                $('#logonForm').submit();
+            }
+        }],
+        'title': '@Resources.Global_String_Login'
+    });
+
+    $("#username").focus();
+}
+</script>

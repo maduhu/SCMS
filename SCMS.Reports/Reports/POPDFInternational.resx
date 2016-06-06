@@ -1,0 +1,433 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="ReportDataSource.DefaultValues" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdUZWxlcmlrLlJlcG9ydGluZywgVmVyc2lvbj02LjEuMTIuNjEx
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWE5ZDc5ODNkZmNjMjYxYmUMAwAAAKYBVGVs
+        ZXJpay5SZXBvcnRpbmcsIFZlcnNpb249Ni4xLjEyLjYxMSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
+        ZXlUb2tlbj1hOWQ3OTgzZGZjYzI2MWJlXV0sIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1
+        cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUBAAAAMlRlbGVyaWsuUmVw
+        b3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXJDb2xsZWN0aW9uAQAAABJDb2xsZWN0aW9uYDEraXRl
+        bXMES1N5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbVGVsZXJpay5SZXBvcnRpbmcuU3Fs
+        RGF0YVNvdXJjZVBhcmFtZXRlcgMAAAACAAAACQQAAAAFBAAAAEtTeXN0ZW0uQ29sbGVjdGlvbnMuR2Vu
+        ZXJpYy5MaXN0YDFbW1RlbGVyaWsuUmVwb3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXIDAAAABl9p
+        dGVtcwVfc2l6ZQhfdmVyc2lvbgQAACpUZWxlcmlrLlJlcG9ydGluZy5TcWxEYXRhU291cmNlUGFyYW1l
+        dGVyW10CAAAACAgDAAAACQUAAAAAAAAABwAAAAcFAAAAAAEAAAAAAAAABChUZWxlcmlrLlJlcG9ydGlu
+        Zy5TcWxEYXRhU291cmNlUGFyYW1ldGVyAgAAAAs=
+</value>
+  </metadata>
+  <data name="ReportDataSource.SelectCommand" xml:space="preserve">
+    <value>select po.RefNumber,o.RefNumber as ORNo,po.ProformaRequired,po.CommercialInvoiceRequired,po.WayBillRequired,po.PackingListRequired,po.DeliveryNoteRequired,
+po.ManualsRequired,po.CertificatesReqired,po.OtherRequired,po.PrefinancingGuaranteeRequired,po.PreparedOn,po.QuotationRef,SS.Id as SupplierId,SS.Name as SupplierName,PT.Id as PaymentId,PT.Description as PaymentTerms,
+SP.Id as ShippingTermId,SP.Name as ShippingTerms,LOC.Id as DeliveryAdressId,LOC.Name as DeliveryAdress,po.LatestDeliveryDate as RequiredDeliveryDate,case when po.IsRejected = 1 then 'RJ'
+ when po.IsSubmitted = 1then 'CR'
+else 'New' end as POStatus,c.ShortName as Currency,coalesce(prepby.StaffName,'Not Prepared') as Requestor,COALESCE(CONVERT(NVARCHAR(50),prepby.StaffID),'N/A') as RequestorId, 
+ coalesce(appr.StaffName,'Not Approved') as ApprovedBy,appr.Designation as Title,po.ApprovedOn,appr.SignatureImage,
+coalesce(convert(nvarchar(50),appr.StaffID),'N/A') as ApprovedId,
+po.TotalAmount,case when po.IsApproved = 1 then po.ApprovedOn
+            when po.IsRejected = 1
+            then case when po.ApprovedOn is not null
+				then po.ApprovedOn
+				end
+            
+            when po.IsSubmitted = 1
+            then po.PreparedOn
+            else po.PreparedOn end as StatusDate,pd.ProjectNumber,pd.Id, po.CountryProgrammeId ,cp.Address,cp.PrimaryPhone,cp.Email,cp.Fax
+From PurchaseOrder po INNER JOIN 
+Supplier SS ON SS.Id=po.SupplierId INNER JOIN 
+PaymentTerm PT ON PT.Id=po.PaymentTermId INNER JOIN 
+ShippingTerm SP ON SP.Id=po.ShippingTermId INNER JOIN 
+Location LOC ON LOC.Id=po.DeliveryAddress
+inner join ProjectDonor pd on pd.Id= po.ProjectDonorId
+inner join Currency c on c.Id= po.CurrencyId
+inner join OrderRequest o on o.Id=po.OrderRequestId
+inner join CountryProgramme cp on cp.Id=po.CountryProgrammeId
+
+inner join VStaffDetails prepby on prepby.StaffID=po.PreparedBy
+left join VStaffDetails appr on appr.StaffID=po.ApprovedBy
+
+ORDER BY po.PODate desc</value>
+  </data>
+  <metadata name="TableDataSource.DefaultValues" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdUZWxlcmlrLlJlcG9ydGluZywgVmVyc2lvbj02LjEuMTIuNjEx
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWE5ZDc5ODNkZmNjMjYxYmUMAwAAAKYBVGVs
+        ZXJpay5SZXBvcnRpbmcsIFZlcnNpb249Ni4xLjEyLjYxMSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
+        ZXlUb2tlbj1hOWQ3OTgzZGZjYzI2MWJlXV0sIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1
+        cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUBAAAAMlRlbGVyaWsuUmVw
+        b3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXJDb2xsZWN0aW9uAQAAABJDb2xsZWN0aW9uYDEraXRl
+        bXMES1N5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbVGVsZXJpay5SZXBvcnRpbmcuU3Fs
+        RGF0YVNvdXJjZVBhcmFtZXRlcgMAAAACAAAACQQAAAAFBAAAAEtTeXN0ZW0uQ29sbGVjdGlvbnMuR2Vu
+        ZXJpYy5MaXN0YDFbW1RlbGVyaWsuUmVwb3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXIDAAAABl9p
+        dGVtcwVfc2l6ZQhfdmVyc2lvbgQAACpUZWxlcmlrLlJlcG9ydGluZy5TcWxEYXRhU291cmNlUGFyYW1l
+        dGVyW10CAAAACAgDAAAACQUAAAABAAAABgAAAAcFAAAAAAEAAAAEAAAABChUZWxlcmlrLlJlcG9ydGlu
+        Zy5TcWxEYXRhU291cmNlUGFyYW1ldGVyAgAAAAkGAAAADQMMBwAAAE5TeXN0ZW0uRGF0YSwgVmVyc2lv
+        bj00LjAuMC4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkM
+        CAAAAElTeXN0ZW0sIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tl
+        bj1iNzdhNWM1NjE5MzRlMDg5BQYAAAAoVGVsZXJpay5SZXBvcnRpbmcuU3FsRGF0YVNvdXJjZVBhcmFt
+        ZXRlcgQAAAAGZGJUeXBlGERhdGFTb3VyY2VQYXJhbWV0ZXIrbmFtZRlEYXRhU291cmNlUGFyYW1ldGVy
+        K3ZhbHVlI0RhdGFTb3VyY2VQYXJhbWV0ZXIrUHJvcGVydHlDaGFuZ2VkBAECBBJTeXN0ZW0uRGF0YS5E
+        YlR5cGUHAAAAMVN5c3RlbS5Db21wb25lbnRNb2RlbC5Qcm9wZXJ0eUNoYW5nZWRFdmVudEhhbmRsZXII
+        AAAAAgAAAAX3////ElN5c3RlbS5EYXRhLkRiVHlwZQEAAAAHdmFsdWVfXwAIBwAAAAAAAAAGCgAAAAZA
+        UmVmTm8KCgs=
+</value>
+  </metadata>
+  <data name="textBox38.Value" xml:space="preserve">
+    <value>       1. Please retain this first original and return the second original duly signed and dated as   evidence of your acceptance of this order.
+       2. Please refer to this Purchase Order number in all correspondence concerning the order.
+       3. Please supply 2 copies of your invoice. Please indicate clearly your Bank Account details  in all your invoices.
+       4. The following documents shall be deemed to be an integral part of this Procurement Contract:
+            a)The PO w/Shipping and Documentation Instructions.
+            b)The DRC General Conditions of Contract for the Procurement of Goods
+            c)The DRC Code of Ethics
+            d)The DRC Bid form
+</value>
+  </data>
+  <metadata name="ReportDataSource2.DefaultValues" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFdUZWxlcmlrLlJlcG9ydGluZywgVmVyc2lvbj02LjEuMTIuNjEx
+        LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWE5ZDc5ODNkZmNjMjYxYmUMAwAAAKYBVGVs
+        ZXJpay5SZXBvcnRpbmcsIFZlcnNpb249Ni4xLjEyLjYxMSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNL
+        ZXlUb2tlbj1hOWQ3OTgzZGZjYzI2MWJlXV0sIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1
+        cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OQUBAAAAMlRlbGVyaWsuUmVw
+        b3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXJDb2xsZWN0aW9uAQAAABJDb2xsZWN0aW9uYDEraXRl
+        bXMES1N5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljLkxpc3RgMVtbVGVsZXJpay5SZXBvcnRpbmcuU3Fs
+        RGF0YVNvdXJjZVBhcmFtZXRlcgMAAAACAAAACQQAAAAFBAAAAEtTeXN0ZW0uQ29sbGVjdGlvbnMuR2Vu
+        ZXJpYy5MaXN0YDFbW1RlbGVyaWsuUmVwb3J0aW5nLlNxbERhdGFTb3VyY2VQYXJhbWV0ZXIDAAAABl9p
+        dGVtcwVfc2l6ZQhfdmVyc2lvbgQAACpUZWxlcmlrLlJlcG9ydGluZy5TcWxEYXRhU291cmNlUGFyYW1l
+        dGVyW10CAAAACAgDAAAACQUAAAAAAAAAAQAAAAcFAAAAAAEAAAAAAAAABChUZWxlcmlrLlJlcG9ydGlu
+        Zy5TcWxEYXRhU291cmNlUGFyYW1ldGVyAgAAAAs=
+</value>
+  </metadata>
+  <data name="ReportDataSource2.SelectCommand" xml:space="preserve">
+    <value>select  po.RefNumber,po.ProformaRequired,po.CommercialInvoiceRequired,po.WayBillRequired,po.PackingListRequired,po.DeliveryNoteRequired,
+po.ManualsRequired,po.CertificatesReqired,po.OtherRequired,po.PrefinancingGuaranteeRequired,po.PreparedOn,po.QuotationRef,SS.Id as SupplierId,SS.Name as SupplierName,PT.Id as PaymentId,PT.Description as PaymentTerms,
+SP.Id as ShippingTermId,SP.Name as ShippingTerms,LOC.Id as DeliveryAdressId,LOC.Name as DeliveryAdress,po.LatestDeliveryDate as RequiredDeliveryDate, case when po.IsApproved = 1 then 'AP' when po.IsRejected = 1 then 'RJ'
+when po.IsSubmitted = 1then 'CR'
+else 'New' end as POStatus,c.ShortName as Currency,coalesce(prepby.StaffName,'Not Prepared') as Requestor,COALESCE(CONVERT(NVARCHAR(50),prepby.StaffID),'N/A') as RequestorId, 
+COALESCE(appr.StaffName,'Not Approved') as ApprovedBy,COALESCE(CONVERT(VARCHAR(50),appr.StaffID),'N/A') as ApprovedId,appr.Designation as Title,po.ApprovedOn,appr.SignatureImage,
+po.TotalAmount,case when po.IsApproved = 1 then po.ApprovedOn
+            when po.IsRejected = 1
+            then case when po.ApprovedOn is not null
+				then po.ApprovedOn
+				 end
+            when po.IsSubmitted = 1
+            then po.PreparedOn
+            else po.PreparedOn end as StatusDate,pd.ProjectNumber,pd.Id, po.CountryProgrammeId 
+From PurchaseOrder po INNER JOIN 
+Supplier SS ON SS.Id=po.SupplierId INNER JOIN 
+PaymentTerm PT ON PT.Id=po.PaymentTermId INNER JOIN 
+ShippingTerm SP ON SP.Id=po.ShippingTermId INNER JOIN 
+Location LOC ON LOC.Id=po.DeliveryAddress
+inner join ProjectDonor pd on pd.Id= po.ProjectDonorId
+inner join Currency c on c.Id= po.CurrencyId
+inner join VStaffDetails prepby on prepby.StaffID=po.PreparedBy
+left join VStaffDetails appr on appr.StaffID=po.ApprovedBy 
+ORDER BY po.PODate desc</value>
+  </data>
+  <data name="textBox158.Value" xml:space="preserve">
+    <value>3. Certificate of quality, packing, weight and date of milling issued by the surveillance company assigned by DRC at the port of shipment stating that the Commodity and packing are within the terms of the contract specifications.
+4. Phytosanitary certificate issued by the competent Department of Agriculture, and endorsed by Chamber of Commerce in the country of origin. 
+5. "Report of radiological analysis" stating that the radioactivity levels in this commodity would not prohibit its use for human consumption as certified by the Atomic Energy Authorities in the country of origin.
+</value>
+  </data>
+  <data name="textBox161.Value" xml:space="preserve">
+    <value>The following details are to be provided on shipping documents (Airway Bill, Bill of Lading) by the appointed International Forwarding Agents:
+-The legal entity number of the supplier in his country.
+-The Danish Refugee Council as the importer 
+-An unequivocal description of the goods including the first four digits of the H. S. classification codes of the supplies to be imported for those countries that require this information. (H. S. = Harmonized System classification codes of the World Customs Organization).
+</value>
+  </data>
+  <data name="textBox164.Value" xml:space="preserve">
+    <value>1. Vessel:  Shipments shall normally be effected on mechanically self propelled vessels of steel construction which are not over 20 years of age.  Any vessel between 15 and 20 years of age shall have established and maintained a regular pattern of trading on an advertised schedule to load and unload at the specified ports.  All vessels shall be classified in a listed register, with the relevant class designation, as per the Institute Classification Clause, CL. 354 of 13 April 1992 as and when amended.
+
+	2. The Danish Refugee Council has to be granted at least 7 days free of container demurrage - detention charges. The supplier has to ensure that the Bills of Lading are clearly clause-stamped with the above mentioned 7 days free, otherwise they will be held liable.
+
+	3. The supplier has to ensure that the Bills of lading are clearly clause-stamped with the following clauses-terms: 
+		- "Clean on Board"
+		-  "Freight Prepaid: Liner in, stowed and trimmed".
+</value>
+  </data>
+  <data name="textBox166.Value" xml:space="preserve">
+    <value>1. For food consignments Inspection shall be carried out at the Danish Refugee Councils expense by surveillance companies commissioned by the Danish Refugee Council:
+
+	2. No food stuffs shall be removed from the supplier's warehouse or storage area unless samples have been taken by the said surveillance company, who shall inspect the consignment at the Port of Loading again and authorize commencement of transit if goods are within the required specifications.
+</value>
+  </data>
+  <data name="textBox170.Value" xml:space="preserve">
+    <value>1.1 These General Conditions of Contract for Procurement of Goods (GCCPG) apply to all deliveries of goods made to the Danish Refugee Council (DRC) notwithstanding any conflicting, contrary or additional terms and conditions in any purchase order or other communication from the Supplier. No such conflicting, contrary or additional terms and conditions shall be deemed accepted by us unless and until we expressly confirm our acceptance in writing.</value>
+  </data>
+  <data name="textBox171.Value" xml:space="preserve">
+    <value>2.1 All goods shall be delivered to the agreed place of delivery as stated in the Contract, at the Supplier's risk of loss of or damage to the goods until delivery, unless otherwise provided for in the Contract.</value>
+  </data>
+  <data name="textBox175.Value" xml:space="preserve">
+    <value>4.1 DRC has the right to inspect the goods at the point of delivery for conformity to specifications. Any inspection carried out by the DRC, or its representatives, or any waiver thereof shall not prejudice the implementation of other relevant provisions of this contract concerning obligations subscribed by the Supplier.</value>
+  </data>
+  <data name="textBox179.Value" xml:space="preserve">
+    <value>6.1 In the case of goods purchased on the basis of specifications or samples or both, the DRC shall have the right to reject the goods or any part thereof if they do not conform with the specifications of the Contract in the opinion of the DRC or is not delivered in due time.
+
+6.2 The DRC shall have the right to reject the goods in the event that the packing is not in accordance with the terms of the Contract.
+
+6.3 When the goods or any part thereof have been rejected, the DRC shall have the right, without prejudice to the provisions of Article 9, to demand from the Supplier the immediate delivery of acceptable goods in replacement thereof in accordance with the contract or to purchase other similar goods elsewhere and to claim from the Supplier the amount of loss or damages sustained by reason of the default.
+
+6.4 Goods or any part thereof in the DRC's possession which have been rejected by the DRC must be removed at the Supplier's expense within such period as the DRC may specify in its notice of rejection. 
+
+6.5 After such notice has been dispatched to the Supplier, the goods or any part thereof will be held at the latter's risk. Should the Supplier fail to remove the goods as required by the notice of rejection, the DRC may dispose of them, without any liability to the Supplier whatsoever, in such manner as it deems fit
+</value>
+  </data>
+  <data name="textBox181.Value" xml:space="preserve">
+    <value>7.1 The Supplier warrants upon delivery and for a period of twenty four (24) months from the date of delivery that goods purchased under this Contract will conform in all material aspects to the applicable manufacturer's specifications for such goods and will be free from material defects in workmanship, material and design under normal use. The warranty does not cover damage resulting from misuse, negligent handling, lack of reasonable maintenance and care, accident or abuse by anyone other than the Supplier.</value>
+  </data>
+  <data name="textBox185.Value" xml:space="preserve">
+    <value>9.1 In case the Supplier fails to comply with any term of the Contract, including but not limited to failure or refusal to make deliveries within the time limit specified, he shall be liable for all damages sustained by the DRC, and the DRC may procure the goods from other sources and hold the Supplier responsible for any excess cost occasioned thereby.  The DRC may collect damages from the Supplier in lieu of purchasing the goods from other sources.  The DRC may by written notice terminate the right of the Supplier to proceed with deliveries or such part or parts thereof as to which there has been default, or if any delivery is late, the DRC may cancel such delivery or the entire Contract.</value>
+  </data>
+  <data name="textBox188.Value" xml:space="preserve">
+    <value>10.1 No waiver of any breach of the Contract shall be held to be a waiver of any other or subsequent breach.  All remedies afforded in the Contract shall be taken and construed as cumulative, i.e., in addition to every other remedy provided herein or by law.</value>
+  </data>
+  <data name="textBox189.Value" xml:space="preserve">
+    <value>11.1 The DRC shall have the right to cancel the Contract or any of the provisions thereof at any time in accordance with the provisions of Article 16. In this event the Supplier may charge the DRC reasonable costs of expenses incurred by him until the time of such cancellation which will only be paid upon production by the Supplier of supporting documents to the satisfaction of the DRC.
+
+11.2 Should delivery to the DRC be prevented by prohibition of export or import, blockade, war, armed conflict, civil disturbance, industrial disturbance or other similar cause beyond the control of either party, the Contract or the then unfulfilled part thereof may be cancelled at the discretion of the DRC.
+</value>
+  </data>
+  <data name="textBox192.Value" xml:space="preserve">
+    <value>12.1 When specifically requested by the DRC, a bank guarantee from a well reputed bank acceptable to the DRC in the currency in which the Contract is payable and for an amount to be prescribed by the DRC shall be obtained by the Supplier at his expense and deposited with the DRC before conclusion of the Contract.  In the event of any loss, damage and/or extra costs incurred by the DRC by reason of the Supplier's default, negligence or failure to perform the terms and conditions of the Contract or any part thereof, that part of any such loss, damage and/or extra costs which is represented by the full or by any lesser amount of such guarantee shall be immediately and initially reimbursable to the DRC from such guarantee without prejudice to its right to hold the Supplier liable for the full amount of such loss, damage and/or extra cost. The guarantee shall be valid for a period of not less than 30 days after the date of arrival at destination of the last specified delivery.</value>
+  </data>
+  <data name="textBox193.Value" xml:space="preserve">
+    <value>13.1 The Supplier shall not advertise or otherwise make public the fact that he is a Supplier to the DRC without specific approval from DRC.  Nor shall the Supplier in any manner whatsoever use the name of the DRC, or any abbreviation thereof, in connection with his business or otherwise.  Non observance of these conditions shall entitle the DRC to cancel the Contract, or any part thereof, and to hold the Supplier liable for any damages which the DRC has sustained as a result thereof.</value>
+  </data>
+  <data name="textBox196.Value" xml:space="preserve">
+    <value>14.1 The Supplier shall not assign, transfer, pledge or make other disposition of this Contract, or any part thereof, or any of the Supplier's rights, claims or obligations under this Contract except with the prior written consent of the DRC,.
+
+14.2 Should the Supplier become insolvent or should control of the Supplier change by virtue of insolvency, the DRC may without prejudice to any other rights or remedies, terminate this Contract by giving the Supplier written notice of termination.
+</value>
+  </data>
+  <data name="textBox200.Value" xml:space="preserve">
+    <value>16.1	Force Majeure, as used in this Article means acts of God, strikes, lockout or other industrial disturbances, acts of the public enemy, wars (whether declared or not), blockades, insurrection, riots, epidemics, landslides, earthquakes, storms, lightning, floods, washouts, civil disturbances, explosions and any other similar unforeseeable events which are beyond the parties' control and cannot be overcome by due diligence.
+
+16.2	In the event of and as soon as possible and no later than one (1) week after the occurrence of any cause constituting Force Majeure, the Supplier shall give notice and full particulars in writing to the DRC of such occurrence or change if the Supplier is thereby rendered unable, wholly or in part, to perform its obligations and meet its responsibilities under this Contract. The Supplier shall also notify the DRC of any other changes in conditions or the occurrence of any event that interferes or threatens to interfere with its performance of this Contract. On receipt of the notice required under this article, the DRC shall take such action as, in its sole discretion, it considers to be appropriate or necessary in the circumstances, including the granting to the Supplier of a reasonable extension of time in which to perform its obligations under this Contract, or termination of the Contract if any delay will force an extension to the delivery schedule.
+
+16.3	Notwithstanding anything to the contrary in this Contract, the Supplier recognizes that the work and services may be performed under harsh or hostile conditions caused by civil unrest. Consequently, delays or failure to perform caused by events arising out of, or in connection with, such civil unrest shall not, in itself, constitute Force Majeure under this contract.
+</value>
+  </data>
+  <data name="textBox202.Value" xml:space="preserve">
+    <value>17.1 The Supplier warrants that no official of the DRC has received or will be offered by the Supplier any direct or indirect benefit arising from this Contract or the award thereof. The Supplier will notify the DRC immediately in case any official from the DRC requests any unofficial, or additional payment, or gift to their personal account. The Supplier agrees that breach of this provision is a breach of an essential term of this Contract.</value>
+  </data>
+  <data name="textBox203.Value" xml:space="preserve">
+    <value>18.1 The Supplier shall allow any external auditor authorised by the DRC to verify, by examining the documents and to make copies thereof or by means of on-the-spot checks of original documents, the implementation of the contract and conduct a full audit, if necessary, on the basis of supporting documents for the accounts, accounting documents and any other document relevant to the financing of the project. The Supplier shall ensure that on-the-spot access is available at all reasonable times. The Supplier shall ensure that the information is readily available at the moment of the audit and if so requested, that the data be handed over in an appropriate form. These inspections may take place up to 7 years after the final payment.
+
+18.2 Furthermore, the Supplier shall allow any external auditor authorised by the DRC carrying out verifications as required to carry out checks and verification on the spot in accordance with the procedures set out by the donor or in the European Union legislation for the protection of the financial interests of the European Union against fraud and other irregularities.
+
+18.3 To this end, the Supplier undertakes to give appropriate access to any external auditor authorised by the DRC carrying out verifications as required to the sites and locations at which the project is implemented, including its information systems, as well as all documents and databases concerning the technical and financial management of the action and to take all steps to facilitate their work. Access given to agents of any external auditor authorised by the DRC carrying out verifications shall be on the basis of confidentiality with respect to third parties, without prejudice to the obligations of public law to which they are subject. Documents must be easily accessible and filed so as to facilitate their examination and the Supplier must inform the DRC of their precise location.
+18.4 The Supplier guarantees that the rights of any external auditor authorised by the DRC carrying out verifications as required to carry out audits, checks and verification shall be equally applicable, under the same conditions and according to the same rules as those set out in this Article, to the Supplier's partners, and subcontractors. Where a partner or subcontractor is an international organisation, any verification agreement concluded between such organisation and the donor applies.
+</value>
+  </data>
+  <data name="textBox205.Value" xml:space="preserve">
+    <value>19.1 If any rules of origin and nationality are applicable due to donor requirements, limiting the eligible countries for goods, legal and natural persons, the Supplier must adhere to these rules and be able to document and certify the origin of goods and nationality of legal and natural persons as required. 
+
+19.2 Failure to comply with this obligation shall lead, after formal notice, to termination of the contract, and DRC is entitled to recover any loss from the Supplier and is not obliged to make any further payments to the Supplier.
+</value>
+  </data>
+  <data name="textBox208.Value" xml:space="preserve">
+    <value>20.1 The Contractor guarantees not to be in one of the situations listed below:
+
+(a) bankrupt or being wound up, are having their affairs administered by the courts, have entered into an arrangement with creditors, have suspended business activities, are the subject of proceedings concerning those matters, or are in any analogous situation arising from a similar procedure provided for in national legislation or regulations;
+(b) to be convicted of an offence concerning professional conduct by a judgment which has the force of res judicata;
+(c) to be guilty of grave professional misconduct proven by any means which the Contractor can justify;
+(d) not to have fulfilled obligations relating to the payment of social security contributions or the payment of taxes in accordance with the legal provisions of the country in which the Contractor is established or with those of the country of the Contractor or those of the country where the contract is to be performed;
+(e) to have been the subject of a judgment which has the force of res judicata for fraud, corruption, involvement in a criminal organisation or any other illegal activity detrimental to the Communities' financial interests;
+(f) currently subject to an administrative penalty referred to in section 2.3.5 of the Practical Guide to contract procedures for EC external actions. 
+
+20.2 Contracts may not be awarded to candidates or tenderers which, during the procurement procedure:
+
+(a) are subject to a conflict of interests; 
+(b) are guilty of misrepresentation in supplying the information required by the Contractor as a condition of participation in the contract procedure or fail to supply this information.
+</value>
+  </data>
+  <data name="textBox210.Value" xml:space="preserve">
+    <value>21.1 Should any provision of these GCCPG be held by a court of competent jurisdiction to be illegal, invalid or unenforceable, such provision may be modified by such court in compliance with the law giving effect to the intent of the parties and enforced as modified. All other terms and conditions of these GCCPG shall remain in full force and effect and shall be construed in accordance with the modified provision.</value>
+  </data>
+  <data name="textBox214.Value" xml:space="preserve">
+    <value>23.1 The parties shall use their best efforts to settle amicably any dispute, controversy or claim arising out of or in connection with this Contract including any disputes regarding the existence, validity or termination. Where the parties wish to seek such an amicable settlement through conciliation, the conciliation shall take place in accordance with the UNCITRAL Conciliation Rules then obtaining, or according to such other procedure as may be agreed between the parties.
+
+23.2 Unless, any such dispute, controversy or claim between the parties arising out of or relating to this Contract or the breach, existence, termination or invalidity thereof is settled amicably under the preceding paragraph of this article within sixty (60) days after receipt by one party of the other party's request for such amicable settlement, such dispute, controversy or claim shall be referred by either party to arbitration in accordance with the UNCITRAL Arbitration rules as at present in force, including its provision on applicable law. The place of arbitration shall be [insert place] and the language to be used in the proceedings shall be English. The arbitral tribunal shall have no authority to award punitive damages. In addition, unless otherwise expressly provided in this Contract, the arbitral tribunal shall also have no authority to award interest. The parties shall be bound by any arbitration award rendered as a result of such arbitration and as being the final adjudication of any such dispute, controversy or claim.
+</value>
+  </data>
+  <data name="textBox221.Value" xml:space="preserve">
+    <value>All of the Danish Refugee Council's (DRC) contract parties (Contract Party) are expected to comply with the following Code of Ethics and are responsible for encouraging, advocating and promoting the dissemination of these ethical standards. The Contract Party is requested to make the principles of the Code of Ethics known to any subcontractor used by the Contract Party and to encourage the subcontractor to adhere to these standards. The Code Ethics applies to all DRC's Contract Parties who are all requested to sign it and thus confirm that they uphold its standards as far as applicable to their status.</value>
+  </data>
+  <data name="textBox223.Value" xml:space="preserve">
+    <value>1.1 The Contract Party represents and warrants that neither it nor any of its subcontractors violates the fundamental human rights as set out in the European Convention on Human Rights from 1950 including all protocols to the convention, and respect the dignity and worth of all persons including respect for the equal rights of men and women.</value>
+  </data>
+  <data name="textBox227.Value" xml:space="preserve">
+    <value>3.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are engaged in any sort of corruption, defined by Transparency International as the misuse of entrusted power for private gain, including but not limited to money laundering, bribery, facilitation payments, embezzlement, extortion, favouritism, fraud and obstruction of justice.</value>
+  </data>
+  <data name="textBox228.Value" xml:space="preserve">
+    <value>4.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are engaged in any transactions with, and/or the provisions of resources and support to, individuals and organizations associated with terrorism.
+
+4.2The Contract Party represents and warrants that neither it nor any of its subcontractors are engaged in any transactions with, and/or the provision of resources and support to, individuals and organizations associated with, receiving any type of training for, or engaged in, any act or offense described in Article 2, Sections 1,3,4 and 5 of the International Convention for the Suppression of the Financing of Terrorism, adopted by the General Assembly of the United Nations in Resolution 54/109 of 9 December 1999. 
+</value>
+  </data>
+  <data name="textBox231.Value" xml:space="preserve">
+    <value>5.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are violating any international environmental agreements.
+
+5.2 The Contract Party undertakes to support a precautionary approach to environmental challenges and not in any way damaging, destroying or causing any harm to the environment. Further the Contract Party undertakes to encourage the development and diffusion of environmentally friendly technologies and undertake initiatives to promote environmental responsibility and sustainability.
+</value>
+  </data>
+  <data name="textBox232.Value" xml:space="preserve">
+    <value>6.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are actively and directly or indirectly engaged in patent activities, development, assembly, production, trade or manufacture of mines or in such activities in respect of components primarily utilized in the manufacture of mines. The term "mines" means those devices defined in Article 2, Sections 1,4 and 5 of Protocol II annexed to the Convention on Prohibitions and Restrictions on the Use of Certain Conventional Weapons Which May Be Deemed to Be Excessively Injurious or to Have Indiscriminate Effects of 1980.20.2. 
+
+6.2The Contract Party represents and warrants that neither it nor any of its subcontractors are actively and directly engaged in patent activities, development, assembly, production, stockpiling, trade or manufacture of weapons including but not limited to firearms, chemical weapons, biological weapons and nuclear weapons. 
+</value>
+  </data>
+  <data name="textBox234.Value" xml:space="preserve">
+    <value>7.1 The Contract Party represents and warrants that it and all of its subcontractors are protecting all people from sexual abuse and sexual exploitation, meaning any actual or attempted abuse of a position of vulnerability, differential power, or trust, for sexual purposes, including, but not limited to, profiting monetarily, socially or politically from the sexual exploitation of another. Similarly, the term "sexual abuse" means the actual or threatened physical intrusion of a sexual nature, whether by force or under unequal or coercive conditions.</value>
+  </data>
+  <data name="textBox237.Value" xml:space="preserve">
+    <value>8.1 The Contract Party represents and warrants that neither it, nor any of its subcontractors are engaged in any practice inconsistent with the rights set forth in the Convention on the Rights of the Child, including Article 32 thereof, which, inter alia, requires that a child shall be protected from performing any work that is likely to be hazardous or interfere with the child's education, or to be harmful to the child's health or physical, mental, spiritual, moral or social development.</value>
+  </data>
+  <data name="textBox241.Value" xml:space="preserve">
+    <value>10.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are allowing working conditions that violate the Convention on Occupational Safety and Health from 1981 including the Protocol from 2002, the Convention on Minimum Wage Fixing from 1970 and the Conventions on Hours of Work of the International Labour Organization (ILO). 
+
+10.2 The Contract Party represents and warrants that it and all of its subcontractors are protecting workers from any acts of physical, verbal, sexual or psychological harassment abuse or threats in the workplace by either their fellow workers or their managers.
+</value>
+  </data>
+  <data name="textBox242.Value" xml:space="preserve">
+    <value>11.1 The Contract Party represents and warrants that neither it nor any of its subcontractors are discriminating any of its workers with regard to race, colour, gender, language, political or other opinion, caste, national or social origin, property, birth, union affiliation, sexual orientation, health status, age, disability, or other distinguishing characteristics. 
+
+11.2 The Contract Party represents and warrants that neither it nor any of its subcontractors are making employment-related decisions, from hiring to termination and retirement which are not based only on relevant and objective criteria.  
+</value>
+  </data>
+  <data name="textBox245.Value" xml:space="preserve">
+    <value>12.1 The Contract Party undertakes a duty of full disclosure of any relevant material at any time and at the sole discretion of DRC in order for DRC to examine any alleged breach of this Code of Ethics. 
+
+Any Breach of the representations and warranties of this Code of Ethics shall entitle the DRC to terminate any contractual relations with the Contract Party immediately upon notice to the Contract Party, at no cost to the DRC.
+</value>
+  </data>
+  <metadata name="$this.ShowSnapGrid" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="$this.SnapGridSize" type="Telerik.Reporting.Drawing.Unit, Telerik.Reporting, Version=6.1.12.611, Culture=neutral, PublicKeyToken=a9d7983dfcc261be">
+    <value>0.1in</value>
+  </metadata>
+  <metadata name="$this.ShowDimensions" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+</root>

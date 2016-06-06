@@ -1,0 +1,55 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.CompletionCertificate>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.CompletionCertificate_Index_Header</h3>
+    </div>
+    <br />
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.CCViewModel>()
+            .Name("CC")
+            .ToolBar(commands => commands
+            .Custom()
+                .HtmlAttributes(new { id = "CCexport" })
+                .Text("Export to Excel")
+                .Action("ExportCC", "CompletionCertificate", new { page = 1, pageSize = "~", orderBy = "~", filter = "~", groupBy = "~" }))
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.CCNo).Title(Resources.Report_CompletionCertificate_CCNO).Width("15%").HtmlAttributes(new { align = "center" });
+                columns.Bound(o => o.PONo).Title(Resources.CompletionCerticate_ViewCC_PONo).Width("15%").HtmlAttributes(new { align = "center" });
+                columns.Bound(o => o.Office).Title(Resources.Global_String_Office).Width("15%");
+                columns.Bound(o => o.ProjectTitle).Title(Resources.Global_String_ProjectTitle).Width("15%");
+                columns.Bound(o => o.Contructor).Title(Resources.CompletionCertificate_ViewCC_Constructor).Width("15%");
+                columns.Bound(o => o.ConfirmedBy).Title(Resources.CompletionCertificate_ViewCC_ConfirmedBy).Width("18%");
+                columns.Bound(o => o.Status).Title(Resources.Global_String_Status).Width("10%").HtmlAttributes(new { align = "center" });
+            })
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_CCCustomBinding", "CompletionCertificate"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onCCRowSelected"))
+            .ClientEvents(events => events.OnRowDataBound("onCCRowDataBound"))
+            .ClientEvents(events => events.OnDataBound("onCCDataBound"))
+            .Filterable()
+            .Groupable()
+            .Sortable()
+    )
+
+    <br />
+</div>

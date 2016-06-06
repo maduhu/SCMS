@@ -1,0 +1,77 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@{
+    ViewBag.Title = Resources.Global_String_PurchaseOrders;
+}
+<script src="@Url.Content("~/Scripts/js/modalite.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_PurchaseOrders</h3>
+    </div>
+    <br />
+    
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.POViewModel>()
+            .Name("PO")
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.PONo).Title(Resources.CompletionCerticate_ViewCC_PONo).HtmlAttributes(new { align = "center" }).Width("16%");
+                columns.Bound(o => o.ORNo).Title(Resources.Global_String_ORPPRefNo).HtmlAttributes(new { align = "center" }).Width("16%");
+                columns.Bound(o => o.Supplier).Title(Resources.Global_String_Supplier).Width("17%");
+                columns.Bound(o => o.DeliveryDate).Title(Resources.Global_String_DelivDate).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}"); ;
+                columns.Bound(o => o.DeliveryAddress).Title(Resources.Global_String_DelivAddress).Width("14%");
+                columns.Bound(o => o.POValue).Title(Resources.Global_String_POValue).Width("15%").HtmlAttributes(new { align = "right" }).Format("{0:n2}");
+                columns.Bound(o => o.Status).Title(Resources.Global_String_Status).Width("6%").HtmlAttributes(new { align = "center" }).Sortable(false);
+                columns.Bound(o => o.StatusDate).Title(Resources.Global_String_StatusDate).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}");
+            })
+
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_GenPOCustomBinding", "PurchaseOrder"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onRowSelected"))
+            .ClientEvents(events => events.OnRowDataBound("onRowDataBound"))
+            .Filterable()
+            .Groupable()
+            .Sortable()
+    )
+
+
+
+    <br />
+</div>
+<script type="text/javascript">
+    function onRowSelected(e) {
+        var poId = e.row.cells[0].innerHTML;
+        sendRequest('/PurchaseOrder/ViewPurchaseOrdersDetails/' + poId, 'PODiv', 'loading');
+    }
+
+    function onRowDataBound(e) {
+        var dataItem = e.dataItem;
+        var row = e.row;
+        if (dataItem.Status == "AP") {
+            row.cells[7].style.color = 'green';
+            row.cells[7].style["font-weight"] = 'bold';
+        }
+        if (dataItem.Status == "RJ") {
+            row.cells[7].style["color"] = "red";
+            row.cells[7].style["font-weight"] = "bold";
+        }
+    }
+</script>
+

@@ -1,0 +1,275 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.SelectEvaluators
+
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+<input type="hidden" id="actionStatus" value="@Model.status" />
+<input type="hidden" id="statusMsg" value="@Model.UserMessage" />
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Resources.TenderAnalysis_SelectEvaluators_ManageTAEvaluators</h3></div>
+    <br />
+    <p style="text-align:center">
+        @Ajax.ActionLink(Resources.TenderAnalysis_AddEvaluator_AddEvaluator, "LoadAddEvaluator", new { id = ViewBag.TAID }, new AjaxOptions
+   {
+       UpdateTargetId = "popup-page",
+       LoadingElementId = "popup-loading",
+       Url = Url.Action("LoadAddEvaluator/" + ViewBag.TAID),
+       OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_AddEvaluatorToTA),
+       OnSuccess = "CenterPopup"
+   })
+    </p>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+        border-collapse: collapse; padding: 5px; font-size: 12px;">
+        <tr class="gridheader">
+            <th style="width: 10%;" class="gridheader">
+                @Resources.Approver_ApproverList_Authorization
+            </th>
+            <th style="width: 30%;">
+                @Resources.TenderAnalysis_SelectEvaluators_TenderEvaluator 1
+            </th>
+            <th style="width: 30%;">
+                @Resources.TenderAnalysis_SelectEvaluators_TenderEvaluator 2
+            </th>
+            <th style="width: 30%;">
+                @Resources.TenderAnalysis_SelectEvaluators_TenderAuthorizer
+            </th>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Name:
+            </td>
+            <td>
+            @if (Model.Approvers.Count > 0 && Model.Approvers[0].Priority == 1)
+            {
+                @Model.Approvers[0].Staff.Person.FirstName 
+                @Html.Raw("&nbsp;")
+                @Model.Approvers[0].Staff.Person.OtherNames
+            }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 2)
+                {
+                    @Model.Approvers[1].Staff.Person.FirstName 
+                    @Html.Raw("&nbsp;")
+                    @Model.Approvers[1].Staff.Person.OtherNames
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[0].Priority == 2)
+                {
+                    @Model.Approvers[0].Staff.Person.FirstName 
+                    @Html.Raw("&nbsp;")
+                    @Model.Approvers[0].Staff.Person.OtherNames
+                }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 2 && Model.Approvers[2].Priority == 3)
+                {
+                    @Model.Approvers[2].Staff.Person.FirstName 
+                    @Html.Raw("&nbsp;")
+                    @Model.Approvers[2].Staff.Person.OtherNames
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 3)
+                {
+                    @Model.Approvers[1].Staff.Person.FirstName 
+                    @Html.Raw("&nbsp;")
+                    @Model.Approvers[1].Staff.Person.OtherNames
+                }
+                else if (Model.Approvers.Count == 1 && Model.Approvers[0].Priority == 3)
+                {
+                    @Model.Approvers[0].Staff.Person.FirstName 
+                    @Html.Raw("&nbsp;")
+                    @Model.Approvers[0].Staff.Person.OtherNames
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Title:
+            </td>
+            <td>
+            @if (Model.Approvers.Count > 0 && Model.Approvers[0].Priority == 1)
+            {
+                @Model.Approvers[0].Staff.Designation.Name
+            }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 2)
+                {
+                    @Model.Approvers[1].Staff.Designation.Name
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[0].Priority == 2)
+                {
+                    @Model.Approvers[0].Staff.Designation.Name
+                }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 2 && Model.Approvers[2].Priority == 3)
+                {
+                    @Model.Approvers[2].Staff.Designation.Name
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 3)
+                {
+                    @Model.Approvers[1].Staff.Designation.Name
+                }
+                else if (Model.Approvers.Count == 1 && Model.Approvers[0].Priority == 3)
+                {
+                    @Model.Approvers[0].Staff.Designation.Name
+                }
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.Global_String_Manage
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 0 && Model.Approvers[0].Priority == 1)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[0].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[0].Id)
+               });
+                }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 2)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[1].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[1].Id)
+               });
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[0].Priority == 2)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[0].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[0].Id)
+               });
+                }
+            </td>
+            <td>
+                @if (Model.Approvers.Count > 2 && Model.Approvers[2].Priority == 3)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[2].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[2].Id)
+               });
+                }
+                else if (Model.Approvers.Count > 1 && Model.Approvers[1].Priority == 3)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[1].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[1].Id)
+               });
+                }
+                else if (Model.Approvers.Count == 1 && Model.Approvers[0].Priority == 3)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_Change, "Index", new { id = "ChangeEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "popup-page",
+                   LoadingElementId = "popup-loading",
+                   Url = Url.Action("ChangeEvaluator/" + Model.Approvers[0].Id),
+                   OnBegin = string.Format("ShowDialogue('{0}')", Resources.TenderAnalysis_SelectEvaluators_ChangeTAEvaluator),
+                   OnSuccess = "CenterPopup"
+               });
+                    @Html.Raw("&nbsp;|&nbsp;");
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "Index", new { id = "DeleteEvaluator" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Confirm = Resources.TenderAnalysis_SelectEvaluators_ConfirmRemoveEvaluator,
+                   Url = Url.Action("DeleteEvaluator/" + Model.Approvers[0].Id)
+               });
+                }
+            </td>
+        </tr>
+    </table>
+    <hr />
+    <table width="98%" align="center" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="50%" valign="top">
+                <p>
+                    @Ajax.ActionLink("<<" + Resources.Global_String_Back, "Index", new { id = "BackToAddSuppliers" }, new AjaxOptions
+               {
+                   UpdateTargetId = "TADetailsDiv",
+                   LoadingElementId = "loading",
+                   Url = Url.Action("BackToAddSuppliers/" + ViewBag.TAID)
+               })
+                </p>
+            </td>
+            <td width="50%" align="right">
+                @if (Model.Approvers.Count > 2)
+                {
+                    @Ajax.ActionLink(Resources.Global_String_SubmitForEvaluation, "Index", new { id = "ViewTenders" }, new AjaxOptions
+               {
+                   UpdateTargetId = "tenderDiv",
+                   LoadingElementId = "loading",
+                   Url = Url.Action("SubmitTender/" + ViewBag.TAID),
+                   OnSuccess = "clearTADiv();initSorter();sorter.size(50);LoadRequests();",
+                   Confirm = Resources.Global_String_SubmitForEvaluation
+               },
+                    new { @class = "btn green" })
+                }
+            </td>
+        </tr>
+    </table>
+</div>

@@ -1,0 +1,119 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.RegisteredAsset
+<br />
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.GoodsReceivedNote_GRAssetList_RegisteredAssets</h3>
+    </div>
+    <br />
+    @if (Model.EntityAsset.Count() > 0)
+    {
+        <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+        <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <th rowspan="2">
+                    @Resources.Global_String_ItemName
+                </th>
+                <th colspan="4">
+                    @Resources.Global_String_Unit
+                </th>
+                <th colspan="4">
+                    @Resources.Global_String_QtyDelivered
+                </th>
+            </tr>
+            <tr class="gridheader">
+                <th align="center">
+                    #
+                </th>
+                <th>
+                    @Resources.Global_String_ItemName
+                </th>
+                <th>
+                    @Resources.Global_String_SerialNo
+                </th>
+                <th>
+                   @Resources.Global_String_AssetNo
+                </th>
+                <th>
+                    @Resources.GoodsReceivedNote_GRAssetList_Lifespan
+                </th>
+                <th>
+                    @Resources.GoodsReceivedNote_GRAssetList_SalvageValue
+                </th>
+             
+                <th>
+                    @Resources.Budget_CreateProject_ProjectName
+                </th>
+                <th>
+                    @Resources.Global_String_Warehouse
+                </th>
+            </tr>
+            @foreach (var Itemm in Model.EntityAsset)
+            {
+                int count = 0;
+                int rowspanvalue = @Itemm.Assets.Count() + 1;
+                <tr class="gridodd" valign="top">
+                    <td rowspan=@rowspanvalue>
+                        @Itemm.PurchaseOrderItem.OrderRequestItem.Item.Name
+                    </td>
+                    <td colspan="4">
+                        @Itemm.PurchaseOrderItem.OrderRequestItem.Item.UnitOfMeasure.Code
+                    </td>
+                    <td colspan="4">
+                        @Itemm.QuantityDelivered
+                    </td>
+                </tr>
+                foreach (var item in Itemm.Assets)
+                {
+                    count = count + 1;
+                <tr class="gridodd">
+                    <td align="center">
+                        @count
+                    </td>
+                    <td align="left">
+                        @item.Name
+                    </td>
+                    <td align="center">
+                        @item.SerialNumber
+                    </td>
+                    <td align="left">
+                        @item.AssetNumber
+                    </td>
+                    <td align="center">
+                        @item.Lifespan
+                    </td>
+                    <td align="right">
+                        @item.SalvageValue.ToString("#,##0.00")
+                    </td>
+                   
+                    <td align="left">
+                        @item.ProjectDonor.Project.Name
+                    </td>
+                    <td align="left">
+                        @item.WareHouse.Name
+                    </td>
+                </tr>
+                }
+            }
+        </table>
+    }
+    @if (Model.EntityAsset.Count() < 1)
+    {
+        <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <i>@Resources.GoodsReceivedNote_GRAssetList_NoRegisteredAssets</i>
+        </div>
+        
+    }
+    <br />
+</div>
+<br />
+@Ajax.ActionLink(Resources.Global_String_Finish, "Index", new { id = "ViewGRNs" }, new AjaxOptions
+   {
+       UpdateTargetId = "ContentDiv",
+       LoadingElementId = "loading",
+       Url = Url.Action("ViewGRNs"),
+       Confirm = Resources.GoodsReceivedNote_GRAssetList_ConfirmFinish,
+       OnSuccess = "if (document.getElementById('table') != null) {initSorter(); sorter.size(50);}document.getElementById('GRNemDiv').innerHTML='';"
+   })

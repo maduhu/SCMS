@@ -1,0 +1,5 @@
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\CoreBusinessLogic\bin\Debug\CoreBusinessLogic.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\CoreBusinessLogic\bin\Debug\CoreBusinessLogic.pdb
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\CoreBusinessLogic\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\CoreBusinessLogic\obj\Debug\CoreBusinessLogic.dll
+C:\Users\Frank\Documents\Vastech\SCMS\DRC SUPPLY CHAIN\DRC SUPPLY CHAIN\CoreBusinessLogic\obj\Debug\CoreBusinessLogic.pdb

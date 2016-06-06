@@ -1,0 +1,127 @@
+﻿@using SCMS.Resource
+
+@{
+    ViewBag.Title = Resources.OrderRequest_Index_ViewOrderRequests;
+    
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Global_String_OrderRequests</h3>
+    </div>
+    <br />
+
+    @{
+        var pagerStyleFlags = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+        GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+        foreach (var pagerStyleFlag in pagerStyleFlags)
+        {
+            pagerStyles |= pagerStyleFlag.Value;
+        }
+    }
+
+    @(Html.Telerik().Grid<SCMS.Model.ORViewModel>()
+            .Name("OR")
+            .ToolBar(commands => commands
+            .Custom()
+                .HtmlAttributes(new { id = "export" })
+                .Text("Export to Excel")
+                .Action("ExportCsv", "OrderRequest", new { page = 1, pageSize = "~", orderBy = "~", filter = "~", groupBy = "~" }))
+            .Columns(columns =>
+            {
+                columns.Bound(o => o.Id).Hidden(true);
+                columns.Bound(o => o.RefNumber).Title(Resources.Global_String_RefNo).HtmlAttributes(new { align = "center" }).Width("15%");
+                columns.Bound(o => o.ProjectNumber).Title(Resources.Budget_CategoryList_ProjectNo).Width("19%").HtmlAttributes(new { align = "center" });
+                columns.Bound(o => o.FirstItem).Title(Resources.OrderRequest_ViewOrderRequests_FirstItem).Width("22%");
+                columns.Bound(o => o.ORValue).Title(Resources.OrderRequest_String_ORValue).Width("14%").HtmlAttributes(new { align = "right" }).Format("{0:n2}");
+                columns.Bound(o => o.Requestor).Title(Resources.Global_String_Requester).Width("16%");
+                columns.Bound(o => o.Status).Title(Resources.Global_String_Status).Width("6%").HtmlAttributes(new { align = "center" }).Sortable(false);
+                columns.Bound(o => o.StatusDate).Title(Resources.Global_String_StatusDate).Width("8%").HtmlAttributes(new { align = "right" }).Format("{0:dd/MM/yyyy}");
+            })
+      
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("_GenORCustomBinding", "OrderRequest"))
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Total((int)ViewData["total"]).Position(GridPagerPosition.Both))
+            .EnableCustomBinding(true)
+            .Selectable()
+            .ClientEvents(events => events.OnRowSelected("onRowSelected"))
+            .ClientEvents(events => events.OnRowDataBound("onRowDataBound"))
+            .ClientEvents(events => events.OnDataBound("onDataBound"))
+            .Filterable()
+            .Groupable()
+            .Sortable()
+    )
+
+    <br />
+</div>
+<script type="text/javascript">
+    function onRowSelected(e) {
+        var orId = e.row.cells[0].innerHTML;
+        sendRequest('/OrderRequest/ViewOrderRequestItems/' + orId, 'requestDiv', 'loading');
+    }
+
+    function onRowDataBound(e) {
+        var dataItem = e.dataItem;
+        var row = e.row;
+
+        //var grid = $("#OR").data("tGrid");
+
+        //var column = grid.columnFromMember("Status"), // -> column member
+        //      index = $.inArray(column, grid.columns);
+    
+        var row = e.row;
+        if (e.row.cells[6].innerHTML == "AU") {
+            row.cells[6].style.color = 'green';
+            row.cells[6].style["font-weight"] = 'bold';
+        }
+        if (e.row.cells[6].innerHTML == "RJ") {
+            row.cells[6].style["color"] = "red";
+            row.cells[6].style["font-weight"] = 'bold';
+        }
+
+        //var dataItem = e.dataItem;
+        //var row = e.row;
+        //if (dataItem.Status == "AU") {
+        //    row.cells[index].style.color = 'green';
+        //    row.cells[index].style["font-weight"] = 'bold';
+        //}
+        //if (dataItem.Status == "RJ") {
+        //    row.cells[index].style["color"] = "red";
+        //    row.cells[index].style["font-weight"] = 'bold';
+        //}
+
+    }
+
+    function onDataBound() {
+        var grid = $("#OR").data('tGrid');
+
+        if (grid == null)
+            return;
+
+        // Get the export link as jQuery object
+        var $exportLink = $('#export');
+
+        // Get its 'href' attribute - the URL where it would navigate to
+        var href = $exportLink.attr('href');
+
+        // Update the 'page' parameter with the grid's current page
+        href = href.replace(/page=([^&]*)/, 'page=' + grid.currentPage);
+
+        // Update the 'pageSize' parameter with the grids' current pageSize state
+        href = href.replace(/pageSize=([^&]*)/, 'pageSize=' + (grid.pageSize || '~'));
+
+        // Update the 'orderBy' parameter with the grids' current sort state
+        href = href.replace(/orderBy=([^&]*)/, 'orderBy=' + (grid.orderBy || '~'));
+
+        // Update the 'filter' parameter with the grids' current filtering state
+        href = href.replace(/filter=([^&]*)/, 'filter=' + (grid.filterBy || '~'));
+
+        // Update the 'groupBy' parameter with the grids' current groupBy state
+        href = href.replace(/groupBy=(.*)/, 'groupBy=' + (grid.groupBy || '~'));
+
+        // Update the 'href' attribute
+        $exportLink.attr('href', href);
+    }
+</script>

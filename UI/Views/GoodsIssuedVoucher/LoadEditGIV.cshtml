@@ -1,0 +1,126 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.GoodsIssuedVoucher
+@{AjaxOptions ajaxOpts = new AjaxOptions
+{
+    UpdateTargetId = "givDiv",
+    LoadingElementId = "loading",
+    HttpMethod = "Post",
+    Url = Url.Action("EditGIV"),
+    OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');CloseDialog();",
+    OnFailure = "javascript:errormsg()"
+};}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmEditgiv" }))
+    {
+        @Html.ValidationSummary(true)
+        <br />
+        @Html.HiddenFor(x => x.Id)
+
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr>
+                <th style="width: 50%; text-align: center;">
+                    @Resources.GoodsIssuedVoucher_LoadGiv_GIVNo
+                </th>
+                <th style="width: 50%; text-align: center;">
+                    @Resources.WRForm_LoadWRF_WRFNo
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.TextBoxFor(m => m.RefNumber, new { @readonly = "readonly", id = "refNo" })
+                </td>
+                <td style="text-align: center">
+                    @Html.DisplayFor(x => x.WarehouseRelease.RefNumber)
+                    @*@Html.DropDownListFor(x => x.WareHouseReleaseId, Model.ReleaseOrders, Resources.Global_String_PleaseSelect, new { onchange = "javascript:LoadGIV(this);" })
+                    @Html.ValidationMessageFor(x => x.WareHouseReleaseId, Resources.Global_String_Required)*@
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: center">
+                    @Resources.WayBill_LoadWB_WBNo
+                </th>
+                <th style="text-align: center">
+                    @Resources.WayBill_ViewWBDetails_VehicleRegNo
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.WaybillNo)
+                    @Html.ValidationMessageFor(m => m.WaybillNo, Resources.Global_String_Required)
+                </td>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.TransporterVehiclePlateNo)
+                    @Html.ValidationMessageFor(m => m.TransporterVehiclePlateNo, Resources.Global_String_Required)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: center">
+                    @Resources.WayBill_LoadWB_Consignee
+                </th>
+                <th style="text-align: center">
+                    @Resources.Global_String_ReceivedBy
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.Consignee)
+                    @Html.ValidationMessageFor(m => m.Consignee, Resources.Global_String_Required)
+                </td>
+                <td style="text-align: center" id="warehouse">
+                    @Html.DropDownListFor(x => x.Receivedby, Model.Staffs, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.Receivedby, Resources.Global_String_Required)
+                </td>
+            </tr>
+        </table>
+        <hr />
+        if (Model.GoodsIssuedVoucherItems.Count() > 0)
+        {
+        
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="grideven">
+                <th></th>
+                <th>@Resources.Global_String_ItemName</th>
+                <th>@Resources.Global_String_UnitsOfMeasure</th>
+                <th>@Resources.Global_String_QtyOrdered</th>
+                <th>@Resources.Global_String_QtyDelivered</th>
+                <th>@Resources.Global_String_Comments</th>
+            </tr>
+            @for (int i = 0; i < Model.ROItems.Count(); i++)
+            {
+                int ss = i + 1;
+                <tr class="gridodd">
+                    <td style="width: 8%;">
+                        @ss
+                        @Html.HiddenFor(x => x.ROItems[i].GIVItemId)
+                    </td>
+                    <td style="width: 20%;">
+                        @Model.ROItems[i].ItemName
+                    </td>
+                    <td style="width: 12%;">
+                        @Model.ROItems[i].Unit
+                    </td>
+                    <td style="width: 20%;">
+                        @Model.ROItems[i].QTYReleased
+                    </td>
+                    <td style="width: 20%;">
+                        @Html.TextBoxFor(m => m.ROItems[i].QTYReceived)
+                        @Html.ValidationMessageFor(m => m.ROItems[i].QTYReceived, Resources.Global_String_Required)
+                    </td>
+                    <td style="width: 20%;">
+                        @Html.TextBoxFor(m => m.ROItems[i].Remarks, new { @class = "comments" })
+                        @Html.ValidationMessageFor(m => m.ROItems[i].Remarks)
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        <center><input type="submit" class="btn green" value="  @Resources.Global_String_Save  " /></center>
+        <br />
+        }
+
+    }
+</div>

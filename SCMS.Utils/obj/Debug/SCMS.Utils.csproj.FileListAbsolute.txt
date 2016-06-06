@@ -1,0 +1,62 @@
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Model.pdb
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\obj\Debug\SCMS.Utils.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\obj\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Utils\obj\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Model.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\EntityFramework.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\EntityFramework.xml
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\obj\Debug\SCMS.Utils.csprojResolveAssemblyReference.cache
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\obj\Debug\SCMS.Utils.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\obj\Debug\SCMS.Utils.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Utils\bin\Debug\SCMS.Model.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\System.Web.Mvc.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\EntityFramework.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\bin\Debug\EntityFramework.xml
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.csprojResolveAssemblyReference.cache
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Utils.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\EntityFramework.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.Razor.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.Razor.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Model.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\SCMS.Resource.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\EntityFramework.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.Razor.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.Razor.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\Microsoft.Web.Infrastructure.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\SCMS\RASHID\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.csprojResolveAssemblyReference.cache
+D:\SCMS\RASHID\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.dll
+D:\SCMS\RASHID\SCMS\SCMS.Utils\obj\Debug\SCMS.Utils.pdb

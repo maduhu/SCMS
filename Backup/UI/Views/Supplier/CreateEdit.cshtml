@@ -1,0 +1,74 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.USupplier
+
+@{AjaxOptions ajaxOpts = new AjaxOptions
+      {
+          UpdateTargetId = "ContentDiv",
+          LoadingElementId = "loading",
+          HttpMethod = "Post",
+          Url = Url.Action("CreateEdit"),
+          OnSuccess = "CloseDialog();if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+      };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        @Html.HiddenFor(model => model.Id)
+        <table width="98%" align="center" border="0" cellpadding="0" cellspacing="0">
+            <tr>
+                <td valign="top" width="50%">
+                    @Resources.Global_String_Name:<br />
+                    @Html.EditorFor(model => model.Name)<br />
+                    @Html.ValidationMessageFor(model => model.Name)<br />
+                    @Resources.Global_String_PhoneNumber 1:<br />
+                    @Html.EditorFor(model => model.PrimaryPhone)<br />
+                    @Html.ValidationMessageFor(model => model.PrimaryPhone)<br />
+                    @Resources.Global_String_PhoneNumber 2:<br />
+                    @Html.EditorFor(model => model.SecondaryPhone)<br />
+                    @Html.ValidationMessageFor(model => model.SecondaryPhone)<br />
+                    @Resources.Global_String_WebAddress:<br />
+                    @Html.EditorFor(model => model.WebAddress)<br />
+                    @Html.ValidationMessageFor(model => model.WebAddress)<br />                    
+                </td>
+                <td valign="top" width="50%">
+                    @Resources.Global_String_Email 1:<br />
+                    @Html.EditorFor(model => model.PrimaryEmail)<br />
+                    @Html.ValidationMessageFor(model => model.PrimaryEmail)<br />
+                    @Resources.Global_String_Email 2:<br />
+                    @Html.EditorFor(model => model.SecondaryEmail)<br />
+                    @Html.ValidationMessageFor(model => model.SecondaryEmail)<br />
+                    @Resources.Global_String_Fax:<br />
+                    @Html.EditorFor(model => model.Fax)<br />
+                    @Html.ValidationMessageFor(model => model.Fax)<br />
+                    @Resources.Global_String_Country:<br />
+                    @Html.DropDownListFor(model => model.CountryId, Model.CountrySelect, Resources.Global_String_PleaseSelect)<br />
+                    @Html.ValidationMessageFor(model => model.CountryId)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @Resources.Global_String_Address:<br />
+                    @Html.TextAreaFor(model => model.Address)<br />
+                    @Html.ValidationMessageFor(model => model.Address)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    @if (ViewBag.Action != null)
+                    {
+                        @Html.Hidden("Action", "Edit")
+                    }
+                    else
+                    {
+                        @Html.Hidden("Action", "")
+                    }
+                    &nbsp;
+                    <input type="submit" class="btn green" value="@(ViewBag.Action != null ? @ViewBag.Action : Resources.Global_String_Save)" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+}

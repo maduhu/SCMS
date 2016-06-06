@@ -1,0 +1,66 @@
+﻿@using SCMS.Resource
+@{    
+    ViewBag.Title = @Resources.WayBill_Index_Title;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<script src="@Url.Content("~/Scripts/js/general.js")" type="text/javascript"></script>
+<div id="orderRequestsMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">
+                @Resources.WayBill_Index_Header</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.WayBill_Index_IssueWB, "Index", new { id = "LoadWB" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "wbDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("LoadWB"),
+                            OnSuccess = "ClearFormById('#' + 'frmwb','wbrefNo');"
+                        })
+                    </td>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.WayBill_Index_ViewWB, "ViewWBill", new AjaxOptions
+                        {
+                            UpdateTargetId = "wbDiv",
+                            LoadingElementId = "loading",
+                            OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"
+                        })
+                    </td>
+                </tr>
+                <tr>
+                    <td class="arrowLink">
+                        @Ajax.ActionLink(Resources.WayBill_Index_ReceiveWB, "Index", new { id = "WBReceive" }, new AjaxOptions
+                        {
+                            UpdateTargetId = "wbDiv",
+                            LoadingElementId = "loading",
+                            Url = Url.Action("WBReceive")
+                        })
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="../../Content/images/loading_indicator.gif" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="wbDiv" style="padding-left: 2px;">
+        <!-- Content goes here-->
+        @Html.Action("ViewWBill")
+    </div>
+    <div id="wbdetailsDiv">
+        <!-- Content goes here-->
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (document.getElementById('table') != null) {
+            initSorter();
+            sorter.size(50);
+        }
+    });
+</script>

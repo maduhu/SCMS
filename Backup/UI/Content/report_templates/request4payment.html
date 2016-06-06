@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" content="">
+    <title>Request for Payment</title>
+    <link rel="stylesheet" href="{STYLE}?v=1.2320" type="text/css" media="screen" />
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span9">
+                <div class="row-fluid">
+                    <div class="span3">
+                        <div style="border: 1px solid #000; padding: 10px; text-align: center;">
+                            {VOUCHER_NO.}</div>
+                        <p style="text-align: center;">
+                            Payment Voucher No.</p>
+                    </div>
+                    <div class="span9">
+                        <h2 class="central" style="text-decoration: underline;">
+                            Request for Payment
+                        </h2>
+                        <h4 class="central" style="color: Red;">
+                            No.: {REQ_NO.}</h4>
+                    </div>
+                </div>
+                <table class="summary default black-borders" style="margin-top: 20px;">
+                    <tbody>
+                        <tr>
+                            <td class="blue">
+                                PO No.:
+                            </td>
+                            <td class="blue">
+                                Date
+                            </td>
+                            <td class="blue">
+                                Currency
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                {POSPMNO.}
+                            </td>
+                            <td align="center">
+                                {DATE}
+                            </td>
+                            <td align="center">
+                                {CURRENCY}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue">
+                                Payment Terms:
+                            </td>
+                            <td class="blue">
+                                Payment Type:
+                            </td>
+                            <td class="blue">
+                                Total Payment:
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                {PAYMENT_TERMS}
+                            </td>
+                            <td align="center">
+                                {PAYMENT_TYPE}
+                            </td>
+                            <td align="center">
+                                {TOTAL_PAYMENT}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="span3">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <img src="{LOGO1}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img src="{LOGO2}" alt="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                DANISH REFUGEE COUNCIL
+                                <br />
+                                Borgergade 10
+                                <br />
+                                DK-1300 Copenhagen
+                                <br />
+                                Denmark
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding-top: 5px;">
+                                COUNTRY OFFICE, UGANDA
+                                <br />
+                                4688 Kalungi Road
+                                <br />
+                                Muyenga, Kampala
+                                <br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="http://WWW.drc.dk">WWW.drc.dk </a>
+                                <br />
+                                <a href="http://WWW.danishdemininggroup.dk">www.danishdemininggroup.dk </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="black-borders default" style="margin: 10px 0;">
+                    <tbody>
+                        <tr>
+                            <td class="blue" style="width: 25%">
+                                <b>Subject/Purpose:</b>
+                            </td>
+                            <td colspan="4">
+                                {SUBJECT}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue" style="width: 25%;">
+                                <b>Payment to:</b>
+                            </td>
+                            <td colspan="4">
+                                {PAYMENT_TO}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue" style="width: 25%;">
+                                <b>Request for:</b>
+                            </td>
+                            <td class="choice-font">
+                                <input type="radio" value="{CHOICE_FP}" />
+                                &nbsp;&nbsp;Full Payament
+                            </td>
+                            <td class="choice-font">
+                                <input type="radio" value="{CHOICE_RI}" />
+                                &nbsp;&nbsp;Rate/Instalment
+                            </td>
+                            <td class="choice-font">
+                                <input type="radio" value="{CHOICE_AP}" />
+                                &nbsp;&nbsp;Adv. Payment %
+                            </td>
+                            <td class="choice-font">
+                                <input type="radio" value="{CHOICE_AFP}" />
+                                &nbsp;&nbsp;Adv. Final Payment %
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+                    border-collapse: collapse; padding: 5px; font-size: 12px;" class="goods-detail">
+                    <thead>
+                        <tr>
+                            <th colspan="5" style="text-align: left;">
+                                <b>Payment Details</b>
+                            </th>
+                        </tr>
+                        <tr class="bald">
+                            <th align="center">
+                                No.
+                            </th>
+                            <th>
+                                Project No.
+                            </th>
+                            <th>
+                                Budget Line
+                            </th>
+                            <th>
+                                Amount
+                            </th>
+                            <th>
+                                Currency
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {PAYMENT_DETAILS}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table align="center" cellspacing="0" cellpadding="0" border="1" style="border: 1px solid grey;
+                    border-collapse: collapse; padding: 5px; font-size: 12px;" class="goods-detail">
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                                <b style="color: #31849b; font-size: 1.2em;">Supporting Documents in tender/payment
+                                    dossier</b><br />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5">
+                                Remarks:<br />
+                                {REMARKS}
+                            </td>
+                        </tr>
+                        <tr>
+                            <th style="width: 45%;" class="grey-2">
+                                <b>Master Budget Currency</b>
+                            </th>
+                            <td>
+                                {MB_CURRENCY}
+                            </td>
+                            <th class="grey-2">
+                                Total
+                            </th>
+                            <td>
+                                {TOTAL}
+                            </td>
+                            <th>
+                                <b>Request For Payment Value</b>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row-fluid">
+            <div class="span12">
+                <table class="black-borders default" style="margin: 10px 0;">
+                    <tbody>
+                        <tr>
+                            <td class="central" style="width: 19%;">
+                                <b style="text-decoration: underline;">Authorization</b>
+                            </td>
+                            <td class="central blue">
+                                RFP Prepared by
+                            </td>
+                            <td class="central blue">
+                                Finance Review/Approval of BL/PN
+                            </td>
+                            <td class="central blue">
+                                RFP Authorized by Manager/CD
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue">
+                                Name
+                            </td>
+                            <td>
+                                {PREPAROR_NAME}
+                            </td>
+                            <td>
+                                {REVIEWER_NAME}
+                            </td>
+                            <td>
+                                {AUTHORIZER_NAME}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue">
+                                Title
+                            </td>
+                            <td>
+                                {PREPAROR_TITLE}
+                            </td>
+                            <td>
+                                {REVIEWER_TITLE}
+                            </td>
+                            <td>
+                                {AUTHORIZER_TITLE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue">
+                                Date
+                            </td>
+                            <td>
+                                {PREPAROR_DATE}
+                            </td>
+                            <td>
+                                {REVIEWER_DATE}
+                            </td>
+                            <td>
+                                {AUTHORIZER_DATE}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="blue">
+                                Signature
+                            </td>
+                            <td>
+                                {PREPAROR_SIG}
+                            </td>
+                            <td>
+                                {REVIEWER_SIG}
+                            </td>
+                            <td>
+                                {AUTHORIZER_SIG}
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

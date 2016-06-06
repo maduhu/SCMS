@@ -1,0 +1,38 @@
+﻿@using SCMS.CoreBusinessLogic.Settings
+@using SCMS.Resource
+
+@model SCMS.UI.Areas.Admin.Models.SystemUser.SystemUserModel
+
+@{
+    ViewBag.Title = Model.FirstName + " " + Model.OtherNames + " - " + Resources.SystemUser_EditProfile_SCMSUserProfile;
+    Layout = "~/Views/Shared/_GeneralLayout.cshtml";
+}
+<div id="rfpMain" class="contentMain">
+    <div class="contentHeader">
+        <div class="headerText">
+            <h3 class="title-left">@Resources.Global_String_MyProfile</h3>
+        </div>
+        <div style="font-size: 13px; text-align: left;">
+            <table cellpadding="0" cellspacing="0">
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        &nbsp;
+                    </td>                
+                </tr>
+            </table>
+        </div>
+    </div>
+    <br />
+    <div id="loading" style="display: none; color: Blue; font-weight: bold;">
+        <img src="@Url.Content("~/Content/images/loading_indicator.gif")" alt="@Resources.Global_String_Processing" />
+    </div>
+    <div id="AdminSystemUserDiv">
+        <!-- Content goes here-->
+        @Html.Partial("_ViewProfile", Model)
+    </div>
+</div>

@@ -1,0 +1,72 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="span3">       
+            @using (Html.BeginForm("ItemsByName", "Search", FormMethod.Get, new { @class = "form-search", id="search-form" }))
+            {
+                @Html.DropDownList("searchOption", new SelectList(new List<String>() { "", "Item No", "Item Name", "OR Number", "PO Number" }), new { style = "width:9em;" })
+
+<div class="input-append">
+        <input type="text" class="input-medium" placeholder="Search" id="query" name="document_query" /><button class="btn" type="button">Go</button>
+</div>
+            }
+        </div>
+        <div class="span6"><h6 id="office-title">UGANDA COUNTRY OFFICE</h6></div>
+        <div class="span2">
+        <div id="home">@Html.ActionLink("Home", "Index", "Dashboard", new { area = "" }, new { title = "Go back to Home (Dashboard)", style = "color:#fff" })</div>
+        <div id='log-out'>@Html.ActionLink("Log Out", "LogOut", "Account", new { area = ""}, new { title = "Log out of the system." })</div></div>
+        <div id='profile'>@Html.ActionLink( UserContext.CurrentUser.Staff.Person.FirstName +"'s Profile", "Profile", "Person", new { area = ""}, new { title = "Change Profile." })</div></div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#searchOption').change(function () {
+            $('#query').attr('placeholder', $('#searchOption').val())
+        });
+
+        $('#query').keypress(function (e) {
+            // Enter pressed?
+            if (e.which == 10 || e.which == 13) {
+                $('#search-form').submit();
+            }
+        });
+
+
+    });
+</script>
+@*<div class="container">
+    <div class="row">
+        <div class="span2 offset2">
+            @using (Html.BeginForm("ItemsByName", "Search", FormMethod.Get, new { @class = "form-search" }))
+            {
+                <input type="text" class="input-medium search-query" placeholder="Item Name" name="name_query" title="Enter an item name to search" />
+                <button type="submit" class="btn green"  class="btn">
+                    Go</button>
+            }
+        </div>
+        <div class="span2">
+            @using (Html.BeginForm("ItemsByNo", "Search", FormMethod.Get, new { @class = "form-search" }))
+            {
+                <input type="text" class="input-medium search-query" placeholder="Item No." name="item_query" />
+                <button type="submit" class="btn green"  class="btn">
+                    Go</button>
+            }
+        </div>
+        <div class="span2">
+            @using (Html.BeginForm("Documents", "Search", FormMethod.Get, new { @class = "form-search" }))
+            {
+                <input type="text" class="input-medium search-query" placeholder="Doc or Form" name="document_query" />
+                <button type="submit" class="btn green"  class="btn">
+                    Go</button>
+            }
+        </div>
+        <div class="span2">
+            @using (Html.BeginForm("ReportBudgets", "Search", FormMethod.Get, new { @class = "form-search" }))
+            {
+                <input type="text" class="input-medium search-query" placeholder="Report Budget" name="report_query" />
+                <button type="submit" class="btn green"  class="btn">
+                    Go</button>
+            }
+        </div>
+    </div>
+</div>
+*@

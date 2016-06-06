@@ -1,0 +1,377 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.GoodsReceivedNote
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>
+            @Resources.Global_String_GRN: @Model.RefNumber</h3>
+    </div>
+    @if (!Model.IsSubmitted)
+    {
+        var nn = string.Format("{0}::{1}", Resources.GoodsReceivedNote_ViewGRNDetails_EditGRN, Model.RefNumber);
+        <center>
+            @Ajax.ActionLink(Resources.GoodsReceivedNote_ViewGRNDetails_EditGRN, "LoadEditGRN", new { GRNId = Model.Id }, new AjaxOptions
+             {
+                 UpdateTargetId = "popup-page",
+                 LoadingElementId = "popup-loading",
+                 OnBegin = string.Format("ShowDialogue('{0}')", nn),
+                 OnSuccess = "CenterPopup"
+             })
+            &nbsp;&nbsp;
+            @Ajax.ActionLink(Resources.GoodsReceivedNote_ViewGRNDetails_DeleteGRN, "DeleteGRN", new { GRNId = Model.Id }, new AjaxOptions
+            {
+                UpdateTargetId = "ContentDiv",
+                LoadingElementId = "loading",
+                Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.RefNumber),
+                OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');"
+            })
+        </center>
+    }
+    else if (Model.CanApprove)
+    {
+        string linkText = null;
+        string actionName = null;
+        if (Model.IsSubmitted && !Model.Verified)
+        {
+            linkText = Resources.GoodsReceivedNote_ViewGRNDetails_VerifyGRN;
+            actionName = "VerifyGRN";
+        }
+        if (linkText != null)
+        {
+        <center id="canApprove">
+                @Ajax.ActionLink(linkText, actionName, "GoodsReceivedNote", new { id = "" }, new AjaxOptions
+           {
+               OnBegin = "ShowDialogueOR('" + linkText + ": " + Model.RefNumber + "')",
+               UpdateTargetId = "popup-page",
+               LoadingElementId = "popup-loading",
+               Url = Url.Action(actionName + "/" + Model.Id, "GoodsReceivedNote"),
+               OnSuccess = "CenterPopup();document.getElementById('canApprove').innerHTML ='&nbsp;';"
+           }) 
+            </center>
+        }
+    }
+    else
+    {
+        <br />
+    }
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th align="center" colspan="2">
+                @Resources.GoodsReceivedNote_VerifyGRN_VendorInformation.ToUpper()
+            </th>
+            <th align="center" colspan="2">
+                @Resources.GoodsReceivedNote_VerifyGRN_InternalInformation.ToUpper()
+            </th>
+        </tr>
+        <tr class="gridodd">
+            <td style="width: 15%;">
+                <strong>@Resources.Global_String_Supplier.ToUpper():</strong>
+            </td>
+            <td style="width: 34%;">
+                @Model.Supplier.Name
+            </td>
+            <td style="width: 15%;">
+                <strong>@Resources.Global_String_Location.ToUpper():</strong>
+            </td>
+            <td style="width: 34%;">
+                @Model.CountrySubOffice.Location.Name
+            </td>
+        </tr>
+        <tr class="gridodd">
+            <td>
+                <strong>@Resources.GoodsReceivedNote_DownloadTemplate_DNNo:</strong>
+            </td>
+            <td>
+                @Model.DnNumber
+            </td>
+            <td>
+                <strong>@Resources.Global_String_Office.ToUpper():</strong>
+            </td>
+            <td>
+                @Model.CountrySubOffice.Name
+            </td>
+        </tr>
+        <tr class="gridodd">
+            <td>
+                <strong>@Resources.GoodsReceivedNote_VerifyGRN_DrcDdgORNo:</strong>
+            </td>
+            <td>
+                @if (Model.GoodsReceivedNoteItems.Count > 0)
+                {
+                    if(Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.OrderRequest != null)
+                    {
+                        @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.OrderRequest.RefNumber
+                    }
+                    else
+                    {
+                        @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.PPNumber
+                    }
+                }
+            </td>
+            <td>
+                <strong>@Resources.GoodsReceivedNote_VerifyGRN_DrcDdgPONo:</strong>
+            </td>
+            <td>
+                @if (Model.GoodsReceivedNoteItems.Count > 0)
+                {
+                    @Model.GoodsReceivedNoteItems.ToList()[0].PurchaseOrderItem.PurchaseOrder.RefNumber
+                }
+            </td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="gridheader">
+            <th></th>
+            <th>
+                @Resources.GoodsReceivedNote_VerifyGRN_GoodsDescription
+            </th>
+            <th>
+                @Resources.Global_String_UnitOfMeasure
+            </th>
+            <th>
+                @Resources.Global_String_QtyOrdered
+            </th>
+            <th>
+                @Resources.Global_String_QtyDelivered
+            </th>
+            <th>
+                @Resources.Global_String_QtyDamaged
+            </th>
+            <th>
+                @Resources.Global_String_Comments
+            </th>
+            @if (!Model.IsSubmitted)
+            {
+                <th>
+                    @Resources.Global_String_Manage
+                </th>
+            }
+        </tr>
+        @{int count = 0;}
+        @foreach (var item in Model.GoodsReceivedNoteItems)
+        {
+            count = count + 1;
+            <tr class="gridodd">
+                <td style="width: 5%; text-align: left;">
+                    @count
+                </td>
+                <td style="width: 20%; text-align: left;">
+                    @item.PurchaseOrderItem.Item.Name
+                </td>
+                <td style="width: 10%; text-align: left;">
+                    @item.PurchaseOrderItem.Item.UnitOfMeasure.Code
+                </td>
+                <td style="width: 13%; text-align: right;">
+                    @item.PurchaseOrderItem.Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td style="width: 13%; text-align: right;">
+                    @item.QuantityDelivered.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td style="width: 13%; text-align: right;">
+                    @item.QuantityDamaged.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td style="width: 18%; text-align: left;">
+                    @item.Comments
+                </td>
+                @if (!Model.IsSubmitted)
+                {
+                    <td>
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "LoadEditGRNItem", new { itemId = @item.Id, GRNId = @Model.Id }, new AjaxOptions
+             {
+                 UpdateTargetId = "popup-page",
+                 LoadingElementId = "popup-loading",
+                 OnBegin = string.Format("ShowDialogue('{0}::{1}')", Resources.Global_String_ItemName, @item.ItemName),
+                 OnSuccess = "CenterPopup"
+             })
+                        &nbsp;
+                        @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteGRNItem", new { itemId = @item.Id, GRNId = @Model.Id }, new AjaxOptions
+            {
+                UpdateTargetId = "ContentDiv",
+                LoadingElementId = "loading",
+                Confirm = string.Format(Resources.Global_String_ConfirmDelete, @item.ItemName),
+                OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');"
+            })
+                    </td>
+                }
+            </tr>
+        }
+        <tr>
+            <td class="gridheader" colspan="2">
+                <strong>@Resources.Global_String_AdditionalRemarks:</strong>
+            </td>
+            <td align="left" colspan="6">
+                @Model.Remarks
+            </td>
+        </tr>
+    </table>
+
+    <br />
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr>
+            <td rowspan="2" style="width: 10%;" class="gridheader">
+                <strong>@Resources.GoodsReceivedNote_VerifyGRN_TransporterSupplier</strong>
+            </td>
+            <td style="width: 16%;" class="gridheader">
+                @Resources.Global_String_DeliveredByName:
+            </td>
+            <td style="width: 20%;">
+                @Model.DeliveredBy
+            </td>
+            <td style="width: 10%;" class="gridheader">
+                @Resources.Global_String_Company:
+            </td>
+            <td style="width: 20%;">
+                @Model.DeliveryCompany
+            </td>
+            <td style="width: 8%;" class="gridheader">
+                @Resources.FleetManager_LoadNewFleetDetail_PlateNo:
+            </td>
+            <td style="width: 20%;">
+                @Model.VehicleRegNumber
+            </td>
+        </tr>
+        <tr>
+            <td class="gridheader">
+                @Resources.FleetManager_LoadFleetDetails_DriverLicenseNo:
+            </td>
+            <td>
+                @Model.DriverLicenseNumber
+            </td>
+            <td class="gridheader">
+                @Resources.Global_String_Signature:
+            </td>
+            <td></td>
+            <td class="gridheader">
+                @Resources.Global_String_Date:
+            </td>
+            <td>
+                @Model.DeliverDate.Value.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="7">&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="gridheader">
+                <strong>@Resources.Global_String_DRCDDG</strong>
+            </td>
+            <td class="gridheader" rowspan="2" valign="top">
+                @Resources.Global_String_ReceivedByName:
+            </td>
+            <td>
+                @Model.ReceivedByStaff.StaffName
+            </td>
+            <td class="gridheader">
+                @Resources.Global_String_Title:
+            </td>
+            <td>
+                @Model.ReceivedByStaff.Designation
+            </td>
+            <td class="gridheader" rowspan="2" valign="top">
+                @Resources.Global_String_Date:
+            </td>
+            <td>
+                @Model.DeliverDate.Value.ToString(Constants.DATE_FORMAT)
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="gridheader">
+                @Resources.Global_String_Signature:
+            </td>
+            <td>
+                @if (Model.Staff1 != null && Model.Staff1.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff1.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="7">&nbsp;
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="2" class="gridheader">
+                <strong>@Resources.Global_String_DRCDDG</strong>
+            </td>
+            <td class="gridheader" rowspan="2" valign="top">
+                @Resources.GoodsReceivedNote_ViewGRNDetails_ReceptionApproved:
+            </td>
+            <td>
+                @if (Model.Verified && Model.Staff != null)
+                {
+                    @Model.Staff.Person.FirstName
+                    @Html.Raw("&nbsp;")
+                    @Model.Staff.Person.OtherNames
+                }
+            </td>
+            <td class="gridheader">
+                @Resources.Global_String_Title:
+            </td>
+            <td>
+                @if (Model.Verified && Model.Staff != null)
+                {
+                    @Model.Staff.Designation.Name
+                }
+            </td>
+            <td class="gridheader" rowspan="2" valign="top">
+                @Resources.Global_String_Date:
+            </td>
+            <td>
+                @if (Model.Verified && Model.Staff != null && Model.ApprovedOn.HasValue)
+                {
+                    @Model.ApprovedOn.Value.ToString(Constants.DATETIME_FORMAT)
+                }
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td class="gridheader">
+                @Resources.Global_String_Signature:
+            </td>
+            <td>
+                @if (Model.Verified && Model.Staff != null && Model.Staff.Person.SignatureImage != null)
+                { 
+                    <img src="@Url.Action("Photo", "Person", new { id = Model.Staff.Person.Id, area = "" })" alt="" style="max-width: 100px;" />
+                }
+            </td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <br />
+    <table width="98%" align="center">
+        <tr>
+            @if (!Model.IsSubmitted)
+            {
+                <td align="right" width="100%">
+                    @Ajax.ActionLink(Resources.Global_String_SubmitForVerification, "SubmitGRN", new { GRNId = @Model.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "ContentDiv",
+                        LoadingElementId = "loading",
+                        Confirm = Resources.Global_String_SubmitForVerification + "?"
+                    }, new { @class = "btn btn-primary" })
+                </td>
+            }
+            else if (Model.Verified)
+            {
+                <td align="center" width="100%">
+                    <a class="btn btn-primary" target="_blank" href="/Reports/PDFReports/GoodsReceivedNote?refNumber=@Model.RefNumber">
+                        @Resources.Budget_ViewBudget_DownloadPdf
+                    </a>
+                </td>
+            }
+        </tr>
+    </table>
+</div>
+<br />
+<p>
+    @Ajax.ActionLink(Resources.Global_String_BackToList, "Index", new { id = "ViewGRNs" }, new AjaxOptions
+    {
+        UpdateTargetId = "ContentDiv",
+        LoadingElementId = "loading",
+        Url = Url.Action("ViewGRNs")
+    })
+</p>

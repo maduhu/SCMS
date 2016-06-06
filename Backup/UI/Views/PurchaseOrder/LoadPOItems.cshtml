@@ -1,0 +1,312 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.PurchaseOrder
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@Model.RefNumber</h3></div>
+    <br />
+    <h4 style="text-align: center;">@Resources.PurchaseOrder_String_PurchaseOrderItems</h4>
+    <center>
+        @Ajax.ActionLink(Resources.PurchaseOrder_LoadPOItems_AddORItems, "LoadAddItems", new { id = "" }, new AjaxOptions
+        {
+            UpdateTargetId = "popup-page",
+            LoadingElementId = "popup-loading",
+            Url = Url.Action("LoadAddItems/" + Model.Id),
+            OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_AddPOItems_AddItems),
+            OnSuccess = "clearPOItemNumbers();CenterPopup()"
+        })
+        @Html.Raw("&nbsp;|&nbsp;")
+        @Ajax.ActionLink(Resources.PurchaseOrder_LoadPOItems_AddPPItems, "LoadAddPPItemsToPO", new { poId = Model.Id }, new AjaxOptions
+        {
+            UpdateTargetId = "popup-page",
+            LoadingElementId = "popup-loading",
+            Url = Url.Action("LoadAddPPItemsToPO", new { poId = Model.Id }),
+            OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_LoadPOItems_AddPPItems),
+            OnSuccess = "clearPOItemNumbers();CenterPopup()"
+        })
+    </center>
+    <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+        <tr class="grideven">
+            <th>
+                @Resources.Global_String_ORPPRefNo
+            </th>
+            <th>
+                @Resources.Global_String_ItemName
+            </th>
+            <th>
+                @Resources.Budget_CategoryList_Description
+            </th>
+            <th>
+                @Resources.Global_String_Quantity
+            </th>
+            <th>
+                @Resources.PurchaseOrder_AddPOItems_UnitPrice
+            </th>
+            <th>
+                @Resources.PurchaseOrder_AddPOItems_TotalPrice
+            </th>
+            <th>
+                @Resources.Budget_CreateSubLine_LineNumber
+            </th>
+            <th>
+                @Resources.Global_String_Remarks
+            </th>
+            <th>
+                @Resources.Global_String_Manage
+            </th>
+        </tr>
+        @for (int i = 0; i < Model.ORList.Count; i++)
+        {
+            <tr class="gridodd">
+                <td rowspan="@Model.ORList[i].POItems.Count" title="@Model.ORList[i].ProjectDonor.ProjectNumber" >
+                    @Model.ORList[i].RefNumber
+                </td>
+                <td>
+                    @Model.ORList[i].POItems[0].OrderRequestItem.ItemName
+                </td>
+                <td>
+                    @Model.ORList[i].POItems[0].OrderRequestItem.ItemDescription
+                </td>
+                <td align="center">
+                    @Model.ORList[i].POItems[0].Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td align="right">
+                    @Model.ORList[i].POItems[0].UnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>                
+                <td align="right">
+                    @Model.ORList[i].POItems[0].TotalPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td title="@Model.ORList[i].POItems[0].ProjectBudget.Description" align="center">
+                    @Model.ORList[i].POItems[0].ProjectBudget.LineNumber
+                </td>
+                <td>
+                    @Model.ORList[i].POItems[0].Remarks
+                </td>
+                <td align="center">
+                    @Ajax.ActionLink(Resources.Global_String_Edit, "EditPOItem", new AjaxOptions
+                {
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    Url = Url.Action("EditPOItem/" + Model.ORList[i].POItems[0].Id),
+                    OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_String_EditPOItem),
+                    OnSuccess = "clearPOItemNumbers();CenterPopup();"
+                })
+                        | 
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "DeletePOItem", new {poItemId = Model.ORList[i].POItems[0].Id, poId = Model.Id}, new AjaxOptions
+                {
+                    UpdateTargetId = "PODiv",
+                    LoadingElementId = "loading",
+                    Confirm = Resources.PurchaseOrder_String_ConfirmRemoveItem
+                })
+                </td>
+            </tr>
+            for (int j = 1; j < Model.ORList[i].POItems.Count; j++)
+            { 
+                <tr class="gridodd">
+                    <td>
+                        @Model.ORList[i].POItems[j].OrderRequestItem.ItemName
+                    </td>
+                    <td>
+                        @Model.ORList[i].POItems[j].OrderRequestItem.ItemDescription
+                    </td>
+                    <td align="center">
+                        @Model.ORList[i].POItems[j].Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                    </td>
+                    <td align="right">
+                        @Model.ORList[i].POItems[j].UnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>                
+                    <td align="right">
+                        @Model.ORList[i].POItems[j].TotalPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>
+                    <td title="@Model.ORList[i].POItems[j].ProjectBudget.Description" align="center">
+                        @Model.ORList[i].POItems[j].ProjectBudget.LineNumber
+                    </td>
+                    <td>
+                        @Model.ORList[i].POItems[j].Remarks
+                    </td>
+                    <td align="center">
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "EditPOItem", new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("EditPOItem/" + Model.ORList[i].POItems[j].Id),
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_String_EditPOItem),
+                        OnSuccess = "cleanTANumbers();CenterPopup();"
+                    })
+                            | 
+                        @Ajax.ActionLink(Resources.Global_String_Remove, "DeletePOItem", new {poItemId = Model.ORList[i].POItems[j].Id, poId = Model.Id}, new AjaxOptions
+                    {
+                        UpdateTargetId = "PODiv",
+                        LoadingElementId = "loading",
+                        Confirm = Resources.PurchaseOrder_String_ConfirmRemoveItem
+                    })
+                    </td>
+                </tr>
+            }
+            if (i + 1 < Model.ORList.Count)
+            {
+                <tr>
+                    <td colspan="9">&nbsp;</td>
+                </tr>
+            }
+        }
+        @for (int i = 0; i < Model.PPList.Count; i++)
+        {
+            <tr class="gridodd">
+                <td rowspan="@Model.PPList[i].POItems.Count" title="@Model.PPList[i].ProjectDonor.ProjectNumber" >
+                    @Model.PPList[i].RefNumber
+                </td>
+                <td>
+                    @Model.PPList[i].POItems[0].ProcurementPlanItem.Item.Name
+                </td>
+                <td>
+                    @Model.PPList[i].POItems[0].ProcurementPlanItem.ItemDescription
+                </td>
+                <td align="center">
+                    @Model.PPList[i].POItems[0].Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                </td>
+                <td align="right">
+                    @Model.PPList[i].POItems[0].UnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>                
+                <td align="right">
+                    @Model.PPList[i].POItems[0].TotalPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                </td>
+                <td title="@Model.PPList[i].POItems[0].ProjectBudget.Description" align="center">
+                    @Model.PPList[i].POItems[0].ProjectBudget.LineNumber
+                </td>
+                <td>
+                    @Model.PPList[i].POItems[0].Remarks
+                </td>
+                <td align="center">
+                    @Ajax.ActionLink(Resources.Global_String_Edit, "EditPOItem", new AjaxOptions
+                {
+                    UpdateTargetId = "popup-page",
+                    LoadingElementId = "popup-loading",
+                    Url = Url.Action("EditPOItem/" + Model.PPList[i].POItems[0].Id),
+                    OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_String_EditPOItem),
+                    OnSuccess = "clearPOItemNumbers();CenterPopup();"
+                })
+                        | 
+                    @Ajax.ActionLink(Resources.Global_String_Remove, "DeletePOItem", new {poItemId = Model.PPList[i].POItems[0].Id, poId = Model.Id}, new AjaxOptions
+                {
+                    UpdateTargetId = "PODiv",
+                    LoadingElementId = "loading",
+                    Confirm = Resources.PurchaseOrder_String_ConfirmRemoveItem
+                })
+                </td>
+            </tr>
+            for (int j = 1; j < Model.PPList[i].POItems.Count; j++)
+            { 
+                <tr class="gridodd">
+                    <td>
+                        @Model.PPList[i].POItems[j].ProcurementPlanItem.Item.Name
+                    </td>
+                    <td>
+                        @Model.PPList[i].POItems[j].ProcurementPlanItem.ItemDescription
+                    </td>
+                    <td align="center">
+                        @Model.PPList[i].POItems[j].Quantity.ToString(Constants.NUMBER_FORMAT_NO_DECIMAL)
+                    </td>
+                    <td align="right">
+                        @Model.PPList[i].POItems[j].UnitPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>                
+                    <td align="right">
+                        @Model.PPList[i].POItems[j].TotalPrice.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                    </td>
+                    <td title="@Model.PPList[i].POItems[j].ProjectBudget.Description" align="center">
+                        @Model.PPList[i].POItems[j].ProjectBudget.LineNumber
+                    </td>
+                    <td>
+                        @Model.PPList[i].POItems[j].Remarks
+                    </td>
+                    <td align="center">
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "EditPOItem", new AjaxOptions
+                    {
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("EditPOItem/" + Model.PPList[i].POItems[j].Id),
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_String_EditPOItem),
+                        OnSuccess = "cleanTANumbers();CenterPopup();"
+                    })
+                            | 
+                        @Ajax.ActionLink(Resources.Global_String_Remove, "DeletePOItem", new {poItemId = Model.PPList[i].POItems[j].Id, poId = Model.Id}, new AjaxOptions
+                    {
+                        UpdateTargetId = "PODiv",
+                        LoadingElementId = "loading",
+                        Confirm = Resources.PurchaseOrder_String_ConfirmRemoveItem
+                    })
+                    </td>
+                </tr>
+            }
+            if (i + 1 < Model.PPList.Count)
+            {
+                <tr>
+                    <td colspan="9">&nbsp;</td>
+                </tr>
+            }
+        }
+    </table>
+    @if (Model.BudgetCheckResults != null && Model.BudgetCheckResults.Count > 0)
+    {
+        <br />
+        <center style="text-align: center; color: Red; font-weight: bold; font-style: italic;">@Resources.PurchaseOrder_LoadSingleQItems_FundsUnavailableMessage</center>
+        <table align="center" class="cardTable">
+            <tr>
+                <th>@Resources.Budget_CategoryList_ProjectNo</th>
+                <th>@Resources.Budget_CreateSubLine_LineNumber</th>
+                <th>@Resources.MasterBudget_MasterBudget_FundsAvailable</th>
+                <th>@Resources.OrderRequest_ViewOrderRequestItem_AmountChecked</th>
+            </tr>
+            @foreach (var bcr in Model.BudgetCheckResults)
+            {
+                <tr>
+                    <td>@bcr.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber</td>
+                    <td>@bcr.ProjectBudget.LineNumber @bcr.ProjectBudget.Description</td>
+                    <td style="color: Red; font-weight: bold;" align="right">@bcr.AvailableAmount.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                    <td align="right">@bcr.AmountChecked.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)</td>
+                </tr>
+            }
+        </table>
+        <br />
+    }
+    <input type="hidden" id="currencyId" value="@Model.CurrencyId" />
+    <table width="98%" align="center">
+        @if (Model.ORList.Count > 0 || Model.PPList.Count > 0)
+        {
+            <tr>
+                <td width="50%">
+                    @Ajax.ActionLink("<<" + Resources.Global_String_Back, "EditPO", new AjaxOptions
+                    {
+                        UpdateTargetId = "PODiv",
+                        LoadingElementId = "loading",
+                        Url = Url.Action("EditPO/" + Model.Id)
+                    })
+                </td>
+                <td align="right" width="50%">
+                    @Ajax.ActionLink(Resources.Global_String_Proceed, "SetTenderingType", new { id = Model.Id}, new AjaxOptions
+                    {
+                        OnBegin = string.Format("ShowDialogue('{0}')", Resources.PurchaseOrder_String_SpecifyTenderingType),
+                        UpdateTargetId = "popup-page",
+                        LoadingElementId = "popup-loading",
+                        Url = Url.Action("SetTenderingType/" + Model.Id),
+                        OnSuccess = "CenterPopup"
+                    }, new { @class = "btn green"})
+                </td>
+            </tr>
+        }
+        else
+        {
+            <tr>
+                <td width="100%">
+                    @Ajax.ActionLink("<<" + Resources.Global_String_Back, "EditPO", new AjaxOptions
+                {
+                    UpdateTargetId = "PODiv",
+                    LoadingElementId = "loading",
+                    Url = Url.Action("EditPO/" + Model.Id),
+                    OnSuccess = "document.getElementById('quotationRef').focus();"
+                })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

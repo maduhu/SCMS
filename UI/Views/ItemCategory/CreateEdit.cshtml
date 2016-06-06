@@ -1,0 +1,63 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.UItemCategory
+@{AjaxOptions ajaxOpts = new AjaxOptions
+      {
+          UpdateTargetId = "ContentDiv",
+          LoadingElementId = "loading",
+          HttpMethod = "Post",
+          Url = Url.Action("CreateEdit")
+      };
+}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <div class="partialViewCard">
+        <div class="partialViewCardHeader">
+            <h3>&nbsp;</h3>
+        </div>
+        <br />
+        <fieldset>
+            <legend>@(ViewBag.Action != null ? ViewBag.Action : Resources.Global_String_Create)</legend>
+            @Html.HiddenFor(model => model.Id)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Code, Resources.UnitOfMeasure_CreateEdit_Code)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Code)<br />
+                @Html.ValidationMessageFor(model => model.Code)
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Name, Resources.Global_String_Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Name)<br />
+                @Html.ValidationMessageFor(model => model.Name)
+            </div>
+            <br />
+            <p>
+                <input type="submit" class="btn green"  value="@(ViewBag.Action != null ? @ViewBag.Action : Resources.Global_String_Create)" />
+                @if (ViewBag.Action != null)
+                {
+                    @Html.Hidden("Action", Resources.Global_String_Edit)
+                }
+                else
+                {
+                    @Html.Hidden("Action", "")
+                }
+            </p>
+        </fieldset>
+        <br />
+        <div>
+            <span class="action_message">@ViewBag.Message</span>
+        </div>
+        <div>
+            <span class="field-validation-error">@ViewBag.Error</span>
+        </div>
+        <div>
+            @Html.ActionLink(Resources.Global_String_BackToList, "Index")
+        </div>
+        <br />
+    </div>
+}

@@ -1,0 +1,112 @@
+﻿@using SCMS.Resource
+@using SCMS.UI.Models
+@model IEnumerable<SCMS.UI.Models.viewItems>
+@{
+    var gridPageSize = SCMS.CoreBusinessLogic.Settings.SettingsHelper<SCMS.CoreBusinessLogic.Settings.CommonSettings>.Settings.GridPageSize;
+}
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Item_ListView_ManageItems</h3>        
+        <input type="image" onclick="export_grid('xls');return false;" src="@Url.Content("~/Content/reports/excel_csv.png")" class="pull-right" style="height:16px;width:16px;" name="export" value="xls" />
+    </div>
+    <br />
+    @(Html.Telerik().Grid<GridItemPack>()
+        .Name("ItemPacks")
+        .DataKeys(x =>
+        {
+            x.Add(y => y.Id).RouteKey("Id");
+        })
+        .Columns(columns =>
+        {
+            columns.Bound(o => o.Name).Title(Resources.Item_ListView_PackName);
+            columns.Bound(o => o.ShortName).Title(Resources.Item_CreateEditItemPackage_PackShortName);
+            columns.Bound(o => o.PackSize).Title(Resources.Item_CreateEditItemPackage_PackSize);
+            columns.Bound(e => e.Id).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false)
+                .ClientTemplate("<a data-ajax=\"true\" data-ajax-begin=\"ShowDialogue('Edit :: <#= Name #>')\" data-ajax-loading=\"#popup-loading\" data-ajax-mode=\"replace\" data-ajax-success=\"CenterPopup\" data-ajax-update=\"#popup-page\" href=\"" +
+                    Url.Action("CreateEditItemPackage", "Item", new { pkgId = "<#= Id #>" }) + "\">" +
+                    Resources.Global_String_Edit + "</a>&nbsp;&nbsp;" +
+                    "<a data-ajax=\"true\" data-ajax-confirm=\"<#= $.telerik.formatString(\"" +
+                    Resources.Global_String_ConfirmDelete +
+                    "\",Name) #>\" data-ajax-failure=\"Javascript:AjaxFailure()\" data-ajax-loading=\"#loading\" data-ajax-mode=\"replace\" data-ajax-update=\"#ContentDiv\" href=\"" + Url.Action("DeletePack", "Item", new { pkgId = "<#= Id #>" }) + "\">" + Resources.Global_String_Delete + "</a>"); 
+        })
+        .DetailView(details => details.ClientTemplate("<h4>Items</h4>"+
+              Html.Telerik().Grid<GridItem>()
+                   .Name("items_grid_<#= Id #>")
+                   .DataKeys(x =>
+                   {
+                       x.Add(y => y.Id).RouteKey("Id");
+                   })
+                    .Columns(columns =>
+                    {
+                        columns.Bound(e => e.Name).Title(Resources.Global_String_Name);
+                        columns.Bound(e => e.Description).Title(Resources.Global_String_Description);
+                        columns.Bound(e => e.ItemCategoryName).Title(Resources.Global_String_Category);
+                        columns.Bound(e => e.ItemClassificationName).Title(Resources.Global_String_Classification);
+                        columns.Bound(e => e.Id).Filterable(false).Sortable(false).Title(Resources.Global_String_Manage)
+                            .Template(@<text>
+                                 @Ajax.ActionLink(Resources.Global_String_Edit, "CreateEdit", new { @iid = item.Id }, new AjaxOptions
+                                    {
+                                        UpdateTargetId = "popup-page",
+                                        LoadingElementId = "popup-loading",
+                                        OnBegin = string.Format("ShowDialogue('{0} :: " + item.Name + "')", Resources.Global_String_Edit),
+                                        OnSuccess = "CenterPopup"
+                                    })
+                                    &nbsp;
+                                    @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteItem", new { @iid = item.Id }, new AjaxOptions
+                                    {
+                                        UpdateTargetId = "ContentDiv",
+                                        LoadingElementId = "loading",
+                                        Confirm = string.Format(Resources.Global_String_ConfirmDelete, item.Name),
+                                        OnFailure = "Javascript:AjaxFailure()"
+                                    })
+                            </text>).ClientTemplate("<a data-ajax=\"true\" data-ajax-begin=\"ShowDialogue('Edit :: <#= Name #>')\" data-ajax-loading=\"#popup-loading\" data-ajax-mode=\"replace\" data-ajax-success=\"CenterPopup\" data-ajax-update=\"#popup-page\" href=\"" +
+                                Url.Action("CreateEdit", "Item", new { iid = "<#= Id #>" }) + "\">" +
+                                Resources.Global_String_Edit + "</a>&nbsp;&nbsp;" +
+                                "<a data-ajax=\"true\" data-ajax-confirm=\"<#= $.telerik.formatString(\"" +
+                                Resources.Global_String_ConfirmDelete +
+                                "\",Name) #>\" data-ajax-failure=\"Javascript:AjaxFailure()\" data-ajax-loading=\"#loading\" data-ajax-mode=\"replace\" data-ajax-update=\"#ContentDiv\" href=\"" + Url.Action("DeleteItem", "Item", new { iid = "<#= Id #>" }) + "\">" + Resources.Global_String_Delete + "</a>");
+                    })
+       
+        
+                   .DataBinding(dataBinding => dataBinding.Ajax()
+                   .Select("GetItemsList", "Item", new { itemPackageId = "<#= Id #>" }))
+                   .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+                   .Sortable()
+                   .Filterable()
+                   .EnableCustomBinding(true)
+                   .ToHtmlString()                 
+       ))
+        .DataBinding(dataBinding => dataBinding.Ajax()
+        .Select("GetItemPacksList", "Item"))
+        .Sortable()
+        .Pageable(settings => settings.PageSize(gridPageSize).Position(GridPagerPosition.Both))
+        .Filterable()
+        .EnableCustomBinding(true))
+       
+    <br />
+    <div>
+        <span class="action_message">@ViewBag.Message</span>
+    </div>
+    <div>
+        <span class="field-validation-error">@ViewBag.Error</span>
+    </div>
+</div>
+<script type="text/javascript">
+
+var itemPacksexportLink = "@(@Html.Raw(Url.Action("ExportItemPacksList", "Item", new { page = 1, orderBy = "~", filter = "~" }).SafeHtmlInputValue()))";
+
+
+function onDataBinding(e) {}
+
+function onDataBound(e) {
+    var grid = $('#ItemPacks').data('tGrid');
+    itemPacksexportLink = itemPacksexportLink.replace(/page=([^&]*)/, 'page=' + grid.currentPage);
+    itemPacksexportLink = itemPacksexportLink.replace(/orderBy=([^&]*)/, 'orderBy=' + (grid.orderBy || '~'));
+    itemPacksexportLink = itemPacksexportLink.replace(/filter=(.*)/, 'filter=' + (grid.filterBy || '~'));
+}
+
+function export_grid(type){
+    window.open(itemPacksexportLink+"&type="+type, '_blank');
+}
+
+</script>

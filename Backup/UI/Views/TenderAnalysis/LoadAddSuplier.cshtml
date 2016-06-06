@@ -1,0 +1,106 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.AddTAnalysis
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "TADetailsDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("AddSupplier/" + ViewBag.TAID),
+      OnSuccess = "CancelPopup"
+  };}
+<h2 class="gridheader">
+    @Resources.TenderAnalysis_LoadAddSupplier_NewSupplier</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{
+    @Html.ValidationSummary(true)
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td align="left">
+                @Resources.TenderAnalysis_LoadAddSupplier_SupplierCompany
+            </td>
+            <td align="left">
+                @Html.DropDownListFor(x => x.EntityTenderBidder.SupplierId, Model.Suppliers, Resources.Global_String_PleaseSelect)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.Global_String_ShippingTerms
+            </td>
+            <td align="left">
+                @Html.DropDownListFor(x => x.EntityTenderBidder.ShippingTermId, Model.ShippingTerms, Resources.Global_String_PleaseSelect)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.Global_String_PaymentTerms
+            </td>
+            <td align="left">
+                @Html.DropDownListFor(x => x.EntityTenderBidder.PaymentTermId, Model.TermzOfPayments, Resources.Global_String_PleaseSelect)
+            </td>
+        </tr>
+        @for (int i = 0; i < Model.RequestItems.Count; i++)
+        {
+            <tr>
+                <td align="left">
+                    @Html.DisplayFor(s => Model.RequestItems[i].ItemDescription)
+                </td>
+                <td align="left">
+                    @Html.EditorFor(s => Model.RequestItems[i].UnitCost)<br />
+                    @Html.ValidationMessageFor(s => Model.RequestItems[i].UnitCost)
+                </td>
+            </tr>
+            @Html.HiddenFor(s => Model.RequestItems[i].EntityRequestedItem.Id)
+        }
+        <tr>
+            <td align="left">
+                @Resources.Global_String_TransportCost
+            </td>
+            <td align="left">
+                @Html.EditorFor(model => model.EntityTenderBidder.TransportCost)<br />
+                @Html.ValidationMessageFor(model => model.EntityTenderBidder.TransportCost)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.Global_String_TotalCost
+            </td>
+            <td align="left">
+                @Html.EditorFor(model => model.EntityTenderBidder.TotalCost)<br />
+                @Html.ValidationMessageFor(model => model.EntityTenderBidder.TotalCost)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.GoodsReceivedNote_LoadGRNVerifyItems_DeliveryDate
+            </td>
+            <td align="left">
+                @Html.EditorFor(model => model.EntityTenderBidder.DeliveryTime)<br />
+                @Html.ValidationMessageFor(model => model.EntityTenderBidder.DeliveryTime)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.TenderAnalysis_String_Warranty
+            </td>
+            <td align="left">
+                @Html.EditorFor(model => model.EntityTenderBidder.Warranty)<br />
+                @Html.ValidationMessageFor(model => model.EntityTenderBidder.Warranty)
+            </td>
+        </tr>
+        <tr>
+            <td align="left">
+                @Resources.Global_String_Other
+            </td>
+            <td align="left">
+                @Html.EditorFor(model => model.EntityTenderBidder.Comments)<br />
+                @Html.ValidationMessageFor(model => model.EntityTenderBidder.Comments)
+            </td>
+        </tr>
+    </table>
+    <p>
+        <input type="submit" class="btn green"  value="@Resources.TenderAnalysis_AddNewSupplier4TA_AddSupplier" />&nbsp;
+        <input type="button" value="@Resources.Global_String_Cancel" onclick="javascript:CancelPopup()" />
+    </p>
+}

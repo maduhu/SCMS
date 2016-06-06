@@ -1,0 +1,617 @@
+﻿@using SCMS.CoreBusinessLogic.NotificationsManager
+@using SCMS.Resource
+@model IEnumerable<SCMS.Model.Approver>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader"><h3>@ViewBag.FormHeader</h3></div>
+    @if (Model != null)
+    {    
+        <div id="tabs">
+	        <ul>
+		        <li><a href="#tabs-1">@Resources.Global_String_OR</a></li>
+		        <li><a href="#tabs-2">@Resources.Global_String_PO</a></li>
+		        <li><a href="#tabs-3">@Resources.Global_String_RFP</a></li>
+                <li><a href="#tabs-4">@Resources.Global_String_PP</a></li>
+		        <li><a href="#tabs-5">@Resources.Approver_ApproverList_DocPrep</a></li>
+	        </ul>
+	        <div id="tabs-1">
+                <!-- ORDER REQUEST -->
+                <h4 style="text-align:center; text-transform: uppercase;">@Resources.Global_String_OrderRequest.ToUpper()</h4>
+                <center>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                    {                    
+                        @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "Index", new { id = NotificationHelper.orCode }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Approver_ApproverList_NewApproverPopup),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       Url = Url.Action("CreateApprover/" + NotificationHelper.orCode),
+                       OnSuccess = "CenterPopup"
+                   })
+                    }
+                </center>
+		        @if (Model.Count() > 0)
+          {                    
+                    <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Approval</b>                
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Approver</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.orCode && item.ActionType == NotificationHelper.approvalCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(0);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Review</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Reviewer</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.orCode && item.ActionType == NotificationHelper.reviewCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                                            
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteReviewer, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(0);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Authorization</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Authorizer</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.orCode && item.ActionType == NotificationHelper.authorizationCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteAuthorizer, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(0);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+          }
+	        </div>
+	        <div id="tabs-2">
+		        <!-- PURCHASE ORDER -->
+                <h4 style="text-align:center">@Resources.Global_String_PurchaseOrder.ToUpper()</h4>
+                @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                {                    
+                    <center>
+                        @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "Index", new { id = NotificationHelper.poCode }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Approver_ApproverList_NewApproverPopup),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       Url = Url.Action("CreateApprover/" + NotificationHelper.poCode),
+                       OnSuccess = "CenterPopup"
+                   })
+                    </center>
+                }
+		        @if (Model.Count() > 0)
+                {                
+                    <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Approver</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Approver</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.poCode && item.ActionType == NotificationHelper.approvalCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                                    {                    
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                            {
+                                                OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                                UpdateTargetId = "popup-page",
+                                                LoadingElementId = "popup-loading",
+                                                Url = Url.Action("EditApprover/" + item.Id)
+                                            }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                            {
+                                                UpdateTargetId = "approverDiv",
+                                                LoadingElementId = "loading",
+                                                Url = Url.Action("DeleteApprover/" + item.Id),
+                                                Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                                OnSuccess = "initTabs(1);"
+                                            })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                }
+	        </div>
+	        <div id="tabs-3">
+		        <!-- REQUEST FOR PAYMENT -->
+                <h4 style="text-align: center; text-transform: uppercase;">@Resources.Global_String_RequestForPayment</h4>
+                <center>
+                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                    {                    
+                        @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "Index", new { id = NotificationHelper.rfpCode }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Approver_ApproverList_NewApproverPopup),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       Url = Url.Action("CreateApprover/" + NotificationHelper.rfpCode),
+                       OnSuccess = "CenterPopup"
+                   })
+                    }
+                </center>
+		        @if (Model.Count() > 0)
+          {                    
+                    <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Review</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Reviewer</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.rfpCode && item.ActionType == NotificationHelper.reviewCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteReviewer, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(2);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Authorization</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_Authorizer</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.rfpCode && item.ActionType == NotificationHelper.authorizationCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteAuthorizer, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(2);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_FundPosting</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="25%">@Resources.Approver_ApproverList_Limit</th><th width="25%">@Resources.Approver_ApproverList_FundPoster</th><th width="25%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="25%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.rfpCode && item.ActionType == NotificationHelper.postFundsCode)
+                            {
+                                <tr>
+                                    <td>@item.FinanceLimit.Name</td>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                            @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                       {
+                                           OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                           UpdateTargetId = "popup-page",
+                                           LoadingElementId = "popup-loading",
+                                           Url = Url.Action("EditApprover/" + item.Id)
+                                       }) &nbsp;|&nbsp;
+                                            @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                       {
+                                           UpdateTargetId = "budgetDiv",
+                                           LoadingElementId = "loading",
+                                           Url = Url.Action("DeleteApprover/" + item.Id),
+                                           Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeletePoster, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                           OnSuccess = "initTabs(2);"
+                                       })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+          }
+	        </div>            
+            <div id="tabs-4">
+                <!-- Procurement Plan -->
+                <h4 style="text-align: center; text-transform: uppercase;">@Resources.Global_String_ProcurementPlan</h4>
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                {                    
+                    <center>
+                        @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "Index", new { id = NotificationHelper.ppCode }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.Approver_ApproverList_NewApproverPopup),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       Url = Url.Action("CreateApprover/" + NotificationHelper.ppCode),
+                       OnSuccess = "CenterPopup"
+                   })
+                    </center>
+                }
+                @if (Model.Count() > 0)
+                {                
+                    <b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Approval</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="40%">@Resources.Approver_ApproverList_Approver</th><th width="40%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="20%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.ppCode && item.ActionType == NotificationHelper.approvalCode)
+                            {
+                                <tr>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                                @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                           {
+                                               OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                               UpdateTargetId = "popup-page",
+                                               LoadingElementId = "popup-loading",
+                                               Url = Url.Action("EditApprover/" + item.Id)
+                                           }) &nbsp;|&nbsp;
+                                                @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                           {
+                                               UpdateTargetId = "budgetDiv",
+                                               LoadingElementId = "loading",
+                                               Url = Url.Action("DeleteApprover/" + item.Id),
+                                               Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                               OnSuccess = "initTabs(3);"
+                                           })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Review</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="40%">@Resources.Approver_ApproverList_Reviewer</th><th width="40%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="20%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.ppCode && item.ActionType == NotificationHelper.reviewCode)
+                            {
+                                <tr>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                                @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                           {
+                                               OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                               UpdateTargetId = "popup-page",
+                                               LoadingElementId = "popup-loading",
+                                               Url = Url.Action("EditApprover/" + item.Id)
+                                           }) &nbsp;|&nbsp;
+                                                @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                           {
+                                               UpdateTargetId = "budgetDiv",
+                                               LoadingElementId = "loading",
+                                               Url = Url.Action("DeleteApprover/" + item.Id),
+                                               Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                               OnSuccess = "initTabs(3);"
+                                           })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_ApprovalII</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="40%">@Resources.Approver_ApproverList_Approver</th><th width="40%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="20%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.ppCode && item.ActionType == NotificationHelper.approvalIICode)
+                            {
+                                <tr>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                                @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                           {
+                                               OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                               UpdateTargetId = "popup-page",
+                                               LoadingElementId = "popup-loading",
+                                               Url = Url.Action("EditApprover/" + item.Id)
+                                           }) &nbsp;|&nbsp;
+                                                @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                           {
+                                               UpdateTargetId = "budgetDiv",
+                                               LoadingElementId = "loading",
+                                               Url = Url.Action("DeleteApprover/" + item.Id),
+                                               Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                               OnSuccess = "initTabs(3);"
+                                           })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                    
+                    <br /><b style="font-weight: bold">&nbsp;&nbsp;@Resources.Approver_ApproverList_Authorization</b>
+                    <table class="cardTable">
+                        <tr>
+                            <th width="40%">@Resources.Approver_ApproverList_Authorizer</th><th width="40%">@Resources.Approver_ApproverList_Delegate</th>
+                            @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                            {                    
+                                <th width="20%">@Resources.Global_String_Manage</th>
+                            }
+                        </tr>
+                        @foreach (var item in Model)
+                        {
+                            if (item.ActivityCode == NotificationHelper.ppCode && item.ActionType == NotificationHelper.authorizationCode)
+                            {
+                                <tr>
+                                    <td title="@item.SystemUser.Staff.Designation.Name">
+                                        @item.SystemUser.Staff.Person.FirstName &nbsp; @item.SystemUser.Staff.Person.OtherNames
+                                    </td>
+                                    <td title="@item.SystemUser1.Staff.Designation.Name">
+                                        @item.SystemUser1.Staff.Person.FirstName &nbsp; @item.SystemUser1.Staff.Person.OtherNames
+                                    </td>
+                                    @if (UserContext.HasPermission(StandardPermissionProvider.ProjectApproversManage))
+                                    {                    
+                                        <td align="center">
+                                                @Ajax.ActionLink(Resources.Global_String_Edit, "Index", new { id = "EditApprover" }, new AjaxOptions
+                                           {
+                                               OnBegin = "ShowDialogue('" + item.ActivityCode + " " + item.ActionType + "')",
+                                               UpdateTargetId = "popup-page",
+                                               LoadingElementId = "popup-loading",
+                                               Url = Url.Action("EditApprover/" + item.Id)
+                                           }) &nbsp;|&nbsp;
+                                                @Ajax.ActionLink(Resources.Global_String_Delete, "Index", new { id = "DeleteApprover" }, new AjaxOptions
+                                           {
+                                               UpdateTargetId = "budgetDiv",
+                                               LoadingElementId = "loading",
+                                               Url = Url.Action("DeleteApprover/" + item.Id),
+                                               Confirm = string.Format(Resources.Approver_ApproverList_ConfirmDeleteApprover, item.SystemUser.Staff.Person.FirstName + " " + item.SystemUser.Staff.Person.OtherNames),
+                                               OnSuccess = "initTabs(3);"
+                                           })
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </table>
+                }
+            </div>   
+            <div id="tabs-5">
+		        @Html.Action("DocPrepList", new { id = ViewBag.Id })
+	        </div>
+        </div>
+    }
+    <table align="center" width="98%">
+        <tr>
+            <td width="100%">
+                @if (UserContext.HasPermission(StandardPermissionProvider.ProjectBudgetManage))
+                {
+                    @Ajax.ActionLink(Resources.Budget_CategoryList_EditProject, "EditProject", new { id = "" }, new AjaxOptions
+               {
+                   UpdateTargetId = "budgetDiv",
+                   LoadingElementId = "loading",
+                   Url = Url.Action("EditProject/" + ViewBag.Id)
+               })
+                }
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                @Ajax.ActionLink(Resources.Budget_Index_ViewBudget, "ViewBudget", new { id = "" }, new AjaxOptions
+           {
+               UpdateTargetId = "budgetDiv",
+               LoadingElementId = "loading",
+               Url = Url.Action("ViewBudget/" + ViewBag.Id)
+           })
+            </td>
+        </tr>
+    </table>
+</div>

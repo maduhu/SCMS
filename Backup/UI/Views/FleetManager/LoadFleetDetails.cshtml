@@ -1,0 +1,390 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.Model.FleetDetail
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.FleetManager_LoadFleetDetails_FleetDetails</h3>
+    </div>
+    <br />
+    @*@using (Ajax.BeginForm(null, null, null, new { @class = "form" }))
+    {
+        @Html.ValidationSummary(true)
+        *@
+    <table width="98%" align="center" cellpadding="0">
+            <tr>
+                <td style="width: 20%">@Resources.Global_String_AssetName</td>
+                <td style="width: 80%">
+                    @Html.DropDownListFor(x => x.Id, Model.FDList, Resources.Global_String_PleaseSelect, new { onchange = "javascript:LoadFDetails(this);" })
+                </td>
+            </tr>
+        </table>
+
+        <hr />
+        <center>
+
+         <img src = "@Url.Action("AssetImage", "Inventory", new { id = Model.AssetId })" alt="@Resources.Global_String_NoImage" style="max-width: 200px" />
+    </center>
+        @if (Model.Id.IsNotEmpty())
+        {
+        @Ajax.ActionLink(Resources.Global_String_Edit, "LoadNewFleetDetail", new { fleetId = Model.Id }, new AjaxOptions
+        {
+            OnBegin = "ShowDialogue('" + Model.Asset.AssetNumber + "')",
+            UpdateTargetId = "popup-page",
+            LoadingElementId = "popup-loading",
+            OnSuccess = "CenterPopup();"
+        }) @Html.Raw(" &nbsp;| &nbsp;")
+        @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteFleet", new { fleetId = Model.Id }, new AjaxOptions
+        {
+            UpdateTargetId = "fleetDiv",
+            LoadingElementId = "loading",
+            Confirm = string.Format(Resources.Global_String_ConfirmDelete, Model.Asset.AssetNumber),
+            OnSuccess = "initPostFundsView(0);"
+        })
+        }
+        <table style="width: 98%;" align="center" cellpadding="0">
+            <tr class="gridheader2">
+                <td align="center" width="33.3%">
+                    @Resources.Global_String_AssetName
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.Global_String_Brand
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.Global_String_Model
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.Asset.Name)&nbsp;
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.VehicleModel.VehicleMake.Name)
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.VehicleModel.Name)
+                </td>
+            </tr>
+            <tr class="gridheader2">
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_ModelYear
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_PlateNo
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_EngineNo
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.ModelYear)&nbsp;
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.PlateNo)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(x => x.EngineNo)
+                </td>
+            </tr>
+            <tr class="gridheader2">
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_ChassisNo
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_InitialMileage
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_FleetType
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.ChassisNo)&nbsp;
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.InitialMilleage)
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.FleetType)
+                </td>
+            </tr>
+            <tr class="gridheader2">
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_DutyType
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_InsuranceType
+                </td>
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_InsuranceExpiryDate
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.DutyType.Name)&nbsp;
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.InsuranceType.Name)
+                </td>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.InsuranceExpiryDate)
+                </td>
+            </tr>
+            <tr class="gridheader2">
+                <td align="center" width="33.3%">
+                    @Resources.FleetManager_LoadNewFleetDetail_FuelType
+                </td>
+                <td align="center">
+                    @Resources.FleetManager_LoadNewFleetDetail_AsignedDriver
+                </td>
+                <td align="center">
+                    @Resources.FleetManger_LoadSummary_AverageFuelConsumed
+                </td>
+            </tr>
+            <tr>
+                <td align="center" valign="top">
+                    @Html.DisplayFor(x => x.FuelType)
+                </td>
+                <td align="center">
+                    @Html.DisplayFor(x => x.Staff.StaffName)
+                </td>
+                <td align="center">@Html.DisplayFor(x => x.AvrgFuelConsumption)</td>
+            </tr>
+
+        </table>
+
+        <hr />
+        <div id="tabs" class="tabsShadow">
+            <ul>
+                <li><a href="#tabs-1">@Resources.FleetManager_LoadFleetDetails_DailyFleetMgt</a></li>
+                <li><a href="#tabs-2">@Resources.FleetManager_LoadFleetDetails_GarageInfo</a></li>
+                <li><a href="#tabs-3">@Resources.FleetManager_LoadFleetDetails_Accessories</a></li>
+            </ul>
+
+            <div id="tabs-1">
+                <!-- Daily Fleet Management -->
+
+                @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                {
+                    if (ViewBag.fleetId != null)
+                    {
+                    <center>
+                        @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "LoadNewDailyFleet", new { id = ViewBag.fleetId }, new AjaxOptions
+                       {
+                           OnBegin = string.Format("ShowDialogue('{0}')", Resources.FleetManager_LoadFleetDetails_NewDailyFleetRecord),
+                           UpdateTargetId = "popup-page",
+                           LoadingElementId = "popup-loading",
+                           OnSuccess = "CenterPopup"
+                       })
+                    </center>
+                    }
+                }
+
+                @{
+                var pagerStyleFlags = new[] 
+        { 
+            //new { Key = "pageInput", Value = GridPagerStyles.PageInput },
+            //new { Key = "nextPrevious", Value = GridPagerStyles.NextPrevious },
+            //new { Key = "numeric", Value = GridPagerStyles.Numeric },
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+                GridPagerStyles pagerStyles = GridPagerStyles.NextPreviousAndNumeric;
+                //GridPagerStyles pagerStyles = GridPagerStyles.NextPrevious;
+                foreach (var pagerStyleFlag in pagerStyleFlags)
+                {
+                    pagerStyles |= pagerStyleFlag.Value;
+
+                }
+                }
+
+                @(Html.Telerik().Grid<SCMS.Model.FleetDailyManagement>()
+            .Name("DFMgt")
+            .DataKeys(keys => keys.Add(o => o.Id))
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.Date).Title(Resources.Global_String_Date).Format("{0:d}");
+                columns.Bound(c => c.StartMilleage).Title(Resources.FleetManager_LoadFleetDetails_StartMileage);
+                columns.Bound(c => c.EndMilleage).Title(Resources.FleetManager_LoadFleetDetails_EndMileage);
+                columns.Bound(c => c.DistancedCovered).Title(Resources.FleetManager_LoadFleetDetails_DistanceCovered).Width("9%");
+                columns.Bound(c => c.TotalFuelConsumed).Title(Resources.FleetManager_LoadFleetDetails_FuelInput).Width("9%");
+                columns.Bound(c => c.IncidenceName).Title("Incidence");
+                columns.Bound(e => e.Id).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false).HtmlAttributes(new { align = "center" })
+                      .ClientTemplate(
+                      "" + @Ajax.ActionLink(Resources.Global_String_Edit, "LoadNewDailyFleet", new { id = "<#= FleetId #>", dailyFleetInfoId = "<#= Id #>" },
+                      new AjaxOptions
+                      {
+                          UpdateTargetId = "popup-page",
+                          LoadingElementId = "popup-loading",
+                          //OnBegin = string.Format("ShowDialogue('{0}')", Resources.Global_String_Edit),
+                          OnBegin = "ShowDialogue()",
+                          OnSuccess = "CenterPopup"
+                      }).ToHtmlString().Replace("&#39", "\"") + "&nbsp;|&nbsp;" +
+
+                      @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteDailyFleetInfo", new { dailyFleetInfoId = "<#= Id #>", fleetId = "<#= FleetId #>" },
+                      new AjaxOptions
+                      {
+                          UpdateTargetId = "fleetDiv",
+                          LoadingElementId = "loading",
+                          Confirm = string.Format(Resources.Global_String_ConfirmDelete, "<#= Date #>"),
+                          //OnSuccess = string.Format("usermsg('{0}');initPostFundsView(0);", Resources.Global_String_ProcessCompleted)
+                          OnSuccess ="initPostFundsView(0);"
+                      }).ToHtmlString().Replace("&#39", "\"") + "");
+
+            })
+            .Pageable(settings => settings.Style(pagerStyles).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Position(GridPagerPosition.Both))
+            .Sortable()
+            .Filterable()
+            .Groupable()
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("Filtering", "FleetManager", new { fleetId = (Guid?)ViewBag.fleetId }))
+    )
+
+            </div>
+            <div id="tabs-2">
+                <!-- GARAGE INFO -->
+
+                @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                {
+                    if (ViewBag.fleetId != null)
+                    {               
+                    <center>
+                @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "LoadNewGarageInfo", new { id = ViewBag.fleetId }, new AjaxOptions
+           {
+               OnBegin = string.Format("ShowDialogue('{0}')", Resources.FleetManager_LoadFleetDetails_NewGarageInfo),
+               UpdateTargetId = "popup-page",
+               LoadingElementId = "popup-loading",
+               OnSuccess = "CenterPopup"
+           })
+            </center>
+                    }
+                }
+
+                @{
+                var pagerStyleFlags2 = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+                GridPagerStyles pagerStyles2 = GridPagerStyles.NextPreviousAndNumeric;
+                foreach (var pagerStyleFlag in pagerStyleFlags2)
+                {
+                    pagerStyles2 |= pagerStyleFlag.Value;
+
+                }
+                }
+
+                @(Html.Telerik().Grid<SCMS.Model.GarageInfo>()
+            .Name("GInfo")
+            .DataKeys(keys => keys.Add(o => o.Id))
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.SupplierName).Title(Resources.FleetManager_LoadFleetDetails_GarageName).Format("{0:d}").Width("14%");
+                columns.Bound(c => c.Dateken).Title(Resources.FleetManager_LoadFleetDetails_DateTaken).Format("{0:d}");
+                columns.Bound(c => c.OtherProblemsDescription).Title(Resources.FleetManager_LoadFleetDetails_Reason).Width("14%");
+                columns.Bound(c => c.IfServiceCurrentMilleage).Title(Resources.FleetManager_LoadFleetDetails_CurrentMileage);
+                columns.Bound(c => c.IfServiceNextMilleage).Title(Resources.FleetManager_LoadFleetDetails_NextMileage);
+                columns.Bound(c => c.MilleageOut).Title(Resources.FleetManager_LoadFleetDetails_MileageOut);
+                columns.Bound(c => c.DateOutOfGarage).Title(Resources.FleetManager_LoadFleetDetails_DateOut).Format("{0:d}");
+                columns.Bound(e => e.Id).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false).HtmlAttributes(new { align = "center" })
+                      .ClientTemplate(
+                      "" + @Ajax.ActionLink(Resources.Global_String_Edit, "LoadNewGarageInfo", new { id = "<#= FleetId #>", garageInfoId = "<#= Id #>" },
+                      new AjaxOptions
+                      {
+                          //                          OnBegin = string.Format("ShowDialogue('{0}')", Resources.FleetManager_LoadFleetDetails_EditGarageInfo),
+                          OnBegin = "ShowDialogue()",
+                          UpdateTargetId = "popup-page",
+                          LoadingElementId = "popup-loading",
+                          OnSuccess = "CenterPopup"
+                      }).ToHtmlString().Replace("&#39", "\"") + "&nbsp;|&nbsp;" +
+
+                      @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteGarageInfo", new { garageInfoId = "<#= Id #>", fleetId = "<#= FleetId #>" },
+                      new AjaxOptions
+                      {
+                          UpdateTargetId = "fleetDiv",
+                          LoadingElementId = "loading",
+                          Confirm = string.Format(Resources.Global_String_ConfirmDelete, "<#= SupplierName #>"),
+                          //OnSuccess = string.Format("usermsg('{0}');initPostFundsView(1);", Resources.Global_String_ProcessCompleted)
+                          OnSuccess ="initPostFundsView(1);"
+                      }).ToHtmlString().Replace("&#39", "\"") + "");
+
+            })
+            .Pageable(settings => settings.Style(pagerStyles2).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Position(GridPagerPosition.Both))
+            .Sortable()
+            .Filterable()
+            .Groupable()
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("GarageInfoFiltering", "FleetManager", new { fleetId = (Guid?)ViewBag.fleetId }))
+    )
+
+            </div>
+            <div id="tabs-3">
+                <!-- Accesories -->
+
+                @if (UserContext.HasPermission(StandardPermissionProvider.ApproversManage))
+                {
+                    if (ViewBag.fleetId != null)
+                    {                 
+                    <center>
+                @Ajax.ActionLink("[" + Resources.Global_String_AddNew + "]", "LoadFleetAccecories", new { id = @ViewBag.fleetId }, new AjaxOptions
+                   {
+                       OnBegin = string.Format("ShowDialogue('{0}')", Resources.FleetManager_LoadFleetDetails_NewAccessory),
+                       UpdateTargetId = "popup-page",
+                       LoadingElementId = "popup-loading",
+                       OnSuccess = "CenterPopup"
+                   })
+            </center>
+                    }
+                }
+
+                @{
+                var pagerStyleFlags3 = new[] 
+        { 
+            new { Key = "pageSize", Value = GridPagerStyles.PageSizeDropDown }
+        };
+
+                GridPagerStyles pagerStyles3 = GridPagerStyles.NextPreviousAndNumeric;
+                foreach (var pagerStyleFlag in pagerStyleFlags3)
+                {
+                    pagerStyles3 |= pagerStyleFlag.Value;
+                }
+                }
+
+                @(Html.Telerik().Grid<SCMS.Model.Equipment2Fleet>()
+            .Name("AccesoriesGrid")
+            .DataKeys(keys => keys.Add(o => o.Id))
+            .Columns(columns =>
+            {
+                columns.Bound(c => c.rowCount).Title("#").Width("10%");
+                columns.Bound(c => c.EquipmentName).Title(Resources.Global_String_Item + " " + Resources.Global_String_Name).Width("70%");
+                columns.Bound(e => e.Id).Title(Resources.Global_String_Manage).Filterable(false).Sortable(false).HtmlAttributes(new { align = "right" })
+                      .ClientTemplate(
+                      "" + @Ajax.ActionLink(Resources.Global_String_Delete, "RemoveAccesory", new { accesoryId = "<#= Id #>", fleetId = "<#= FleetId #>" },
+                      new AjaxOptions
+                      {
+                          UpdateTargetId = "fleetDiv",
+                          LoadingElementId = "loading",
+                          Confirm = string.Format(Resources.Global_String_ConfirmDelete, "<#= EquipmentName #>"),
+                          //OnSuccess = string.Format("initPostFundsView(2);usermsg('{0}');", Resources.Global_String_ProcessCompleted)
+                          OnSuccess ="initPostFundsView(2);"
+                      }).ToHtmlString().Replace("&#39", "\"") + "");
+
+            })
+            .Pageable(settings => settings.Style(pagerStyles3).PageSize(10, new int[] { 10, 20, 50, 100, 200 }).Position(GridPagerPosition.Both))
+            .Sortable()
+            .Filterable()
+            .Groupable()
+            .DataBinding(dataBinding => dataBinding.Ajax().Select("AccesoryFiltering", "FleetManager", new { fleetId = (Guid?)ViewBag.fleetId }))
+    )
+
+            </div>
+        </div>
+    @*}*@
+</div>
+
+<style>
+    .t-grid table
+    {
+        table-layout: fixed;
+    }
+</style>
+

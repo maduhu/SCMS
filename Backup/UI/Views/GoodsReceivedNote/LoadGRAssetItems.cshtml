@@ -1,0 +1,76 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.UI.Models.GRNItems>
+
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.GoodsReceivedNote_LoadGRAssetItems_ReceivedAssets</h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {
+        <table width="98%" align="center" class="cardTable" cellspacing="0" cellpadding="0"
+            border="1">
+            <tr class="gridheader">
+                <th>
+                </th>
+                <th>
+                    @Resources.Global_String_ItemName
+                </th>
+                <th>
+                    @Resources.Global_String_Unit
+                </th>
+                <th>
+                    @Resources.Global_String_QtyOrdered
+                </th>
+                <th>
+                    @Resources.Global_String_QtyDelivered
+                </th>
+                <th>
+                    @Resources.Global_String_QtyDamaged
+                </th>
+                <th>
+                    @Resources.Global_String_Comments
+                </th>
+            </tr>
+            @{int count = 0;}
+            @foreach (var item in Model)
+            {
+                count = count + 1;
+@*<tr class="gridodd" onclick="sendRequest('/GoodsReceivedNote/LoadRegsiterAsset?GRNItemId=@item.EntityGRNItem.Id', 'ContentDiv', 'loading')" style=" cursor:pointer;">*@
+                <tr class="gridodd">
+                    <td style="width: 5%;">@count
+                    </td>
+                    <td style="width: 25%;">
+                        @Ajax.ActionLink(item.EntityGRNItem.PurchaseOrderItem.OrderRequestItem.Item.Name, "LoadRegsiterAsset", new { id = "LoadRegsiterAsset" }, new AjaxOptions
+                          {
+                              UpdateTargetId = "popup-page",
+                              LoadingElementId = "popup-loading",
+                              HttpMethod = "Post",
+                              Url = Url.Action("LoadRegsiterAsset/" + @item.EntityGRNItem.Id),
+                              OnBegin = string.Format("ShowDialogue('{0}')", Resources.GoodsReceivedNote_LoadGRAssetItems_RegisterAsset),
+                              OnSuccess = "CenterPopup"
+                          })
+                    </td>
+                    <td align="left" style="width: 11%;">
+                        @item.EntityGRNItem.PurchaseOrderItem.OrderRequestItem.Item.UnitOfMeasure.Code
+                    </td>
+                    <td align="left" style="width: 11%;">
+                        @item.EntityGRNItem.PurchaseOrderItem.Quantity.ToString("##,###")
+                    </td>
+                    <td align="left" style="width: 11%;">
+                        @item.EntityGRNItem.QuantityDelivered.ToString("##,###")
+                    </td>
+                    <td align="left" style="width: 10%;">
+                        @item.EntityGRNItem.QuantityDamaged.ToString("##,###")
+                    </td>
+                    <td style="width: 15%;">
+                        @item.EntityGRNItem.Comments
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+    <input type="hidden" id="actionStatus" value="@ViewBag.Response" />
+    <input type="hidden" id="statusMsg" value="@ViewBag.msg" />
+    <br />
+</div>

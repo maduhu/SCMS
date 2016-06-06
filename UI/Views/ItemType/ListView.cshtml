@@ -1,0 +1,51 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.ItemType>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.ItemType_Index_Header</h3>
+    </div>
+    @if (Model.Count() > 0)
+    {    
+    
+        <table width="100%" align="center" cellspacing="0" cellpadding="5" border="1" style="border: 1px solid grey;
+            border-collapse: collapse; padding: 5px; font-size: 12px;">
+            <tr class="gridheader">
+                <th>
+                </th>
+                <th>
+                    @Resources.Global_String_Name
+                </th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr class="gridodd">
+                    <td>
+                        @Ajax.ActionLink(Resources.Global_String_Edit, "Edit", new { @id = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "PRcontent",
+                        LoadingElementId = "loading",
+                    })
+                        &nbsp;
+                        @Ajax.ActionLink(Resources.Global_String_Delete, "Delete", new { @id = item.Id }, new AjaxOptions
+                    {
+                        UpdateTargetId = "PRcontent",
+                        LoadingElementId = "loading",
+                        Confirm = string.Format(Resources.Global_String_ConfirmDelete, item.Name)
+                    })
+                    </td>
+                    <td>
+                        @item.Name
+                    </td>
+                </tr>
+            }
+        </table>
+    
+    
+    }
+    else
+    {
+        <br />
+        <i>@Resources.ItemType_ListView_NoItemTypes</i>
+    }
+    <br />
+</div>

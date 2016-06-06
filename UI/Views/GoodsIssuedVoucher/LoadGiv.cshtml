@@ -1,0 +1,161 @@
+﻿@using SCMS.Resource
+@model SCMS.Model.GoodsIssuedVoucher
+@{AjaxOptions ajaxOpts = new AjaxOptions
+{
+    UpdateTargetId = "givDiv",
+    LoadingElementId = "loading",
+    HttpMethod = "Post",
+    Url = Url.Action("SaveGIV"),
+    OnBegin = string.Format("return ValidateGIVBeforeSave({0}, '{1}')", Model.ROItems.Count, Resources.GoodsReceivedVoucher_SaveFailureMessage),
+    OnSuccess = "usermsg('" + Resources.Global_String_ProcessCompleted + "');",
+    OnFailure = "javascript:errormsg()"
+};}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.GoodsIssuedVoucher_Index_GoodsIssuedVoucher</h3>
+    </div>
+    @using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmgiv" }))
+    {
+        @Html.ValidationSummary(true)
+        <br />
+
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr>
+                <th style="width: 50%; text-align: center;">
+                    @Resources.GoodsIssuedVoucher_LoadGiv_GIVNo
+                </th>
+                <th style="width: 50%; text-align: center;">
+                    @Resources.WRForm_LoadWRF_WRFNo
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.TextBoxFor(m => m.RefNumber, new { @readonly = "readonly", id = "refNo" })
+                </td>
+                <td style="text-align: center">
+                    @Html.DropDownListFor(x => x.WareHouseReleaseId, Model.ReleaseOrders, Resources.Global_String_PleaseSelect, new { @id = "roid", onchange = "javascript:LoadGIV(this);" })
+                    @Html.ValidationMessageFor(x => x.WareHouseReleaseId, Resources.Global_String_Required)
+
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: center">
+                    @Resources.WayBill_LoadWB_WBNo
+                </th>
+                <th style="text-align: center">
+                    @Resources.WayBill_ViewWBDetails_VehicleRegNo
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.WaybillNo)
+                    @Html.ValidationMessageFor(m => m.WaybillNo, Resources.Global_String_Required)
+                </td>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.TransporterVehiclePlateNo)
+                    @Html.ValidationMessageFor(m => m.TransporterVehiclePlateNo, Resources.Global_String_Required)
+                </td>
+            </tr>
+            <tr>
+                <th style="text-align: center">
+                    @Resources.WayBill_LoadWB_Consignee
+                </th>
+                <th style="text-align: center">
+                    @Resources.Global_String_ReceivedBy
+                </th>
+            </tr>
+            <tr>
+                <td style="text-align: center">
+                    @Html.EditorFor(m => m.Consignee)
+                    @Html.ValidationMessageFor(m => m.Consignee, Resources.Global_String_Required)
+                </td>
+                <td style="text-align: center" id="warehouse">
+                    @Html.DropDownListFor(x => x.Receivedby, Model.Staffs, Resources.Global_String_PleaseSelect)
+                    @Html.ValidationMessageFor(x => x.Receivedby, Resources.Global_String_Required)
+                </td>
+            </tr>
+        </table>
+        <hr />
+        if (Model.ROItems.Count > 0)
+        {
+        <table width="98%" align="center" id="undoRemoves" style="display: none;">
+            <tr>
+                <td width="100%" align="right">
+                    <a href="#" onclick="UndoRemoves(@Model.ROItems.Count, '@Resources.Global_String_UndoRemove?')">@Resources.Global_String_UndoRemove</a>
+                </td>
+            </tr>
+        </table>
+        <table width="98%" align="center" cellspacing="0" cellpadding="0" border="1" class="cardTable">
+            <tr class="grideven">
+                <th></th>
+                <th>@Resources.Global_String_ItemName</th>
+                <th>@Resources.Global_String_UnitsOfMeasure</th>
+                <th>@Resources.Global_String_QtyReleased</th>
+                <th>@Resources.GoodsReceivedNote_DownloadTemplate_PreviouslyReceived</th>
+                <th>@Resources.Global_String_QtyReceived</th>
+                <th>@Resources.Global_String_Comments</th>
+                <th></th>
+            </tr>
+            @{string qtyReleased = "", prevRecu = "", qtyReceived = "", isRemoved = "", rowId = "";}
+            @for (int i = 0; i < Model.ROItems.Count; i++)
+            {
+                int ss = i + 1;
+                qtyReleased = "QtyReleased" + i;
+                prevRecu = "PrevRecu" + i;
+                qtyReceived = "QtyReceived" + i;
+                isRemoved = "IsRemoved" + i;
+                rowId = "Row" + i;               
+                
+                <tr class="gridodd" id="@rowId">
+                    <td style="width: 5%; text-align: center;">
+                        @ss
+                    </td>
+                    <td style="width: 25%;">
+                        @Model.ROItems[i].ItemName
+                        @Html.HiddenFor(x => x.ROItems[i].ROItemId)
+                    </td>
+                    <td style="width: 10%;">
+                        @Model.ROItems[i].Unit
+                    </td>
+                    <td style="width: 12%; text-align: right;">
+                        @Model.ROItems[i].QTYReleased
+                        @Html.HiddenFor(x => x.ROItems[i].QTYReleased, new { id = qtyReleased})
+                    </td>
+                    <td style="width: 12%; text-align: right;">
+                        @Model.ROItems[i].PreviouslyReceived
+                        @Html.HiddenFor(x => x.ROItems[i].PreviouslyReceived, new { id = prevRecu})
+                    </td>
+                    <td style="width: 12%; text-align: right;">
+                        @Html.TextBoxFor(m => m.ROItems[i].QTYReceived, new { id = qtyReceived, @class = "numericTb", onblur = "ValidateGIVQtyReceived(this, " + i + ")" })
+                        @Html.ValidationMessageFor(m => m.ROItems[i].QTYReceived, Resources.Global_String_Required)
+                    </td>
+                    <td style="width: 16%;">
+                        @Html.TextBoxFor(m => m.ROItems[i].Remarks, new { @class = "comments" })
+                        @Html.ValidationMessageFor(m => m.ROItems[i].Remarks)
+                    </td>
+                    <td style="width: 8%; text-align: center;">
+
+                        <a href="#" onclick="Javascript:RemoveRow('@rowId', @i, '@Resources.Global_String_ConfirmRemove?');">
+                            @Html.HiddenFor(m => m.ROItems[i].IsRemoved, new { id = isRemoved })
+                            @Resources.Global_String_Remove
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        <table width="98%" align="center">
+            <tr>
+                <td align="right" width="100%">
+                    <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " />
+                </td>
+            </tr>
+        </table>
+        <br />
+        }
+
+    }
+</div>

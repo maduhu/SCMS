@@ -1,0 +1,161 @@
+﻿<div id="main-menu">
+    <ul id="root">
+        <li><a href="#">Procurement</a>
+            <ul>
+                <li><a href="/OrderRequest/" title="">ORDER REQUEST (<span>OR</span>)</a></li>
+                <li><a href="/TenderAnalysis/" title="">TENDER ANALYSIS (<span>TA</span>)</a></li>
+                <li><a href="/PurchaseOrder/" title="">PURCHASE ORDER (<span>PO</span>)</a></li>
+                <li><a href="/Request4Payment/" title="">REQUEST FOR PAYMENT (<span>RFP</span>)</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Inventory</a>
+            <ul>
+                <li><a href="/GoodsReceivedNote/" title="">GOODS RECEIVED NOTE (<span>GRN</span>)</a></li>
+                <li><a href="/WRForm/" title="">WH RELEASE NOTE (<span>WRN</span>)</a></li>
+                <li><a href="/WayBill/" title="">WAYBILL (<span>WB</span>)</a> </li>
+                <li><a href="/Inventory/" title="">VIEW INVENTORY</a> </li>
+                <li><a href="/Asset/" title="">VIEW ASSETS</a> </li>
+            </ul>
+        </li>
+        <li><a href="#">Finance</a>
+            <ul>
+                <li><a href="/Request4Payment/" title="">REQUEST FOR PAYMENT (<span>RFP</span>)</a></li>
+                <li><a href="/Request4Advance/" title="">REQUEST FOR ADVANCE (<span>RFA</span>)</a></li>
+                <li><a href="#" title="">EXPENSE CLAIM (<span>ECF</span>)</a></li>
+                <li><a href="#" title="">SALARY PAYMENT (<span>SPM</span>)</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Budget</a>
+            <ul>
+                <li><a href="#" title="">PROJECT BUDGETS (<span>PB</span>)</a>
+                    <ul>
+                        <li><a href="/Budget/" title="">VIEW BUDGET</a></li>
+                        <li><a href="/Budget/" title="">CREATE BUDGET</a>
+                            <ul>
+                                <li><a href="#" title="">BUDGET INFORMATION </a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#" title="">MASTER BUDGETS (<span>MB</span>)</a>
+                    <ul>
+                        <li><a href="/MasterBudget/" title="">VIEW MASTER BUDGET</a></li>
+                        <li><a href="/MasterBudget/MBCIndex" title="">MANAGE MB CATEGORIES</a></li>
+                        <li><a href="/MasterBudget/MBPIndex" title="">MANAGE MB PROJECTIONS</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Travel Authorization</a>
+            <ul>
+                <li><a href="#" title="">TRAVEL AUTHORIZATION (<span>TAF</span>)</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Administration</a>
+            <ul>
+                <li><a href="@Url.Content("~/Admin/SystemUser")" title="">System Users List</a></li>
+                <li><a href="@Url.Content("~/Admin/Role")" title="">Roles List</a></li>
+                <li><a href="@Url.Content("~/Admin/Security/Permissions")" title="">Acl Manage</a></li>
+                <li><a href="@Url.Content("~/Admin/Settings")" title="">Manage Settings</a></li>
+            </ul>
+        </li>
+        @*<li><a href="#">Global Settings</a>
+            <ul>
+                <li><a href="/GlobalSettings/SystemUsers/" title="">System Users</a></li>
+                <li><a href="/Country/" title="">Country</a></li>
+                <li><a href="/CountryProgramme/" title="">Country Programs</a></li>
+                <li><a href="/CountrySubOffice/" title="">Country sub offices</a></li>
+                <li><a href="/Location/" title="">Locations</a></li>
+                <li><a href="/Currency/" title="">Currency</a></li>
+                <li><a href="/UnitOfMeasure/" title="">Unit of Measure</a></li>
+                <li><a href="/ExchangeRate/" title="">Exchange rates</a></li>
+                <li><a href="/Supplier/" title="">Suppliers/Vendors</a></li>
+                <li><a href="/Designation/" title="">Designations</a></li>
+                <li><a href="/ShippingTerm/" title="">Shipping terms</a></li>
+                <li><a href="/PaymentTerm/" title="">Payment terms</a></li>
+                <li><a href="/PayementType/" title="">Payment types</a></li>
+                <li><a href="/Supplier/" title="">Suppliers</a></li>
+            </ul>
+        </li>*@
+    </ul>
+    @*   <h3 class="nav-header">
+        PROCUREMENT<span></span></h3>
+    <div>
+        <ul>
+            <li><a href="/OrderRequest/" title="">ORDER REQUEST</a></li>
+            <li><a href="/TenderAnalysis/" title="">TENDER ANALYSIS</a></li>
+            <li><a href="/PurchaseOrder/" title="">PURCHASE ORDER</a></li>
+            <li><a href="#" title="">REQUEST FOR PAYMENT</a></li>
+        </ul>
+    </div>
+    <h3 class="nav-header">
+        INVENTORY<span></span></h3>
+    <div>
+        <ul>
+            <li><a href="/Item/" title="">items</a></li>
+            <li><a href="/ItemClassification/" title="">items classification</a></li>
+            <li><a href="/ItemCategory/" title="">items categories</a></li>
+            <li><a href="/InventoryItem/" title="">inventory items</a></li>
+            <li><a href="/WareHouse/" title="">warehouses</a></li>
+        </ul>
+        <h4 class="nav-header">
+            WAYBILL<span></span></h4>
+        <div>
+            <ul>
+                <li><a href="/Item/" title="">ISSUE WAYBILL</a></li>
+                <li><a href="/ItemClassification/" title="">VIEW WAYBILL</a></li>
+            </ul>
+        </div>
+    </div>
+    <h3 class="nav-header">
+        BUDGET &AMP; FINANCE<span></span></h3>
+    <div>
+        <ul>
+            <li><a href="#" title="">REQUEST FOR PAYMENT</a></li>
+            <li><a href="#" title="">REQUEST FOR ADVANCE</a></li>
+            <li><a href="/MasterBudget/" title="">MASTER BUDGET</a></li>
+            <li><a href="/Budget/" title="">PROJECT BUDGETS</a></li>
+        </ul>
+    </div>
+    <h3 class="nav-header">
+        TRAVEL AUTHORIZATION<span></span></h3>
+    <div>
+    </div>
+    <h3 class="nav-header">
+        GENERATE REPORTS<span></span></h3>
+    <div>
+    </div>
+    <h3 class="nav-header">
+        Global settings<span></span></h3>
+    <div>
+        <ul>
+            <li><a href="/GlobalSettings/SystemUsers/" title="">System Users</a></li>
+            <li><a href="/Country/" title="">Country</a></li>
+            <li><a href="/CountryProgramme/" title="">Country Programs</a></li>
+            <li><a href="#" title="">Countries Operation</a></li>
+            <li><a href="/CountrySubOffice/" title="">Country sub offices</a></li>
+            <li><a href="/Location/" title="">Locations</a></li>
+            <li><a href="/Currency/" title="">Currency</a></li>
+            <li><a href="/UnitOfMeasure/" title="">Unit of Measure</a></li>
+            <li><a href="#" title="">Staff</a></li>
+            <li><a href="/ExchangeRate/" title="">Exchange rates</a></li>
+            <li><a href="#" title="">Suppliers/Vendors</a></li>
+            <li><a href="/Designation/" title="">Designations</a></li>
+            <li><a href="/ShippingTerm/" title="">Shipping terms</a></li>
+            <li><a href="#" title="">Payment terms</a></li>
+            <li><a href="#" title="">Payment types</a></li>
+            <li><a href="#" title="">Sub programs</a></li>
+            <li><a href="/Supplier/" title="">Suppliers</a></li>
+        </ul>
+    </div>*@
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("ul#root").accordionMenu({
+            accordion: true,
+            speed: 500,
+            closedSign: '',
+            openedSign: ''
+        });
+    });
+</script>

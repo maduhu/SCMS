@@ -1,0 +1,67 @@
+﻿@using SCMS.Resource
+@model SCMS.UI.Models.BudgetSubLine
+@{
+    string success = Model.SubLineId != null ? "CloseDialog" : "ClearForm";
+    AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "budgetDiv",
+      LoadingElementId = "loading",
+      HttpMethod = "Post",
+      Url = Url.Action("SaveSubLine"),
+      OnSuccess = success
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form" }))
+{ 
+    <table>
+        <tbody>
+            <tr>
+                <td align="right">@Resources.Budget_CategoryList_CategoryNo.:</td>
+                <td>
+                    @Html.DisplayFor(model => model.BudgetCategoryNumber)
+                    @Html.DisplayFor(model => model.BudgetCategoryDesc)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Budget_CreateSubLine_LineNumber<font color="red">*</font>:</td>
+                <td>
+                    @Html.TextBoxFor(model => model.LineNumber, new { @autocomplete = "off"})<br />
+                    @Html.ValidationMessageFor(model => model.LineNumber)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Global_String_Description<font color="red">*</font>:</td>
+                <td>
+                    @Html.TextBoxFor(model => model.Description, new { @autocomplete = "off"})<br />
+                    @Html.ValidationMessageFor(model => model.Description)
+                </td>
+            </tr>
+            <tr>
+                <td align="right">@Resources.Budget_CategoryList_BudgetAmount<font color="red">*</font>:</td>
+                <td>
+                    @Html.TextBoxFor(model => model.TotalBudget, new { id="amount", @class = "numericTb", @autocomplete = "off"})<br />
+                    @Html.ValidationMessageFor(model => model.TotalBudget)
+                </td>
+            </tr>   
+            <tr>
+                <td align="right">@Resources.Budget_CategoryList_AllowedOverrun:</td>
+                <td>
+                    @Html.TextBoxFor(model => model.OverrunAdjustment, new { @class = "numericTb"})
+                    @Html.ValidationMessageFor(model => model.OverrunAdjustment)
+                </td>
+            </tr>         
+            <tr>
+                <td></td>
+                <td>
+                    @Html.HiddenFor(model => model.SubLineId)
+                    @Html.HiddenFor(model => model.EntityBudgetSubLine.Id)
+                    @Html.HiddenFor(model => model.BudgetCategoryId)
+                    <input type="submit" class="btn green"  value="@ViewBag.ButtonText" />&nbsp;
+                    <input type="button" class="btn green"  value="@Resources.Global_String_Cancel" onclick="javascript:CloseDialog()" />
+                </td>
+            </tr>
+         </tbody>
+    </table>
+}  

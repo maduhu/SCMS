@@ -1,0 +1,111 @@
+﻿@using SCMS.Resource
+@using SCMS.Utils
+@model SCMS.UI.Models.PostDetailModel
+
+@if (Model.BudgetPostings.Count() > 0)
+{
+    if (Model.HasProcurement)
+    {
+        <h4 style="text-align: center;">@Resources.Global_String_Procurement.ToUpper()</h4>  
+        <table align="center" class="cardTable" style="min-width: 800px;">
+            <tr>
+                <th>@Resources.Global_String_Date</th>
+                <th>@Resources.Global_String_Amount</th>
+                <th>@Resources.Global_String_PostedBy</th>
+                <th>@Resources.Global_String_OR</th>
+                <th>@Resources.Global_String_PO</th>
+                <th>@Resources.Global_String_RFP</th>
+                <th>@Resources.Global_String_ItemName</th>
+                @if (UserContext.HasPermission(StandardPermissionProvider.RebookPosting))
+                {
+                    <th>@Resources.Global_String_Rebook</th>
+                }
+            </tr>
+            @foreach (var item in Model.BudgetPostings)
+            {
+                if (item.RFPBudgetLineId.HasValue)
+                {
+                    <tr>
+                        <td align="center">
+                            @item.DatePosted.ToString(Constants.DATE_FORMAT)
+                        </td>
+                        <td align="right">
+                            @item.AmountPosted.ToString(Constants.NUMBER_FORMAT_TWO_DECIMAL)
+                        </td>
+                        <td title="@item.Staff.Designation.Name">
+                            @item.Staff.Person.FirstName &nbsp; @item.Staff.Person.OtherNames
+                        </td>
+                        @if (item.RFPBudgetLineId.HasValue)
+                        { 
+                            <td>
+                                @if(item.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem != null)
+                                {
+                                    @item.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.OrderRequest.RefNumber
+                                }
+                                else
+                                {
+                                    @item.PaymentRequestBudgetLine.PurchaseOrderItem.ProcurementPlanItem.ProcurementPlan.RefNumber
+                                }
+                            </td>
+                            <td>@item.PaymentRequestBudgetLine.PurchaseOrderItem.PurchaseOrder.RefNumber</td>
+                            <td>@item.PaymentRequestBudgetLine.PaymentRequest.RefNumber</td>
+                            <td title="@item.PaymentRequestBudgetLine.PurchaseOrderItem.ItemDescription">@item.PaymentRequestBudgetLine.PurchaseOrderItem.Item.Name</td>
+                            if (UserContext.HasPermission(StandardPermissionProvider.RebookPosting))
+                            {                
+                                <td>
+                                    @Ajax.ActionLink(Resources.Global_String_Rebook, "RebookPostedAmount", new { id = item.Id }, new AjaxOptions
+                               {
+                                   UpdateTargetId = "popup-page",
+                                   LoadingElementId = "popup-loading",
+                                   Url = Url.Action("RebookPostedAmount/" + item.Id),
+                                   OnSuccess = "CenterPopup"
+                               }, new { style = "text-decoration: underline;" })
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            }
+        </table>
+    }
+}
+
+@if (Model.PartRebookings.Count > 0)
+{ 
+    <h4 style="text-align: center;">@Resources.Global_String_PartRebookingToThisBudgetLine</h4>  
+    <table align="center" class="cardTable" style="min-width: 800px;">
+        <tr>
+            <th>@Resources.Global_String_Date</th>
+            <th>@Resources.Global_String_Amount</th>
+            <th>@Resources.Global_String_RebookedBy</th>
+            <th>@Resources.Global_String_OR</th>
+            <th>@Resources.Global_String_PO</th>
+            <th>@Resources.Global_String_RFP</th>
+            <th>@Resources.Global_String_ItemName</th>
+            <th>@Resources.Global_String_RebookedFrom</th>
+        </tr>
+        @foreach (var item in Model.PartRebookings)
+        {
+            <tr>
+                <td align="center">
+                    @item.RebookedOn.ToString("dd/MM/yyyy")
+                </td>
+                <td align="right">
+                    @item.ToAmount.ToString("#,##0.00")
+                </td>
+                <td title="@item.Staff.Designation.Name">
+                    @item.Staff.Person.FirstName &nbsp; @item.Staff.Person.OtherNames
+                </td>
+                @if (item.BudgetPosting.RFPBudgetLineId.HasValue)
+                { 
+                    <td>@item.BudgetPosting.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.OrderRequest.RefNumber</td>
+                    <td>@item.BudgetPosting.PaymentRequestBudgetLine.PurchaseOrderItem.PurchaseOrder.RefNumber</td>
+                    <td>@item.BudgetPosting.PaymentRequestBudgetLine.PaymentRequest.RefNumber</td>
+                    <td title="@item.BudgetPosting.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.ItemDescription">@item.BudgetPosting.PaymentRequestBudgetLine.PurchaseOrderItem.OrderRequestItem.Item.Name</td>                    
+                    <td title="@item.BudgetPosting.PaymentRequestBudgetLine.ProjectBudget.LineNumber @item.BudgetPosting.PaymentRequestBudgetLine.ProjectBudget.Description">@item.BudgetPosting.PaymentRequestBudgetLine.ProjectBudget.BudgetCategory.ProjectDonor.ProjectNumber</td>
+                }
+            </tr>
+        }
+    </table>
+}
+

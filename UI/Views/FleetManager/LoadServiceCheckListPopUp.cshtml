@@ -1,0 +1,42 @@
+﻿@using SCMS.Resource
+@using SCMS.UI.GeneralHelper
+@model IEnumerable<SCMS.Model.ServiceCheckList>
+@{AjaxOptions ajaxOpts = new AjaxOptions
+  {
+      UpdateTargetId = "popup-page",
+      LoadingElementId = "popup-loading",
+      HttpMethod = "Post",
+      Url = "SaveServiceCList",
+      OnSuccess = string.Format("usermsg('{0}');", Resources.Global_String_ProcessCompleted),
+      OnFailure = "javascript:errormsg()"
+  };}
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Ajax.BeginForm(null, null, ajaxOpts, new { @class = "form", @id = "frmchecklist" }))
+{
+    @Html.ValidationSummary(true)
+    @Html.Hidden("FleetId", (Guid)ViewBag.FleetId)
+    @Html.Hidden("gInfoId", (Guid?)ViewBag.gInfoId)
+    @Html.Hidden("ServiceCategoryId", (Guid?)ViewBag.category)
+    
+    <table width="500px" cellpadding="0">
+        <tr class="gridheader2">
+            <td style="width: 100%;">
+                <div class="headerText">
+                    <h3 class="title-left">
+                        @Resources.FleetManager_LoadServiceCheckListPopUp_CheckTheItemsServiced
+                    </h3>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.CheckBoxLists("ServiceCList", Model, "Name", "Id")
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" class="btn green" value="  @Resources.Global_String_Save  " />
+            </td>
+        </tr>
+    </table>
+}

@@ -1,0 +1,41 @@
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-frank.resources
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-morgan.resources
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources.resources
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.csproj.GenerateResource.Cache
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-frank.resources
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-morgan.resources
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.Resources.resources
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.csproj.GenerateResource.Cache
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM-2013\SCMS.Resources\obj\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\bin\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\bin\Debug\SCMS.Resource.pdb
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-frank.resources
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-morgan.resources
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.Resources.resources
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.csproj.GenerateResource.Cache
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.dll
+C:\My Projects\LOGISYS\SSCM\SCMS.Resources\obj\Debug\SCMS.Resource.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.pdb
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-frank.resources
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-morgan.resources
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources.resources
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.csproj.GenerateResource.Cache
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.dll
+C:\Users\morgan\Documents\Visual Studio 2015\Projects\VTL\root\trunk\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.dll
+D:\SCMS\RASHID\SCMS\SCMS.Resources\bin\Debug\SCMS.Resource.pdb
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.csprojResolveAssemblyReference.cache
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-frank.resources
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources-morgan.resources
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.Resources.resources
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.csproj.GenerateResource.Cache
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.dll
+D:\SCMS\RASHID\SCMS\SCMS.Resources\obj\Debug\SCMS.Resource.pdb

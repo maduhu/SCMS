@@ -1,0 +1,123 @@
+﻿@using SCMS.Resource
+@model IEnumerable<SCMS.Model.UnitOfMeasure>
+<div class="partialViewCard">
+    <div class="partialViewCardHeader">
+        <h3>@Resources.Global_String_UnitOfMeasure</h3>
+    </div>
+    <br />
+    @if (Model.Count() > 0)
+    {    
+        <div id="tablewrapper">
+            <div id="tableheader">
+                <div class="search">
+                    <b>@Resources.Global_String_SearchBy:</b><br />
+                    <select id="columns" onchange="sorter.search('query')">
+                    </select>
+                    <input type="text" id="query" onkeyup="sorter.search('query')" />
+                </div>
+                <span class="details">
+                    <div>
+                        @Resources.Global_String_Records <span id="startrecord"></span>-<span id="endrecord"></span> @Resources.Global_String_Of <span id="totalrecords">
+                        </span>
+                    </div>
+                </span>
+            </div>
+            <br />
+            <br />
+            <br />
+            <table width="98%" align="center" cellpadding="0" cellspacing="0" border="0" id="table" class="tinytable">
+                <thead>
+                    <tr>
+                        <th>
+                            <h3>@Resources.UnitOfMeasure_CreateEdit_Code</h3>
+                        </th>
+                        <th>
+                            <h3>@Resources.Global_String_Description</h3>
+                        </th>
+                        <th>
+                            <h3>@Resources.Global_String_Manage</h3>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Code)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td align="center">
+                                @Ajax.ActionLink(Resources.Global_String_Edit, "CreateEdit", new { uid = item.Id }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "popup-page",
+                                    LoadingElementId = "popup-loading",
+                                    OnBegin = string.Format("ShowDialogue('{0} :: " + item.Code + "')", Resources.Global_String_Edit),
+                                    OnSuccess = "CenterPopup"
+                                })
+                                &nbsp;
+                                @Ajax.ActionLink(Resources.Global_String_Delete, "DeleteItem", new { uid = item.Id }, new AjaxOptions
+                                {
+                                    UpdateTargetId = "ContentDiv",
+                                    LoadingElementId = "loading",
+                                    Confirm = Resources.UnitOfMeasure_ListView_confirmdelete,
+                                    OnSuccess = "if (document.getElementById('table') != null) {initSorter();sorter.size(20);}"                                    
+                                })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div id="tablefooter">
+                <div id="tablenav">
+                    <div>
+                        <img src="../../Content/images/pager/first.gif" width="16" height="16" alt="@Resources.Global_String_FirstPage"
+                            onclick="sorter.move(-1,true)" />
+                        <img src="../../Content/images/pager/previous.gif" width="16" height="16" alt="@Resources.Global_String_PreviousPage"
+                            onclick="sorter.move(-1)" />
+                        <img src="../../Content/images/pager/next.gif" width="16" height="16" alt="@Resources.Global_String_NextPage"
+                            onclick="sorter.move(1)" />
+                        <img src="../../Content/images/pager/last.gif" width="16" height="16" alt="@Resources.Global_String_LastPage"
+                            onclick="sorter.move(1,true)" />
+                    </div>
+                    <div>
+                        <select id="pagedropdown">
+                        </select>
+                    </div>
+                    <div>
+                        <a href="javascript:sorter.showall()">@Resources.Global_String_ViewAll</a>
+                    </div>
+                </div>
+                <div id="tablelocation">
+                    <div>
+                        <select onchange="sorter.size(this.value)">
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="20" selected="selected">20</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                        <span>@Resources.Global_String_EntriesPerPage</span>
+                    </div>
+                    <div class="page">
+                        @Resources.Global_String_Page <span id="currentpage"></span>@Resources.Global_String_Of <span id="totalpages"></span>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    }
+    else
+    {
+        <br />
+        <i>@Resources.UnitOfMeasure_ListView_NoUnits</i>
+    }
+    <br />
+    <div>
+        <span class="action_message">@ViewBag.Message</span>
+    </div>
+    <div>
+        <span class="field-validation-error">@ViewBag.Error</span>
+    </div>
+</div>
